@@ -1,0 +1,239 @@
+@font-face {
+  font-family: 'montserrat';
+  src:url('fonts/montserrat-regular-webfont.woff2') format('woff2'),
+      url('fonts/montserrat-regular-webfont.woff') format('woff'),
+      url('fonts/montserrat-regular-webfont.ttf') format('truetype'),
+      url('fonts/montserrat-regular-webfont.svg#montserratregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'montserrat';
+  src:url('fonts/montserrat-bold-webfont.woff2') format('woff2'),
+      url('fonts/montserrat-bold-webfont.woff') format('woff'),
+      url('fonts/montserrat-bold-webfont.ttf') format('truetype'),
+      url('fonts/montserrat-bold-webfont.svg#montserratbold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/*
+@font-face {
+  font-family: 'montserratsemibold';
+  src:url('fonts/montserrat-semibold-webfont.woff2') format('woff2'),
+      url('fonts/montserrat-semibold-webfont.woff') format('woff'),
+      url('fonts/montserrat-semibold-webfont.ttf') format('truetype'),
+      url('fonts/montserrat-semibold-webfont.svg#montserratsemibold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+@font-face {
+  font-family: 'montserratmedium';
+  src:url('fonts/montserrat-medium-webfont.woff2') format('woff2'),
+      url('fonts/montserrat-medium-webfont.woff') format('woff'),
+      url('fonts/montserrat-medium-webfont.ttf') format('truetype'),
+      url('fonts/montserrat-medium-webfont.svg#montserratmedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.ui-kit {
+  color: #1f2041;
+  font-family: montserrat, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.ui-kit.ui-kit_white {
+  background-color: #ffffff;
+}
+
+.ui-kit.ui-kit_gray {
+  background-color: #e5e5e5;
+}
+
+.ui-kit-header {
+  background: url('img/icon.svg') no-repeat 30px 30px;
+  
+  height: 135px;
+}
+
+.colors-and-type {
+  display: flex;
+  
+  padding-left: 150px;
+}
+
+.colors-and-type > .colors-and-type__element {
+  margin-left: 243px;
+  
+  width: 450px;
+}
+
+.colors-and-type > .colors-and-type__element:first-child {
+  margin-left: 0;
+}
+
+.list-colors {
+  list-style: none;
+}
+
+.list-colors > .list-colors__item {
+  min-height: 90px;
+
+  display: flex;
+  align-items: center;
+}
+
+.list-colors > .list-colors__item > .list-colors__item {
+  margin-left: 40px;
+}
+
+.list-colors > .list-colors__item > .list-colors__item:first-child {
+  margin-left: 0;
+}
+
+.list-colors > .list-colors__item > .list-colors__item > .list-colors__item {
+  margin-top: 9px;
+}
+
+.list-colors > .list-colors__item > .list-colors__item > .list-colors__item:first-child {
+  margin-top: 0;
+}
+
+.list-colors .list-colors__item.list-colors__item_square {
+  width: 70px;
+  height: 70px;
+  border-radius: 6px;
+}
+
+.list-colors .list-colors__color-name {
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.list-colors .list-colors__color-value {
+  font-size: 19px;
+  text-transform: uppercase;
+}
+
+.list-colors .list-colors__item.list-colors__item_opacity-75 {
+  opacity: 0.75;
+}
+
+.list-colors .list-colors__item.list-colors__item_opacity-50 {
+  opacity: 0.5;
+}
+
+.list-colors .list-colors__item.list-colors__item_opacity-25 {
+  opacity: 0.25;
+}
+
+.list-colors .list-colors__item.list-colors__item_opacity-05 {
+  opacity: 0.05;
+}
+
+.list-colors .list-colors__item.list-colors__item_dark {
+  background-color: #1f2041;
+}
+
+.list-colors .list-colors__item.list-colors__item_purple {
+  background-color: #bc9cff;
+}
+
+.list-colors .list-colors__item.list-colors__item_green {
+  background-color: #6fcf97;
+}
+
+/*****************************************************************************/
+
+.list-type {
+  list-style: none;  
+  
+  padding-top: 12px;
+}  
+
+.list-type > .list-type__item {
+  display: flex;
+  
+  margin-top: 51px;
+}
+
+.list-type > .list-type__item:first-child {
+  margin-top: 0;
+}  
+
+.list-type > .list-type__item:last-child {
+  margin-top: 50px;
+}  
+
+
+.list-type > .list-type__item > .list-type__item {
+  margin-left: 30px;
+  min-width:40px;
+}
+
+.list-type > .list-type__item > .list-type__item:first-child {
+  margin-left: 0;
+}
+
+.list-type__example-title {
+  opacity: 0.25;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.list-type__description-title {
+  font-weight: bold;
+}
+
+.list-type__example-label {
+  opacity: 0.25;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.list-type__description-label {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.list-type__example-body {
+  opacity: 0.25;
+  text-align: right;
+}
+
+.list-type__description-body {
+  width: 315px; /* ☻ */
+}
+
+.list-type .list-type__item.list-type__item_font-size-12px {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.list-type .list-type__item.list-type__item_font-size-14px {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.list-type .list-type__item.list-type__item_font-size-19px {
+  font-size: 19px;
+  line-height: 23px;
+}
+
+.list-type .list-type__item.list-type__item_font-size-24px {
+  font-size: 24px;
+  line-height: 29px;
+}
+
+
