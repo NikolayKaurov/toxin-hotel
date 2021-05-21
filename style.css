@@ -18,30 +18,6 @@
   font-style: normal;
 }
 
-/*
-@font-face {
-  font-family: 'montserratsemibold';
-  src:url('fonts/montserrat-semibold-webfont.woff2') format('woff2'),
-      url('fonts/montserrat-semibold-webfont.woff') format('woff'),
-      url('fonts/montserrat-semibold-webfont.ttf') format('truetype'),
-      url('fonts/montserrat-semibold-webfont.svg#montserratsemibold') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-
-@font-face {
-  font-family: 'montserratmedium';
-  src:url('fonts/montserrat-medium-webfont.woff2') format('woff2'),
-      url('fonts/montserrat-medium-webfont.woff') format('woff'),
-      url('fonts/montserrat-medium-webfont.ttf') format('truetype'),
-      url('fonts/montserrat-medium-webfont.svg#montserratmedium') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-*/
-
 * {
   margin: 0;
   padding: 0;
@@ -51,6 +27,7 @@
   color: #1f2041;
   font-family: montserrat, Arial, sans-serif;
   font-size: 14px;
+  line-height: 23px;
 }
 
 .ui-kit.ui-kit_white {
@@ -85,13 +62,21 @@
 
 .list-colors {
   list-style: none;
+  
+  padding-top: 10px;
 }
 
 .list-colors > .list-colors__item {
-  min-height: 90px;
+/*min-height: 90px; */
+
+  margin-top: 20px;
 
   display: flex;
   align-items: center;
+}
+
+.list-colors > .list-colors__item:first-child {
+  margin-top: 0;
 }
 
 .list-colors > .list-colors__item > .list-colors__item {
@@ -100,14 +85,6 @@
 
 .list-colors > .list-colors__item > .list-colors__item:first-child {
   margin-left: 0;
-}
-
-.list-colors > .list-colors__item > .list-colors__item > .list-colors__item {
-  margin-top: 9px;
-}
-
-.list-colors > .list-colors__item > .list-colors__item > .list-colors__item:first-child {
-  margin-top: 0;
 }
 
 .list-colors .list-colors__item.list-colors__item_square {
@@ -119,11 +96,13 @@
 .list-colors .list-colors__color-name {
   font-weight: bold;
   font-size: 19px;
+  line-height: 28px;
 }
 
 .list-colors .list-colors__color-value {
   font-size: 19px;
   text-transform: uppercase;
+  line-height: 28px;
 }
 
 .list-colors .list-colors__item.list-colors__item_opacity-75 {
@@ -154,8 +133,6 @@
   background-color: #6fcf97;
 }
 
-/*****************************************************************************/
-
 .list-type {
   list-style: none;  
   
@@ -171,11 +148,6 @@
 .list-type > .list-type__item:first-child {
   margin-top: 0;
 }  
-
-.list-type > .list-type__item:last-child {
-  margin-top: 50px;
-}  
-
 
 .list-type > .list-type__item > .list-type__item {
   margin-left: 30px;
