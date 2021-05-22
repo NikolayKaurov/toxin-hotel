@@ -1,0 +1,47 @@
+include list-colors.pug
+include list-type.pug
+
+doctype html
+
+html.ui-kit.ui-kit_white
+
+  head
+    meta(charset='utf-8')
+    meta(name='keywords' content='Colors, Type')
+    meta(name='description' content!='Colors & Type')
+    link(rel='stylesheet' href='style.css')
+    title Colors & Type
+    
+  body
+    .ui-kit-header
+    
+    .colors-and-type
+    
+      ul.colors-and-type__element.list-colors
+            
+        +list-colors__item('Dark shade 100%')
+        
+        +list-colors__item('Dark shade 75%')
+        
+        +list-colors__item('Dark shade 50%')
+        
+        +list-colors__item('Dark shade 25%')
+        
+        +list-colors__item('Dark shade 5%')
+        
+        +list-colors__item('Purple')
+        
+        +list-colors__item('Green')
+        
+      ul.colors-and-type__element.list-type
+      
+        +list-type__item('h1','This one is the sub-section or widget title')
+        
+        +list-type__item('h2','Next one is the item title inside widgets')
+        
+        +list-type__item('h3','This is a label or CTA text')
+        
+        +list-type__item('Body','This is the body text which is used for most of the design, like paragraphs, lists, etc.')
+
+            
+
