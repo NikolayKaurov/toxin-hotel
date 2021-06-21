@@ -1,0 +1,11 @@
+.colors-and-type {
+  > .colors-and-type__element {
+    margin-left: 243px;
+
+    width: 450px;
+  }
+
+  > .colors-and-type__element:first-child {
+    margin-left: 0;
+  }
+}
