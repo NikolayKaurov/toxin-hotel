@@ -1,0 +1,8 @@
+mixin text-field(placeholder, name, label)
+  .text-field
+    .text-field
+      - if (name)
+        p.text-field= name
+      - if (label)
+        p.text-field= label
+    input(type='text' class='text-field' placeholder= placeholder)

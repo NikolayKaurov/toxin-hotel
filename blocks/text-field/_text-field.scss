@@ -1,0 +1,71 @@
+div.text-field {
+
+  border: 0;
+  width: 320px;
+
+  > div.text-field {
+
+    display: flex;
+    justify-content: space-between;
+
+    p.text-field {
+      font-size: 12px;
+      line-height: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      margin-bottom: 5px;
+    }
+
+    p.text-field:nth-child(2) {
+      font-weight: normal;
+      color: rgba(31, 32, 65, 0.5);
+    }
+  }
+
+  input.text-field {
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(31, 32, 65, 0.25);
+
+    width: 303px;
+    height: 42px;
+
+    padding-left: 15px;
+
+    border: 1px solid rgba(31, 32, 65, 0.25);
+    border-radius: 4px;
+  }
+
+  input.text-field:focus {
+    color: rgba(31, 32, 65, 0.75);
+
+    border: 1px solid rgba(31, 32, 65, 0.5);
+
+    outline: 0;
+  }
+
+  input.text-field::placeholder {
+    font-family: montserrat, Arial, sans-serif;
+
+    color: rgba(31, 32, 65, 0.25);
+  }
+
+  input.text-field:focus::placeholder {
+    color: rgba(31, 32, 65, 0.75);
+  }
+}
+
+div.text-field:hover {
+
+  input.text-field {
+    color: rgba(31, 32, 65, 0.75);
+
+    border: 1px solid rgba(31, 32, 65, 0.5);
+  }
+
+  input.text-field::placeholder {
+    color: rgba(31, 32, 65, 0.75);
+  }
+}
+

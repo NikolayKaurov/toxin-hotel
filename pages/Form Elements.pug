@@ -1,0 +1,25 @@
+include c:\inetpub\wwwroot\blocks\ui-kit\ui-kit
+include c:\inetpub\wwwroot\blocks\ui-kit-header\ui-kit-header
+include c:\inetpub\wwwroot\blocks\colors-and-type\colors-and-type
+include c:\inetpub\wwwroot\blocks\colors-and-type\__element\colors-and-type__element
+include c:\inetpub\wwwroot\blocks\list-colors\list-colors
+include c:\inetpub\wwwroot\blocks\list-colors\__item\list-colors__item
+include c:\inetpub\wwwroot\blocks\list-colors\__color-name\list-colors__color-name
+include c:\inetpub\wwwroot\blocks\list-colors\__color-value\list-colors__color-value
+include c:\inetpub\wwwroot\blocks\list-type\list-type
+include c:\inetpub\wwwroot\blocks\list-type\__item\list-type__item
+include c:\inetpub\wwwroot\blocks\list-type\__example-title\list-type__example-title
+include c:\inetpub\wwwroot\blocks\list-type\__description-title\list-type__description-title
+include c:\inetpub\wwwroot\blocks\list-type\__example-label\list-type__example-label
+include c:\inetpub\wwwroot\blocks\list-type\__description-label\list-type__description-label
+include c:\inetpub\wwwroot\blocks\list-type\__example-body\list-type__example-body
+include c:\inetpub\wwwroot\blocks\list-type\__description-body\list-type__description-body
+include c:\inetpub\wwwroot\blocks\form-elements\form-elements
+include c:\inetpub\wwwroot\blocks\form-elements\__text-field\form-elements__text-field
+include c:\inetpub\wwwroot\blocks\text-field\text-field
++ui-kit('Form elements','ui-kit_white')
+  +ui-kit-header
+  +form-elements
+    +form-elements__text-field
+      +text-field('Email','text field','default')
+      +text-field('This is pretty awesome','text field','hover / focus')
