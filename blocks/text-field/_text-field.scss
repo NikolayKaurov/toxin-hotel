@@ -1,43 +1,45 @@
-div.text-field {
+.text-field {
 
-  border: 0;
+//border: 0;
   width: 320px;
 
-  > div.text-field {
+  > .text-field {
 
     display: flex;
     justify-content: space-between;
 
-    p.text-field {
+    .text-field-label {
       font-size: 12px;
       line-height: 15px;
       font-weight: bold;
       text-transform: uppercase;
 
-      margin-bottom: 5px;
+      margin: 0 0 5px 0;
     }
 
-    p.text-field:nth-child(2) {
+    .text-field-label:nth-child(2) {
       font-weight: normal;
       color: rgba(31, 32, 65, 0.5);
     }
   }
 
-  input.text-field {
+  .text-field-input {
     font-size: 14px;
-    line-height: 18px;
+    line-height: 24px;
     color: rgba(31, 32, 65, 0.25);
+    font-family: montserrat, Arial, sans-serif;
 
     width: 303px;
     height: 42px;
 
-    padding-left: 15px;
+    margin: 0;
+    padding: 0 0 0 15px;
 
     border: 1px solid rgba(31, 32, 65, 0.25);
     border-radius: 4px;
   }
 
-  input.text-field:focus {
+  .text-field-input:focus {
     color: rgba(31, 32, 65, 0.75);
 
     border: 1px solid rgba(31, 32, 65, 0.5);
@@ -45,26 +47,24 @@ div.text-field {
     outline: 0;
   }
 
-  input.text-field::placeholder {
-    font-family: montserrat, Arial, sans-serif;
-
+  .text-field-input::placeholder {
     color: rgba(31, 32, 65, 0.25);
   }
 
-  input.text-field:focus::placeholder {
+  .text-field-input:focus::placeholder {
     color: rgba(31, 32, 65, 0.75);
   }
 }
 
-div.text-field:hover {
+.text-field:hover {
 
-  input.text-field {
+  .text-field-input {
     color: rgba(31, 32, 65, 0.75);
 
     border: 1px solid rgba(31, 32, 65, 0.5);
   }
 
-  input.text-field::placeholder {
+  .text-field-input::placeholder {
     color: rgba(31, 32, 65, 0.75);
   }
 }

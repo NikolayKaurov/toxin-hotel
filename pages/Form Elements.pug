@@ -17,9 +17,12 @@ include c:\inetpub\wwwroot\blocks\list-type\__description-body\list-type__descri
 include c:\inetpub\wwwroot\blocks\form-elements\form-elements
 include c:\inetpub\wwwroot\blocks\form-elements\__text-field\form-elements__text-field
 include c:\inetpub\wwwroot\blocks\text-field\text-field
+include c:\inetpub\wwwroot\blocks\dropdown\dropdown
 +ui-kit('Form elements','ui-kit_white')
   +ui-kit-header
   +form-elements
     +form-elements__text-field
-      +text-field('Email','text field','default')
-      +text-field('This is pretty awesome','text field','hover / focus')
+      +text-field('field_1','Email','text field','default')
+      +text-field('field_2','This is pretty awesome','text field','hover / focus')
+      +dropdown('guest','','dropdown')
+      +dropdown('guest','','дропдаун')

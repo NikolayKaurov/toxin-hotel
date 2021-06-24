@@ -30,15 +30,18 @@ let plugins = [new MiniCssExtractPlugin({filename: 'style.css'})];
 fs.readdirSync(blocks).forEach(block => {
   blockPath = blocks + slash + block;
   if (fs.lstatSync(blockPath).isDirectory()) {
-    Object.assign(bemEntities, {[block]: blockPath});
+//  Object.assign(bemEntities, {[block]: blockPath});
+    bemEntities[block] = blockPath;
     fs.readdirSync(blockPath).forEach(element => {
       elementPath = blockPath + slash + element;
       if (fs.lstatSync(elementPath).isDirectory()) {
-        Object.assign(bemEntities, {[block + element]: elementPath});
+//      Object.assign(bemEntities, {[block + element]: elementPath});
+        bemEntities[block + element] = elementPath;
         fs.readdirSync(elementPath).forEach(modifier => {
           modifierPath = elementPath + slash + modifier;
           if (fs.lstatSync(modifierPath).isDirectory()) {
-            Object.assign(bemEntities, {[block + element + modifier]: modifierPath});
+//          Object.assign(bemEntities, {[block + element + modifier]: modifierPath});
+            bemEntities[block + element + modifier] = modifierPath;
           }
         })
       }
@@ -105,6 +108,8 @@ for (let entity in useBemEntities) {
     includeThisToPUG = includeThisToPUG + 'include ' + useBemEntities[entity] + slash + entity + endLine;
   if (fs.existsSync(useBemEntities[entity] + slash + '_' + entity + '.scss'))
     includeThisToSCSS = includeThisToSCSS + "@use '" + useBemEntities[entity].replace(/^.*blocks/i, 'blocks').replace(/\\/g,'/') + '/' + entity + "';" + endLine;
+  if (fs.existsSync(useBemEntities[entity] + slash + entity + '.js'))
+    includeThisToJS = includeThisToJS + "import '" + useBemEntities[entity].replace(/^.*blocks/i, '../blocks').replace(/\\/g,'/') + '/' + entity + "';" + endLine;
 }
 
 fs.readdirSync(pages).forEach(page =>{

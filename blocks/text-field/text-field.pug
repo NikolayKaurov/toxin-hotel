@@ -1,8 +1,8 @@
-mixin text-field(placeholder, name, label)
+mixin text-field(name, placeholder, label, description)
   .text-field
     .text-field
-      - if (name)
-        p.text-field= name
       - if (label)
-        p.text-field= label
-    input(type='text' class='text-field' placeholder= placeholder)
+        p.text-field-label= label
+      - if (description)
+        p.text-field-label= description
+    input(type='text' class='text-field-input' name= name placeholder= placeholder)

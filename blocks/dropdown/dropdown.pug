@@ -1,0 +1,21 @@
+mixin dropdown-input(name, classes)
+  .dropdown-input(class= classes)
+    .dropdown-label
+    button.dropdown-minus
+    input(type='text' class='dropdown-counter' name= name+'_'+classes placeholder='0')
+    button.dropdown-plus
+
+mixin dropdown(name, modifiers, label, description)
+  .dropdown(class= modifiers)
+    .dropdown-header
+      - if (label)
+        .dropdown-label= label
+      - if (description)
+        .dropdown-label= description
+    .dropdown-drop
+      .dropdown-quantity
+      .dropdown-arrow
+    .dropdown-down
+      +dropdown-input(name, 'dropdown-adult')
+      +dropdown-input(name, 'dropdown-child')
+      +dropdown-input(name, 'dropdown-baby')
