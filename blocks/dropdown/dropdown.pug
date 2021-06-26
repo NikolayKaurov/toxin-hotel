@@ -1,10 +1,3 @@
-mixin dropdown-input(name, classes)
-  .dropdown-input(class= classes)
-    .dropdown-label
-    button.dropdown-minus
-    input(type='text' class='dropdown-counter' name= name+'_'+classes placeholder='0')
-    button.dropdown-plus
-
 mixin dropdown(name, modifiers, label, description)
   .dropdown(class= modifiers)
     .dropdown-header
@@ -12,10 +5,17 @@ mixin dropdown(name, modifiers, label, description)
         .dropdown-label= label
       - if (description)
         .dropdown-label= description
-    .dropdown-drop
-      .dropdown-quantity
-      .dropdown-arrow
     .dropdown-down
-      +dropdown-input(name, 'dropdown-adult')
-      +dropdown-input(name, 'dropdown-child')
-      +dropdown-input(name, 'dropdown-baby')
+      +dropdown-item(name + '-item0')
+      +dropdown-item(name + '-item1')
+      +dropdown-item(name + '-item2')
+    .dropdown-drop
+      label.dropdown-common-value Сколько гостей
+      //.dropdown-arrow
+
+mixin dropdown-item(name)
+  .dropdown-item
+    .dropdown-label
+    .dropdown-minus -
+    input(type='text' class='dropdown-input' readonly name= name value='0')
+    .dropdown-plus +

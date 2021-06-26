@@ -115,7 +115,7 @@ for (let entity in useBemEntities) {
 fs.readdirSync(pages).forEach(page =>{
   if (page.match(/\.pug$/i)) {
     content = fs.readFileSync(pages + slash + page,'utf-8');
-    content = content.replace(/include.*\r\n/gi, '');
+    // content = content.replace(/include.*\r\n/gi, '');
     content = includeThisToPUG + content;
     fs.writeFileSync(pages + slash + page, content);
   }
