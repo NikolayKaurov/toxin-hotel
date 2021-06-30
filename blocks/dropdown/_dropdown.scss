@@ -2,6 +2,10 @@
 
   width: 320px;
 
+  .dropdown-checkbox {
+    display: none;
+  }
+
   .dropdown-label {
     font-size: 12px;
     line-height: 15px;
@@ -28,10 +32,17 @@
     height: 42px;
 
     border: 1px solid rgba(31, 32, 65, 0.25);
+    //transition: border 0.4s;
     border-radius: 4px;
 
     position: relative;
     z-index: 2;
+    transition-property: z-index, border;
+    transition-duration: 0s, 0.4s;
+    transition-delay: 0.4s, 0s;
+
+
+    background: white;
 
     .dropdown-common-value {
       display: flex;
@@ -42,7 +53,15 @@
       color: rgba(31, 32, 65, 0.75);
 
       padding: 0 0 0 15px;
+
+      cursor: pointer;
+
     }
+
+    .dropdown-common-value::selection {
+      background: transparent;
+    }
+
 
     .dropdown-common-value::after {
       content: 'expand_more';
@@ -71,13 +90,18 @@
 
   .dropdown-down {
 
-    //background-color: white;
+    background: white;
 
     position: absolute;
     z-index: 1;
 
     width: 318px;
-    height: 170px;
+    height: 41px;
+    transition-property: height, z-index;
+    transition-duration: 0.4s, 0s;
+    transition-delay: 0s, 0.4s;
+    //transition: height 0.4s;
+    //height: 163px;
 
     //padding: 0;
 
@@ -101,8 +125,9 @@
 
     .dropdown-item {
 
-      height: 37px;
+      height: 30px;
       padding: 0 7px 0 15px;
+      margin: 7px 0 0 0;
 
       flex-shrink: 0;
 
@@ -131,6 +156,8 @@
         color: rgba(31, 32, 65, 0.5);
 
         text-align: center;
+
+        cursor: pointer;
       }
 
       .dropdown-input {
@@ -148,12 +175,39 @@
         font-weight: bold;
       }
 
+      /*
       .dropdown-input::-webkit-inner-spin-button {
         display: none;
       }
+      */
 
     }
 
+    .dropdown-item:first-of-type {
+      margin: 7px 0 8px 0;
+    }
+
+  }
+
+  .dropdown-checkbox:checked ~ .dropdown-down {
+    height: 163px;
+    transition: height 0.4s;
+
+    z-index: 3;
+  }
+
+  .dropdown-checkbox:checked ~ .dropdown-drop {
+    border: 1px solid rgba(31, 32, 65, 0.5);
+    transition: border 0.4s;
+
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    z-index: 4;
+
+    .dropdown-common-value::after {
+      content: 'expand_less';
+    }
   }
 
 /*

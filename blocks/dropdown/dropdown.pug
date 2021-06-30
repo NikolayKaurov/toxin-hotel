@@ -1,5 +1,6 @@
 mixin dropdown(name, modifiers, label, description)
   .dropdown(class= modifiers)
+    input(type='checkbox' id= name+'_checkbox' class='dropdown-checkbox')
     .dropdown-header
       - if (label)
         .dropdown-label= label
@@ -10,12 +11,12 @@ mixin dropdown(name, modifiers, label, description)
       +dropdown-item(name + '-item1')
       +dropdown-item(name + '-item2')
     .dropdown-drop
-      label.dropdown-common-value Сколько гостей
+      label.dropdown-common-value(for= id= name+'_checkbox')
       //.dropdown-arrow
 
 mixin dropdown-item(name)
   .dropdown-item
     .dropdown-label
     .dropdown-minus -
-    input(type='text' class='dropdown-input' readonly name= name value='0')
+    input(type='text' class='dropdown-input' readonly name= name)
     .dropdown-plus +

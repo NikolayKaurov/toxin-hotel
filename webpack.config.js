@@ -19,7 +19,11 @@ let modifierPath = '';
 
 let includeThisToPUG = '';
 let includeThisToSCSS = '';
-let includeThisToJS = 'import \'./style.scss\';' + endLine;
+let includeThisToJSArray = [];
+
+let sourcePages = {};
+let sourceJS = {};
+let sourceJStoWrite = new Set();
 
 let templates = [];
 
@@ -30,17 +34,18 @@ let plugins = [new MiniCssExtractPlugin({filename: 'style.css'})];
 fs.readdirSync(blocks).forEach(block => {
   blockPath = blocks + slash + block;
   if (fs.lstatSync(blockPath).isDirectory()) {
-//  Object.assign(bemEntities, {[block]: blockPath});
     bemEntities[block] = blockPath;
+    if (fs.existsSync(blockPath + slash + block + '.js'))
+      sourceJS[block] = fs.readFileSync(blockPath + slash + block + '.js','utf-8').replace(/import.*\r\n/gi, '');
     fs.readdirSync(blockPath).forEach(element => {
       elementPath = blockPath + slash + element;
       if (fs.lstatSync(elementPath).isDirectory()) {
-//      Object.assign(bemEntities, {[block + element]: elementPath});
         bemEntities[block + element] = elementPath;
+        if (fs.existsSync(elementPath + slash + element + '.js'))
+          sourceJS[block + element] = fs.readFileSync(elementPath + slash + element + '.js','utf-8').replace(/import.*\r\n/gi, '');
         fs.readdirSync(elementPath).forEach(modifier => {
           modifierPath = elementPath + slash + modifier;
           if (fs.lstatSync(modifierPath).isDirectory()) {
-//          Object.assign(bemEntities, {[block + element + modifier]: modifierPath});
             bemEntities[block + element + modifier] = modifierPath;
           }
         })
@@ -51,11 +56,19 @@ fs.readdirSync(blocks).forEach(block => {
 
 fs.readdirSync(pages).forEach(page =>{
   if (page.match(/\.pug$/i)) {
+    sourcePages[page] = fs.readFileSync(pages + slash + page,'utf-8').replace(/include.*\r\n/gi, '');
+
+/*
     content = fs.readFileSync(pages + slash + page,'utf-8');
     content = content.replace(/include.*\r\n/gi, '');
     fs.writeFileSync(pages + slash + page, content);
+*/
   }
 });
+
+for (let page in sourcePages) {
+  fileAnalysis(sourcePages[page], bemEntities, useBemEntities);
+}
 
 
 function isEmpty(obj) {
@@ -66,8 +79,8 @@ function isEmpty(obj) {
   return true;
 }
 
-function fileAnalysis(filePath, bemEntities, useBemEntities) {
-  let content = fs.readFileSync(filePath, 'utf-8'); // считать содержимое файла
+function fileAnalysis(content, bemEntities, useBemEntities) {
+  // let content = fs.readFileSync(filePath, 'utf-8'); // считать содержимое файла
   let words = content.match(/[a-z]([a-z0-9-_]*[a-z0-9])?/gi) || [];
   // получить массив слов, которые могут быть именами БЭМ-сущностей
   let entityFilePath = '';
@@ -80,12 +93,12 @@ function fileAnalysis(filePath, bemEntities, useBemEntities) {
       else {                            // иначе проанализировать файл шаблона .pug и скрипта .js данной БЭМ-сущности
         entityFilePath = useBemEntities[entity] + slash + entity + '.pug'; // получить путь к файлу шаблона
         if (fs.existsSync(entityFilePath)) { //если файл шаблона существует
-          fileAnalysis(entityFilePath, bemEntities, useBemEntities); // вызвать для него эту же функцию
+          fileAnalysis(fs.readFileSync(entityFilePath,'utf-8'), bemEntities, useBemEntities); // вызвать для него эту же функцию
           if (isEmpty(bemEntities)) return; // если используются все БЭМ-сущности, закончить
         }
-        entityFilePath = useBemEntities[entity] + slash + entity + '.js'; // получить путь к файлу скрипта
-        if (fs.existsSync(entityFilePath)) { //если файл скрипта существует
-          fileAnalysis(entityFilePath, bemEntities, useBemEntities); // вызвать для него эту же функцию
+        // entityFilePath = useBemEntities[entity] + slash + entity + '.js'; // получить путь к файлу скрипта
+        if (sourceJS[entity]) { //если файл скрипта существует
+          fileAnalysis(sourceJS[entity], bemEntities, useBemEntities); // вызвать для него эту же функцию
           if (isEmpty(bemEntities)) return; // если используются все БЭМ-сущности, закончить
         }
       }
@@ -93,25 +106,46 @@ function fileAnalysis(filePath, bemEntities, useBemEntities) {
   })
 }
 
+
+
 fs.readdirSync(pages).forEach(page =>{
   if (page.match(/\.pug$/i)) {
     templates.push(new HtmlWebpackPlugin({
       filename: page.replace(/\.pug$/i, '.html'),
       template: pages + slash + page}))
 
-    fileAnalysis(pages + slash + page, bemEntities, useBemEntities);
+    // fileAnalysis(pages + slash + page, bemEntities, useBemEntities);
   }
 });
 
 for (let entity in useBemEntities) {
-  if (fs.existsSync(useBemEntities[entity] + slash + entity + '.pug'))
+  if (fs.existsSync(useBemEntities[entity] + slash + entity + '.pug')) {
     includeThisToPUG = includeThisToPUG + 'include ' + useBemEntities[entity] + slash + entity + endLine;
-  if (fs.existsSync(useBemEntities[entity] + slash + '_' + entity + '.scss'))
-    includeThisToSCSS = includeThisToSCSS + "@use '" + useBemEntities[entity].replace(/^.*blocks/i, 'blocks').replace(/\\/g,'/') + '/' + entity + "';" + endLine;
-  if (fs.existsSync(useBemEntities[entity] + slash + entity + '.js'))
-    includeThisToJS = includeThisToJS + "import '" + useBemEntities[entity].replace(/^.*blocks/i, '../blocks').replace(/\\/g,'/') + '/' + entity + "';" + endLine;
+  }
+  if (fs.existsSync(useBemEntities[entity] + slash + '_' + entity + '.scss')) {
+    includeThisToSCSS = includeThisToSCSS + "@use '" + useBemEntities[entity].replace(/^.*blocks/i, 'blocks').replace(/\\/g, '/') + '/' + entity + "';" + endLine;
+  }
+  if (fs.existsSync(useBemEntities[entity] + slash + entity + '.js')) {
+    if (entity.match(/^[a-z0-9-]+__[a-z0-9-]+_.+$/i)) {
+      includeThisToJSArray.push("import " + entity + " from '" + useBemEntities[entity].replace(/^.*blocks\\.*\\.*\\/i, './').replace(/\\/g, '/') + '/' + entity + "';" + endLine);
+    } else {
+      if (entity.match(/(^[a-z0-9-]+__.+$)|(^[a-z0-9-]+_.+$)/i)) {
+        includeThisToJSArray.push("import " + entity + " from '" + useBemEntities[entity].replace(/^.*blocks\\.*\\/i, './').replace(/\\/g, '/') + '/' + entity + "';" + endLine);
+      } else {
+        includeThisToJSArray.push("import " + entity + " from '" + useBemEntities[entity].replace(/^.*blocks\\/i, '../blocks/').replace(/\\/g, '/') + '/' + entity + "';" + endLine);
+      }
+    }
+  }
 }
 
+for (let page in sourcePages) {
+  sourcePages[page] = includeThisToPUG + sourcePages[page];
+  fs.writeFileSync(pages + slash + page, sourcePages[page]);
+}
+
+
+
+/*
 fs.readdirSync(pages).forEach(page =>{
   if (page.match(/\.pug$/i)) {
     content = fs.readFileSync(pages + slash + page,'utf-8');
@@ -120,6 +154,43 @@ fs.readdirSync(pages).forEach(page =>{
     fs.writeFileSync(pages + slash + page, content);
   }
 });
+*/
+
+includeThisToJSArray.sort(function(stringA, stringB) {
+//  console.log(stringA.match(/^import\s[a-z0-9-_]*/i)[0] + ' <> ' + stringB.match(/^import\s[a-z0-9-_]*/i)[0]);
+  if (stringA.match(/^import\s[a-z0-9-_]*/i)[0].includes(stringB.match(/^import\s[a-z0-9-_]*/i)[0])) return -1;
+  return 1;
+})
+
+
+includeThisToJSArray.forEach((line, index, thisArray) => {
+  // console.log(line.match(/^import\s[a-z0-9-_]*/i)[0]);
+  let entity = '';
+  let parentEntity = '';
+  for (let i = index + 1; i < thisArray.length; i++) {
+    entity = line.match(/^import\s[a-z0-9-_]*/i)[0].replace(/^import\s/i, '');
+    parentEntity = thisArray[i].match(/^import\s[a-z0-9-_]*/i)[0].replace(/^import\s/i, '');
+    if (entity.includes(parentEntity)) {
+      // console.log('  ' + thisArray[i].match(/^import\s[a-z0-9-_]*/i)[0]);
+      sourceJS[parentEntity] = line + sourceJS[parentEntity];
+      // sourceJStoWrite.push(parentEntity)
+      // console.log('delete: ' + thisArray[index]);
+      // thisArray.splice(index, 1);
+      sourceJStoWrite.add(parentEntity);
+      thisArray[index] = '';
+      break;
+    }
+//    console.log('  ' + thisArray[i].match(/^import\s[a-z0-9-_]*/i)[0]);
+  }
+})
+
+sourceJStoWrite.forEach(entity => {
+  fs.writeFileSync(useBemEntities[entity] + slash + entity + '.js', sourceJS[entity]);
+})
+
+includeThisToJSArray.push('import \'./style.scss\';' + endLine);
+
+let includeThisToJS = includeThisToJSArray.join('');
 
 fs.writeFileSync(pages + slash + 'style.scss', includeThisToSCSS);
 fs.writeFileSync(pages + slash + 'script.js', includeThisToJS);

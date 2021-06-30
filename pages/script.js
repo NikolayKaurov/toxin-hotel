@@ -1,2 +1,2 @@
+import dropdown from '../blocks/dropdown/dropdown';
 import './style.scss';
-import '../blocks/dropdown/dropdown';
