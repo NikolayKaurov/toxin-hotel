@@ -27,8 +27,6 @@ let sourceJStoWrite = new Set();
 
 let templates = [];
 
-let content = '';
-
 let plugins = [new MiniCssExtractPlugin({filename: 'style.css'})];
 
 fs.readdirSync(blocks).forEach(block => {
@@ -57,12 +55,6 @@ fs.readdirSync(blocks).forEach(block => {
 fs.readdirSync(pages).forEach(page =>{
   if (page.match(/\.pug$/i)) {
     sourcePages[page] = fs.readFileSync(pages + slash + page,'utf-8').replace(/include.*\r\n/gi, '');
-
-/*
-    content = fs.readFileSync(pages + slash + page,'utf-8');
-    content = content.replace(/include.*\r\n/gi, '');
-    fs.writeFileSync(pages + slash + page, content);
-*/
   }
 });
 
@@ -106,15 +98,11 @@ function fileAnalysis(content, bemEntities, useBemEntities) {
   })
 }
 
-
-
 fs.readdirSync(pages).forEach(page =>{
   if (page.match(/\.pug$/i)) {
     templates.push(new HtmlWebpackPlugin({
       filename: page.replace(/\.pug$/i, '.html'),
       template: pages + slash + page}))
-
-    // fileAnalysis(pages + slash + page, bemEntities, useBemEntities);
   }
 });
 
@@ -143,44 +131,24 @@ for (let page in sourcePages) {
   fs.writeFileSync(pages + slash + page, sourcePages[page]);
 }
 
-
-
-/*
-fs.readdirSync(pages).forEach(page =>{
-  if (page.match(/\.pug$/i)) {
-    content = fs.readFileSync(pages + slash + page,'utf-8');
-    // content = content.replace(/include.*\r\n/gi, '');
-    content = includeThisToPUG + content;
-    fs.writeFileSync(pages + slash + page, content);
-  }
-});
-*/
-
 includeThisToJSArray.sort(function(stringA, stringB) {
-//  console.log(stringA.match(/^import\s[a-z0-9-_]*/i)[0] + ' <> ' + stringB.match(/^import\s[a-z0-9-_]*/i)[0]);
   if (stringA.match(/^import\s[a-z0-9-_]*/i)[0].includes(stringB.match(/^import\s[a-z0-9-_]*/i)[0])) return -1;
   return 1;
 })
 
 
 includeThisToJSArray.forEach((line, index, thisArray) => {
-  // console.log(line.match(/^import\s[a-z0-9-_]*/i)[0]);
   let entity = '';
   let parentEntity = '';
   for (let i = index + 1; i < thisArray.length; i++) {
     entity = line.match(/^import\s[a-z0-9-_]*/i)[0].replace(/^import\s/i, '');
     parentEntity = thisArray[i].match(/^import\s[a-z0-9-_]*/i)[0].replace(/^import\s/i, '');
     if (entity.includes(parentEntity)) {
-      // console.log('  ' + thisArray[i].match(/^import\s[a-z0-9-_]*/i)[0]);
       sourceJS[parentEntity] = line + sourceJS[parentEntity];
-      // sourceJStoWrite.push(parentEntity)
-      // console.log('delete: ' + thisArray[index]);
-      // thisArray.splice(index, 1);
       sourceJStoWrite.add(parentEntity);
       thisArray[index] = '';
       break;
     }
-//    console.log('  ' + thisArray[i].match(/^import\s[a-z0-9-_]*/i)[0]);
   }
 })
 
@@ -194,28 +162,6 @@ let includeThisToJS = includeThisToJSArray.join('');
 
 fs.writeFileSync(pages + slash + 'style.scss', includeThisToSCSS);
 fs.writeFileSync(pages + slash + 'script.js', includeThisToJS);
-
-/*
-console.log(' ');
-console.log('******************************************************************************');
-
-for (let key in useBemEntities) {
-  console.log(key + ': ' + useBemEntities[key]);
-}
-
-console.log('******************************************************************************');
-console.log(' ');
-
-console.log(' ');
-console.log('******************************************************************************');
-
-for (let key in bemEntities) {
-  console.log(key + ': ' + bemEntities[key]);
-}
-
-console.log('******************************************************************************');
-console.log(' ');
-*/
 
 module.exports = {
   mode: 'production',

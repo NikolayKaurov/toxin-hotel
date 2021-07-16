@@ -1,22 +1,23 @@
 mixin dropdown(name, modifiers, label, description)
-  .dropdown(class= modifiers)
-    input(type='checkbox' id= name+'_checkbox' class='dropdown-checkbox')
+  .dropdown(class= modifiers tabindex=0)
     .dropdown-header
       - if (label)
         .dropdown-label= label
       - if (description)
         .dropdown-label= description
     .dropdown-down
-      +dropdown-item(name + '-item0')
-      +dropdown-item(name + '-item1')
+      .dropdown-buttons
+        button.dropdown-reset(disabled tabindex=-1) очистить
+        button.dropdown-confirm(disabled tabindex=-1) применить
       +dropdown-item(name + '-item2')
+      +dropdown-item(name + '-item1')
+      +dropdown-item(name + '-item0')
     .dropdown-drop
-      label.dropdown-common-value(for= id= name+'_checkbox')
-      //.dropdown-arrow
+      .dropdown-common-value
 
 mixin dropdown-item(name)
   .dropdown-item
     .dropdown-label
-    .dropdown-minus -
-    input(type='text' class='dropdown-input' readonly name= name)
-    .dropdown-plus +
+    button.dropdown-minus(disabled tabindex=-1) -
+    input(type='text' class='dropdown-input' tabindex=-1 readonly name= name)
+    button.dropdown-plus(tabindex=-1) +

@@ -1,0 +1,16 @@
+.dropdown.dropdown_reset {
+  .dropdown-buttons {
+
+    height: 48px;
+
+    .dropdown-reset {
+      visibility: visible;
+    }
+  }
+}
+
+.dropdown.dropdown_reset.dropdown-open {
+  .dropdown-down {
+    height: 203px;
+  }
+}
