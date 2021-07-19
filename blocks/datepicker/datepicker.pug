@@ -1,0 +1,17 @@
+mixin datepicker(name, modifiers, labelArrival, labelDeparture)
+  .datepicker
+    .datepicker-drop(tabindex=-1)
+      +datepicker-date('datepicker-arrival', labelArrival)
+      +datepicker-date('datepicker-departure', labelDeparture)
+    .datepicker-down
+
+
+mixin datepicker-date(type, label)
+  .datepicker-date
+    .datepicker-header
+      = label
+    .datepicker-expand(tabindex=0 class= type)
+      .datepicker-value ДД.ММ.ГГГГ
+
+
+

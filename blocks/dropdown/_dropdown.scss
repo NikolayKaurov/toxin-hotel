@@ -1,9 +1,10 @@
 $duration-open: 0.4s;
+$width: 320px;
 
 .dropdown {
   outline: 0;
 
-  width: 320px;
+  width: $width;
 
   .dropdown-label {
     font-size: 12px;
@@ -27,7 +28,7 @@ $duration-open: 0.4s;
 
   .dropdown-drop {
 
-    width: 318px;
+    width: $width - 2px;
     height: 42px;
 
     border: 1px solid rgba(31, 32, 65, 0.25);
@@ -81,7 +82,7 @@ $duration-open: 0.4s;
     position: absolute;
     z-index: 1;
 
-    width: 318px;
+    width: $width - 2px;
     height: 41px;
     transition-property: height, z-index;
     transition-duration: $duration-open, $duration-open;

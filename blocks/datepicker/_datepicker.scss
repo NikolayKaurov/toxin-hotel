@@ -1,0 +1,109 @@
+$width: 320px;
+$duration-open: 0.5s;
+
+.datepicker {
+  outline: 0;
+
+  width: $width;
+
+  .datepicker-drop {
+    display: flex;
+    justify-content: space-between;
+
+    position: relative;
+
+    outline: 0;
+    //z-index: 2;
+
+    .datepicker-date {
+      .datepicker-header {
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+
+        margin: 0 0 5px 0;
+      }
+
+      .datepicker-expand {
+        width: ($width - 20px) / 2 - 17px;
+        height: 44px;
+
+        padding: 0 0 0 15px;
+
+        border: 1px solid rgba(31, 32, 65, 0.25);
+        border-radius: 4px;
+
+        background: white;
+
+        outline: 0;
+
+        .datepicker-value {
+          display: flex;
+          justify-content: space-between;
+
+          font-size: 14px;
+          line-height: 42px;
+
+          color: rgba(31, 32, 65, 0.75);
+        }
+
+        .datepicker-value::after {
+          content: 'expand_more';
+
+          font-family: materialicons, Arial, sans-serif;
+          font-size: 24px;
+          line-height: 42px;
+          color: rgba(31, 32, 65, 0.5);
+
+          width: 44px;
+          text-align: center;
+        }
+
+      }
+
+      .datepicker-expand.datepicker-open {
+        .datepicker-value::after {
+          content: 'expand_less';
+        }
+      }
+
+    }
+  }
+
+  .datepicker-down {
+    background: white;
+
+    position: absolute;
+    z-index: 3;
+
+    width: $width - 2px;
+    height: 0;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column-reverse;
+
+    border: 0px solid rgba(31, 32, 65, 0.25);
+    border-radius: 4px;
+
+    margin: 5px 0 0 0;
+
+    transition-property: height, border;
+    transition-duration: $duration-open, 0s;
+    transition-delay: 0s, $duration-open;
+
+  }
+
+  .datepicker-drop.datepicker-open ~ .datepicker-down {
+    height: 369px;
+
+    border: 1px solid rgba(31, 32, 65, 0.25);
+
+    transition-property: height, border;
+    transition-duration: $duration-open, 0s;
+    transition-delay: 0s, 0s;
+  }
+}
+
