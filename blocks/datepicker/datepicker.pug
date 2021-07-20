@@ -4,6 +4,19 @@ mixin datepicker(name, modifiers, labelArrival, labelDeparture)
       +datepicker-date('datepicker-arrival', labelArrival)
       +datepicker-date('datepicker-departure', labelDeparture)
     .datepicker-down
+      .datepicker-buttons
+        button.datepicker-reset(disabled tabindex=-1) очистить
+        button.datepicker-confirm(disabled tabindex=-1) применить
+      .datepicker-calendar
+        table.datepicker-table
+          tr
+            th Пн
+            th Вт
+            th Ср
+            th Чт
+            th Пт
+            th Сб
+            th Вс
 
 
 mixin datepicker-date(type, label)

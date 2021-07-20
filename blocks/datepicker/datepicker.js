@@ -39,4 +39,33 @@ export default function datepicker(node) {
       $(this).removeClass('datepicker-open');
     }
   });
+
+  let date = new Date();
+  let month = date.getMonth();
+
+  date.setDate(1);
+
+  let day = date.getDay() ? date.getDay() - 1 : 6;
+
+  date.setDate(date.getDate() - day);
+
+  let appendString = '';
+
+  do {
+    appendString += '<tr>';
+
+    for (let i = 0; i < 7; ++i) {
+      if (month != date.getMonth()) {
+        appendString += "<td class='other-month'>" + date.getDate() + "</td>";
+      } else {
+        appendString += "<td>" + date.getDate() + "</td>";
+      }
+      date.setDate(date.getDate() + 1);
+    }
+
+    appendString += '</tr>';
+
+  } while (month == date.getMonth());
+
+  $('.datepicker-table', this.node).append(appendString);
 }
