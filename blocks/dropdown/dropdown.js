@@ -12,6 +12,7 @@ $('.dropdown').each((index, node) => {
 export default function dropdown(node) {
 
   const MAX = 99;
+  const timeWithoutClick = 50;
 
   this.node = node;
 
@@ -30,6 +31,8 @@ export default function dropdown(node) {
   this.keepFocus = false;
 
   this.inputs = {};
+
+  this.timeSetFocus = 0;
 
   this.withConfirm = $(this.node).hasClass('dropdown_confirm');
   this.withReset = $(this.node).hasClass('dropdown_reset');
@@ -60,6 +63,7 @@ export default function dropdown(node) {
 
   $(this.node).on('focus', () => {
     $(this.node).addClass('dropdown-open');
+    this.timeSetFocus = Date.now();
     console.log('ОТКРЫТО');
   });
 
@@ -112,6 +116,7 @@ export default function dropdown(node) {
   });
 
   $('.dropdown-drop', this.node).on('mousedown', () => {
+    if (Date.now() - this.timeSetFocus < timeWithoutClick) return;
     $(this.node).toggleClass('dropdown-open');
     console.log('ЩЕЛЧОК ПО ДРОПУ');
   });

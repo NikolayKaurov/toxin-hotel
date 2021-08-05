@@ -1,5 +1,7 @@
 mixin datepicker(name, modifiers, labelArrival, labelDeparture)
   .datepicker
+    input.date-arrival(type='date' name= name + '-arrival')
+    input.date-departure(type='date' name= name + '-departure')
     .datepicker-drop(tabindex=-1)
       +datepicker-date('datepicker-arrival', labelArrival)
       +datepicker-date('datepicker-departure', labelDeparture)
@@ -9,15 +11,10 @@ mixin datepicker(name, modifiers, labelArrival, labelDeparture)
         button.datepicker-confirm(disabled tabindex=-1) применить
       .datepicker-calendar
         table.datepicker-table
-          tr
-            th Пн
-            th Вт
-            th Ср
-            th Чт
-            th Пт
-            th Сб
-            th Вс
-
+      .datepicker-month
+        button.datepicker-back(disabled tabindex=-1) arrow_back
+        .datepicker-month-value
+        button.datepicker-forth(tabindex=-1) arrow_forward
 
 mixin datepicker-date(type, label)
   .datepicker-date
