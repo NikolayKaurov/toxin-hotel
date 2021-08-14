@@ -5,7 +5,7 @@ mixin datepicker(name, modifiers, labelArrival, labelDeparture)
     .datepicker-drop(tabindex=-1)
       +datepicker-date('datepicker-arrival', labelArrival)
       +datepicker-date('datepicker-departure', labelDeparture)
-    .datepicker-down
+    .datepicker-down(tabindex=-1)
       .datepicker-buttons
         button.datepicker-reset(disabled tabindex=-1) очистить
         button.datepicker-confirm(disabled tabindex=-1) применить

@@ -50,6 +50,8 @@ $duration-open: 0.5s;
           line-height: 42px;
 
           color: rgba(31, 32, 65, 0.75);
+
+          cursor: default;
         }
 
         .datepicker-value::after {
@@ -123,6 +125,8 @@ $duration-open: 0.5s;
         line-height: 34px;
         font-weight: bold;
         color: #1f2041;
+
+        cursor: default;
       }
 
       .datepicker-back,.datepicker-forth {
@@ -164,6 +168,9 @@ $duration-open: 0.5s;
         //border: 0;
         border-collapse: collapse;
 
+        //position: relative;
+        //z-index: 2;
+
         th,td {
           width: 40px;
           height: 40px;
@@ -175,6 +182,14 @@ $duration-open: 0.5s;
 
           padding: 0;
 
+          cursor: default;
+
+          position: relative;
+
+          left: 0;
+          top: 0;
+
+          //z-index: 2;
         }
 
         th {
@@ -192,6 +207,29 @@ $duration-open: 0.5s;
           font-weight: bold;
           color: white;
           cursor: pointer;
+        }
+
+        td.selected {
+          background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+          border-radius: 22px;
+          font-weight: bold;
+          color: white;
+          cursor: default;
+
+          .residence {
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 20px;
+            height: 40px;
+
+            background-color: red;
+
+            z-index: -1;
+
+          }
         }
       }
     }
@@ -236,7 +274,7 @@ $duration-open: 0.5s;
         text-shadow: 1px 1px;
       }
 
-      .dropdown-reset:disabled,.dropdown-confirm:disabled {
+      .datepicker-reset:disabled,.datepicker-confirm:disabled {
         cursor: default;
       }
 

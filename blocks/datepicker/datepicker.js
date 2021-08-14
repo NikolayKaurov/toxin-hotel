@@ -12,7 +12,9 @@ export default function datepicker(node) {
   };
 
   const timeWithoutClick = 50;
-  // const durationOpen = '0.5s';
+
+  this.dateArrival = 0;
+  this.dateDeparture = 0;
 
   $('.datepicker-expand', this.node).on('mousedown', {time: this.timeSetFocus}, expandMousedown);
   function expandMousedown(event) {
@@ -92,6 +94,8 @@ export default function datepicker(node) {
 
     $('.datepicker-back', this.node).prop('disabled', false);
 
+    $('.datepicker-reset', this.node).prop('disabled', false);
+
     $('.datepicker-drop', this.node).addClass('keep-focus');
     $('.datepicker-expand.datepicker-open', this.node).addClass('keep-focus');
   });
@@ -112,39 +116,147 @@ export default function datepicker(node) {
     $('.datepicker-expand.datepicker-open', this.node).focus();
     if (this.date.getMonth() == this.today.getMonth() && this.date.getFullYear() == this.today.getFullYear()) {
       $('.datepicker-back', this.node).prop('disabled', true);
+
+      if (this.dateArrival || this.dateDeparture) return;
+      $('.datepicker-reset', this.node).prop('disabled', true);
     }
   });
 
+  $('.datepicker-reset', this.node).on('mousedown', () => {
+    $('.date-arrival', this.node).val('');
+    $('.date-departure', this.node).val('');
+    this.dateArrival = 0;
+    this.dateDeparture = 0;
+
+    $('.datepicker-value', $('.datepicker-expand.datepicker-arrival', this.node)).text('ДД.ММ.ГГГГ');
+    $('.datepicker-value', $('.datepicker-expand.datepicker-departure', this.node)).text('ДД.ММ.ГГГГ');
+
+/*
+    $('.selected.departure', this.node).removeClass('selected departure');
+    $('.selected.arrival', this.node).removeClass('selected arrival');
+*/
+
+    this.date.setFullYear(this.today.getFullYear(), this.today.getMonth());
+    this.writeCalendar();
+
+    $('.datepicker-reset', this.node).prop('disabled', true);
+
+    $('.datepicker-drop', this.node).addClass('keep-focus');
+    $('.datepicker-expand.datepicker-open', this.node).addClass('keep-focus');
+  })
+
+  $('.datepicker-reset', this.node).on('focus', () => {
+    $('.datepicker-expand.datepicker-open', this.node).focus();
+  })
+
   $('table', this.node).on('mouseover', 'td', {parent: this}, tableMouseover);
   function tableMouseover(event) {
-    // let date = new Date(Date.parse($(this).attr('data-date')));
-    // console.log(date + ' ' + event.data.parent.today);
-    if (event.data.parent.today.getTime() <= Date.parse($(this).attr('data-date'))) {
-      $(this).addClass('highlight');
+    if ($(this).hasClass('selected')) return;
+
+    let date = new Date($(this).attr('data-date'));
+    date.setHours(0,0,0);
+    if ($('.datepicker-expand.datepicker-open', event.data.parent.node).hasClass('datepicker-arrival')) {
+      if (event.data.parent.dateDeparture) {
+        if (event.data.parent.today.getTime() <= date.getTime() && date.getTime() < event.data.parent.dateDeparture) {
+          $(this).addClass('highlight');
+        }
+      } else {
+        if (event.data.parent.today.getTime() <= date.getTime()) {
+          $(this).addClass('highlight');
+        }
+      }
+    } else {
+      if (event.data.parent.dateArrival) {
+        if (date.getTime() > event.data.parent.dateArrival) {
+          $(this).addClass('highlight');
+        }
+      } else {
+        if (event.data.parent.today.getTime() < date.getTime()) {
+          $(this).addClass('highlight');
+        }
+      }
     }
+  }
+
+  $('table', this.node).on('mousedown', 'td', {parent: this}, tableMousedown);
+  function tableMousedown(event) {
+    let date = new Date($(this).attr('data-date'));
+    date.setHours(0,0,0);
+
+    let A = $(this).attr('data-date');
+    let dateString = A[8] + A[9] + '.' + A[5] + A[6] + '.' + A[0] + A[1] + A[2] + A[3];
+
+    if ($('.datepicker-expand.datepicker-open', event.data.parent.node).hasClass('datepicker-arrival')) {
+      if ($(this).hasClass('highlight')) {
+        $('.date-arrival', event.data.parent.node).val($(this).attr('data-date'));
+        event.data.parent.dateArrival = date.getTime();
+
+        $('.datepicker-value', $('.datepicker-expand.datepicker-arrival', event.data.parent.node)).text(dateString);
+
+        $('.datepicker-reset', event.data.parent.node).prop('disabled', false);
+
+        $('.residence', $('.selected.arrival', event.data.parent.node)).remove();
+        // $('.selected.arrival', event.data.parent.node).remove('.residence');
+        if ($('.selected.arrival', event.data.parent.node).hasClass('other-month')) {
+          $('.selected.arrival', event.data.parent.node).removeClass('selected arrival');
+        } else {
+          $('.selected.arrival', event.data.parent.node).removeAttr('class');
+        }
+
+
+
+        $(this).removeClass('highlight');
+        $(this).addClass('selected arrival');
+
+        $(this).append('<div class="residence"></div>');
+
+      }
+    } else {
+        if ($(this).hasClass('highlight')) {
+          $('.date-departure', event.data.parent.node).val($(this).attr('data-date'));
+          event.data.parent.dateDeparture = date.getTime();
+
+          $('.datepicker-value', $('.datepicker-expand.datepicker-departure', event.data.parent.node)).text(dateString);
+
+          $('.datepicker-reset', event.data.parent.node).prop('disabled', false);
+
+          $('.residence', $('.selected.departure', event.data.parent.node)).remove();
+          // $('.selected.departure', event.data.parent.node).remove('.residence');
+          if ($('.selected.departure', event.data.parent.node).hasClass('other-month')) {
+            $('.selected.departure', event.data.parent.node).removeClass('selected departure');
+          } else {
+            $('.selected.departure', event.data.parent.node).removeAttr('class');
+          }
+
+          $(this).removeClass('highlight');
+          $(this).addClass('selected departure');
+
+          $(this).append('<div class="residence"></div>');
+
+        }
+    }
+
+    // console.log(this.cellIndex);
   }
 
   $('table', this.node).on('mouseout', 'td', {parent: this}, tableMouseout);
   function tableMouseout(event) {
-    // console.log($(this).attr('data-date'));
-    // let date = Date.parse($(this).attr('data-date'));
-/*
-    if (event.data.parent.date.getTime() >= Date.parse($(this).attr('data-date'))) {
-      $( this ).addClass('highlight');
+    if ($(this).hasClass('selected')) return;
+    if ($(this).hasClass('other-month')) {
+      $(this).removeClass('highlight');
+    } else {
+      $(this).removeAttr('class');
     }
-*/
-    $(this).removeClass('highlight');
   }
 
-  /*
-  $('table', this.node).on('mouseover', 'td', function() {
-    $( this ).addClass('highlight');
-  });
+  $('.datepicker-down', this.node).on('mousedown', () => {
+    $('.datepicker-drop', this.node).addClass('keep-focus');
+    $('.datepicker-expand.datepicker-open', this.node).addClass('keep-focus');
+  })
 
-  $('table', this.node).on('mouseout', 'td', function() {
-    $( this ).removeClass('highlight');
-  });
-*/
+  $('.datepicker-down', this.node).on('focus', () => {
+    $('.datepicker-expand.datepicker-open', this.node).focus();
+  })
 
   this.writeCalendar = function() {
     let months = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
@@ -161,13 +273,13 @@ export default function datepicker(node) {
 
     let innerTable = '<tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th></tr>';
 
-    // let numberString = 0;
-
     do {
       innerTable += '<tr>';
 
       for (let i = 0; i < 7; ++i) {
-        let dataDate = "data-date='" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "'";
+        let zeroMonth = date.getMonth() < 9 ? '0' : '';
+        let zeroDate = date.getDate() < 10 ? '0' : '';
+        let dataDate = "data-date='" + date.getFullYear() + "-" + zeroMonth + (date.getMonth() + 1) + "-" + zeroDate + date.getDate() + "'";
         if (month != date.getMonth()) {
           innerTable += "<td class='other-month' " + dataDate + ">" + date.getDate() + "</td>";
         } else {
@@ -177,26 +289,8 @@ export default function datepicker(node) {
       }
 
       innerTable += '</tr>';
-      // ++numberString;
 
     } while (month == date.getMonth());
-
-
-/*
-    if (numberString > 5) {
-      $('.datepicker-down', this.node).css('transition-duration', '0s');
-      $('.datepicker-drop.datepicker-open ~ .datepicker-down', this.node).css('height', '409px');
-      // $('.datepicker-down', this.node).css('height', '409px');
-      $('.datepicker-down', this.node).css('transition-duration', durationOpen);
-      $('.datepicker-calendar', this.node).css('height', '320px');
-    } else {
-      $('.datepicker-calendar', this.node).css('height', '280px');
-      $('.datepicker-down', this.node).css('transition-duration', '0s');
-      $('.datepicker-drop.datepicker-open ~ .datepicker-down', this.node).css('height', '369px');
-      // $('.datepicker-down', this.node).css('height', '369px');
-      $('.datepicker-down', this.node).css('transition-duration', durationOpen);
-    }
-*/
 
     $('.datepicker-table', this.node).html(innerTable);
   }
