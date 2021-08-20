@@ -99,14 +99,14 @@ $duration-open: 0.5s;
     display: flex;
     flex-direction: column-reverse;
 
-    border: 0px solid rgba(31, 32, 65, 0.25);
+    border: 0 solid rgba(31, 32, 65, 0.25);
     border-radius: 4px;
 
     margin: 5px 0 0 0;
 
-    transition-property: height, border;
-    transition-duration: $duration-open, 0s;
-    transition-delay: 0s, $duration-open;
+    transition-property: height, border, z-index;
+    transition-duration: $duration-open, 0s, $duration-open;
+    transition-delay: 0s, $duration-open, 0s;
 
     .datepicker-month {
       display: flex;
@@ -186,10 +186,33 @@ $duration-open: 0.5s;
 
           position: relative;
 
-          left: 0;
-          top: 0;
+          .residence {
+            position: absolute;
 
-          //z-index: 2;
+            //left: 0;
+            top: 0;
+
+            width: 40px;
+            height: 40px;
+
+            background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+            opacity: 0.25;
+
+            //background: red;
+
+            z-index: -1;
+          }
+
+          .residence.left {
+            border-bottom-left-radius: 22px;
+            border-top-left-radius: 22px;
+          }
+
+          .residence.right {
+            border-bottom-right-radius: 22px;
+            border-top-right-radius: 22px;
+          }
+
         }
 
         th {
@@ -215,22 +238,25 @@ $duration-open: 0.5s;
           font-weight: bold;
           color: white;
           cursor: default;
+        }
 
+        td.selected.arrival {
           .residence {
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
+            right: 0;
             width: 20px;
-            height: 40px;
-
-            background-color: red;
-
-            z-index: -1;
-
           }
         }
+
+        td.selected.departure {
+          .residence {
+            //left: 0;
+            width: 20px;
+          }
+        }
+      }
+
+      th::selection,td::selection {
+        background: transparent;
       }
     }
 
@@ -254,7 +280,7 @@ $duration-open: 0.5s;
 
         background-color: transparent;
 
-        padding: 0px 20px 20px 20px;
+        padding: 0 20px 20px 20px;
         border: 0;
         height: 15px;
 
@@ -293,6 +319,8 @@ $duration-open: 0.5s;
     transition-property: height, border;
     transition-duration: $duration-open, 0s;
     transition-delay: 0s, 0s;
+
+    z-index: 8;
 
   }
 

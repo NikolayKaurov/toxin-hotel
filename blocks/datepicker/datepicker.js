@@ -91,6 +91,7 @@ export default function datepicker(node) {
   $('.datepicker-forth', this.node).on('mousedown', () => {
     this.date.setMonth(this.date.getMonth() + 1);
     this.writeCalendar();
+    this.paintResidence();
 
     $('.datepicker-back', this.node).prop('disabled', false);
 
@@ -107,6 +108,7 @@ export default function datepicker(node) {
   $('.datepicker-back', this.node).on('mousedown', () => {
     this.date.setMonth(this.date.getMonth() - 1);
     this.writeCalendar();
+    this.paintResidence();
 
     $('.datepicker-drop', this.node).addClass('keep-focus');
     $('.datepicker-expand.datepicker-open', this.node).addClass('keep-focus');
@@ -155,6 +157,7 @@ export default function datepicker(node) {
 
     let date = new Date($(this).attr('data-date'));
     date.setHours(0,0,0);
+
     if ($('.datepicker-expand.datepicker-open', event.data.parent.node).hasClass('datepicker-arrival')) {
       if (event.data.parent.dateDeparture) {
         if (event.data.parent.today.getTime() <= date.getTime() && date.getTime() < event.data.parent.dateDeparture) {
@@ -183,8 +186,8 @@ export default function datepicker(node) {
     let date = new Date($(this).attr('data-date'));
     date.setHours(0,0,0);
 
-    let A = $(this).attr('data-date');
-    let dateString = A[8] + A[9] + '.' + A[5] + A[6] + '.' + A[0] + A[1] + A[2] + A[3];
+    let _ = $(this).attr('data-date');
+    let dateString = _[8] + _[9] + '.' + _[5] + _[6] + '.' + _[0] + _[1] + _[2] + _[3];
 
     if ($('.datepicker-expand.datepicker-open', event.data.parent.node).hasClass('datepicker-arrival')) {
       if ($(this).hasClass('highlight')) {
@@ -195,20 +198,19 @@ export default function datepicker(node) {
 
         $('.datepicker-reset', event.data.parent.node).prop('disabled', false);
 
-        $('.residence', $('.selected.arrival', event.data.parent.node)).remove();
-        // $('.selected.arrival', event.data.parent.node).remove('.residence');
+        // $('.residence', $('.selected.arrival', event.data.parent.node)).remove();
         if ($('.selected.arrival', event.data.parent.node).hasClass('other-month')) {
           $('.selected.arrival', event.data.parent.node).removeClass('selected arrival');
         } else {
           $('.selected.arrival', event.data.parent.node).removeAttr('class');
         }
 
-
-
         $(this).removeClass('highlight');
         $(this).addClass('selected arrival');
 
-        $(this).append('<div class="residence"></div>');
+        // if (this.cellIndex < 6) $(this).append('<div class="residence"></div>');
+
+        event.data.parent.paintResidence();
 
       }
     } else {
@@ -220,8 +222,7 @@ export default function datepicker(node) {
 
           $('.datepicker-reset', event.data.parent.node).prop('disabled', false);
 
-          $('.residence', $('.selected.departure', event.data.parent.node)).remove();
-          // $('.selected.departure', event.data.parent.node).remove('.residence');
+          // $('.residence', $('.selected.departure', event.data.parent.node)).remove();
           if ($('.selected.departure', event.data.parent.node).hasClass('other-month')) {
             $('.selected.departure', event.data.parent.node).removeClass('selected departure');
           } else {
@@ -231,12 +232,11 @@ export default function datepicker(node) {
           $(this).removeClass('highlight');
           $(this).addClass('selected departure');
 
-          $(this).append('<div class="residence"></div>');
+          // if (this.cellIndex > 0) $(this).append('<div class="residence"></div>');
 
+          event.data.parent.paintResidence();
         }
     }
-
-    // console.log(this.cellIndex);
   }
 
   $('table', this.node).on('mouseout', 'td', {parent: this}, tableMouseout);
@@ -277,14 +277,24 @@ export default function datepicker(node) {
       innerTable += '<tr>';
 
       for (let i = 0; i < 7; ++i) {
+
+        let classes = '';
+        if (month != date.getMonth()) classes += 'other-month';
+        if (date.getTime() == this.dateArrival) {
+          classes += ' selected arrival';
+        } else {
+          if (date.getTime() == this.dateDeparture) {
+            classes += ' selected departure';
+          }
+        }
+        if (classes) classes = "class='" + classes + "'";
+
         let zeroMonth = date.getMonth() < 9 ? '0' : '';
         let zeroDate = date.getDate() < 10 ? '0' : '';
         let dataDate = "data-date='" + date.getFullYear() + "-" + zeroMonth + (date.getMonth() + 1) + "-" + zeroDate + date.getDate() + "'";
-        if (month != date.getMonth()) {
-          innerTable += "<td class='other-month' " + dataDate + ">" + date.getDate() + "</td>";
-        } else {
-          innerTable += "<td "+ dataDate + ">" + date.getDate() + "</td>";
-        }
+
+        innerTable += "<td " + classes + " " + dataDate + ">" + date.getDate() + "</td>";
+
         date.setDate(date.getDate() + 1);
       }
 
@@ -293,6 +303,68 @@ export default function datepicker(node) {
     } while (month == date.getMonth());
 
     $('.datepicker-table', this.node).html(innerTable);
+  }
+
+  this.paintResidence = function() {
+    if (!(this.dateArrival && this.dateDeparture)) return;
+
+    let dateArrival = this.dateArrival;
+    let dateDeparture = this.dateDeparture;
+
+    $('td', this.node).each(function(index, element) {
+      let date = new Date($(element).attr('data-date'));
+      date.setHours(0,0,0);
+
+      // if ($('.residence', $(element)).length) console.log(element.cellIndex + ' ' + 'ЕСТЬ ВЫДЕЛЕНИЕ');
+
+      if ($('.residence', $(element)).length == 0) {
+        if (($(element).hasClass('selected arrival') && element.cellIndex < 6) ||
+          ($(element).hasClass('selected departure') && element.cellIndex > 0) ||
+          (dateArrival < date.getTime() && date.getTime() < dateDeparture && element.cellIndex < 6 && element.cellIndex > 0)) {
+            $(element).append('<div class="residence"></div>');
+        } else {
+          if (dateArrival < date.getTime() && date.getTime() < dateDeparture) {
+            if (element.cellIndex == 0) {
+              $(element).append('<div class="residence left"></div>');
+            } else {
+              if (element.cellIndex == 6) {
+                $(element).append('<div class="residence right"></div>');
+              }
+            }
+          }
+        }
+      } else {
+        if (($(element).hasClass('selected') == false) &&
+          (dateArrival > date.getTime() || date.getTime() > dateDeparture)) {
+          $('.residence', $(element)).remove();
+        } else {
+          if (element.cellIndex == 0) {
+            if ($(element).hasClass('selected arrival')) {
+              $('.residence', $(element)).removeClass('left');
+            } else {
+              if ($(element).hasClass('selected departure')) {
+                $('.residence', $(element)).remove();
+              } else {
+                $('.residence', $(element)).addClass('left');
+              }
+            }
+          } else {
+            if (element.cellIndex == 6) {
+              if ($(element).hasClass('selected arrival')) {
+                $('.residence', $(element)).remove();
+              } else {
+                if ($(element).hasClass('selected departure')) {
+                  $('.residence', $(element)).removeClass('right');
+                } else {
+                  $('.residence', $(element)).addClass('right');
+                }
+              }
+            }
+          }
+        }
+      }
+    })
+
   }
 
 
