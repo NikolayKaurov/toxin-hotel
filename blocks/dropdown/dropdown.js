@@ -2,7 +2,6 @@ import dropdown_strings_room from './_strings_room/dropdown_strings_room';
 import dropdown_strings_guest from './_strings_guest/dropdown_strings_guest';
 import dropdown_reset from './_reset/dropdown_reset';
 import dropdown_confirm from './_confirm/dropdown_confirm';
-
 let $ = require('jquery');
 
 $('.dropdown').each((index, node) => {
