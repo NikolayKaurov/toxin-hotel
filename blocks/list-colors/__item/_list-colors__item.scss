@@ -1,21 +1,18 @@
-.list-colors {
+.list-colors__item {
+  margin: 20px 0 0 0;
+
+  display: flex;
+  align-items: center;
+
   > .list-colors__item {
-    //padding: 0;
-    margin: 20px 0 0 0;
-
-    display: flex;
-    align-items: center;
-    
-    > .list-colors__item {
-      margin: 0 0 0 40px;
-    }
-
-    > .list-colors__item:first-child {
-      margin: 0;
-    }
+    margin: 0 0 0 40px;
   }
 
   > .list-colors__item:first-child {
     margin: 0;
   }
+}
+
+.list-colors__item:first-child {
+  margin: 0;
 }

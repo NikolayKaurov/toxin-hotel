@@ -1,33 +1,34 @@
 mixin list-colors__item(name)
+
   -
-    let square_classes = '';
-    let color_value = '';
-    if (name.toLowerCase().includes('dark shade'))  {
-      square_classes += ' list-colors__item_dark';
-      color_value = '#1f2041'; }
-    else if (name.toLowerCase().includes('purple')) {
-      square_classes += ' list-colors__item_purple';
-      color_value = '#bc9cff'; }
-    else if (name.toLowerCase().includes('green'))  {
-      square_classes += ' list-colors__item_green';
-      color_value = '#6fcf97';  }
-    if (name.toLowerCase().includes('75%'))  {
-      square_classes += ' list-colors__item_opacity-75';  }
-    else if (name.toLowerCase().includes('50%'))  {
-      square_classes += ' list-colors__item_opacity-50';  }
-    else if (name.toLowerCase().includes('25%'))  {
-      square_classes += ' list-colors__item_opacity-25';  }
-    else if (name.toLowerCase().includes('5%'))  {
-      square_classes += ' list-colors__item_opacity-05';  }
-  //-------------------------------------------------------------------------//
+    var square_class = '';
+    var color_value = '';
+    if (name.toLowerCase().includes('dark shade 5')) {
+      square_class = 'list-colors__item_color_dark-shade-05';
+      color_value = '#1f2041';
+    } else if (name.toLowerCase().includes('dark shade 25')) {
+      square_class = 'list-colors__item_color_dark-shade-25';
+      color_value = '#1f2041';
+    } else if (name.toLowerCase().includes('dark shade 50')) {
+      square_class = 'list-colors__item_color_dark-shade-50';
+      color_value = '#1f2041';
+    } else if (name.toLowerCase().includes('dark shade 75')) {
+      square_class = 'list-colors__item_color_dark-shade-75';
+      color_value = '#1f2041';
+    } else if (name.toLowerCase().includes('dark shade')) {
+      square_class = 'list-colors__item_color_dark-shade';
+      color_value = '#1f2041';
+    } else if (name.toLowerCase().includes('green')) {
+      square_class = 'list-colors__item_color_green';
+      color_value = '#6fcf97';
+    } else if (name.toLowerCase().includes('purple')) {
+      square_class = 'list-colors__item_color_purple';
+      color_value = '#bc9cff';
+    }
 
   .list-colors__item
-  
-    .list-colors__item.list-colors__item_square(class= square_classes)
-    
+    .list-colors__item.list-colors__item_square(class= square_class)
     .list-colors__item
-    
       p.list-colors__item.list-colors__color-name= name
-      
       p.list-colors__item.list-colors__color-value= color_value
   

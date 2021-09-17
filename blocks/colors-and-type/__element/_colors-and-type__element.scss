@@ -1,12 +1,9 @@
-.colors-and-type {
-  > .colors-and-type__element {
-    margin: 0 0 0 243px;
-    //padding: 0;
+.colors-and-type__element {
+  margin: 0 0 0 243px;
 
-    width: 450px;
-  }
+  width: 450px;
+}
 
-  > .colors-and-type__element:first-child {
-    margin: 0;
-  }
+.colors-and-type__element:first-child {
+  margin: 0;
 }

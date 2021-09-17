@@ -29,7 +29,7 @@
 @use 'blocks/list-type/__description-body/list-type__description-body';
 @use 'blocks/form-elements/form-elements';
 @use 'blocks/form-elements/__text-field/form-elements__text-field';
-@use 'blocks/text-field/text-field';
+@use '../blocks/text-field/text-field';
 @use 'blocks/dropdown/dropdown';
 @use 'blocks/dropdown/_confirm/dropdown_confirm';
 @use 'blocks/dropdown/_reset/dropdown_reset';

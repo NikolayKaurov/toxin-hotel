@@ -1,28 +1,7 @@
-include ../blocks/ui-kit/ui-kit
-include ../blocks/ui-kit-header/ui-kit-header
-include ../blocks/colors-and-type/colors-and-type
-include ../blocks/colors-and-type/__element/colors-and-type__element
-include ../blocks/list-colors/list-colors
-include ../blocks/list-colors/__item/list-colors__item
-include ../blocks/list-colors/__color-name/list-colors__color-name
-include ../blocks/list-colors/__color-value/list-colors__color-value
-include ../blocks/list-type/list-type
-include ../blocks/list-type/__item/list-type__item
-include ../blocks/list-type/__example-title/list-type__example-title
-include ../blocks/list-type/__description-title/list-type__description-title
-include ../blocks/list-type/__example-label/list-type__example-label
-include ../blocks/list-type/__description-label/list-type__description-label
-include ../blocks/list-type/__example-body/list-type__example-body
-include ../blocks/list-type/__description-body/list-type__description-body
-include ../blocks/form-elements/form-elements
-include ../blocks/form-elements/__text-field/form-elements__text-field
-include ../blocks/text-field/text-field
-include ../blocks/dropdown/dropdown
-include ../blocks/datepicker/datepicker
-+ui-kit('Colors & Type','ui-kit_white')
-  +ui-kit-header
++ui-kit('Colors & Type','ui-kit_theme_white')
+  +ui-kit__header
   +colors-and-type
-    +colors-and-type__element('list-colors')
+    +list-colors('colors-and-type__element')
       +list-colors__item('Dark Shade 100%')
       +list-colors__item('Dark Shade 75%')
       +list-colors__item('Dark Shade 50%')
@@ -30,7 +9,7 @@ include ../blocks/datepicker/datepicker
       +list-colors__item('Dark Shade 5%')
       +list-colors__item('Purple')
       +list-colors__item('Green')
-    +colors-and-type__element('list-type')
+    +list-type('colors-and-type__element')
       +list-type__item('h1','This one is the sub-section or widget title')
       +list-type__item('h2','Next one is the item title inside widgets')
       +list-type__item('h3','This is a label or CTA text')

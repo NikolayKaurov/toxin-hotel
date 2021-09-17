@@ -17,6 +17,7 @@ export default function datepicker(node) {
   this.dateDeparture = 0;
 
   $('.datepicker-expand', this.node).on('mousedown', null, {time: this.timeSetFocus}, expandMousedown);
+
   function expandMousedown(event) {
     let time = Date.now() - event.data.time.timeSetFocus;
     if (time < timeWithoutClick) {
@@ -29,6 +30,7 @@ export default function datepicker(node) {
   }
 
   $('.datepicker-expand', this.node).on('focusin', null, {time: this.timeSetFocus}, expandFocusin);
+
   function expandFocusin(event) {
     event.data.time.timeSetFocus = Date.now();
 
@@ -37,7 +39,7 @@ export default function datepicker(node) {
     $(event.delegateTarget).addClass('datepicker-open');
   }
 
-  $('.datepicker-expand', this.node).on('focusout', function() {
+  $('.datepicker-expand', this.node).on('focusout', function () {
     if ($(this).hasClass('keep-focus')) {
       $(this).removeClass('keep-focus');
       console.log('Экспанд ОСТАЛСЯ ОТКРЫТЫМ');
@@ -49,6 +51,7 @@ export default function datepicker(node) {
 
 
   $('.datepicker-drop', this.node).on('mousedown', null, {time: this.timeSetFocus}, dropMousedown);
+
   function dropMousedown(event) {
     let time = Date.now() - event.data.time.timeSetFocus;
     if (time < timeWithoutClick) {
@@ -67,6 +70,7 @@ export default function datepicker(node) {
 
 
   $('.datepicker-drop', this.node).on('focusin', null, {time: this.timeSetFocus}, dropFocusin);
+
   function dropFocusin(event) {
     event.data.time.timeSetFocus = Date.now();
     console.log('ДРОП В ФОКУСЕ');
@@ -76,7 +80,7 @@ export default function datepicker(node) {
     }
   }
 
-  $('.datepicker-drop', this.node).on('focusout', function() {
+  $('.datepicker-drop', this.node).on('focusout', function () {
     if ($(this).hasClass('keep-focus')) {
       $(this).removeClass('keep-focus');
       console.log('ДРОП ОСТАЛСЯ ОТКРЫТЫМ');
@@ -133,12 +137,13 @@ export default function datepicker(node) {
     $('.datepicker-value', $('.datepicker-expand.datepicker-arrival', this.node)).text('ДД.ММ.ГГГГ');
     $('.datepicker-value', $('.datepicker-expand.datepicker-departure', this.node)).text('ДД.ММ.ГГГГ');
 
-/*
-    $('.selected.departure', this.node).removeClass('selected departure');
-    $('.selected.arrival', this.node).removeClass('selected arrival');
-*/
+    /*
+        $('.selected.departure', this.node).removeClass('selected departure');
+        $('.selected.arrival', this.node).removeClass('selected arrival');
+    */
 
     this.date.setFullYear(this.today.getFullYear(), this.today.getMonth());
+
     this.writeCalendar();
 
     $('.datepicker-reset', this.node).prop('disabled', true);
@@ -152,11 +157,12 @@ export default function datepicker(node) {
   })
 
   $('table', this.node).on('mouseover', 'td', {parent: this}, tableMouseover);
+
   function tableMouseover(event) {
     if ($(event.target).hasClass('selected')) return;
 
     let date = new Date($(event.target).attr('data-date'));
-    date.setHours(0,0,0);
+    date.setHours(0, 0, 0);
 
     if ($('.datepicker-expand.datepicker-open', event.data.parent.node).hasClass('datepicker-arrival')) {
       if (event.data.parent.dateDeparture) {
@@ -182,9 +188,10 @@ export default function datepicker(node) {
   }
 
   $('table', this.node).on('mousedown', 'td', {parent: this}, tableMousedown);
+
   function tableMousedown(event) {
     let date = new Date($(event.target).attr('data-date'));
-    date.setHours(0,0,0);
+    date.setHours(0, 0, 0);
 
     let _ = $(event.target).attr('data-date');
     let dateString = _[8] + _[9] + '.' + _[5] + _[6] + '.' + _[0] + _[1] + _[2] + _[3];
@@ -214,34 +221,35 @@ export default function datepicker(node) {
 
       }
     } else {
-        if ($(event.target).hasClass('highlight')) {
-          $('.date-departure', event.data.parent.node).val($(event.target).attr('data-date'));
-          event.data.parent.dateDeparture = date.getTime();
+      if ($(event.target).hasClass('highlight')) {
+        $('.date-departure', event.data.parent.node).val($(event.target).attr('data-date'));
+        event.data.parent.dateDeparture = date.getTime();
 
-          $('.datepicker-value', $('.datepicker-expand.datepicker-departure', event.data.parent.node)).text(dateString);
+        $('.datepicker-value', $('.datepicker-expand.datepicker-departure', event.data.parent.node)).text(dateString);
 
-          $('.datepicker-reset', event.data.parent.node).prop('disabled', false);
+        $('.datepicker-reset', event.data.parent.node).prop('disabled', false);
 
-          // $('.residence', $('.selected.departure', event.data.parent.node)).remove();
-          if ($('.selected.departure', event.data.parent.node).hasClass('other-month')) {
-            $('.selected.departure', event.data.parent.node).removeClass('selected departure');
-          } else {
-            $('.selected.departure', event.data.parent.node).removeAttr('class');
-          }
-
-          $(event.target).removeClass('highlight');
-          $(event.target).addClass('selected departure');
-
-          // if (this.cellIndex > 0) $(this).append('<div class="residence"></div>');
-
-          event.data.parent.paintResidence();
+        // $('.residence', $('.selected.departure', event.data.parent.node)).remove();
+        if ($('.selected.departure', event.data.parent.node).hasClass('other-month')) {
+          $('.selected.departure', event.data.parent.node).removeClass('selected departure');
+        } else {
+          $('.selected.departure', event.data.parent.node).removeAttr('class');
         }
+
+        $(event.target).removeClass('highlight');
+        $(event.target).addClass('selected departure');
+
+        // if (this.cellIndex > 0) $(this).append('<div class="residence"></div>');
+
+        event.data.parent.paintResidence();
+      }
     }
 
     console.log($(event.target).index());
   }
 
   $('table', this.node).on('mouseout', 'td', {parent: this}, tableMouseout);
+
   function tableMouseout(event) {
     if ($(event.target).hasClass('selected')) return;
     if ($(event.target).hasClass('other-month')) {
@@ -260,8 +268,8 @@ export default function datepicker(node) {
     $('.datepicker-expand.datepicker-open', this.node).trigger("focus");
   })
 
-  this.writeCalendar = function() {
-    let months = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+  this.writeCalendar = function () {
+    let months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
     let date = new Date(this.date.getTime());
 
@@ -307,30 +315,30 @@ export default function datepicker(node) {
     $('.datepicker-table', this.node).html(innerTable);
   }
 
-  this.paintResidence = function() {
+  this.paintResidence = function () {
     if (!(this.dateArrival && this.dateDeparture)) return;
 
     let dateArrival = this.dateArrival;
     let dateDeparture = this.dateDeparture;
 
-    $('td', this.node).each(function(index, element) {
+    $('td', this.node).each(function (index, element) {
 
       let date = new Date($(element).attr('data-date'));
-      date.setHours(0,0,0);
+      date.setHours(0, 0, 0);
 
       // if ($('.residence', $(element)).length) console.log(element.cellIndex + ' ' + 'ЕСТЬ ВЫДЕЛЕНИЕ');
 
       if ($('.residence', $(element)).length === 0) {
-        if (($(element).hasClass('selected arrival') && element.cellIndex < 6) ||
-          ($(element).hasClass('selected departure') && element.cellIndex > 0) ||
-          (dateArrival < date.getTime() && date.getTime() < dateDeparture && element.cellIndex < 6 && element.cellIndex > 0)) {
-            $(element).append('<div class="residence"></div>');
+        if (($(element).hasClass('selected arrival') && $(element).index() < 6) ||
+          ($(element).hasClass('selected departure') && $(element).index() > 0) ||
+          (dateArrival < date.getTime() && date.getTime() < dateDeparture && $(element).index() < 6 && $(element).index() > 0)) {
+          $(element).append('<div class="residence"></div>');
         } else {
           if (dateArrival < date.getTime() && date.getTime() < dateDeparture) {
-            if (element.cellIndex === 0) {
+            if ($(element).index() === 0) {
               $(element).append('<div class="residence left"></div>');
             } else {
-              if (element.cellIndex === 6) {
+              if ($(element).index() === 6) {
                 $(element).append('<div class="residence right"></div>');
               }
             }
@@ -341,7 +349,7 @@ export default function datepicker(node) {
           (dateArrival > date.getTime() || date.getTime() > dateDeparture)) {
           $('.residence', $(element)).remove();
         } else {
-          if (element.cellIndex === 0) {
+          if ($(element).index() === 0) {
             if ($(element).hasClass('selected arrival')) {
               $('.residence', $(element)).removeClass('left');
             } else {
@@ -352,7 +360,7 @@ export default function datepicker(node) {
               }
             }
           } else {
-            if (element.cellIndex === 6) {
+            if ($(element).index() === 6) {
               if ($(element).hasClass('selected arrival')) {
                 $('.residence', $(element)).remove();
               } else {

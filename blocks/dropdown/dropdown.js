@@ -8,7 +8,8 @@ $('.dropdown').each((index, node) => {
   new dropdown(node);
 })
 
-export default function dropdown(node) {
+//export default function dropdown(node) {
+  function dropdown(node) {
 
   const MAX = 99;
   const timeWithoutClick = 50;
@@ -104,7 +105,7 @@ export default function dropdown(node) {
 
       $('.dropdown-confirm', this.node).prop('disabled', true);
 
-      if ((this.withReset) && (this.values['item0'] + this.values['item1'] + this.values['item2'] == 0)) {
+      if ((this.withReset) && (this.values['item0'] + this.values['item1'] + this.values['item2'] === 0)) {
         $('.dropdown-reset', this.node).prop('disabled', true);
       } else if (this.withReset) {
         $('.dropdown-reset', this.node).prop('disabled', false);
@@ -123,8 +124,8 @@ export default function dropdown(node) {
   $('.dropdown-common-value', this.node).text(this.strings().commonValueString);
 
   $('.dropdown-item', this.node).each( (index, element) => {
-    let nameInput;
-    if (nameInput = $('.dropdown-input', element).attr('name').match(/item.*$/i)[0]) {
+    let nameInput = $('.dropdown-input', element).attr('name').match(/item.*$/i)[0];
+    if (nameInput) {
       this.inputs[nameInput] = $('.dropdown-input', element);
       this.inputs[nameInput].val(this.values[nameInput]);
       $('.dropdown-label', element).text(this.strings().itemStrings[nameInput]);
@@ -152,7 +153,7 @@ export default function dropdown(node) {
           $('.dropdown-confirm', this.node).prop('disabled', false);
         }
 
-        if ((this.withReset) && (this.values['item0'] + this.values['item1'] + this.values['item2'] == 0)) {
+        if ((this.withReset) && (this.values['item0'] + this.values['item1'] + this.values['item2'] === 0)) {
           $('.dropdown-reset', this.node).prop('disabled', true);
         }
       });
@@ -164,7 +165,7 @@ export default function dropdown(node) {
       $('.dropdown-minus', element).on('focus', () => {
         console.log('КНОПКА — ПОЛУЧАЕТ ФОКУС');
         console.log('ФОКУС СЕЙЧАС БУДЕТ ПЕРЕДАН');
-        $(this.node).focus();
+        $(this.node).trigger('focus');
         console.log('ФОКУС ПЕРЕДАН');
       });
 
@@ -204,7 +205,7 @@ export default function dropdown(node) {
       $('.dropdown-plus', element).on('focus', () => {
         console.log('КНОПКА + ПОЛУЧАЕТ ФОКУС');
         console.log('ФОКУС СЕЙЧАС БУДЕТ ПЕРЕДАН');
-        $(this.node).focus();
+        $(this.node).trigger('focus');
         console.log('ФОКУС ПЕРЕДАН');
       });
     }

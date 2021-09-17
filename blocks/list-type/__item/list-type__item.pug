@@ -1,24 +1,20 @@
 mixin list-type__item(type, description)
   -
-    let example_classes = '';
-    let description_classes = '';
-    if (type.toLowerCase() == 'h1')  {
-      example_classes += ' list-type__example-title list-type__item_font-size-24px';
-      description_classes += ' list-type__description-title list-type__item_font-size-24px'; }
-    else if (type.toLowerCase() == 'h2') {
-      example_classes += ' list-type__example-title list-type__item_font-size-19px';
-      description_classes += ' list-type__description-title list-type__item_font-size-19px'; }
-    else if (type.toLowerCase() == 'h3') {
-      example_classes += ' list-type__example-label list-type__item_font-size-12px';
-      description_classes += ' list-type__description-label list-type__item_font-size-12px'; }
-    else if (type.toLowerCase() == 'body') {
-      example_classes += ' list-type__example-body list-type__item_font-size-14px';
-      description_classes += ' list-type__description-body list-type__item_font-size-14px'; }
+    var example_classes = '';
+    var description_classes = '';
+    if (type.toLowerCase() === 'h1')  {
+      example_classes += ' list-type__example-title list-type__item_font-size_24px';
+      description_classes += ' list-type__description-title list-type__item_font-size_24px'; }
+    else if (type.toLowerCase() === 'h2') {
+      example_classes += ' list-type__example-title list-type__item_font-size_19px';
+      description_classes += ' list-type__description-title list-type__item_font-size_19px'; }
+    else if (type.toLowerCase() === 'h3') {
+      example_classes += ' list-type__example-label list-type__item_font-size_12px';
+      description_classes += ' list-type__description-label list-type__item_font-size_12px'; }
+    else if (type.toLowerCase() === 'body') {
+      example_classes += ' list-type__example-body list-type__item_font-size_14px';
+      description_classes += ' list-type__description-body list-type__item_font-size_14px'; }
 
-  //-------------------------------------------------------------------------//
-    
   .list-type__item
-  
     p.list-type__item(class= example_classes)= type
-
     p.list-type__item(class= description_classes)= description

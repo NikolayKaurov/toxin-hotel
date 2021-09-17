@@ -1,0 +1,44 @@
+.text-field__input {
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(31, 32, 65, 0.25);
+  font-family: montserrat, Arial, sans-serif;
+
+  width: 303px;
+  height: 42px;
+
+  margin: 0;
+  padding: 0 0 0 15px;
+
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+}
+
+.text-field__input:focus {
+  color: rgba(31, 32, 65, 0.75);
+
+  border: 1px solid rgba(31, 32, 65, 0.5);
+
+  outline: 0;
+}
+
+.text-field__input::placeholder {
+  color: rgba(31, 32, 65, 0.25);
+}
+
+.text-field__input:focus::placeholder {
+  color: rgba(31, 32, 65, 0.75);
+}
+
+.text-field:hover {
+
+  .text-field__input {
+    color: rgba(31, 32, 65, 0.75);
+
+    border: 1px solid rgba(31, 32, 65, 0.5);
+  }
+
+  .text-field__input::placeholder {
+    color: rgba(31, 32, 65, 0.75);
+  }
+}

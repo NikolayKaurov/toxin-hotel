@@ -1,11 +1,11 @@
 mixin dropdown(name, modifiers, label, description)
   .dropdown(class= modifiers tabindex=0)
-    .dropdown-header
-      - if (label)
-        .dropdown-label= label
-      - if (description)
-        .dropdown-label= description
-    .dropdown-down
+    .dropdown__header
+      if (label)
+        .dropdown__label= label
+      if (description)
+        .dropdown__label= description
+    .dropdown__down
       .dropdown-buttons
         button.dropdown-reset(disabled tabindex=-1) очистить
         button.dropdown-confirm(disabled tabindex=-1) применить

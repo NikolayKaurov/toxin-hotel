@@ -1,8 +1,8 @@
 mixin text-field(name, placeholder, label, description)
   .text-field
-    .text-field
-      - if (label)
-        p.text-field-label= label
-      - if (description)
-        p.text-field-label= description
-    input(type='text' class='text-field-input' name= name placeholder= placeholder)
+    .text-field__header
+      if (label)
+        p.text-field__label= label
+      if (description)
+        p.text-field__label= description
+    input(type='text' class='text-field__input' name= name placeholder= placeholder)

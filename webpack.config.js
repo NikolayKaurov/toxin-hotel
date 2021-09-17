@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 
 const slash = '\\';
-const endLine = require('os').EOL;
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -11,8 +10,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 const pages = path.resolve(__dirname, 'pages');
 const blocks = path.resolve(__dirname, 'blocks');
 
-const writeIncludeUseImport = require('./writeIncludeUseImport');
-writeIncludeUseImport.writeIncludeUseImport(pages, blocks);
+const preprocessor = require('./preprocessor');
+preprocessor.preprocessor(pages, blocks);
 
 let plugins = [new MiniCssExtractPlugin({filename: 'style.css'})];
 
