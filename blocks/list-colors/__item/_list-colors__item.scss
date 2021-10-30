@@ -5,7 +5,15 @@
   align-items: center;
 
   > .list-colors__item {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
     margin: 0 0 0 40px;
+
+    > .list-colors__item {
+      margin: 0;
+    }
   }
 
   > .list-colors__item:first-child {

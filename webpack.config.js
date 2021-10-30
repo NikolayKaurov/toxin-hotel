@@ -10,8 +10,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 const pages = path.resolve(__dirname, 'pages');
 const blocks = path.resolve(__dirname, 'blocks');
 
-const preprocessor = require('./preprocessor');
-preprocessor.preprocessor(pages, blocks);
+const preprocessor = require('./preprocessor.js');
+preprocessor(pages, blocks);
 
 let plugins = [new MiniCssExtractPlugin({filename: 'style.css'})];
 

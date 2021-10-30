@@ -3,9 +3,12 @@ const fs = require('fs');
 const slash = '\\';
 const endLine = require('os').EOL;
 
-const $ = require('jquery');
+// Подключение jquery для вызова функции $.isEmptyObject()
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
+const $ = require( "jquery" )( window );
 
-function preprocessor(pages, blocks) {
+module.exports = function preprocessor(pages, blocks) {
 
   let sourceTemplates = readSourceTemplates(pages);
   cleanHeaders(sourceTemplates);
@@ -51,7 +54,7 @@ function createPugHeaders(useBemEntities) {
 
   for (let entity in useBemEntities) {
     if (fs.existsSync(useBemEntities[entity] + slash + entity + '.pug')) {
-      pugHeaders += useBemEntities[entity].replace(/^.*blocks/i, 'include ../blocks').replace(/\\/g, '/')
+      pugHeaders += useBemEntities[entity].replace(/^.*blocks/, 'include ../blocks').replace(/\\/g, '/')
         + '/' + entity + endLine;
     }
   }
@@ -60,11 +63,11 @@ function createPugHeaders(useBemEntities) {
 }
 
 function createScssHeaders(useBemEntities) {
-  let scssHeaders = '';
+  let scssHeaders = "";
 
   for (let entity in useBemEntities) {
     if (fs.existsSync(useBemEntities[entity] + slash + '_' + entity + '.scss')) {
-      scssHeaders += useBemEntities[entity].replace(/^.*blocks/i, "@use 'blocks").replace(/\\/g, '/')
+      scssHeaders += useBemEntities[entity].replace(/^.*blocks/, "@use 'blocks").replace(/\\/g, '/')
         + '/' + entity + "';" + endLine;
     }
   }
@@ -73,23 +76,36 @@ function createScssHeaders(useBemEntities) {
 }
 
 function createJsHeaders(useBemEntities) {
+  // Блоки и модификаторы ПЕРЕД элементами
+  let sortedUseBemEntities = Object.keys(useBemEntities).sort(function(entityA, entityB) {
+    if (isElement(entityA) && !isElement(entityB)) return 1;
+    if (isElement(entityB) && !isElement(entityA)) return -1;
+    return 0;
+  })
+
   let jsHeaders = '';
 
-  for (let entity in useBemEntities) {
+  sortedUseBemEntities.forEach(entity => {
     if (fs.existsSync(useBemEntities[entity] + slash + entity + '.js')) {
-      jsHeaders += useBemEntities[entity].replace(/^.*blocks/i, "import '../blocks").replace(/\\/g, '/')
-        + '/' + entity + ".js';" + endLine;
+      jsHeaders += useBemEntities[entity].replace(/^.*blocks/, "import '../blocks").replace(/\\/g, '/')
+          + '/' + entity + ".js';" + endLine;
     }
-  }
+  })
+
+  jsHeaders += "import './style.scss';"
 
   return jsHeaders;
+}
+
+function isElement(entity) {
+  return !!(entity.match(/^[^_]+__[^_]+$/));
 }
 
 function getUseBemEntities(sourceTemplates, bemEntities) {
   let useBemEntities = {};
 
   for(let template in sourceTemplates) {
-    if (searchBemEntities(template, bemEntities, useBemEntities)) {
+    if (searchBemEntities(sourceTemplates[template], bemEntities, useBemEntities)) {
       return useBemEntities;
     }
   }
@@ -103,7 +119,7 @@ function getUseBemEntities(sourceTemplates, bemEntities) {
 // Если у БЭМ-сущности есть шаблон .pug, для него вызывается эта же функция.
 function searchBemEntities(template, bemEntities, useBemEntities) {
 
-  let words = template.match(/[a-z]([a-z0-9-_]*[a-z0-9])?/gi) || [];
+  let words = template.match(/[_a-z0-9-]+/g) || [];
   // получить массив слов, которые могут быть именами БЭМ-сущностей
 
   let setWords = new Set(words); // убрать повторы из массива слов
@@ -144,10 +160,9 @@ function readSourceTemplates(pages) {
 
 function cleanHeaders(sourceTemplates) {
   for (let template in sourceTemplates) {
-    sourceTemplates[template] = sourceTemplates[template].replace(/include.*\r\n/gi, '');
+    sourceTemplates[template] = sourceTemplates[template].replace(/include.*\r\n/g, '');
   }
 }
-
 
 function getBemEntities(blocks) {
   let bemEntities = {};
@@ -187,10 +202,12 @@ function getBemEntities(blocks) {
 // папка, в которой лежат файлы модификатора — значение свойства.
 // Для данной функции значение всегда равно dir.
 function readModifiersNameValue(dir, bemEntities) {
-  if (dir.match(/[^_]_[a-z0-9-]+$/) === null) return false;
+  // Если имя папки не соответствует имени папки с модификатором, возвращается false
+  if (dir.match(/[^_]_[^_]+$/) === null) return false;
+
   let found = [];
   fs.readdirSync(dir).forEach(modifier => {
-    modifier = modifier.match(/([a-z0-9-]+__[a-z0-9-]+_[a-z0-9-]+_[a-z0-9-]+)|([a-z0-9-]+_[a-z0-9-]+_[a-z0-9-]+)/);
+    modifier = modifier.match(/([^_]+__[^_]+_[^_]+_[^_.]+)|([^_]+_[^_]+_[^_.]+)/);
     if (modifier) {
       modifier = modifier[0];
       if (found.includes(modifier) === false) {
@@ -201,6 +218,3 @@ function readModifiersNameValue(dir, bemEntities) {
   });
   return !!(found.length);
 }
-
-
-export { preprocessor };
