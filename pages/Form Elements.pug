@@ -6,21 +6,24 @@ include ../blocks/list-colors/__item/list-colors__item
 include ../blocks/list-type/list-type
 include ../blocks/list-type/__item/list-type__item
 include ../blocks/form-elements/form-elements
-include ../blocks/form-elements/__text-field/form-elements__text-field
 include ../blocks/text-field/text-field
 include ../blocks/dropdown/dropdown
 include ../blocks/datepicker/datepicker
 +ui-kit('Form elements','ui-kit_white')
   +ui-kit__header
   +form-elements
-    +form-elements__text-field
-      +text-field('field_1','Email','text field','default')
-      +text-field('field_2','This is pretty awesome','text field','hover / focus')
-      +dropdown('guest','dropdown_strings_guest dropdown_reset dropdown_confirm')
-      +dropdown('room',' dropdown_strings_room dropdown_reset','дропдаун')
-      +datepicker('date1', '', 'date dropdown', 'date dropdown')
-      +datepicker('date2', '', 'Прибытие', 'отъезд')
-      +dropdown('room1',' dropdown_strings_room dropdown_reset','дропдаун','помещение')
-      +datepicker('date3', '', 'приехал', 'уехал')
+    +form-elements
+      +text-field('id1', 'field_1','Email','text field','default')
+      +text-field('id2', 'field_2','This is pretty awesome','text field','hover / focus')
+
+    //+form-elements__text-field
+    //  +text-field('field_1','Email','text field','default')
+    //  +text-field('field_2','This is pretty awesome','text field','hover / focus')
+    //  +dropdown('guest','dropdown_strings_guest dropdown_reset dropdown_confirm')
+    //  +dropdown('room',' dropdown_strings_room dropdown_reset','дропдаун')
+    //  +datepicker('date1', '', 'date dropdown', 'date dropdown')
+    //  +datepicker('date2', '', 'Прибытие', 'отъезд')
+    //  +dropdown('room1',' dropdown_strings_room dropdown_reset','дропдаун','помещение')
+    //  +datepicker('date3', '', 'приехал', 'уехал')
 
 

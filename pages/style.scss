@@ -4,7 +4,7 @@
 @use 'blocks/ui-kit/__header/ui-kit__header';
 @use 'blocks/colors-and-type/colors-and-type';
 @use 'blocks/list-colors/list-colors';
-@use 'blocks/colors-and-type/__element/colors-and-type__element';
+@use 'blocks/colors-and-type/__item/colors-and-type__item';
 @use 'blocks/list-colors/__item/list-colors__item';
 @use 'blocks/list-colors/__item/_color/list-colors__item_color_dark-shade-05';
 @use 'blocks/list-colors/__item/_color/list-colors__item_color_dark-shade-25';
@@ -29,7 +29,6 @@
 @use 'blocks/list-type/__item/_font-size/list-type__item_font-size_14px';
 @use 'blocks/list-type/__description-body/list-type__description-body';
 @use 'blocks/form-elements/form-elements';
-@use 'blocks/form-elements/__text-field/form-elements__text-field';
 @use 'blocks/text-field/text-field';
 @use 'blocks/text-field/__header/text-field__header';
 @use 'blocks/text-field/__label/text-field__label';

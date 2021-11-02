@@ -3,6 +3,15 @@
 
   display: grid;
   grid-template-columns: 374px 320px 320px;
-  grid-auto-rows: 733px 688px 158px;
+  grid-template-rows: 733px 688px 158px;
   column-gap: 72px;
+
+  > .form-elements {
+    padding: 0;
+  }
+
+  > .form-elements:nth-child(1) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 84px 84px 87px 104px 104px 105px 105px;
+  }
 }

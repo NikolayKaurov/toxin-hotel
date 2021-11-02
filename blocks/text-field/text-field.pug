@@ -1,8 +1,8 @@
-mixin text-field(name, placeholder, label, description)
+mixin text-field(id, name, placeholder, label, description)
   .text-field
     .text-field__header
       if (label)
-        p.text-field__label= label
+        label.text-field__label(for= id)= label
       if (description)
         p.text-field__label= description
-    input(type='text' class='text-field__input' name= name placeholder= placeholder)
+    input.text-field__input(type='text' id= id name= name placeholder= placeholder)
