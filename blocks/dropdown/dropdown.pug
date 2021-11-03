@@ -1,3 +1,20 @@
+//mixin dropdown(name, modifiers, label, description)
+//  .dropdown(class= modifiers tabindex=0)
+//    .dropdown__header
+//      if (label)
+//        .dropdown__label= label
+//      if (description)
+//        .dropdown__label= description
+//    .dropdown__down
+//      .dropdown-buttons
+//        button.dropdown-reset(disabled tabindex=-1) очистить
+//        button.dropdown-confirm(disabled tabindex=-1) применить
+//      +dropdown-item(name + '-item2')
+//      +dropdown-item(name + '-item1')
+//      +dropdown-item(name + '-item0')
+//    .dropdown-drop
+//      .dropdown-common-value
+
 mixin dropdown(name, modifiers, label, description)
   .dropdown(class= modifiers tabindex=0)
     .dropdown__header
@@ -6,18 +23,14 @@ mixin dropdown(name, modifiers, label, description)
       if (description)
         .dropdown__label= description
     .dropdown__down
-      .dropdown-buttons
-        button.dropdown-reset(disabled tabindex=-1) очистить
-        button.dropdown-confirm(disabled tabindex=-1) применить
-      +dropdown-item(name + '-item2')
-      +dropdown-item(name + '-item1')
-      +dropdown-item(name + '-item0')
-    .dropdown-drop
-      .dropdown-common-value
+      block
+    .dropdown__drop
+      .dropdown__value
 
-mixin dropdown-item(name)
-  .dropdown-item
-    .dropdown-label
-    button.dropdown-minus(disabled tabindex=-1) -
-    input(disabled type='text' class='dropdown-input' tabindex=-1 readonly name= name)
-    button.dropdown-plus(tabindex=-1) +
+
+//mixin dropdown-item(name)
+//  .dropdown-item
+//    .dropdown-label
+//    button.dropdown-minus(disabled tabindex=-1) -
+//    input(disabled type='text' class='dropdown-input' tabindex=-1 readonly name= name)
+//    button.dropdown-plus(tabindex=-1) +

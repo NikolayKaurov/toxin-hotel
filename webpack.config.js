@@ -25,7 +25,9 @@ fs.readdirSync(pages).forEach(page =>{
 });
 
 module.exports = {
-  mode: 'production',
+  target: 'web',
+
+  mode: 'development',
 
   devtool: 'source-map',
 
@@ -35,8 +37,15 @@ module.exports = {
   },
 
   devServer: {
+    hot: true,
     static: {
       directory: path.join(__dirname, 'dist'),
+    },
+    watchFiles: {
+      paths: [path.join(__dirname, 'pages'), path.join(__dirname, 'blocks')],
+      options: {
+        depth: 99,
+      }
     },
     compress: true,
     port: 9000,

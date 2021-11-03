@@ -34,6 +34,8 @@
 @use 'blocks/text-field/__label/text-field__label';
 @use 'blocks/text-field/__input/text-field__input';
 @use 'blocks/dropdown/dropdown';
+@use 'blocks/dropdown/__header/dropdown__header';
+@use 'blocks/dropdown/__label/dropdown__label';
 @use 'blocks/dropdown/_reset/dropdown_reset';
 @use 'blocks/dropdown/_confirm/dropdown_confirm';
 @use 'blocks/datepicker/datepicker';
