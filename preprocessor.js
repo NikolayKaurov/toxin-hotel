@@ -76,7 +76,7 @@ function createScssHeaders(useBemEntities) {
 }
 
 function createJsHeaders(useBemEntities) {
-  // Блоки и модификаторы ПЕРЕД элементами
+  // Блоки и модификаторы блоков ПЕРЕД элементами и модификаторами элементов
   let sortedUseBemEntities = Object.keys(useBemEntities).sort(function(entityA, entityB) {
     if (isElement(entityA) && !isElement(entityB)) return 1;
     if (isElement(entityB) && !isElement(entityA)) return -1;
@@ -97,8 +97,10 @@ function createJsHeaders(useBemEntities) {
   return jsHeaders;
 }
 
+// Функция возвращает true, если БЭМ-сущность является элементом ИЛИ МОДИФИКАТОРОМ ЭЛЕМЕНТА,
+// иначе false
 function isElement(entity) {
-  return !!(entity.match(/^[^_]+__[^_]+$/));
+  return !!(entity.match(/^[^_]+__[^_]/));
 }
 
 function getUseBemEntities(sourceTemplates, bemEntities) {

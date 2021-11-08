@@ -36,6 +36,8 @@
 @use 'blocks/dropdown/dropdown';
 @use 'blocks/dropdown/__header/dropdown__header';
 @use 'blocks/dropdown/__label/dropdown__label';
+@use 'blocks/dropdown/__drop/dropdown__drop';
+@use 'blocks/dropdown/__value/dropdown__value';
 @use 'blocks/dropdown/_reset/dropdown_reset';
 @use 'blocks/dropdown/_confirm/dropdown_confirm';
 @use 'blocks/datepicker/datepicker';

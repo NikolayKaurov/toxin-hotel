@@ -1,0 +1,27 @@
+.dropdown__down {
+  background: white;
+
+  position: absolute;
+  z-index: 1;
+
+  //height: 41px;
+  transition-property: height, z-index;
+  transition-duration: 0.4s, 0.4s;
+  transition-delay: 0s, 0s;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column-reverse;
+
+  border: 1px solid rgba(31, 32, 65, 0.5);
+  border-radius: 4px;
+}
+
+.dropdown_open {
+  .dropdown__down {
+    transition: height 0.4s;
+
+    z-index: 7;
+  }
+}
