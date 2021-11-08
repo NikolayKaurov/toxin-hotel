@@ -1,0 +1,34 @@
+.dropdown__counter-button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  border-radius: 22px;
+  border: 1px solid rgba(31, 32, 65, 0.5);
+
+  background-color: transparent;
+
+  font-family: montserrat, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  color: rgba(31, 32, 65, 0.5);
+
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.dropdown__counter-button::selection {
+  background: transparent;
+}
+
+.dropdown__counter-button:disabled {
+  border: 1px solid rgba(31, 32, 65, 0.25);
+
+  cursor: default;
+}
+
+.dropdown__counter-button:active {
+  border: 2px solid rgba(31, 32, 65, 0.5);
+}
+

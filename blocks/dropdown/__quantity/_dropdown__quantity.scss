@@ -1,0 +1,22 @@
+.dropdown__quantity {
+  text-align: center;
+
+  border: 0;
+  outline: 0;
+  width: 32px;
+  height: 30px;
+
+  font-size: 12px;
+  line-height: 30px;
+  color: #1f2041;
+  font-family: montserrat, Arial, sans-serif;
+  font-weight: bold;
+
+  background: transparent;
+
+  cursor: default;
+}
+
+.dropdown__quantity::selection {
+  background: transparent;
+}

@@ -16,7 +16,7 @@
 //      .dropdown-common-value
 
 mixin dropdown(name, modifiers, label, description)
-  .dropdown(class= modifiers tabindex=0)
+  .dropdown.js-dropdown(class= modifiers data-dropdown-name= name tabindex=0)
     .dropdown__header
       if (label)
         .dropdown__label= label
@@ -26,7 +26,6 @@ mixin dropdown(name, modifiers, label, description)
       block
     .dropdown__drop
       .dropdown__value
-
 
 //mixin dropdown-item(name)
 //  .dropdown-item

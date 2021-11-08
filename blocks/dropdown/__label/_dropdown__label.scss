@@ -11,3 +11,10 @@
   font-weight: normal;
   color: rgba(31, 32, 65, 0.5);
 }
+
+.dropdown__item {
+  .dropdown__label {
+    flex-grow: 1;
+    margin: 0;
+  }
+}
