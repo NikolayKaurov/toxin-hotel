@@ -7,11 +7,13 @@
   background: white;
 
   position: absolute;
-  z-index: 1;
 
-  transition-property: height, z-index;
-  transition-duration: 0.4s, 0.4s;
-  transition-delay: 0s, 0s;
+  transition: height 0.4s;
+  //z-index: 1;
+
+  //transition-property: height, z-index;
+  //transition-duration: 0.4s, 0.4s;
+  //transition-delay: 0s, 0s;
 
   overflow: hidden;
 
@@ -22,10 +24,10 @@
   border-radius: 4px;
 }
 
-.dropdown_open {
-  .dropdown__down {
-    transition: height 0.4s;
-
-    z-index: 7;
-  }
-}
+//.dropdown_open {
+//  .dropdown__down {
+//    transition: height 0.4s;
+//
+//    z-index: 7;
+//  }
+//}

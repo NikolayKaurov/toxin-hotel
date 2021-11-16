@@ -1,6 +1,6 @@
 mixin dropdown__item(name, units)
-  .dropdown__item.js-dropdown__item
-    .dropdown__label
+  .dropdown__item.js-dropdown__item(data-item-name= name data-units= units)
+    .dropdown__label.js-dropdown__label
     button.dropdown__counter-button.js-dropdown__minus(disabled tabindex=-1) -
-    input.dropdown__quantity(disabled type='text' tabindex=-1 readonly data-item-name= name data-units= units)
+    input.dropdown__quantity.js-dropdown__quantity(disabled type='text' tabindex=-1 readonly)
     button.dropdown__counter-button.js-dropdown__plus(tabindex=-1) +

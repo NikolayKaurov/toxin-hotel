@@ -8,27 +8,32 @@ include ../blocks/list-type/__item/list-type__item
 include ../blocks/form-elements/form-elements
 include ../blocks/text-field/text-field
 include ../blocks/dropdown/dropdown
-include ../blocks/dropdown/__button-container/dropdown__button-container
 include ../blocks/dropdown/__item/dropdown__item
+include ../blocks/dropdown/__button-container/dropdown__button-container
 +ui-kit('Form elements','ui-kit_white')
   +ui-kit__header
   +form-elements
     +form-elements
-      +text-field('id1', 'field_1','Email','text field','default')
-      +text-field('id2', 'field_2','This is pretty awesome','text field','hover / focus')
-
-      +dropdown('room1_KOMNATI', '', 'dropdown', 'помещение')
-        +dropdown__item('room','комнаты')
-        +dropdown__item('room','комнаты')
-        +dropdown__item('room','комнаты')
-      +dropdown('KALIDOR', '', 'dropdown', 'помещение')
-        +dropdown__item('room','комнаты')
-      +dropdown('halupa', '', 'dropdown', 'помещение')
-        +dropdown__item('room','комнаты')
-        +dropdown__item('room','комнаты')
-        +dropdown__item('room','комнаты')
-        +dropdown__item('room','комнаты')
-        +dropdown__item('room','комнаты')
-        +dropdown__item('room','комнаты')
+      +text-field('field_1','Email','text field','default')
+      +text-field('field_2','This is pretty awesome','text field','hover / focus')
+      +dropdown('room1', 3, '', '', 'dropdown', 'помещение')
+        +dropdown__item('room','комнаты комната комнаты комнат')
+        +dropdown__item('bedroom','спальни спальня спальни спален')
+        +dropdown__item('bath','ванные ванная ванных ванных')
+      +dropdown('guest', 2, '', '', 'дропдаун', 'гости')
+        +dropdown__button-container
+        +dropdown__item('guest','гости гость гостя гостей')
+        +dropdown__item('liver','жильцы жилец жильца жильцов')
+        +dropdown__item('baby','младенцы младенец младенца младенцев')
+        +dropdown__item('hobo','бродяги бродяга бродяги бродяг')
+        +dropdown__item('terrorist','террористы террорист террориста террористов')
+        +dropdown__item('vip','випы вип випа випов')
+        +dropdown__item('child','дети ребёнок ребёнка детей')
+      +dropdown('toilet', 1, '', '', 'аккордеон', 'дискрыпшн')
+        +dropdown__item('closet1','толчки толчок толчка толчков')
+        +dropdown__item('closet2','сортиры сортир сортира сортиров')
+        +dropdown__item('closet3','сральники сральник сральника сральников')
+        +dropdown__item('closet4','туалеты туалет туалета туалетов')
+        +dropdown__item('closet5','дристальни дристальня дристальни дристален')
 
 

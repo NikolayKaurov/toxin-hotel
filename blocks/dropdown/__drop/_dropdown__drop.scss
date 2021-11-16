@@ -5,11 +5,14 @@
   border-radius: 4px;
 
   position: relative;
-  z-index: 2;
 
-  transition-property: z-index, border;
-  transition-duration: 0.4s, 0.4s;
-  transition-delay: 0s, 0s;
+  transition: border 0.4s;
+
+  //z-index: 2;
+
+  //transition-property: z-index, border;
+  //transition-duration: 0.4s, 0.4s;
+  //transition-delay: 0s, 0s;
 
   background: white;
 }
@@ -17,11 +20,10 @@
 .dropdown_open {
   .dropdown__drop {
     border: 1px solid rgba(31, 32, 65, 0.5);
-    transition: border 0.4s;
 
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 
-    z-index: 8;
+    //z-index: 8;
   }
 }

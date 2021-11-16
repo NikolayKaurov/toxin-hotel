@@ -15,16 +15,16 @@
 //    .dropdown-drop
 //      .dropdown-common-value
 
-mixin dropdown(name, modifiers, label, description)
-  .dropdown.js-dropdown(class= modifiers data-dropdown-name= name tabindex=0)
+mixin dropdown(name, zIndex, defaultValue, modifiers, label, description)
+  .dropdown.js-dropdown(data-dropdown-name= name data-z-index= zIndex data-default-value= defaultValue class= modifiers tabindex=0)
     .dropdown__header
       if (label)
         .dropdown__label= label
       if (description)
         .dropdown__label= description
-    .dropdown__down
+    .dropdown__down.js-dropdown__down
       block
-    .dropdown__drop
+    .dropdown__drop.js-dropdown__drop
       .dropdown__value
 
 //mixin dropdown-item(name)
