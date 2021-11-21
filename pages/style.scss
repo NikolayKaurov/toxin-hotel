@@ -4,7 +4,6 @@
 @use 'blocks/ui-kit/__header/ui-kit__header';
 @use 'blocks/colors-and-type/colors-and-type';
 @use 'blocks/list-colors/list-colors';
-@use 'blocks/colors-and-type/__item/colors-and-type__item';
 @use 'blocks/list-colors/__item/list-colors__item';
 @use 'blocks/list-colors/__item/_color/list-colors__item_color_dark-shade-05';
 @use 'blocks/list-colors/__item/_color/list-colors__item_color_dark-shade-25';
@@ -17,6 +16,7 @@
 @use 'blocks/list-colors/__color-name/list-colors__color-name';
 @use 'blocks/list-colors/__color-value/list-colors__color-value';
 @use 'blocks/list-type/list-type';
+@use 'blocks/colors-and-type/__item/colors-and-type__item';
 @use 'blocks/list-type/__item/list-type__item';
 @use 'blocks/list-type/__example-title/list-type__example-title';
 @use 'blocks/list-type/__item/_font-size/list-type__item_font-size_24px';
