@@ -1,33 +1,13 @@
 const fs = require('fs');
 
-const slash = '\\';
-const endLine = require('os').EOL;
-
 // Подключение jquery для вызова функции $.isEmptyObject()
-const { JSDOM } = require( "jsdom" );
-const { window } = new JSDOM( "" );
-const $ = require( "jquery" )( window );
+const { JSDOM } = require('jsdom');
 
-module.exports = function preprocessor(pages, blocks) {
+const { window } = new JSDOM('');
+const $ = require('jquery')(window);
 
-  let sourceTemplates = readSourceTemplates(pages);
-  cleanHeaders(sourceTemplates);
-
-  let bemEntities = getBemEntities(blocks);
-
-  let useBemEntities = getUseBemEntities(sourceTemplates, bemEntities);
-
-  let pugHeaders = createPugHeaders(useBemEntities);
-  let scssHeaders = createScssHeaders(useBemEntities);
-  let jsHeaders = createJsHeaders(useBemEntities);
-
-  prependPugHeaders(sourceTemplates, pugHeaders);
-  writeSourceTemplates(pages, sourceTemplates);
-
-  rewriteScss(pages, scssHeaders);
-  rewriteJs(pages, jsHeaders);
-
-}
+const slash = '\\';
+const endLine = '\n';
 
 function rewriteScss(pages, scssHeaders) {
   fs.writeFileSync(pages + slash + 'style.scss', scssHeaders);
@@ -92,7 +72,8 @@ function createJsHeaders(useBemEntities) {
     }
   })
 
-  jsHeaders += "import './style.scss';"
+  jsHeaders += 'import \'./style.scss\';\n';
+  jsHeaders += 'import \'../favicons/favicons\';\n';
 
   return jsHeaders;
 }
@@ -162,7 +143,7 @@ function readSourceTemplates(pages) {
 
 function cleanHeaders(sourceTemplates) {
   for (let template in sourceTemplates) {
-    sourceTemplates[template] = sourceTemplates[template].replace(/include.*\r\n/g, '');
+    sourceTemplates[template] = sourceTemplates[template].replace(/include.*\n/g, '');
   }
 }
 
@@ -195,7 +176,8 @@ function getBemEntities(blocks) {
   return bemEntities;
 }
 
-// Функция считывает в указанный объект bemEntities из указанной папки dir полные имена модификаторов,
+// Функция считывает в указанный объект bemEntities из указанной папки dir полные имена
+// модификаторов,
 // которые соответствуют формату ключ-значение. ТОЛЬКО формату ключ-значение.
 // На наличие имён проверяются только названия файлов, содержимое файлов не проверяется,
 // вложенные папки не проверяются (их быть и не должно).
@@ -207,16 +189,35 @@ function readModifiersNameValue(dir, bemEntities) {
   // Если имя папки не соответствует имени папки с модификатором, возвращается false
   if (dir.match(/[^_]_[^_]+$/) === null) return false;
 
-  let found = [];
-  fs.readdirSync(dir).forEach(modifier => {
-    modifier = modifier.match(/([^_]+__[^_]+_[^_]+_[^_.]+)|([^_]+_[^_]+_[^_.]+)/);
-    if (modifier) {
-      modifier = modifier[0];
-      if (found.includes(modifier) === false) {
-        bemEntities[modifier] = dir;
-        found.push(modifier);
+  const found = [];
+  fs.readdirSync(dir).forEach((fileName) => {
+    const modifierNameValue = fileName.match(/([^_]+__[^_]+_[^_]+_[^_.]+)|([^_]+_[^_]+_[^_.]+)/);
+    if (modifierNameValue) {
+      // modifier = modifier[0];
+      if (found.includes(modifierNameValue[0]) === false) {
+        bemEntities[modifierNameValue[0]] = dir;
+        found.push(modifierNameValue[0]);
       }
     }
   });
   return !!(found.length);
 }
+
+module.exports = function preprocessor(pages, blocks) {
+  const sourceTemplates = readSourceTemplates(pages);
+  cleanHeaders(sourceTemplates);
+
+  const bemEntities = getBemEntities(blocks);
+
+  const useBemEntities = getUseBemEntities(sourceTemplates, bemEntities);
+
+  const pugHeaders = createPugHeaders(useBemEntities);
+  const scssHeaders = createScssHeaders(useBemEntities);
+  const jsHeaders = createJsHeaders(useBemEntities);
+
+  prependPugHeaders(sourceTemplates, pugHeaders);
+  writeSourceTemplates(pages, sourceTemplates);
+
+  rewriteScss(pages, scssHeaders);
+  rewriteJs(pages, jsHeaders);
+};

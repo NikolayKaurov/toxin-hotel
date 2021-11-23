@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 const INTERVAL = 50;
 // minimum interval between getting focus and clicking the mouse 50 milliseconds
 
@@ -6,7 +8,7 @@ const ITEM_HEIGHT = 37; // Высота одной строки в выпада�
 const BUTTON_CONTAINER_HEIGHT = 41; // Высота нижней строки с кнопками "очистить" и "применить"
 const EMPTY_OPEN_HEIGHT = 52; // Высота выпадающего элемента в открытом состоянии без строк
 
-const $ = require('jquery');
+// const $ = require('jquery');
 
 class Dropdown {
   constructor(dropdown) {
@@ -106,8 +108,6 @@ $('.js-dropdown').each(function () {
     new Dropdown(this);
   }
 });
-
-let a = r;
 
 /* function Dropdown(dropdown) {
   this.$dropdown = $(dropdown);

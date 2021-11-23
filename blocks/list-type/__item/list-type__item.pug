@@ -1,20 +1,34 @@
-mixin list-type__item(type, description)
+mixin list-type__item({ type, description } = {})
   -
-    var example_classes = '';
-    var description_classes = '';
+    if (type === undefined) {
+      type = '';
+    }
+    if (description === undefined) {
+      description = '';
+    }
+    let fontSize = '';
+    let exampleType = '';
+    let descriptionType = '';
     if (type.toLowerCase() === 'h1')  {
-      example_classes += ' list-type__example-title list-type__item_font-size_24px';
-      description_classes += ' list-type__description-title list-type__item_font-size_24px'; }
-    else if (type.toLowerCase() === 'h2') {
-      example_classes += ' list-type__example-title list-type__item_font-size_19px';
-      description_classes += ' list-type__description-title list-type__item_font-size_19px'; }
-    else if (type.toLowerCase() === 'h3') {
-      example_classes += ' list-type__example-label list-type__item_font-size_12px';
-      description_classes += ' list-type__description-label list-type__item_font-size_12px'; }
-    else if (type.toLowerCase() === 'body') {
-      example_classes += ' list-type__example-body list-type__item_font-size_14px';
-      description_classes += ' list-type__description-body list-type__item_font-size_14px'; }
+      fontSize = 'list-type__item_font-size_24px';
+      exampleType = 'list-type__example-title';
+      descriptionType = 'list-type__description-title';
+    } else if (type.toLowerCase() === 'h2') {
+      fontSize = 'list-type__item_font-size_19px'
+      exampleType = 'list-type__example-title';
+      descriptionType = 'list-type__description-title';
+    } else if (type.toLowerCase() === 'h3') {
+      fontSize = 'list-type__item_font-size_12px'
+      exampleType = 'list-type__example-label';
+      descriptionType = 'list-type__description-label';
+    } else if (type.toLowerCase() === 'body') {
+      fontSize = 'list-type__item_font-size_14px'
+      exampleType = 'list-type__example-body';
+      descriptionType = 'list-type__description-body';
+    }
 
-  .list-type__item
-    p.list-type__item(class= example_classes)= type
-    p.list-type__item(class= description_classes)= description
+  .list-type__item(class= fontSize)
+    .list-type__item
+      p(class= exampleType)= type
+    .list-type__item
+      p(class= descriptionType)= description

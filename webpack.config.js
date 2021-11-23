@@ -5,12 +5,13 @@ const slash = '\\';
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require("terser-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 const pages = path.resolve(__dirname, 'pages');
 const blocks = path.resolve(__dirname, 'blocks');
 
-const preprocessor = require('./preprocessor.js');
+const preprocessor = require('./preprocessor');
+
 preprocessor(pages, blocks);
 
 let plugins = [new MiniCssExtractPlugin({filename: 'style.css'})];
@@ -100,10 +101,10 @@ module.exports = {
           }
         ]
       },
-
       {
         test: /\.(png|svg|jpg|jpeg|gif|ttf|woff|woff2)$/i,
         type: 'asset/resource',
+        exclude: path.join(__dirname, 'favicons'),
       },
     ]
   }

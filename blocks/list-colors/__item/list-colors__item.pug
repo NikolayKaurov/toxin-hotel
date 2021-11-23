@@ -1,33 +1,35 @@
-mixin list-colors__item(name)
+mixin list-colors__item(name = '')
   -
-    var square_class = '';
-    var color_value = '';
+    let squareColor = '';
+    let colorValue = '';
     if (name.toLowerCase().includes('dark shade 5%')) {
-      square_class = 'list-colors__item_color_dark-shade-05';
-      color_value = '#1f2041';
+      squareColor = 'list-colors__item_color_dark-shade-05';
+      colorValue = '#1f2041';
     } else if (name.toLowerCase().includes('dark shade 25%')) {
-      square_class = 'list-colors__item_color_dark-shade-25';
-      color_value = '#1f2041';
+      squareColor = 'list-colors__item_color_dark-shade-25';
+      colorValue = '#1f2041';
     } else if (name.toLowerCase().includes('dark shade 50%')) {
-      square_class = 'list-colors__item_color_dark-shade-50';
-      color_value = '#1f2041';
+      squareColor = 'list-colors__item_color_dark-shade-50';
+      colorValue = '#1f2041';
     } else if (name.toLowerCase().includes('dark shade 75%')) {
-      square_class = 'list-colors__item_color_dark-shade-75';
-      color_value = '#1f2041';
+      squareColor = 'list-colors__item_color_dark-shade-75';
+      colorValue = '#1f2041';
     } else if (name.toLowerCase().includes('dark shade')) {
-      square_class = 'list-colors__item_color_dark-shade';
-      color_value = '#1f2041';
+      squareColor = 'list-colors__item_color_dark-shade';
+      colorValue = '#1f2041';
     } else if (name.toLowerCase().includes('green')) {
-      square_class = 'list-colors__item_color_green';
-      color_value = '#6fcf97';
+      squareColor = 'list-colors__item_color_green';
+      colorValue = '#6fcf97';
     } else if (name.toLowerCase().includes('purple')) {
-      square_class = 'list-colors__item_color_purple';
-      color_value = '#bc9cff';
+      squareColor = 'list-colors__item_color_purple';
+      colorValue = '#bc9cff';
     }
 
   .list-colors__item
-    .list-colors__item.list-colors__item_square(class= square_class)
+    .list-colors__item.list-colors__item_square(class= squareColor)
     .list-colors__item
-      p.list-colors__item.list-colors__color-name= name
-      p.list-colors__item.list-colors__color-value= color_value
+      .list-colors__item
+        p.list-colors__color-name= name
+      .list-colors__item
+        p.list-colors__color-value= colorValue
   

@@ -1,6 +1,7 @@
 include ../blocks/ui-kit/ui-kit
 include ../blocks/ui-kit/__header/ui-kit__header
 include ../blocks/colors-and-type/colors-and-type
+include ../blocks/colors-and-type/__item/colors-and-type__item
 include ../blocks/list-colors/list-colors
 include ../blocks/list-colors/__item/list-colors__item
 include ../blocks/list-type/list-type
@@ -13,19 +14,21 @@ include ../blocks/dropdown/__button-container/dropdown__button-container
 +ui-kit('Colors & Type','ui-kit_theme_white')
   +ui-kit__header
   +colors-and-type
-    +list-colors()
-      +list-colors__item('Dark Shade 100%')
-      +list-colors__item('Dark Shade 75%')
-      +list-colors__item('Dark Shade 50%')
-      +list-colors__item('Dark Shade 25%')
-      +list-colors__item('Dark Shade 5%')
-      +list-colors__item('Purple')
-      +list-colors__item('Green')
-    +list-type('colors-and-type__item')
-      +list-type__item('h1','This one is the sub-section or widget title')
-      +list-type__item('h2','Next one is the item title inside widgets')
-      +list-type__item('h3','This is a label or CTA text')
-      +list-type__item('Body','This is the body text which is used for most of the design, like paragraphs, lists, etc.')
+    +colors-and-type__item
+      +list-colors
+        +list-colors__item('Dark Shade 100%')
+        +list-colors__item('Dark Shade 75%')
+        +list-colors__item('Dark Shade 50%')
+        +list-colors__item('Dark Shade 25%')
+        +list-colors__item('Dark Shade 5%')
+        +list-colors__item('Purple')
+        +list-colors__item('Green')
+    +colors-and-type__item
+      +list-type
+        +list-type__item({ type : 'h1', description : 'This one is the sub-section or widget title' })
+        +list-type__item({ type : 'h2', description : 'Next one is the item title inside widgets' })
+        +list-type__item({ type : 'h3', description : 'This is a label or CTA text' })
+        +list-type__item({ type : 'Body', description : 'This is the body text which is used for most of the design, like paragraphs, lists, etc.' })
 
             
 
