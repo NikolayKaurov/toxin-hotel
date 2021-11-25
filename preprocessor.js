@@ -43,7 +43,8 @@ function createPugHeaders(useBemEntities) {
 }
 
 function createScssHeaders(useBemEntities) {
-  let scssHeaders = "";
+  let scssHeaders = '@use \'fonts/fonts\';';
+  // let scssHeaders = '';
 
   for (let entity in useBemEntities) {
     if (fs.existsSync(useBemEntities[entity] + slash + '_' + entity + '.scss')) {
@@ -74,6 +75,7 @@ function createJsHeaders(useBemEntities) {
 
   jsHeaders += 'import \'./style.scss\';\n';
   jsHeaders += 'import \'../favicons/favicons\';\n';
+  // jsHeaders += 'import \'../fonts/fonts\';\n';
 
   return jsHeaders;
 }

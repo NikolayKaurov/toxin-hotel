@@ -14,6 +14,8 @@ const preprocessor = require('./preprocessor');
 
 preprocessor(pages, blocks);
 
+console.log(__dirname);
+
 let plugins = [new MiniCssExtractPlugin({filename: 'style.css'})];
 
 let templates = [];
@@ -56,7 +58,7 @@ module.exports = {
   output: {
     filename: 'script.js',
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'assets/[hash][ext][query]',
+    assetModuleFilename: 'assets/fonts/[name][ext]',
     clean: true,
   },
 
@@ -102,10 +104,26 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif|ttf|woff|woff2)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
-        exclude: path.join(__dirname, 'favicons'),
+        exclude: [
+          path.resolve(__dirname, 'favicons'),
+          path.resolve(__dirname, 'fonts'),
+        ],
+        generator: {
+          filename: 'assets/images/[name][ext]'
+        }
+        // loader: 'file-loader',
+        // include: path.resolve(__dirname, 'blocks'),
+        // exclude: path.resolve(__dirname, 'favicons'),
       },
+      // {
+      //   test: /fonts.*\.(png|svg|jpg|jpeg|gif)$/i,
+      //   type: 'asset/resource',
+      //   generator: {
+      //     filename: 'assets/zalupa/[name][ext]'
+      //   }
+      // }
     ]
   }
 };
