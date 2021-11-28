@@ -1,4 +1,4 @@
-import '../blocks/dropdown/dropdown.js';
-import '../blocks/dropdown/__item/dropdown__item.js';
+import '../blocks/dropdown/dropdown';
+import '../blocks/dropdown/__item/dropdown__item';
 import './style.scss';
 import '../favicons/favicons';

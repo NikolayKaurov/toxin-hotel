@@ -7,6 +7,7 @@ include ../blocks/list-colors/__item/list-colors__item
 include ../blocks/list-type/list-type
 include ../blocks/list-type/__item/list-type__item
 include ../blocks/form-elements/form-elements
+include ../blocks/form-elements/__item/form-elements__item
 include ../blocks/text-field/text-field
 include ../blocks/dropdown/dropdown
 include ../blocks/dropdown/__item/dropdown__item
@@ -14,7 +15,7 @@ include ../blocks/dropdown/__button-container/dropdown__button-container
 +ui-kit('Form elements','ui-kit_white')
   +ui-kit__header
   +form-elements
-    +form-elements
+    +form-elements__item
       +text-field({ name: 'simple-field', placeholder: 'Email', label: 'text field', description: 'дефолт'})
       +text-field({ name: 'hover-field', placeholder: 'This is pretty awesome', label: 'text field', description: 'hover / focus'})
       +dropdown('room1', 3, '', '', 'dropdown', 'помещение')

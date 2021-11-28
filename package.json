@@ -1,0 +1,53 @@
+{
+  "name": "nikolaykaurov.github.io",
+  "version": "1.0.0",
+  "description": "readme.md",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --open",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikolayKaurov/NikolayKaurov.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikolayKaurov/NikolayKaurov.github.io/issues"
+  },
+  "homepage": "https://github.com/NikolayKaurov/NikolayKaurov.github.io#readme",
+  "devDependencies": {
+    "acorn": "^8.6.0",
+    "ajv": "^8.8.2",
+    "css-loader": "^6.5.1",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb": "^19.0.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-pug": "^1.2.4",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "pug": "^3.0.2",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "simple-pug-loader": "^0.2.1",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.2.5",
+    "uuid": "^8.3.2",
+    "webpack": "^5.64.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "jsdom": "^18.1.1"
+  }
+}

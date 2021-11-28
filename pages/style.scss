@@ -1,4 +1,5 @@
-@use 'fonts/fonts';@use 'blocks/ui-kit/ui-kit';
+@use 'fonts/fonts';
+@use 'blocks/ui-kit/ui-kit';
 @use 'blocks/ui-kit/__body/ui-kit__body';
 @use 'blocks/ui-kit/_theme/ui-kit_theme_white';
 @use 'blocks/ui-kit/__header/ui-kit__header';
@@ -29,6 +30,7 @@
 @use 'blocks/list-type/__example-body/list-type__example-body';
 @use 'blocks/list-type/__description-body/list-type__description-body';
 @use 'blocks/form-elements/form-elements';
+@use 'blocks/form-elements/__item/form-elements__item';
 @use 'blocks/text-field/text-field';
 @use 'blocks/text-field/__header/text-field__header';
 @use 'blocks/text-field/__label/text-field__label';

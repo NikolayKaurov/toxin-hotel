@@ -9,21 +9,22 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const pages = path.resolve(__dirname, 'pages');
 const blocks = path.resolve(__dirname, 'blocks');
+const dist = path.resolve(__dirname, 'dist');
+const favicons = path.resolve(__dirname, 'favicons');
 
 const preprocessor = require('./preprocessor');
 
 preprocessor(pages, blocks);
 
-console.log(__dirname);
+const plugins = [new MiniCssExtractPlugin({ filename: 'style.css' })];
 
-let plugins = [new MiniCssExtractPlugin({filename: 'style.css'})];
-
-let templates = [];
-fs.readdirSync(pages).forEach(page =>{
+const templates = [];
+fs.readdirSync(pages).forEach((page) => {
   if (page.match(/\.pug$/i)) {
     templates.push(new HtmlWebpackPlugin({
       filename: page.replace(/\.pug$/i, '.html'),
-      template: pages + slash + page}))
+      template: pages + slash + page,
+    }));
   }
 });
 
@@ -42,23 +43,24 @@ module.exports = {
   devServer: {
     hot: true,
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: dist,
     },
     watchFiles: {
-      paths: [path.join(__dirname, 'pages'), path.join(__dirname, 'blocks')],
+      paths: [pages, blocks],
       options: {
         depth: 99,
-      }
+      },
     },
     compress: true,
     port: 9000,
   },
 
-  entry: pages + slash + 'script.js',
+  // entry: pages + slash + 'script.js',
+  entry: `${pages}${slash}script.js`,
   output: {
     filename: 'script.js',
-    path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'assets/fonts/[name][ext]',
+    path: dist,
+    assetModuleFilename: 'assets/[name][ext]',
     clean: true,
   },
 
@@ -70,7 +72,7 @@ module.exports = {
         test: /\.pug$/,
         loader: 'simple-pug-loader',
         options: {
-        }
+        },
       },
 
       {
@@ -79,51 +81,41 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-            }
+            },
           },
 
           {
             loader: 'css-loader',
             options: {
-
-            }
+            },
           },
-
           {
             loader: 'resolve-url-loader',
             options: {
-            }
+            },
           },
-
           {
             loader: 'sass-loader',
             options: {
-
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
-        exclude: [
-          path.resolve(__dirname, 'favicons'),
-          path.resolve(__dirname, 'fonts'),
-        ],
+        exclude: favicons,
         generator: {
-          filename: 'assets/images/[name][ext]'
-        }
-        // loader: 'file-loader',
-        // include: path.resolve(__dirname, 'blocks'),
-        // exclude: path.resolve(__dirname, 'favicons'),
+          filename: 'assets/images/[name][ext]',
+        },
       },
-      // {
-      //   test: /fonts.*\.(png|svg|jpg|jpeg|gif)$/i,
-      //   type: 'asset/resource',
-      //   generator: {
-      //     filename: 'assets/zalupa/[name][ext]'
-      //   }
-      // }
-    ]
-  }
+      {
+        test: /fonts.*\.(ttf|svg|woff)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext]',
+        },
+      },
+    ],
+  },
 };
