@@ -32,7 +32,7 @@ function cleanHeaders(sourceTemplates) {
 }
 
 // Функция возвращает объект, в который считала модификаторы формата ключ-значение
-// (только) из указанной папки dir.
+// (только формата ключ-значение) из указанной папки dir.
 // На наличие имён проверяются только названия файлов, содержимое файлов не проверяется,
 // вложенные папки не проверяются (их быть и не должно).
 // Если в папке нет таких модификаторов, функция возвращает пустой объект.
@@ -231,7 +231,6 @@ module.exports = function preprocessor(pages, blocks) {
   sourceTemplates = cleanHeaders(sourceTemplates);
 
   const bemEntities = getBemEntities(blocks);
-  // console.log(bemEntities);
 
   const useBEMEntities = getUseBEMEntities(sourceTemplates, bemEntities);
 

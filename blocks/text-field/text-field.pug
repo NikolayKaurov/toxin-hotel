@@ -1,18 +1,4 @@
-mixin text-field({ name, placeholder, label, description } = {})
-  -
-    if (name === undefined) {
-      name = '';
-    }
-    if (placeholder === undefined) {
-      placeholder = '';
-    }
-    if (label === undefined) {
-      label = '';
-    }
-    if (description === undefined) {
-      description = '';
-    }
-
+mixin text-field({ name = 'undefined-name', placeholder = 'text', label = '', description = '' } = { name: 'undefined-name', placeholder: 'text', label: '', description: '' })
   .text-field
     .text-field__header
       if (label)

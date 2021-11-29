@@ -1,6 +1,16 @@
-mixin ui-kit(title, classes)
+mixin ui-kit({ title = 'ui-kit', theme = 'white' } = { title: 'ui-kit', theme: 'white' })
+  -
+    let uiKitTheme;
+    switch (theme) {
+      case 'gray':
+        uiKitTheme = 'ui-kit_theme_gray';
+        break;
+      default:
+        uiKitTheme = 'ui-kit_theme_white';
+    }
+
   doctype html
-  html.ui-kit(class= classes lang='ru')
+  html.ui-kit(class= uiKitTheme lang='ru')
     head
       title= title
       meta(charset="utf-8")

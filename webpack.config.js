@@ -55,7 +55,6 @@ module.exports = {
     port: 9000,
   },
 
-  // entry: pages + slash + 'script.js',
   entry: `${pages}${slash}script.js`,
   output: {
     filename: 'script.js',
@@ -74,7 +73,6 @@ module.exports = {
         options: {
         },
       },
-
       {
         test: /\.scss$/,
         use: [
@@ -83,7 +81,6 @@ module.exports = {
             options: {
             },
           },
-
           {
             loader: 'css-loader',
             options: {

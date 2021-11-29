@@ -1,14 +1,19 @@
 import $ from 'jquery';
 
-const INTERVAL = 50;
 // minimum interval between getting focus and clicking the mouse 50 milliseconds
+const INTERVAL = 50;
 
-const CLOSED_HEIGHT = '43px'; // Высота выпадающего элемента в закрытом состоянии
-const ITEM_HEIGHT = 37; // Высота одной строки в выпадающем элементе
-const BUTTON_CONTAINER_HEIGHT = 41; // Высота нижней строки с кнопками "очистить" и "применить"
-const EMPTY_OPEN_HEIGHT = 52; // Высота выпадающего элемента в открытом состоянии без строк
+// Высота выпадающего элемента в закрытом состоянии в пикселах
+const CLOSED_HEIGHT = 43;
 
-// const $ = require('jquery');
+// Высота одной строки в выпадающем элементе в пикселах
+const ITEM_HEIGHT = 37;
+
+// Высота нижней строки с кнопками 'очистить' и 'применить' в пикселах
+const BUTTON_CONTAINER_HEIGHT = 41;
+
+// Высота выпадающего элемента в открытом состоянии без строк в пикселах
+const EMPTY_OPEN_HEIGHT = 52;
 
 class Dropdown {
   constructor(dropdown) {
@@ -18,30 +23,38 @@ class Dropdown {
 
     this.zIndex = dropdown.dataset.zIndex;
 
-    this.openHeight = EMPTY_OPEN_HEIGHT;
+    // this.openHeight = EMPTY_OPEN_HEIGHT;
 
     this.$dropdown__items = $('.js-dropdown__item', this.$dropdown);
+    /*
     this.$dropdown__items.each((index, item) => {
       $(item).attr('data-dropdown-name', this.name);
 
       this.openHeight += ITEM_HEIGHT;
     });
+    */
 
+    /*
     if ($('.js-dropdown__button-container', this.$dropdown).length) {
       this.openHeight += BUTTON_CONTAINER_HEIGHT;
     }
     this.openHeight += 'px';
+    */
 
     this.$dropdown__down = $('.js-dropdown__down', this.$dropdown);
+    /*
     this.$dropdown__down.css({
       height: CLOSED_HEIGHT,
       'z-index': () => 2 * this.zIndex - 1,
     });
+    */
 
     this.$dropdown__drop = $('.js-dropdown__drop', this.$dropdown);
+    /*
     this.$dropdown__drop.css({
       'z-index': () => 2 * this.zIndex,
     });
+    */
 
     this.time = {
       timeFocus: 0,
@@ -97,15 +110,19 @@ class Dropdown {
       }
     }
   }
+
+  init() {
+  }
 }
 
 function isDropdownWithJSModifier(dropdown) {
   return !!($(dropdown).attr('class').match(/js-dropdown_[^_]/));
 }
 
-$('.js-dropdown').each(function () {
-  if (!isDropdownWithJSModifier(this)) {
-    new Dropdown(this);
+$('.js-dropdown').each((index, element) => {
+  if (!isDropdownWithJSModifier(element)) {
+    const dropdown = new Dropdown(element);
+    dropdown.init();
   }
 });
 

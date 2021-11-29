@@ -1,11 +1,5 @@
-mixin list-type__item({ type, description } = {})
+mixin list-type__item({ type = '', description = '' } = { type: '', description: '' })
   -
-    if (type === undefined) {
-      type = '';
-    }
-    if (description === undefined) {
-      description = '';
-    }
     let fontSize = '';
     let exampleType = '';
     let descriptionType = '';

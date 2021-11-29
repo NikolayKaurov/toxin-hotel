@@ -12,30 +12,31 @@ include ../blocks/text-field/text-field
 include ../blocks/dropdown/dropdown
 include ../blocks/dropdown/__item/dropdown__item
 include ../blocks/dropdown/__button-container/dropdown__button-container
-+ui-kit('Form elements','ui-kit_white')
++ui-kit({ title: 'Form elements', theme: 'white' })
   +ui-kit__header
   +form-elements
     +form-elements__item
       +text-field({ name: 'simple-field', placeholder: 'Email', label: 'text field', description: 'дефолт'})
       +text-field({ name: 'hover-field', placeholder: 'This is pretty awesome', label: 'text field', description: 'hover / focus'})
-      +dropdown('room1', 3, '', '', 'dropdown', 'помещение')
-        +dropdown__item('room','комнаты комната комнаты комнат')
-        +dropdown__item('bedroom','спальни спальня спальни спален')
-        +dropdown__item('bath','ванные ванная ванных ванных')
-      +dropdown('guest', 2, '', '', 'дропдаун', 'гости')
+      +dropdown({ name: 'room', defaultValue: 'Сколько комнат', label: 'dropdown', description: 'помещение', zIndex: 3 })
+        +dropdown__item({ name: 'room', units: 'комнаты комната комнаты комнат' })
+        +dropdown__item({ name: 'bedroom', units: 'спальни спальня спальни спален' })
+        +dropdown__item({ name: 'bath', units: 'ванные ванная ванных ванных' })
+        +dropdown__item({ name: 'corridor', units: 'коридоры коридорчики коридорища' })
+      +dropdown({ name: 'guest', defaultValue: 'Сколько гостей', label: 'дропдаун', description: 'гости', zIndex: 2 })
         +dropdown__button-container
-        +dropdown__item('guest','гости гость гостя гостей')
-        +dropdown__item('liver','жильцы жилец жильца жильцов')
-        +dropdown__item('baby','младенцы младенец младенца младенцев')
-        +dropdown__item('hobo','бродяги бродяга бродяги бродяг')
-        +dropdown__item('terrorist','террористы террорист террориста террористов')
-        +dropdown__item('vip','випы вип випа випов')
-        +dropdown__item('child','дети ребёнок ребёнка детей')
-      +dropdown('toilet', 1, '', '', 'аккордеон', 'дискрыпшн')
-        +dropdown__item('closet1','толчки толчок толчка толчков')
-        +dropdown__item('closet2','сортиры сортир сортира сортиров')
-        +dropdown__item('closet3','сральники сральник сральника сральников')
-        +dropdown__item('closet4','туалеты туалет туалета туалетов')
-        +dropdown__item('closet5','дристальни дристальня дристальни дристален')
+        +dropdown__item({ name: 'guest', units: 'гости гость гостя гостей' })
+        +dropdown__item({ name: 'liver', units: 'жильцы жилец жильца жильцов' })
+        +dropdown__item({ name: 'baby', units: 'младенцы младенец младенца младенцев' })
+        +dropdown__item({ name: 'hobo', units: 'бродяги бродяга бродяги бродяг' })
+        +dropdown__item({ name: 'terrorist', units: 'террористы террорист террориста террористов' })
+        +dropdown__item({ name: 'vip', units: 'випы вип випа випов' })
+        +dropdown__item({ name: 'child', units: 'дети ребёнок ребёнка детей' })
+      +dropdown({ narrow: 'narrow', name: 'toilet', defaultValue: 'Удобства', label: 'аккордеон', description: 'дискрыпшн', zIndex: 1 })
+        +dropdown__item({ name: 'closet1', units: 'толчки толчок толчка толчков' })
+        +dropdown__item({ name: 'closet2', units: 'сортиры сортир сортира сортиров' })
+        +dropdown__item({ name: 'closet3', units: 'сральники сральник сральника сральников' })
+        +dropdown__item({ name: 'closet4', units: 'туалеты туалет туалета туалетов' })
+        +dropdown__item({ name: 'closet5', units: 'дристальни дристальня дристальни дристален' })
 
 

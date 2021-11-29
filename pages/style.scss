@@ -1,7 +1,8 @@
 @use 'fonts/fonts';
 @use 'blocks/ui-kit/ui-kit';
-@use 'blocks/ui-kit/__body/ui-kit__body';
+@use 'blocks/ui-kit/_theme/ui-kit_theme_gray';
 @use 'blocks/ui-kit/_theme/ui-kit_theme_white';
+@use 'blocks/ui-kit/__body/ui-kit__body';
 @use 'blocks/ui-kit/__header/ui-kit__header';
 @use 'blocks/colors-and-type/colors-and-type';
 @use 'blocks/colors-and-type/__item/colors-and-type__item';
@@ -36,6 +37,7 @@
 @use 'blocks/text-field/__label/text-field__label';
 @use 'blocks/text-field/__input/text-field__input';
 @use 'blocks/dropdown/dropdown';
+@use 'blocks/dropdown/_narrow/dropdown_narrow';
 @use 'blocks/dropdown/__header/dropdown__header';
 @use 'blocks/dropdown/__label/dropdown__label';
 @use 'blocks/dropdown/__down/dropdown__down';
