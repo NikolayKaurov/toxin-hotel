@@ -5,7 +5,7 @@ mixin dropdown({ narrow = null, guests = null, name = 'undefined-name', defaultV
       modifiers += ' dropdown_narrow';
     }
     if (guests === 'guests') {
-      modifiers += ' js-dropdown_guests';
+      modifiers += ' js-dropdown_guests dropdown_guests';
     }
 
   .dropdown.js-dropdown(data-dropdown-name= name data-z-index= zIndex data-default-value= defaultValue class= modifiers tabindex=0)
