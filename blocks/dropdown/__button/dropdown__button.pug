@@ -1,0 +1,10 @@
+mixin dropdown__button({ action = 'clear', text = 'очистить' } = { action: 'clear', text: 'очистить' })
+  -
+    let modifier = '';
+    if (action === 'clear') {
+      modifier = 'js-dropdown__button_action_clear';
+    } else if (action === 'confirm') {
+      modifier = 'js-dropdown__button_action_confirm';
+    }
+
+  button.dropdown__button.js-dropdown__button(class= modifier disabled)= text

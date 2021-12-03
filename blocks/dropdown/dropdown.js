@@ -15,7 +15,7 @@ const BUTTON_CONTAINER_HEIGHT = 41;
 // Высота выпадающего элемента в открытом состоянии без строк в пикселах
 const EMPTY_OPEN_HEIGHT = 52;
 
-export const NUMBER_ITEMS_IN_VALUE = 2;
+const NUMBER_ITEMS_IN_VALUE = 2;
 
 function handleFocus(event) {
   event.data.dropdown.$dropdown.addClass('dropdown_open');
@@ -49,6 +49,40 @@ function handleDropMousedown(event) {
     event.data.dropdown.$dropdown.addClass('dropdown_open');
     event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.openHeight);
   }
+}
+
+function getValueWithCaseSelect({ value = 0, cases = 'units' } = { value: 0, cases: 'units' }) {
+  if (value === 0) {
+    return '';
+  }
+
+  let [, nominative, genitive, genitivePlural] = cases.split(' ');
+  if (nominative === undefined) {
+    nominative = cases;
+  }
+  if (genitive === undefined) {
+    genitive = nominative;
+  }
+  if (genitivePlural === undefined) {
+    genitivePlural = genitive;
+  }
+
+  const lastTwoDigits = value % 100;
+  const lastDigit = value % 10;
+
+  if (
+    (lastTwoDigits > 4 && lastTwoDigits < 21)
+    || lastDigit > 4
+    || lastDigit === 0
+  ) {
+    return `${value} ${genitivePlural}`;
+  }
+
+  if (lastDigit === 1) {
+    return `${value} ${nominative}`;
+  }
+
+  return `${value} ${genitive}`;
 }
 
 class Dropdown {
@@ -156,4 +190,4 @@ $('.js-dropdown').each((index, element) => {
   }
 });
 
-export { Dropdown };
+export { Dropdown, getValueWithCaseSelect };

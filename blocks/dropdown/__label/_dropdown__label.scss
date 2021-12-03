@@ -7,6 +7,10 @@
   margin: 0 0 5px 0;
 }
 
+.dropdown__label::selection {
+  background: transparent;
+}
+
 .dropdown__label:nth-child(2) {
   font-weight: normal;
   color: rgba(31, 32, 65, 0.5);

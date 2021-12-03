@@ -1,8 +1,6 @@
 .dropdown__button-container {
   display: flex;
   justify-content: space-between;
-
+  flex-direction: row-reverse;
   flex-shrink: 0;
-  //overflow: hidden;
-  //height: 8px;
 }
