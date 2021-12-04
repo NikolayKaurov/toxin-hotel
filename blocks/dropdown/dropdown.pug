@@ -8,7 +8,7 @@ mixin dropdown({ narrow = null, guests = null, name = 'undefined-name', defaultV
       modifiers += ' js-dropdown_guests dropdown_guests';
     }
 
-  .dropdown.js-dropdown(data-dropdown-name= name data-z-index= zIndex data-default-value= defaultValue class= modifiers tabindex=0)
+  .dropdown.dropdown_confirmed.js-dropdown(data-dropdown-name= name data-z-index= zIndex data-default-value= defaultValue class= modifiers tabindex=0)
     .dropdown__header
       if (label)
         .dropdown__label= label

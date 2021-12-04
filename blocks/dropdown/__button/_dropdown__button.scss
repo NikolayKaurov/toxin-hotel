@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.dropdown__button::selection {
+  background: transparent;
+}
+
 .dropdown__button:active {
   text-shadow: 1px 1px;
 }

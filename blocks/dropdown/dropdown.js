@@ -15,7 +15,11 @@ const BUTTON_CONTAINER_HEIGHT = 41;
 // Высота выпадающего элемента в открытом состоянии без строк в пикселах
 const EMPTY_OPEN_HEIGHT = 52;
 
+// Количество элементов в общей строке: '3 гостя, 1 младенец' - 2 элемента
 const NUMBER_ITEMS_IN_VALUE = 2;
+
+// Длительность появления одной строки в выпадающем элементе в миллисекундах
+const ITEM_DURATION_OPEN = 100;
 
 function handleFocus(event) {
   event.data.dropdown.$dropdown.addClass('dropdown_open');
@@ -29,12 +33,41 @@ function handleBlur(event) {
     return;
   }
 
+  if (
+    event.data.dropdown.$dropdown.hasClass('dropdown_rollback')
+    && !(event.data.dropdown.$dropdown.hasClass('dropdown_confirmed'))
+  ) {
+    event.data.dropdown.rollback();
+    event.data.dropdown.$dropdown__buttons.each((index, button) => {
+      if (
+        event.data.dropdown.getCommonValue() !== event.data.dropdown.defaultValue
+        && $(button).hasClass('js-dropdown__button_action_clear')
+      ) {
+        $(button).prop('disabled', false);
+      } else {
+        $(button).prop('disabled', true);
+      }
+    });
+  }
+
   event.data.dropdown.$dropdown.removeClass('dropdown_open');
   event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.closedHeight);
 }
 
 function handleInput(event) {
-  event.data.dropdown.$dropdown__value.text(event.data.dropdown.getCommonValue());
+  const value = event.data.dropdown.getCommonValue();
+  event.data.dropdown.$dropdown.removeClass('dropdown_confirmed');
+  event.data.dropdown.$dropdown__value.text(value);
+  event.data.dropdown.$dropdown__buttons.each((index, button) => {
+    if (
+      value === event.data.dropdown.defaultValue
+      && $(button).hasClass('js-dropdown__button_action_clear')
+    ) {
+      $(button).prop('disabled', true);
+    } else {
+      $(button).prop('disabled', false);
+    }
+  });
 }
 
 function handleDropMousedown(event) {
@@ -49,6 +82,25 @@ function handleDropMousedown(event) {
     event.data.dropdown.$dropdown.addClass('dropdown_open');
     event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.openHeight);
   }
+}
+
+function handleClear(event) {
+  event.data.dropdown.$dropdown__items.each((index, item) => {
+    $(item).trigger('setValue', 0);
+  });
+
+  event.data.dropdown.$dropdown__value.text(event.data.dropdown.defaultValue);
+  event.data.dropdown.$dropdown.addClass('dropdown_confirmed');
+  event.data.dropdown.clearSnapshot();
+  event.data.dropdown.$dropdown__buttons.prop('disabled', true);
+}
+
+function handleConfirm(event) {
+  event.data.dropdown.takeSnapshot();
+  event.data.dropdown.$dropdown.addClass('dropdown_confirmed');
+
+  event.data.dropdown.$dropdown.removeClass('dropdown_open');
+  event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.closedHeight);
 }
 
 function getValueWithCaseSelect({ value = 0, cases = 'units' } = { value: 0, cases: 'units' }) {
@@ -100,7 +152,7 @@ class Dropdown {
     this.$dropdown__drop = $('.js-dropdown__drop', this.$dropdown);
     this.$dropdown__down = $('.js-dropdown__down', this.$dropdown);
     this.$dropdown__items = $($('.js-dropdown__item', this.$dropdown).get().reverse());
-    this.$dropdown__confirm = $('.js-dropdown__confirm', this.$dropdown);
+    this.$dropdown__buttons = $('.js-dropdown__button', this.$dropdown);
 
     this.timeFocus = 0;
 
@@ -109,23 +161,31 @@ class Dropdown {
 
   init() {
     let openHeight = EMPTY_OPEN_HEIGHT;
+    let durationOpen = 0;
 
     this.$dropdown__items.each((index, item) => {
       $(item).attr('data-dropdown-name', this.name);
 
       openHeight += ITEM_HEIGHT;
+      durationOpen += ITEM_DURATION_OPEN;
 
       this.rollbackSnapshot.push('0');
     });
 
+    this.$dropdown__buttons.each((index, button) => {
+      $(button).attr('data-dropdown-name', this.name);
+    });
+
     if ($('.js-dropdown__button-container', this.$dropdown).length) {
       openHeight += BUTTON_CONTAINER_HEIGHT;
+      durationOpen += ITEM_DURATION_OPEN;
     }
 
     this.openHeight = `${openHeight}px`;
     this.closedHeight = `${CLOSED_HEIGHT}px`;
 
     this.$dropdown__down.css({
+      transition: `height ${durationOpen}ms`,
       height: this.closedHeight,
       'z-index': () => 2 * this.zIndex - 1,
     });
@@ -139,6 +199,8 @@ class Dropdown {
     this.$dropdown.on(`focus.dropdown.${this.name}`, null, { dropdown: this }, handleFocus);
     this.$dropdown.on(`blur.dropdown.${this.name}`, null, { dropdown: this }, handleBlur);
     this.$dropdown.on(`input.dropdown.${this.name}`, null, { dropdown: this }, handleInput);
+    this.$dropdown.on(`clear.dropdown.${this.name}`, null, { dropdown: this }, handleClear);
+    this.$dropdown.on(`confirm.dropdown.${this.name}`, null, { dropdown: this }, handleConfirm);
 
     this.$dropdown__drop.on(
       `mousedown.dropdown__drop.${this.name}`,
@@ -176,6 +238,26 @@ class Dropdown {
     }
 
     return value;
+  }
+
+  takeSnapshot() {
+    this.$dropdown__items.each((index, item) => {
+      this.rollbackSnapshot[index] = item.dataset.quantity;
+    });
+  }
+
+  clearSnapshot() {
+    this.rollbackSnapshot.forEach((value, index) => {
+      this.rollbackSnapshot[index] = '0';
+    });
+  }
+
+  rollback() {
+    this.$dropdown__items.each((index, item) => {
+      $(item).trigger('setValue', this.rollbackSnapshot[index]);
+    });
+
+    this.$dropdown__value.text(this.getCommonValue());
   }
 }
 

@@ -10,20 +10,19 @@ function handleCounterButtonMousedown(event) {
 
   if ($(event.target).hasClass('js-dropdown__counter-button_action_plus')) {
     value += 1;
-    event.data.$dropdown__quantity.val(value);
     if (value < MAX) {
       event.data.$dropdown.addClass('dropdown_keeping-focus');
       $(event.target).addClass('js-dropdown__counter-button_pressed');
     }
   } else {
     value -= 1;
-    event.data.$dropdown__quantity.val(value);
     if (value > 0) {
       event.data.$dropdown.addClass('dropdown_keeping-focus');
       $(event.target).addClass('js-dropdown__counter-button_pressed');
     }
   }
 
+  event.data.$dropdown__quantity.val(value);
   event.data.$dropdown__quantity.trigger('input');
 }
 
@@ -57,10 +56,12 @@ function handleQuantityInput(event) {
     getValueWithCaseSelect({ value, cases: event.data.dropdown__item.units }),
   );
 
-  event.data.dropdown__item.$dropdown__item.attr(
-    'data-quantity',
-    value,
-  );
+  event.data.dropdown__item.$dropdown__item.attr('data-quantity', value);
+}
+
+function handleItemSetValue(event, value) {
+  event.data.dropdown__item.$dropdown__quantity.val(value);
+  event.data.dropdown__item.$dropdown__quantity.triggerHandler('input');
 }
 
 /* eslint-disable-next-line */
@@ -106,6 +107,13 @@ class Dropdown__item {
       null,
       { dropdown__item: this },
       handleQuantityInput,
+    );
+
+    this.$dropdown__item.on(
+      `setValue.dropdown__quantity.${this.name}`,
+      null,
+      { dropdown__item: this },
+      handleItemSetValue,
     );
   }
 }
