@@ -48,3 +48,14 @@
 @use 'blocks/dropdown/__item/dropdown__item';
 @use 'blocks/dropdown/__counter-button/dropdown__counter-button';
 @use 'blocks/dropdown/__quantity/dropdown__quantity';
+@use 'blocks/datepicker/datepicker';
+@use 'blocks/datepicker/__input/datepicker__input';
+@use 'blocks/datepicker/__drop/datepicker__drop';
+@use 'blocks/datepicker/__header/datepicker__header';
+@use 'blocks/datepicker/__expand/datepicker__expand';
+@use 'blocks/datepicker/__value/datepicker__value';
+@use 'blocks/datepicker/__down/datepicker__down';
+@use 'blocks/datepicker/__button-container/datepicker__button-container';
+@use 'blocks/datepicker/__button/datepicker__button';
+@use 'blocks/datepicker/__month-year-container/datepicker__month-year-container';
+@use 'blocks/datepicker/__month-year/datepicker__month-year';

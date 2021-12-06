@@ -1,27 +1,34 @@
-mixin datepicker(name, modifiers, labelArrival, labelDeparture)
-  .datepicker
-    input.date-arrival(type='date' name= name + '-arrival')
-    input.date-departure(type='date' name= name + '-departure')
-    .datepicker-drop(tabindex=-1)
-      +datepicker-date('datepicker-arrival', labelArrival)
-      +datepicker-date('datepicker-departure', labelDeparture)
-    .datepicker-down(tabindex=-1)
-      .datepicker-buttons
-        button.datepicker-reset(disabled tabindex=-1) очистить
-        button.datepicker-confirm(disabled tabindex=-1) применить
-      .datepicker-calendar
-        table.datepicker-table
-      .datepicker-month
-        button.datepicker-back(disabled tabindex=-1) arrow_back
-        .datepicker-month-value
-        button.datepicker-forth(tabindex=-1) arrow_forward
+mixin datepicker({ name = 'undefined-name', label = '', labelArrival = '', labelDeparture = '', modifier = '', zIndex = 1 } = { name: 'undefined-name', label: '', labelArrival: '', labelDeparture: '', modifier: '', zIndex: 1 })
+  -
+    let datepicker_modifier = '';
+    if (modifier === 'filter') {
+      datepicker_modifier = 'datepicker_filter js-datepicker_filter';
+    } else if (modifier === 'demo') {
+      datepicker_modifier = 'datepicker_demo js-datepicker_demo';
+    }
 
-mixin datepicker-date(type, label)
-  .datepicker-date
-    .datepicker-header
-      = label
-    .datepicker-expand(tabindex=0 class= type)
-      .datepicker-value ДД.ММ.ГГГГ
-
-
-
+  .datepicker.js-datepicker(class= datepicker_modifier data-z-index= zIndex)
+    input.datepicker__input.js-datepicker__input_arrival(type='date' name=`${name}-arrival`)
+    input.datepicker__input.js-datepicker__input_departure(type='date' name=`${name}-departure`)
+    if (modifier === 'filter')
+      .filter
+    else if (modifier !== 'demo')
+      .datepicker__drop.js-datepicker__drop
+        .datepicker__value-container.js-datepicker__value-container
+          .datepicker__header= labelArrival
+          .datepicker__expand.js-datepicker__expand.datepicker__expand_arrival.js-datepicker__expand_arrival(tabindex=0)
+            .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
+        .datepicker__value-container.js-datepicker__value-container
+          .datepicker__header= labelDeparture
+          .datepicker__expand.js-datepicker__expand.datepicker__expand_departure.js-datepicker__expand_departure(tabindex=0)
+            .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
+    .datepicker__down.js-datepicker__down
+      .datepicker__button-container
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_clear(disabled tabindex=-1) очистить
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_confirm(disabled tabindex=-1) применить
+      .datepicker__calendar-container
+        table.datepicker__calendar
+      .datepicker__month-year-container
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-minus(disabled tabindex=-1) arrow_back
+        .datepicker__month-year
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-plus(tabindex=-1) arrow_forward

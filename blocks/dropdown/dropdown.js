@@ -176,7 +176,7 @@ class Dropdown {
       $(button).attr('data-dropdown-name', this.name);
     });
 
-    if ($('.js-dropdown__button-container', this.$dropdown).length) {
+    if (this.$dropdown__buttons.length) {
       openHeight += BUTTON_CONTAINER_HEIGHT;
       durationOpen += ITEM_DURATION_OPEN;
     }
@@ -191,6 +191,7 @@ class Dropdown {
     });
 
     this.$dropdown__drop.css({
+      transition: `border ${durationOpen}ms`,
       'z-index': () => 2 * this.zIndex,
     });
 
