@@ -49,7 +49,6 @@ export default function datepicker(node) {
     console.log('Экспанд ЗАКРЫТ');
   });
 
-
   $('.datepicker-drop', this.node).on('mousedown', null, {time: this.timeSetFocus}, dropMousedown);
 
   function dropMousedown(event) {
@@ -67,7 +66,6 @@ export default function datepicker(node) {
 
     console.log('ДРОП: Класс переключен; Разница времени: ' + time);
   }
-
 
   $('.datepicker-drop', this.node).on('focusin', null, {time: this.timeSetFocus}, dropFocusin);
 
@@ -377,7 +375,6 @@ export default function datepicker(node) {
     })
 
   }
-
 
   let now = new Date();
   this.today = new Date(now.getFullYear(), now.getMonth(), now.getDate());

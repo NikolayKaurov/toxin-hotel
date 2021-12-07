@@ -24,6 +24,7 @@ fs.readdirSync(pages).forEach((page) => {
     templates.push(new HtmlWebpackPlugin({
       filename: page.replace(/\.pug$/i, '.html'),
       template: pages + slash + page,
+      // chunks: ['shared'],
     }));
   }
 });
@@ -56,8 +57,16 @@ module.exports = {
   },
 
   entry: `${pages}${slash}script.js`,
+  /*
+  {
+    script: {
+      import: `${pages}${slash}script.js`,
+      dependOn: 'shared',
+    },
+    shared: 'jquery',
+  }, */
   output: {
-    filename: 'script.js',
+    filename: 'script.js',// '[name].js',
     path: dist,
     assetModuleFilename: 'assets/[name][ext]',
     clean: true,

@@ -5,20 +5,23 @@
 
   box-sizing: border-box;
   width: inherit;
-  //height: 0;
-  //height: 369px;
+  height: 0;
 
   overflow: hidden;
 
   display: flex;
   flex-direction: column-reverse;
 
-  border: 0 solid rgba(31, 32, 65, 0.25);
+  border: 0px solid rgba(31, 32, 65, 0.25);
   border-radius: 4px;
-
-  //margin: 5px 0 0 0;
 
   //transition-property: height, border, z-index;
   //transition-duration: $duration-open, 0s, $duration-open;
   //transition-delay: 0s, $duration-open, 0s;
+}
+
+.datepicker_open {
+  .datepicker__down {
+    border: 0px solid rgba(31, 32, 65, 0.25);
+  }
 }

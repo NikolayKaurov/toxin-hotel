@@ -7,13 +7,13 @@ mixin datepicker({ name = 'undefined-name', label = '', labelArrival = '', label
       datepicker_modifier = 'datepicker_demo js-datepicker_demo';
     }
 
-  .datepicker.js-datepicker(class= datepicker_modifier data-z-index= zIndex)
+  .datepicker.js-datepicker(class= datepicker_modifier data-name= name data-z-index= zIndex)
     input.datepicker__input.js-datepicker__input_arrival(type='date' name=`${name}-arrival`)
     input.datepicker__input.js-datepicker__input_departure(type='date' name=`${name}-departure`)
     if (modifier === 'filter')
       .filter
-    else if (modifier !== 'demo')
-      .datepicker__drop.js-datepicker__drop
+    else
+      .datepicker__drop.js-datepicker__drop(tabindex=-1)
         .datepicker__value-container.js-datepicker__value-container
           .datepicker__header= labelArrival
           .datepicker__expand.js-datepicker__expand.datepicker__expand_arrival.js-datepicker__expand_arrival(tabindex=0)
@@ -22,7 +22,7 @@ mixin datepicker({ name = 'undefined-name', label = '', labelArrival = '', label
           .datepicker__header= labelDeparture
           .datepicker__expand.js-datepicker__expand.datepicker__expand_departure.js-datepicker__expand_departure(tabindex=0)
             .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
-    .datepicker__down.js-datepicker__down
+    .datepicker__down.js-datepicker__down(tabindex=-1)
       .datepicker__button-container
         button.datepicker__button.js-datepicker__button.js-datepicker__button_action_clear(disabled tabindex=-1) очистить
         button.datepicker__button.js-datepicker__button.js-datepicker__button_action_confirm(disabled tabindex=-1) применить

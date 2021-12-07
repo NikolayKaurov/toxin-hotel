@@ -2,5 +2,11 @@
   display: flex;
   justify-content: space-between;
 
-  position: relative;
+  //position: relative;
+}
+
+.datepicker_demo {
+  .datepicker__drop {
+    display: none;
+  }
 }
