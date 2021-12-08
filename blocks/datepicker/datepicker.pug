@@ -13,7 +13,7 @@ mixin datepicker({ name = 'undefined-name', label = '', labelArrival = '', label
     if (modifier === 'filter')
       .filter
     else
-      .datepicker__drop.js-datepicker__drop(tabindex=-1)
+      .datepicker__drop.js-datepicker__drop
         .datepicker__value-container.js-datepicker__value-container
           .datepicker__header= labelArrival
           .datepicker__expand.js-datepicker__expand.datepicker__expand_arrival.js-datepicker__expand_arrival(tabindex=0)
@@ -22,13 +22,17 @@ mixin datepicker({ name = 'undefined-name', label = '', labelArrival = '', label
           .datepicker__header= labelDeparture
           .datepicker__expand.js-datepicker__expand.datepicker__expand_departure.js-datepicker__expand_departure(tabindex=0)
             .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
-    .datepicker__down.js-datepicker__down(tabindex=-1)
+    .datepicker__down.js-datepicker__down
       .datepicker__button-container
         button.datepicker__button.js-datepicker__button.js-datepicker__button_action_clear(disabled tabindex=-1) очистить
         button.datepicker__button.js-datepicker__button.js-datepicker__button_action_confirm(disabled tabindex=-1) применить
       .datepicker__calendar-container
-        table.datepicker__calendar
+        table.datepicker__calendar.js-datepicker__calendar
       .datepicker__month-year-container
         button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-minus(disabled tabindex=-1) arrow_back
-        .datepicker__month-year
+        .datepicker__month-year.js-datepicker__month-year
         button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-plus(tabindex=-1) arrow_forward
+
+//- В эту строку записаны стили таблицы, которую напишет javascript, чтобы preprocessor нашёл эти стили в тексте
+//- данного шаблона и включил их в сборку
+//- datepicker__calendar-header datepicker__cell datepicker__row

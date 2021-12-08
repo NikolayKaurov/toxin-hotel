@@ -1,0 +1,19 @@
+.datepicker__cell {
+  width: 40px;
+  height: 40px;
+
+  line-height: 40px;
+  text-align: center;
+
+  font-size: 12px;
+
+  padding: 0;
+
+  cursor: default;
+
+  position: relative;
+}
+
+.datepicker__cell.datepicker__cell_other-month {
+  color: rgba(31, 32, 65, 0.25);
+}

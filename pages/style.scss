@@ -58,5 +58,9 @@
 @use 'blocks/datepicker/__button-container/datepicker__button-container';
 @use 'blocks/datepicker/__button/datepicker__button';
 @use 'blocks/datepicker/__calendar-container/datepicker__calendar-container';
+@use 'blocks/datepicker/__calendar/datepicker__calendar';
 @use 'blocks/datepicker/__month-year-container/datepicker__month-year-container';
 @use 'blocks/datepicker/__month-year/datepicker__month-year';
+@use 'blocks/datepicker/__calendar-header/datepicker__calendar-header';
+@use 'blocks/datepicker/__cell/datepicker__cell';
+@use 'blocks/datepicker/__row/datepicker__row';
