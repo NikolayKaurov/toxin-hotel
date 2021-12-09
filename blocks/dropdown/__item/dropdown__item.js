@@ -85,6 +85,8 @@ class Dropdown__item {
     this.$dropdown__label.text(this.units.split(' ')[0]);
     this.$dropdown__quantity.val('0');
 
+    $('.js-dropdown__counter-button_action_minus', this.$dropdown__item).prop('disabled', true);
+
     this.$dropdown__counterButtons.on(
       `mousedown.dropdown__counter-button.${this.name}`,
       null,

@@ -14,6 +14,29 @@
   position: relative;
 }
 
+.datepicker__cell::selection {
+  background: transparent;
+}
+
 .datepicker__cell.datepicker__cell_other-month {
   color: rgba(31, 32, 65, 0.25);
+}
+
+.datepicker__cell.datepicker__cell_highlight {
+  color: white;
+  font-weight: bold;
+
+  background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
+
+  border-radius: 22px;
+
+  cursor: pointer;
+}
+
+.datepicker_filter {
+  .datepicker__cell {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+  }
 }

@@ -6,3 +6,7 @@
 
   cursor: default;
 }
+
+.datepicker__month-year::selection {
+  background: transparent;
+}

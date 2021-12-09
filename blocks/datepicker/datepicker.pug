@@ -11,8 +11,12 @@ mixin datepicker({ name = 'undefined-name', label = '', labelArrival = '', label
     input.datepicker__input.js-datepicker__input_arrival(type='date' name=`${name}-arrival`)
     input.datepicker__input.js-datepicker__input_departure(type='date' name=`${name}-departure`)
     if (modifier === 'filter')
-      .filter
-    else
+      .datepicker__drop.js-datepicker__drop
+        .datepicker__value-container.js-datepicker__value-container
+          .datepicker__header= label
+          .datepicker__expand.js-datepicker__expand.datepicker__expand_filter.js-datepicker__expand_filter(tabindex=0)
+            .datepicker__value.js-datepicker__value Укажите даты пребывания
+    else if (modifier !== 'demo')
       .datepicker__drop.js-datepicker__drop
         .datepicker__value-container.js-datepicker__value-container
           .datepicker__header= labelArrival
@@ -24,12 +28,12 @@ mixin datepicker({ name = 'undefined-name', label = '', labelArrival = '', label
             .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
     .datepicker__down.js-datepicker__down
       .datepicker__button-container
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_clear(disabled tabindex=-1) очистить
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_confirm(disabled tabindex=-1) применить
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_clear(tabindex=-1) очистить
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_confirm(tabindex=-1) применить
       .datepicker__calendar-container
         table.datepicker__calendar.js-datepicker__calendar
       .datepicker__month-year-container
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-minus(disabled tabindex=-1) arrow_back
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-minus(tabindex=-1) arrow_back
         .datepicker__month-year.js-datepicker__month-year
         button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-plus(tabindex=-1) arrow_forward
 

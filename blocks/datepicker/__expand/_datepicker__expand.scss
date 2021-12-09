@@ -18,3 +18,9 @@
 .datepicker__expand::selection {
   background: transparent;
 }
+
+.datepicker_filter {
+  .datepicker__expand {
+    width: 249px;
+  }
+}
