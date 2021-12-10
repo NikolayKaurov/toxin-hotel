@@ -18,11 +18,11 @@
   background: transparent;
 }
 
-.datepicker__cell.datepicker__cell_other-month {
+.datepicker__cell_other-month {
   color: rgba(31, 32, 65, 0.25);
 }
 
-.datepicker__cell.datepicker__cell_highlight {
+.datepicker__cell_highlight {
   color: white;
   font-weight: bold;
 
@@ -31,6 +31,15 @@
   border-radius: 22px;
 
   cursor: pointer;
+}
+
+.datepicker__cell_selected {
+  color: white;
+  font-weight: bold;
+
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+
+  border-radius: 22px;
 }
 
 .datepicker_filter {

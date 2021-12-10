@@ -10,6 +10,7 @@ mixin datepicker({ name = 'undefined-name', label = '', labelArrival = '', label
   .datepicker.js-datepicker(class= datepicker_modifier data-name= name data-z-index= zIndex)
     input.datepicker__input.js-datepicker__input_arrival(type='date' name=`${name}-arrival`)
     input.datepicker__input.js-datepicker__input_departure(type='date' name=`${name}-departure`)
+
     if (modifier === 'filter')
       .datepicker__drop.js-datepicker__drop
         .datepicker__value-container.js-datepicker__value-container

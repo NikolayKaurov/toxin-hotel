@@ -10,6 +10,11 @@ const FILTER_ROW_CALENDAR_HEIGHT = 32;
 const DURATION_OPEN = 500;
 
 const MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+const SHORT_MONTHS = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+
+function reformatDate(_) {
+  return `${_[8]}${_[9]}.${_[5]}${_[6]}.${_[0]}${_[1]}${_[2]}${_[3]}`;
+}
 
 function handleExpandMousedown(event) {
   if ($(event.delegateTarget).hasClass('js-datepicker__expand_arrival')) {
@@ -184,8 +189,117 @@ function handleCellMouseover(event) {
 }
 
 function handleCellMouseout(event) {
-
   $(event.target).removeClass('datepicker__cell_highlight');
+}
+
+function handleCellMousedown(event) {
+  if (!($(event.target).hasClass('datepicker__cell_highlight'))) {
+    return;
+  }
+
+  if (event.data.datepicker.activeDate === 'arrival') {
+    event.data.datepicker.updateDate({ date: 'arrival', value: event.target.dataset.date });
+    /*
+    const arrivalValue = event.data.datepicker.$datepicker__input_arrival.val();
+    if (arrivalValue) {
+      $(`td[data-date="${arrivalValue}"`, event.data.datepicker.$datepicker__calendar)
+      .removeClass('datepicker__cell_selected');
+    }
+
+    $(event.target).addClass('datepicker__cell_selected');
+
+    event.data.datepicker.arrivalDate.setTime(Date.parse(event.target.dataset.date));
+    event.data.datepicker.arrivalDate.setHours(0, 0, 0);
+
+    event.data.datepicker.$datepicker__input_arrival.val(event.target.dataset.date);
+    */
+    $('.js-datepicker__value', event.data.datepicker.$datepicker__expand_arrival).text(reformatDate(event.target.dataset.date));
+
+    event.data.datepicker.setActiveDate('departure');
+    event.data.datepicker.$datepicker__expand_arrival.removeClass('datepicker__expand_open');
+    event.data.datepicker.$datepicker__expand_departure.addClass('datepicker__expand_open');
+  } else if (event.data.datepicker.activeDate === 'departure') {
+    event.data.datepicker.updateDate({ date: 'departure', value: event.target.dataset.date });
+    /*
+    const departureValue = event.data.datepicker.$datepicker__input_departure.val();
+    if (departureValue) {
+      $(`td[data-date="${departureValue}"`, event.data.datepicker.$datepicker__calendar)
+      .removeClass('datepicker__cell_selected');
+    }
+
+    $(event.target).addClass('datepicker__cell_selected');
+
+    event.data.datepicker.departureDate.setTime(Date.parse(event.target.dataset.date));
+    event.data.datepicker.departureDate.setHours(0, 0, 0);
+
+    event.data.datepicker.$datepicker__input_departure.val(event.target.dataset.date);
+    */
+    $('.js-datepicker__value', event.data.datepicker.$datepicker__expand_departure).text(reformatDate(event.target.dataset.date));
+
+    event.data.datepicker.setActiveDate('arrival');
+    event.data.datepicker.$datepicker__expand_departure.removeClass('datepicker__expand_open');
+    event.data.datepicker.$datepicker__expand_arrival.addClass('datepicker__expand_open');
+  } else {
+    const targetDate = new Date(event.target.dataset.date);
+    targetDate.setHours(0, 0, 0);
+
+    if (event.data.datepicker.lastSelectedDate === '') {
+      /*
+      const arrivalValue = event.data.datepicker.$datepicker__input_arrival.val();
+      if (arrivalValue) {
+        $(`td[data-date="${arrivalValue}"`, event.data.datepicker.$datepicker__calendar)
+        .removeClass('datepicker__cell_selected');
+      }
+
+      $(event.target).addClass('datepicker__cell_selected');
+
+      event.data.datepicker.arrivalDate.setTime(Date.parse(event.target.dataset.date));
+      event.data.datepicker.arrivalDate.setHours(0, 0, 0);
+
+      event.data.datepicker.$datepicker__input_arrival.val(event.target.dataset.date);
+      */
+
+      event.data.datepicker.updateDate({ date: 'arrival', value: event.target.dataset.date });
+
+      $('.js-datepicker__value', event.data.datepicker.$datepicker__expand_filter).text(
+        `${event.data.datepicker.arrivalDate.getDate()} ${SHORT_MONTHS[event.data.datepicker.arrivalDate.getMonth()]}`,
+      );
+
+      event.data.datepicker.setLastSelectedDate('arrival');
+    } else {
+      if (event.data.datepicker.lastSelectedDate === 'departure') {
+        if (targetDate < event.data.datepicker.departureDate) {
+          event.data.datepicker.updateDate({ date: 'arrival', value: event.target.dataset.date });
+
+          event.data.datepicker.setLastSelectedDate('arrival');
+        } else {
+          event.data.datepicker.updateDate({ date: 'arrival', value: event.data.datepicker.$datepicker__input_departure.val() });
+          event.data.datepicker.updateDate({ date: 'departure', value: event.target.dataset.date });
+
+          $(`td[data-date=${event.data.datepicker.$datepicker__input_arrival.val()}]`, event.data.datepicker.$datepicker__calendar).addClass('datepicker__cell_selected');
+
+          event.data.datepicker.setLastSelectedDate('departure');
+        }
+      } else if (targetDate > event.data.datepicker.arrivalDate) {
+        event.data.datepicker.updateDate({ date: 'departure', value: event.target.dataset.date });
+
+        event.data.datepicker.setLastSelectedDate('departure');
+      } else {
+        event.data.datepicker.updateDate({ date: 'departure', value: event.data.datepicker.$datepicker__input_arrival.val() });
+        event.data.datepicker.updateDate({ date: 'arrival', value: event.target.dataset.date });
+
+        $(`td[data-date=${event.data.datepicker.$datepicker__input_departure.val()}]`, event.data.datepicker.$datepicker__calendar).addClass('datepicker__cell_selected');
+
+        event.data.datepicker.setLastSelectedDate('arrival');
+      }
+
+      $('.js-datepicker__value', event.data.datepicker.$datepicker__expand_filter).text(
+        `${event.data.datepicker.arrivalDate.getDate()} ${SHORT_MONTHS[event.data.datepicker.arrivalDate.getMonth()]} - ${event.data.datepicker.departureDate.getDate()} ${SHORT_MONTHS[event.data.datepicker.departureDate.getMonth()]}`,
+      );
+    }
+  }
+
+  $(event.target).addClass('datepicker__cell_selected');
 }
 
 class Datepicker {
@@ -217,6 +331,7 @@ class Datepicker {
     this.timeFocus = 0;
 
     this.activeDate = 'both';
+    this.lastSelectedDate = '';
 
     this.arrivalDate = new Date(this.$datepicker__input_arrival.val());
     this.departureDate = new Date(this.$datepicker__input_departure.val());
@@ -304,6 +419,13 @@ class Datepicker {
       { datepicker: this },
       handleCellMouseout,
     );
+
+    this.$datepicker__calendar.on(
+      `mousedown.datepicker__calendar.${this.name}`,
+      'td',
+      { datepicker: this },
+      handleCellMousedown,
+    );
   }
 
   setTimeFocus(time) {
@@ -312,6 +434,10 @@ class Datepicker {
 
   setActiveDate(activeDate) {
     this.activeDate = activeDate;
+  }
+
+  setLastSelectedDate(lastSelectedDate) {
+    this.lastSelectedDate = lastSelectedDate;
   }
 
   open() {
@@ -349,8 +475,6 @@ class Datepicker {
 
   getCalendarHTMLandSetCalendarHeight() {
     const calendarDate = new Date(this.calendarMonth.getFullYear(), this.calendarMonth.getMonth());
-    // const arrivalDate = new Date(this.$datepicker__input_arrival.val());
-    // const departureDate = new Date(this.$datepicker__input_departure.val());
 
     // 0 - понедельник, 1 - вторник, 2 - среда...
     const dayOfWeek = calendarDate.getDay() ? calendarDate.getDay() - 1 : 6;
@@ -402,17 +526,40 @@ class Datepicker {
     this.setCalendarHeight();
     this.$datepicker__calendar.html(calendarHTML);
   }
-}
 
-/*
-function isDatepickerWithJSModifier(datepicker) {
-  return !!($(datepicker).attr('class').match(/js-datepicker_[^_]/));
+  updateDate({ date = '', value = '' } = { date: '', value: '' }) {
+    let oldValue = '';
+
+    if (date === 'arrival') {
+      oldValue = this.$datepicker__input_arrival.val();
+
+      this.arrivalDate.setTime(Date.parse(value));
+      this.arrivalDate.setHours(0, 0, 0);
+
+      this.$datepicker__input_arrival.val(value);
+    } else if (date === 'departure') {
+      oldValue = this.$datepicker__input_departure.val();
+
+      this.departureDate.setTime(Date.parse(value));
+      this.departureDate.setHours(0, 0, 0);
+
+      this.$datepicker__input_departure.val(value);
+    }
+
+    if (oldValue) {
+      $(`td[data-date="${oldValue}"`, this.$datepicker__calendar).removeClass('datepicker__cell_selected');
+    }
+
+    /*
+    if (value) {
+      $(`td[data-date="${value}"`, this.$datepicker__calendar)
+      .addClass('datepicker__cell_selected');
+    }
+    */
+  }
 }
-*/
 
 $('.js-datepicker').each((index, element) => {
-  // if (!isDatepickerWithJSModifier(element)) {
   const datepicker = new Datepicker(element);
   datepicker.init();
-  // }
 });
