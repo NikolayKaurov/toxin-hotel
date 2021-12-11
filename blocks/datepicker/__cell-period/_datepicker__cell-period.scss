@@ -1,0 +1,32 @@
+.datepicker__cell-period {
+  z-index: -1;
+
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+  opacity: 0.25;
+}
+
+.datepicker__cell-period_sunday {
+  border-bottom-right-radius: 22px;
+  border-top-right-radius: 22px;
+}
+
+.datepicker__cell-period_monday {
+  border-bottom-left-radius: 22px;
+  border-top-left-radius: 22px;
+}
+
+.datepicker__cell-period_arrival {
+  width: 50%;
+
+  right: 0;
+}
+
+.datepicker__cell-period_departure {
+  width: 50%;
+}
