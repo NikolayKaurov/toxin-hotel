@@ -31,6 +31,12 @@ function handleExpandMousedown(event) {
 }
 
 function handleExpandFocusin(event) {
+  if ($(event.delegateTarget).hasClass('js-datepicker__expand_arrival')) {
+    event.data.datepicker.setActiveDate('arrival');
+  } else if ($(event.delegateTarget).hasClass('js-datepicker__expand_departure')) {
+    event.data.datepicker.setActiveDate('departure');
+  }
+
   $(event.delegateTarget).removeClass('datepicker__expand_keeping-focus');
 
   event.data.datepicker.setTimeFocus(event.timeStamp);
@@ -45,6 +51,14 @@ function handleExpandFocusout(event) {
   }
 
   $(event.delegateTarget).removeClass('datepicker__expand_open');
+}
+
+function handleExpandKeydown(event) {
+  if (event.which === 9) {
+    event.data.datepicker.$datepicker__expand_departure.addClass('datepicker__expand_open');
+
+    $('.datepicker__cell_highlight', event.data.datepicker.$datepicker__calendar).removeClass('datepicker__cell_highlight');
+  }
 }
 
 function handleMousedown(event) {
@@ -91,7 +105,6 @@ function handleFocusout(event) {
       && !(event.data.datepicker.$datepicker.hasClass('datepicker_confirmed'))
     ) {
       event.data.datepicker.rollback();
-
       event.data.datepicker.$datepicker__calendar.html(
         event.data.datepicker.getCalendarHTMLandSetCalendarHeight(),
       );
@@ -285,8 +298,8 @@ class Datepicker {
     this.lastSelectedDate = '';
     this.confirmedLastSelectedDate = '';
 
-    this.arrivalDate = new Date(this.$datepicker__input_arrival.val());
-    this.departureDate = new Date(this.$datepicker__input_departure.val());
+    this.arrivalDate = new Date(0);
+    this.departureDate = new Date(0);
 
     this.confirmedArrival = '';
     this.confirmedDeparture = '';
@@ -305,11 +318,21 @@ class Datepicker {
     }
     this.$datepicker__calendar.html(calendarHTML);
 
+    this.$datepicker__input_arrival.val('');
+    this.$datepicker__input_departure.val('');
+
     this.$datepicker__expands.on(
       `mousedown.datepicker__expand.${this.name}`,
       null,
       { datepicker: this },
       handleExpandMousedown,
+    );
+
+    this.$datepicker__expand_arrival.on(
+      `keydown.datepicker__expand_arrival.${this.name}`,
+      null,
+      { datepicker: this },
+      handleExpandKeydown,
     );
 
     this.$datepicker__expands.on(
