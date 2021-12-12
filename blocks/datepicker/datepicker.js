@@ -318,8 +318,8 @@ class Datepicker {
     }
     this.$datepicker__calendar.html(calendarHTML);
 
-    this.$datepicker__input_arrival.val('');
-    this.$datepicker__input_departure.val('');
+    this.updateDate({ date: 'arrival', value: '' });
+    this.updateDate({ date: 'departure', value: '' });
 
     this.$datepicker__expands.on(
       `mousedown.datepicker__expand.${this.name}`,

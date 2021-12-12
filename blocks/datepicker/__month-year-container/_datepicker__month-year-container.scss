@@ -1,10 +1,11 @@
 .datepicker__month-year-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   flex-shrink: 0;
 
   //height: 24px;
 
-  padding: 20px;
+  padding: 0 20px 0 20px;
 }
