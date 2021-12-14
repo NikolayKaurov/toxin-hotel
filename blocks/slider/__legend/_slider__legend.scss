@@ -1,0 +1,10 @@
+.slider__legend {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider_vertical {
+  .slider__legend {
+    flex-direction: column-reverse;
+  }
+}

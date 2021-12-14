@@ -1,0 +1,16 @@
+.slider__strip {
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-radius: 3px;
+
+  height: 6px;
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+.slider_vertical {
+  .slider__strip {
+    width: 6px;
+    height: 100%;
+  }
+}

@@ -14,6 +14,7 @@ include ../blocks/dropdown/__button-container/dropdown__button-container
 include ../blocks/dropdown/__button/dropdown__button
 include ../blocks/dropdown/__item/dropdown__item
 include ../blocks/datepicker/datepicker
+include ../blocks/slider/slider
 +ui-kit({ title: 'Form elements', theme: 'white' })
   +ui-kit__header
   +form-elements
@@ -23,12 +24,26 @@ include ../blocks/datepicker/datepicker
       +dropdown({ name: 'guest', defaultValue: 'Сколько гостей', label: 'dropdown', zIndex: 5, guests: 'guests' })
         +dropdown__button-container
           +dropdown__button({action: 'clear', text: 'очистить'})
+        +dropdown__item({name: 'liver', units: 'жильцы жилец жильца жильцов'})
+        +dropdown__item({name: 'hobo', units: 'бомжи бомж бомжа бомжей'})
         +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
         +dropdown__item({name: 'child', units: 'дети'})
         +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
       +datepicker({ name: 'NewYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 4, label: 'даты пребывания в отеле', modifier: '' })
       +datepicker({ name: 'OldYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 3, label: 'даты пребывания в отеле', modifier: 'filter' })
-      +datepicker({ name: 'demo', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 2, label: 'даты пребывания в отеле', modifier: 'demo' })
+      .container(style='width: 266px')
+        +slider({
+          label: 'диапазон цены',
+          description: 'Стоимость за сутки пребывания в номере',
+          max: 1000,
+          step: 1,
+          range: true,
+          vertical: false,
+          bar: true,
+          tip: true,
+          scale: false,
+          units: '₽',
+        })
 
 
 
