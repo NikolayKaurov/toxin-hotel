@@ -12,7 +12,4 @@ module.exports = {
   },
   rules: {
   },
-  plugins: [
-    'pug',
-  ],
 };

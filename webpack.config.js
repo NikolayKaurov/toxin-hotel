@@ -66,7 +66,7 @@ module.exports = {
     shared: 'jquery',
   }, */
   output: {
-    filename: 'script.js',// '[name].js',
+    filename: 'script.js', // '[name].js',
     path: dist,
     assetModuleFilename: 'assets/[name][ext]',
     clean: true,
