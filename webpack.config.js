@@ -16,18 +16,29 @@ const preprocessor = require('./preprocessor');
 
 preprocessor(pages, blocks);
 
-const plugins = [new MiniCssExtractPlugin({ filename: 'style.css' })];
+const plugins = [new MiniCssExtractPlugin({ filename: '[name].css' })];
 
 const templates = [];
+const entries = {};
+
 fs.readdirSync(pages).forEach((page) => {
   if (page.match(/\.pug$/i)) {
+    const name = page.replace(/\.pug$/i, '');
+    const chunks = [name, 'jquery'];
     templates.push(new HtmlWebpackPlugin({
+      chunks,
       filename: page.replace(/\.pug$/i, '.html'),
       template: pages + slash + page,
-      // chunks: ['shared'],
+      inject: 'body',
     }));
+    entries[name] = {
+      import: `${pages}${slash}${name}.js`,
+      dependOn: 'jquery',
+    };
   }
 });
+
+entries.jquery = 'jquery';
 
 module.exports = {
   target: 'web',
@@ -56,7 +67,8 @@ module.exports = {
     port: 9000,
   },
 
-  entry: `${pages}${slash}script.js`,
+  entry: entries,
+  /* `${pages}${slash}script.js` , */
   /*
   {
     script: {
@@ -66,7 +78,7 @@ module.exports = {
     shared: 'jquery',
   }, */
   output: {
-    filename: 'script.js', // '[name].js',
+    filename: /* 'script.js', */'[name].js',
     path: dist,
     assetModuleFilename: 'assets/[name][ext]',
     clean: true,

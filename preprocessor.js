@@ -100,7 +100,9 @@ function getBemEntities(blocks) {
 // и возвращает объект с ними. Ключ - имя БЭМ-сущности, значение - папка, в которой лежат её файлы.
 // Если у БЭМ-сущности есть шаблон .pug, для него вызывается эта же функция.
 function searchBEMEntities(template, bemEntities) {
-  const wantedBEMEntities = bemEntities;
+  const wantedBEMEntities = {};
+  Object.keys(bemEntities).forEach((key) => { wantedBEMEntities[key] = bemEntities[key]; });
+
   let useBEMEntities = {};
 
   // получить массив слов, которые могут быть именами БЭМ-сущностей
@@ -135,11 +137,12 @@ function searchBEMEntities(template, bemEntities) {
   return useBEMEntities;
 }
 
+/*
 function getUseBEMEntities(sourceTemplates, bemEntities) {
   const wantedBEMEntities = bemEntities;
   let result = {};
 
-  /* eslint-disable-next-line */
+  /!* eslint-disable-next-line *!/
   for (const template of Object.keys(sourceTemplates)) {
     const useBEMEntities = searchBEMEntities(sourceTemplates[template], wantedBEMEntities);
     result = { ...result, ...useBEMEntities };
@@ -151,6 +154,7 @@ function getUseBEMEntities(sourceTemplates, bemEntities) {
 
   return result;
 }
+*/
 
 function createPUGHeaders(useBEMEntities) {
   let pugHeaders = '';
@@ -198,20 +202,25 @@ function createJSHeaders(useBEMEntities) {
     }
   });
 
-  jsHeaders += 'import \'./style.scss\';\n';
+  // jsHeaders += 'import \'./style.scss\';\n';
   jsHeaders += 'import \'../favicons/favicons\';\n';
 
   return jsHeaders;
 }
 
+/*
 function rewriteSCSS(pages, scssHeaders) {
   fs.writeFileSync(`${pages}${slash}style.scss`, scssHeaders);
 }
+*/
 
+/*
 function rewriteJS(pages, jsHeaders) {
   fs.writeFileSync(`${pages}${slash}script.js`, jsHeaders);
 }
+*/
 
+/*
 function prependPUGHeaders(sourceTemplates, pugHeaders) {
   const templatesWithHeaders = {};
   Object.keys(sourceTemplates).forEach((template) => {
@@ -219,12 +228,15 @@ function prependPUGHeaders(sourceTemplates, pugHeaders) {
   });
   return templatesWithHeaders;
 }
+*/
 
+/*
 function writeSourceTemplates(pages, sourceTemplates) {
   Object.keys(sourceTemplates).forEach((template) => {
     fs.writeFileSync(pages + slash + template, sourceTemplates[template]);
   });
 }
+*/
 
 module.exports = function preprocessor(pages, blocks) {
   let sourceTemplates = readSourceTemplates(pages);
@@ -232,15 +244,31 @@ module.exports = function preprocessor(pages, blocks) {
 
   const bemEntities = getBemEntities(blocks);
 
-  const useBEMEntities = getUseBEMEntities(sourceTemplates, bemEntities);
+  Object.keys(sourceTemplates).forEach((page) => {
+    const useBEMEntities = searchBEMEntities(sourceTemplates[page], bemEntities);
 
-  const pugHeaders = createPUGHeaders(useBEMEntities);
-  const scssHeaders = createSCSSHeaders(useBEMEntities);
-  const jsHeaders = createJSHeaders(useBEMEntities);
+    const pugHeaders = createPUGHeaders(useBEMEntities);
+    const scssHeaders = createSCSSHeaders(useBEMEntities);
+    let jsHeaders = createJSHeaders(useBEMEntities);
 
-  sourceTemplates = prependPUGHeaders(sourceTemplates, pugHeaders);
-  writeSourceTemplates(pages, sourceTemplates);
+    jsHeaders += `import './${page.replace(/.pug$/, '')}.scss';\n`;
 
-  rewriteSCSS(pages, scssHeaders);
-  rewriteJS(pages, jsHeaders);
+    sourceTemplates[page] = pugHeaders + sourceTemplates[page];
+
+    fs.writeFileSync(`${pages}${slash}${page}`, sourceTemplates[page]);
+    fs.writeFileSync(`${pages}${slash}${page}`.replace(/.pug$/, '.scss'), scssHeaders);
+    fs.writeFileSync(`${pages}${slash}${page}`.replace(/.pug$/, '.js'), jsHeaders);
+  });
+
+  // const useBEMEntities = getUseBEMEntities(sourceTemplates, bemEntities);
+
+  // const pugHeaders = createPUGHeaders(useBEMEntities);
+  // const scssHeaders = createSCSSHeaders(useBEMEntities);
+  // const jsHeaders = createJSHeaders(useBEMEntities);
+
+  // sourceTemplates = prependPUGHeaders(sourceTemplates, pugHeaders);
+  // writeSourceTemplates(pages, sourceTemplates);
+
+  // rewriteSCSS(pages, scssHeaders);
+  // rewriteJS(pages, jsHeaders);
 };
