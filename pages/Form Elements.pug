@@ -9,6 +9,7 @@ include ../blocks/dropdown/__button/dropdown__button
 include ../blocks/dropdown/__item/dropdown__item
 include ../blocks/datepicker/datepicker
 include ../blocks/slider-toxin/slider-toxin
+include ../blocks/paginator/paginator
 +ui-kit({ title: 'Form elements', theme: 'white' })
   +ui-kit__header
   +form-elements
@@ -35,3 +36,4 @@ include ../blocks/slider-toxin/slider-toxin
         to: 10000,
         name: 'price-range',
       })
+      +paginator({ length: 15, label: 'pagination', demo: 'demo' })

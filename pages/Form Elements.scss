@@ -44,3 +44,9 @@
 @use 'blocks/slider-toxin/__label/slider-toxin__label';
 @use 'blocks/slider-toxin/__value/slider-toxin__value';
 @use 'blocks/slider-toxin/__description/slider-toxin__description';
+@use 'blocks/paginator/paginator';
+@use 'blocks/paginator/__label/paginator__label';
+@use 'blocks/paginator/__body/paginator__body';
+@use 'blocks/paginator/__item/paginator__item';
+@use 'blocks/paginator/__description-container/paginator__description-container';
+@use 'blocks/paginator/__description/paginator__description';
