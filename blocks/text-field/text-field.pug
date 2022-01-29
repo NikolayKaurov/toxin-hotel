@@ -1,5 +1,5 @@
-mixin text-field({ name = 'undefined-name', placeholder = 'text', label = '', description = '' } = {})
-  .text-field.js-text-field
+mixin text-field({ name = 'undefined-name', placeholder = 'text', label = '', description = '', mask = '' } = {})
+  .text-field.js-text-field(data-mask= mask)
     .text-field__header
       if (label)
         p.text-field__label= label

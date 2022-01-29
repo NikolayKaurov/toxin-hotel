@@ -5,3 +5,9 @@
   grid-template-rows: 84px 84px 87px 104px 104px 105px 105px;
 }
 
+.form-elements__item:nth-child(2) {
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: 170px 92px 129px 104px 91px;
+}

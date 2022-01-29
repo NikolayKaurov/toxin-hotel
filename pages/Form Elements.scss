@@ -10,6 +10,7 @@
 @use 'blocks/text-field/__header/text-field__header';
 @use 'blocks/text-field/__label/text-field__label';
 @use 'blocks/text-field/__input/text-field__input';
+@use 'blocks/text-field/_invalid/text-field_invalid';
 @use 'blocks/dropdown/dropdown';
 @use 'blocks/dropdown/_narrow/dropdown_narrow';
 @use 'blocks/dropdown/__header/dropdown__header';

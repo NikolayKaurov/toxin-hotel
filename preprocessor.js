@@ -131,6 +131,18 @@ function searchBEMEntities(template, bemEntities) {
           break;
         }
       }
+      const jsPath = `${useBEMEntities[word]}${slash}${word}.js`;
+      if (fs.existsSync(jsPath)) {
+        const recursiveUseBEMEntities = searchBEMEntities(
+          fs.readFileSync(jsPath, 'utf-8'),
+          wantedBEMEntities,
+        );
+        useBEMEntities = { ...useBEMEntities, ...recursiveUseBEMEntities };
+        Object.keys(recursiveUseBEMEntities).forEach((key) => delete wantedBEMEntities[key]);
+        if ($.isEmptyObject(wantedBEMEntities)) {
+          break;
+        }
+      }
     }
   }
 

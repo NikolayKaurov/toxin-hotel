@@ -1,0 +1,12 @@
+.text-field_invalid {
+  .text-field__input {
+    color: red;
+  }
+}
+
+.text-field_invalid.text-field:hover {
+  .text-field__input {
+    color: red;
+  }
+}
+

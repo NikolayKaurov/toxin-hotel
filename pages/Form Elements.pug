@@ -24,7 +24,7 @@ include ../blocks/paginator/paginator
         +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
         +dropdown__item({name: 'child', units: 'дети'})
         +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
-      +datepicker({ name: 'NewYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 4, label: 'даты пребывания в отеле', modifier: '' })
+      +datepicker({ name: 'NewYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 4, label: 'даты пребывания в отеле'})
       +datepicker({ name: 'OldYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 3, label: 'даты пребывания в отеле', modifier: 'filter' })
       +slider-toxin({
         label: 'диапазон цены',
@@ -37,3 +37,5 @@ include ../blocks/paginator/paginator
         name: 'price-range',
       })
       +paginator({ length: 15, label: 'pagination', demo: 'demo' })
+    +form-elements__item
+      +text-field({ name: 'masked-field', placeholder: 'ДД.ММ.ГГГГ', label: 'masked text field', description: '', mask: 'date'})
