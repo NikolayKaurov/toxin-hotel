@@ -5,4 +5,5 @@ mixin text-field({ name = 'undefined-name', placeholder = 'text', label = '', de
         p.text-field__label= label
       if (description)
         p.text-field__label= description
-    input.text-field__input.js-text-field__input(name= name placeholder= placeholder type='text')
+    .text-field__wrapper.js-text-field__wrapper
+      input.text-field__input.js-text-field__input(name= name placeholder= placeholder type='text')

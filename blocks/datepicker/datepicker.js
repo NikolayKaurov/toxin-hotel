@@ -500,6 +500,8 @@ class Datepicker {
           ) {
             cellPeriod = '<div class="datepicker__cell-period datepicker__cell-period_departure"></div>';
           }
+        } else if (calendarDate.getTime() === this.today.getTime()) {
+          cellClasses += ' datepicker__cell_today';
         }
 
         if (calendarDate.getMonth() !== this.calendarMonth.getMonth()) {

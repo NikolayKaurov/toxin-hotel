@@ -1,45 +1,105 @@
 import $ from 'jquery';
 
+function getPlaceholder(value) {
+  const placeholder = 'ДД.ММ.ГГГГ'.split('');
+  value.split('').forEach((symbol, index) => {
+    placeholder[index] = symbol;
+  });
+  return placeholder.join('');
+}
+
 function handleInputKeydown(event) {
   const value = $(event.target).val();
 
   if (
-    (event.key < '0' || event.key > '9' || value.match(/^\d{2}\.\d{2}\.\d{4}$/))
-    && event.key !== 'ArrowLeft'
-    && event.key !== 'ArrowRight'
-    && event.key !== 'Delete'
+    (
+      event.key < '0' || event.key > '9'
+      || value.match(/^\d{2}\.\d{2}\.\d{4}$/)
+      || (value === '0' && event.key === '0')
+      || (value.match(/^\d{2}.0$/) && event.key === '0')
+    )
     && event.key !== 'Backspace'
-    && event.key !== 'Home'
-    && event.key !== 'End'
+    && event.key !== 'Tab'
   ) {
     event.preventDefault();
     return;
   }
 
   if (
-    (value.match(/^\d{2}$/) || value.match(/^\d{2}\.\d{2}$/))
-    && (event.key >= '0' && event.key <= '9')
+    (value.match(/^\d{2}\.\d$/))
+    && (event.key === 'Backspace')
+  ) {
+    $(event.target).val(value.replace(/\./, ''));
+  } else if (
+    (value.match(/^\d{2}\.\d{2}\.\d$/))
+    && (event.key === 'Backspace')
+  ) {
+    $(event.target).val(value.replace(/\.(?=\d$)/, ''));
+  } else if (
+    (value === '')
+    && (event.key >= '4' && event.key <= '9')
+  ) {
+    $(event.target).val('0');
+  } else if (
+    (value === '3')
+    && (event.key >= '2' && event.key <= '9')
+  ) {
+    $(event.target).val('03.0');
+  } else if (
+    (value.match(/^\d{2}$/))
+    && (event.key >= '2' && event.key <= '9')
+  ) {
+    $(event.target).val(`${value}.0`);
+  } else if (
+    (value.match(/^\d{2}$/))
+    && (event.key >= '0' && event.key <= '1')
   ) {
     $(event.target).val(`${value}.`);
+  } else if (
+    (value.match(/^\d{2}\.1$/))
+    && (event.key >= '3' && event.key <= '9')
+  ) {
+    $(event.target).val(`${value.replace(/\.1$/, '.01.19')}`);
+  } else if (
+    (value.match(/^\d{2}\.\d{2}$/))
+    && (event.key >= '1' && event.key <= '2')
+  ) {
+    $(event.target).val(`${value}.`);
+  } else if (
+    (value.match(/^\d{2}\.\d{2}$/))
+    && (event.key >= '3' && event.key <= '9')
+  ) {
+    $(event.target).val(`${value}.19`);
+  } else if (
+    (value.match(/^\d{2}\.\d{2}$/))
+    && (event.key === '0')
+  ) {
+    $(event.target).val(`${value}.20`);
+  } else if (
+    (value.match(/^\d{2}\.\d{2}\.1$/))
+    && (event.key >= '0' && event.key <= '8')
+  ) {
+    $(event.target).val(`${value.replace(/\.1$/, '.201')}`);
+  } else if (
+    (value.match(/^\d{2}\.\d{2}\.2$/))
+    && (event.key >= '1' && event.key <= '9')
+  ) {
+    $(event.target).val(`${value.replace(/\.2$/, '.202')}`);
   }
 }
 
-function handleInputKeyup(event) {
+function handleInputInput(event) {
   const value = $(event.target).val();
-  if (!value.match(/^(\d{1,2}|\d{0,2}\.\d{0,2}|\d{0,2}\.\d{0,2}\.\d{0,4})?$/)) {
-    $(event.target).val(event.data.textField.value);
-    return;
-  }
 
-  event.data.textField.setValue(value);
+  event.data.textField.$input_double.attr(
+    'placeholder',
+    getPlaceholder(value),
+  );
 
-  if (
-    value.match(/^\d{2}\.\d{2}\.\d{4}$/)
-    && Number.isNaN(Date.parse(value.split('.').reverse().join('-')))
-  ) {
-    event.data.textField.$textField.addClass('text-field_invalid');
-  } else {
+  if (value.match(/^(\d{1,2}|\d{2}\.\d{0,2}|\d{2}\.\d{2}\.\d{0,4})?$/)) {
     event.data.textField.$textField.removeClass('text-field_invalid');
+  } else {
+    event.data.textField.$textField.addClass('text-field_invalid');
   }
 }
 
@@ -62,34 +122,45 @@ function handleInputChange(event) {
 class TextField {
   constructor(textField) {
     this.$textField = $(textField);
-    this.value = '';
+    this.$input = $('.js-text-field__input', this.$textField);
+    this.$input_double = $();
   }
 
   init() {
-    ('.js-text-field__input', this.$textField).on(
+    this.$input.attr('placeholder', '');
+
+    this.$input.on(
       'keydown',
       null,
       { textField: this },
       handleInputKeydown,
-    );
-
-    ('.js-text-field__input', this.$textField).on(
-      'keyup',
+    ).on(
+      'input',
       null,
       { textField: this },
-      handleInputKeyup,
-    );
-
-    ('.js-text-field__input', this.$textField).on(
+      handleInputInput,
+    ).on(
       'change',
       null,
       { textField: this },
       handleInputChange,
     );
-  }
 
-  setValue(value) {
-    this.value = value;
+    /* this.$input.on(
+      'input',
+      null,
+      { textField: this },
+      handleInputInput,
+    ); */
+
+    $('.js-text-field__wrapper', this.$textField)
+      .append(`<input
+        class="js-text-field__input js-text-field__input_double text-field__input text-field__input_double"
+        disabled
+        placeholder="ДД.ММ.ГГГГ"
+      >`);
+
+    this.$input_double = $('.js-text-field__input_double', this.$textField);
   }
 }
 
