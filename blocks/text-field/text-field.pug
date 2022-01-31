@@ -1,5 +1,11 @@
 mixin text-field({ name = 'undefined-name', placeholder = 'text', label = '', description = '', mask = '' } = {})
-  .text-field.js-text-field(data-mask= mask)
+  -
+    let classString = '';
+    if (mask === 'date') {
+      classString = 'text-field_date js-text-field_date';
+    }
+
+  .text-field.js-text-field(class= classString)
     .text-field__header
       if (label)
         p.text-field__label= label

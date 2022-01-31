@@ -1,9 +1,7 @@
 .text-field__input {
-  position: absolute;
-
   font-size: 14px;
   line-height: 24px;
-  color: rgba(31, 32, 65, 0.25);
+  color: rgba(31, 32, 65, 0.75);
   font-family: montserrat, Arial, sans-serif;
 
   width: 303px;
@@ -14,13 +12,9 @@
 
   border: 1px solid rgba(31, 32, 65, 0.25);
   border-radius: 4px;
-
-  background: transparent;
 }
 
 .text-field__input:focus {
-  color: rgba(31, 32, 65, 0.5);
-
   border: 1px solid rgba(31, 32, 65, 0.5);
 
   outline: 0;
@@ -30,43 +24,8 @@
   color: rgba(31, 32, 65, 0.25);
 }
 
-.text-field__input:focus::placeholder {
-  color: rgba(31, 32, 65, 0.75);
-}
-
 .text-field:hover {
   .text-field__input {
-    color: rgba(31, 32, 65, 0.5);
-
     border: 1px solid rgba(31, 32, 65, 0.5);
   }
-
-  .text-field__input.text-field__input_double {
-    border: 1px solid transparent;
-  }
-
-  .text-field__input::placeholder {
-    color: rgba(31, 32, 65, 0.75);
-  }
-}
-
-.text-field__input_double {
-  z-index: -1;
-  background: white;
-
-  border: 1px solid transparent;
-}
-
-.text-field__input_double:focus {
-  border: 1px solid transparent;
-}
-
-/*
-.text-field__input.text-field__input_double::placeholder {
-  color: rgba(31, 32, 65, 0.75);
-}
-*/
-
-.text-field__input:focus + .text-field__input_double::placeholder {
-  color: rgba(31, 32, 65, 0.5);
 }

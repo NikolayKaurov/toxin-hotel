@@ -146,13 +146,6 @@ class TextField {
       handleInputChange,
     );
 
-    /* this.$input.on(
-      'input',
-      null,
-      { textField: this },
-      handleInputInput,
-    ); */
-
     $('.js-text-field__wrapper', this.$textField)
       .append(`<input
         class="js-text-field__input js-text-field__input_double text-field__input text-field__input_double"
@@ -165,7 +158,7 @@ class TextField {
 }
 
 $('.js-text-field').each((index, element) => {
-  if (element.dataset.mask === 'date') {
+  if ($(element).hasClass('js-text-field_date')) {
     const textField = new TextField(element);
     textField.init();
   }
