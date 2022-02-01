@@ -1,0 +1,3 @@
+mixin checkbox__button({ name = 'undefined-name', text = '', value = 'on', checked = false } = {})
+  input.checkbox__button.js-checkbox__button(type='checkbox' data-name= name value= value checked= checked)
+  label.checkbox__button-label.js-checkbox__button-label(data-name= name)= text

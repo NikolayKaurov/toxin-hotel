@@ -1,0 +1,5 @@
+mixin checkbox({ label = '', name = 'undefined-name' })
+  .checkbox.js-checkbox(data-name= name)
+    if (label)
+      .checkbox__label= label
+    block

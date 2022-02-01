@@ -9,6 +9,8 @@ include ../blocks/dropdown/__button/dropdown__button
 include ../blocks/dropdown/__item/dropdown__item
 include ../blocks/datepicker/datepicker
 include ../blocks/subscription/subscription
+include ../blocks/checkbox/checkbox
+include ../blocks/checkbox/__button/checkbox__button
 include ../blocks/slider-toxin/slider-toxin
 include ../blocks/paginator/paginator
 +ui-kit({ title: 'Form elements', theme: 'white' })
@@ -30,9 +32,14 @@ include ../blocks/paginator/paginator
       +datepicker({ name: 'OldYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 3, label: 'filter date dropdown', modifier: 'filter' })
       +subscription('subscription text field')
     +form-elements__item
+      +checkbox({ label: 'checkbox buttons', name: 'check' })
+        +checkbox__button({ name: '1', text: 'Можно курить'})
+        +checkbox__button({ name: '2', text: 'Можно с питомцами', checked: true})
+        +checkbox__button({ name: '3', text: 'Можно пригласить гостей (до 10 человек)', checked: true})
+    +form-elements__item
       +slider-toxin({
         label: 'диапазон цены',
-        description: 'Стоимость за сутки пребывания в номере',
+        description: '',
         start: 1000,
         end: 15000,
         step: 1000,
@@ -40,4 +47,4 @@ include ../blocks/paginator/paginator
         to: 10000,
         name: 'price-range',
       })
-      +paginator({ length: 15, label: 'pagination', demo: 'demo' })
+      +paginator({length: 15, label: 'pagination', demo: 'demo'})
