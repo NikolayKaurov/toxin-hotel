@@ -1,0 +1,7 @@
+mixin subscription(label = '')
+  form.subscription.js-subscription
+    if (label)
+      p.subscription__label= label
+    .subscription__wrapper
+      input.subscription__input.js-subscription__input(name='subscription-email' placeholder='Email' type='text')
+      input.subscription__submit.js-subscription__submit(type='submit' value='arrow_forward' disabled)

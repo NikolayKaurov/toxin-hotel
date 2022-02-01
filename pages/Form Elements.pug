@@ -8,13 +8,14 @@ include ../blocks/dropdown/__button-container/dropdown__button-container
 include ../blocks/dropdown/__button/dropdown__button
 include ../blocks/dropdown/__item/dropdown__item
 include ../blocks/datepicker/datepicker
+include ../blocks/subscription/subscription
 include ../blocks/slider-toxin/slider-toxin
 include ../blocks/paginator/paginator
 +ui-kit({ title: 'Form elements', theme: 'white' })
   +ui-kit__header
   +form-elements
     +form-elements__item
-      +text-field({ name: 'simple-field', placeholder: 'Email', label: 'text field', description: 'дефолт'})
+      +text-field({ name: 'simple-field', placeholder: 'Email', label: 'text field', description: 'default'})
       +text-field({ name: 'hover-field', placeholder: 'This is pretty awesome', label: 'text field', description: 'hover / focus'})
       +dropdown({ name: 'guest', defaultValue: 'Сколько гостей', label: 'dropdown', zIndex: 5, guests: 'guests' })
         +dropdown__button-container
@@ -24,8 +25,11 @@ include ../blocks/paginator/paginator
         +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
         +dropdown__item({name: 'child', units: 'дети'})
         +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+      +text-field({ name: 'masked-field', placeholder: 'ДД.ММ.ГГГГ', label: 'masked text field', description: '', mask: 'date'})
       +datepicker({ name: 'NewYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 4, label: 'даты пребывания в отеле'})
-      +datepicker({ name: 'OldYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 3, label: 'даты пребывания в отеле', modifier: 'filter' })
+      +datepicker({ name: 'OldYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 3, label: 'filter date dropdown', modifier: 'filter' })
+      +subscription('subscription text field')
+    +form-elements__item
       +slider-toxin({
         label: 'диапазон цены',
         description: 'Стоимость за сутки пребывания в номере',
@@ -37,5 +41,3 @@ include ../blocks/paginator/paginator
         name: 'price-range',
       })
       +paginator({ length: 15, label: 'pagination', demo: 'demo' })
-    +form-elements__item
-      +text-field({ name: 'masked-field', placeholder: 'ДД.ММ.ГГГГ', label: 'masked text field', description: '', mask: 'date'})

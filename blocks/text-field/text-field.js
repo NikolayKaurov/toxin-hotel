@@ -96,7 +96,13 @@ function handleInputInput(event) {
     getPlaceholder(value),
   );
 
-  if (value.match(/^(\d{1,2}|\d{2}\.\d{0,2}|\d{2}\.\d{2}\.\d{0,4})?$/)) {
+  if (
+    value.match(/^(\d{1,2}|\d{2}\.\d{0,2}|\d{2}\.\d{2}\.\d{0,3})?$/)
+    || (
+      value.match(/^\d{2}\.\d{2}\.\d{4}$/)
+      && !Number.isNaN(Date.parse(value.split('.').reverse().join('-')))
+    )
+  ) {
     event.data.textField.$textField.removeClass('text-field_invalid');
   } else {
     event.data.textField.$textField.addClass('text-field_invalid');
