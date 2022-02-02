@@ -1,0 +1,37 @@
+.like {
+  box-sizing: border-box;
+
+  width: 40px;
+  height: 20px;
+
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-radius: 10px;
+
+  background: white;
+
+  color: rgba(31, 32, 65, 0.25);
+
+  position: relative;
+
+  cursor: pointer;
+}
+
+.like::before {
+  content: 'favorite_border';
+
+  font-family: material-icons, Arial, sans-serif;
+  color: rgba(31, 32, 65, 0.25);
+  font-size: 10px;
+  line-height: 18px;
+
+  width: 18px;
+  height: 18px;
+
+  text-align: center;
+
+  position: absolute;
+}
+
+.like::selection {
+  background: transparent;
+}

@@ -1,0 +1,33 @@
+.rate__star {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.rate__star::after {
+  content: 'star_border';
+
+  font-family: material-icons, Arial, sans-serif;
+  font-size: 24px;
+  line-height: 24px;
+
+  color: #BC9CFF;
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  width: 24px;
+  height: 24px;
+
+  position: absolute;
+}
+
+@for $i from 1 through 5 {
+  .rate[data-rating='#{$i}'] {
+    @for $j from 1 through $i {
+      .rate__star:nth-child(#{$j})::after {
+        content: 'star';
+      }
+    }
+  }
+}

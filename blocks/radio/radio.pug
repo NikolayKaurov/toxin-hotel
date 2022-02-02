@@ -1,0 +1,6 @@
+mixin radio({ label = '', name = 'undefined-name' })
+  .radio.js-radio(data-name= name)
+    if (label)
+      .radio__label= label
+    .radio__wrapper
+      block

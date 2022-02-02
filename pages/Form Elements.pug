@@ -8,9 +8,15 @@ include ../blocks/dropdown/__button-container/dropdown__button-container
 include ../blocks/dropdown/__button/dropdown__button
 include ../blocks/dropdown/__item/dropdown__item
 include ../blocks/datepicker/datepicker
-include ../blocks/subscription/subscription
+include ../blocks/toggle/toggle
 include ../blocks/checkbox/checkbox
+include ../blocks/subscription/subscription
 include ../blocks/checkbox/__button/checkbox__button
+include ../blocks/radio/radio
+include ../blocks/radio/__button/radio__button
+include ../blocks/demo-block/demo-block
+include ../blocks/like/like
+include ../blocks/rate/rate
 include ../blocks/slider-toxin/slider-toxin
 include ../blocks/paginator/paginator
 +ui-kit({ title: 'Form elements', theme: 'white' })
@@ -33,9 +39,21 @@ include ../blocks/paginator/paginator
       +subscription('subscription text field')
     +form-elements__item
       +checkbox({ label: 'checkbox buttons', name: 'check' })
-        +checkbox__button({ name: '1', text: 'Можно курить'})
-        +checkbox__button({ name: '2', text: 'Можно с питомцами', checked: true})
-        +checkbox__button({ name: '3', text: 'Можно пригласить гостей (до 10 человек)', checked: true})
+        +checkbox__button({ name: '1', text: 'Можно курить' })
+        +checkbox__button({ name: '2', text: 'Можно с питомцами', checked: true })
+        +checkbox__button({ name: '3', text: 'Можно пригласить гостей (до 10 человек)', checked: true })
+      +radio({ label: 'radio buttons', name: 'radio' })
+        +radio__button({ name: 'male', text: 'Мужчина', checked: true })
+        +radio__button({ name: 'female', text: 'Женщина' })
+      +demo-block({ type: 'toggle', label: 'toggle'})
+        +toggle({ name: 'toggle1', text: 'Получать спецпредложения', checked: true })
+        +toggle({ name: 'toggle2', text: 'Получать спецпредложения' })
+      +demo-block({ type: 'like', label: 'like button' })
+        +like(2)
+        +like(11)
+      +demo-block({ type: 'rate', label: 'rate button' })
+        +rate(4)
+        +rate(5)
     +form-elements__item
       +slider-toxin({
         label: 'диапазон цены',
