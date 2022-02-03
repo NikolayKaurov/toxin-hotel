@@ -1,0 +1,21 @@
+mixin button({ type = '', text = '', disabled = true })
+  -
+    let inputClass;
+    switch (type) {
+      case 'fill':
+        inputClass = 'button__input_fill';
+        break;
+      case 'white':
+        inputClass = 'button__input_white';
+        break;
+      case 'big':
+        inputClass = 'button__input_big';
+        break;
+      default:
+        inputClass = ''
+    }
+
+  .button
+    input.button__input(type='submit' value= text class= inputClass disabled= disabled)
+    if (type === 'white' || type === 'big')
+      .button__back

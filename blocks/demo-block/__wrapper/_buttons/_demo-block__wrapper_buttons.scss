@@ -1,0 +1,40 @@
+.demo-block__wrapper_buttons {
+  display: grid;
+
+  grid-template-rows: 74px 75px 45px 45px;
+  grid-template-columns: 61px 20px 37px auto;
+
+  grid-template-areas:
+    'A A A B'
+    'C C C D'
+    'E F G G'
+    'H H H H';
+
+  .button:nth-child(1) {
+    grid-area: A;
+  }
+
+  .button:nth-child(2) {
+    grid-area: B;
+  }
+
+  .button:nth-child(3) {
+    grid-area: C;
+  }
+
+  .button:nth-child(4) {
+    grid-area: D;
+  }
+
+  .button:nth-child(5) {
+    grid-area: E;
+  }
+
+  .button:nth-child(6) {
+    grid-area: G;
+  }
+
+  .button:nth-child(7) {
+    grid-area: H;
+  }
+}

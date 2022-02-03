@@ -61,7 +61,7 @@ function handleThumbMouseup(event: JQuery.TriggeredEvent) {
 }
 
 function handleThumbMousedown(event: JQuery.TriggeredEvent) {
-  // event.preventDefault();
+  event.preventDefault();
 
   let shift:number = 0;
 

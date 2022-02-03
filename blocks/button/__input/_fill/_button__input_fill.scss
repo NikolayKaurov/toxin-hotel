@@ -1,0 +1,17 @@
+.button__input.button__input_fill {
+  width: 99px;
+  height: 44px;
+
+  box-sizing: border-box;
+
+  border-radius: 22px;
+
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+
+  color: white;
+}
+
+.button__input.button__input_fill:disabled {
+  color: white;
+  opacity: 0.5;
+}

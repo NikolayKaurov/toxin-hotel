@@ -1,20 +1,28 @@
-.form-elements__item:nth-child(1) {
+.form-elements__item {
   display: grid;
-
   grid-template-columns: 1fr;
+}
+
+.form-elements__item:nth-child(1) {
   grid-template-rows: 84px 84px 87px 104px 104px 105px 105px;
 }
 
 .form-elements__item:nth-child(2) {
-  display: grid;
-
-  grid-template-columns: 1fr;
   grid-template-rows: 170px 92px 129px 91px 91px;
 }
 
 .form-elements__item:nth-child(3) {
-  display: grid;
-
-  grid-template-columns: 1fr;
   grid-template-rows: 88px 309px 106px;
+}
+
+.form-elements__item:nth-child(4) {
+  grid-template-rows: 84px 236px 64px 307px auto;
+}
+
+.form-elements__item:nth-child(5) {
+  grid-template-rows: 320px 378px auto;
+}
+
+.form-elements__item:nth-child(6) {
+  grid-template-rows: 320px 378px auto;
 }

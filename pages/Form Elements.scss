@@ -20,6 +20,12 @@
 @use 'blocks/dropdown/__down/dropdown__down';
 @use 'blocks/dropdown/__drop/dropdown__drop';
 @use 'blocks/dropdown/__value/dropdown__value';
+@use 'blocks/button/button';
+@use 'blocks/button/__input/_fill/button__input_fill';
+@use 'blocks/button/__input/_white/button__input_white';
+@use 'blocks/button/__input/_big/button__input_big';
+@use 'blocks/button/__input/button__input';
+@use 'blocks/button/__back/button__back';
 @use 'blocks/dropdown/__button-container/dropdown__button-container';
 @use 'blocks/dropdown/__button/dropdown__button';
 @use 'blocks/dropdown/__item/dropdown__item';
@@ -68,6 +74,7 @@
 @use 'blocks/rate/rate';
 @use 'blocks/rate/__star/rate__star';
 @use 'blocks/demo-block/__wrapper/_rate/demo-block__wrapper_rate';
+@use 'blocks/demo-block/__wrapper/_buttons/demo-block__wrapper_buttons';
 @use 'blocks/slider-toxin/slider-toxin';
 @use 'blocks/slider-toxin/__header/slider-toxin__header';
 @use 'blocks/slider-toxin/__label/slider-toxin__label';

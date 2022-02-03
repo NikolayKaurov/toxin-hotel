@@ -4,13 +4,13 @@ import $ from 'jquery';
 const INTERVAL = 50;
 
 // Высота выпадающего элемента в закрытом состоянии в пикселах
-const CLOSED_HEIGHT = 43;
+const CLOSED_HEIGHT = 42;
 
 // Высота одной строки в выпадающем элементе в пикселах
 const ITEM_HEIGHT = 37;
 
 // Высота нижней строки с кнопками 'очистить' и 'применить' в пикселах
-const BUTTON_CONTAINER_HEIGHT = 41;
+const BUTTON_CONTAINER_HEIGHT = 40;
 
 // Высота выпадающего элемента в открытом состоянии без строк в пикселах
 const EMPTY_OPEN_HEIGHT = 52;

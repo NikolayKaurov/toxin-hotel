@@ -1,0 +1,51 @@
+.button__back {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  z-index: -1;
+
+  width: 99px;
+  height: 44px;
+
+  border: 0;
+  border-radius: 22px;
+
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+}
+
+.button__input_white:disabled + .button__back {
+  opacity: 0.5;
+}
+
+.button__input_big + .button__back {
+  width: 0;
+
+  left: 320px;
+
+  z-index: 1;
+}
+
+.button__input_big + .button__back::after {
+  content: 'arrow_forward';
+
+  position: absolute;
+
+  right: 0;
+  top: 0;
+
+  font-family: material-icons, Arial, sans-serif;
+  color: white;
+  font-size: 24px;
+
+  background: transparent;
+
+  width: 44px;
+  height: 44px;
+
+  text-align: center;
+  line-height: 44px;
+
+  z-index: 1;
+}
