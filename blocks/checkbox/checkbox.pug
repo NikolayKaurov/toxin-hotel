@@ -1,5 +1,12 @@
-mixin checkbox({ label = '', name = 'undefined-name' })
-  .checkbox.js-checkbox(data-name= name)
-    if (label)
+mixin checkbox({ label = '', name = 'undefined-name', expand = '', wide = '' })
+  .checkbox.js-checkbox(data-name= name data-expand= expand data-wide= wide)
+    if (expand === 'expand')
+      input.checkbox__expand(type='checkbox' id= name + '-checkbox__expand')
+      label.checkbox__label(for= name + '-checkbox__expand')= label || 'undefined-label'
+      .checkbox__down
+        block
+    else if (label)
       .checkbox__label= label
-    block
+      block
+    else
+      block

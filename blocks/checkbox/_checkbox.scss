@@ -3,3 +3,11 @@
 
   position: relative;
 }
+
+.checkbox[data-expand='expand'] {
+  width: 266px;
+}
+
+.checkbox[data-wide='wide'] {
+  width: 266px;
+}

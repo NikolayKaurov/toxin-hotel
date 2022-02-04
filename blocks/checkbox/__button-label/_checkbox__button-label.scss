@@ -1,13 +1,18 @@
 .checkbox__button-label {
-  display: flex;
+  //display: flex;
+  display: block;
 
   color: rgba(31, 32, 65, 0.5);
   line-height: 18px;
   font-size: 14px;
 
-  margin: 0 0 11px 0;
+  padding: 0 0 13px 30px;
 
   cursor: pointer;
+
+  position: relative;
+
+  white-space: pre-line;
 }
 
 .checkbox__button-label::selection {
@@ -27,6 +32,13 @@
 
   flex-grow: 0;
   flex-shrink: 0;
+
+  display: block;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
 }
 
 .checkbox__button:checked + .checkbox__button-label::before {
@@ -35,5 +47,12 @@
   background-position: center center;
 
   border: 1px solid #BC9CFF;
+}
+
+.checkbox__button-label.checkbox__button-label_small-font {
+  font-size: 12px;
+  line-height: 14px;
+
+  padding: 0 0 10px 30px;
 }
 

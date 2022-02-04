@@ -1,0 +1,15 @@
+.checkbox__down {
+  overflow: hidden;
+
+  height: 0;
+
+  background: white;
+
+  position: relative;
+}
+
+.checkbox__expand:checked ~ .checkbox__down {
+  height: auto;
+
+  z-index: 1;
+}

@@ -91,6 +91,20 @@ include ../blocks/paginator/paginator
         +dropdown__item({name: 'bath', units: `ванные комнаты ванная ванных ванных` })
         +dropdown__item({name: 'bed', units: 'кровати кровать кровати кроватей'})
         +dropdown__item({name: 'bedroom', units: 'спальни спальня спальни спален'})
+      +checkbox({label: 'expandable checkbox list', name: 'check1', expand: 'expand' })
+        +checkbox__button({name: '1', text: 'Завтрак'})
+        +checkbox__button({name: '2', text: 'Письменный стол', checked: true })
+        +checkbox__button({name: '3', text: 'Стул для кормления', checked: true })
+        +checkbox__button({name: '4', text: 'Кроватка', checked: true })
+        +checkbox__button({name: '5', text: 'Телевизор'})
+        +checkbox__button({name: '6', text: 'Шампунь'})
+      +checkbox({label: 'expandable checkbox list', name: 'check3', expand: 'expand'})
+        +checkbox__button({name: '1', text: 'Завтрак'})
+        +checkbox__button({name: '2', text: 'Письменный стол', checked: true})
+        +checkbox__button({name: '3', text: 'Стул для кормления', checked: true})
+        +checkbox__button({name: '4', text: 'Кроватка', checked: true})
+        +checkbox__button({name: '5', text: 'Телевизор'})
+        +checkbox__button({name: '6', text: 'Шампунь'})
     +form-elements__item
       +dropdown({name: 'guest2', defaultValue: 'Сколько гостей', label: 'dropdown', zIndex: 1, guests: 'guests'})
         +dropdown__button-container
@@ -98,6 +112,19 @@ include ../blocks/paginator/paginator
         +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
         +dropdown__item({name: 'child', units: 'дети'})
         +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+      +checkbox({label: 'rich checkbox buttons', name: 'check4', wide: 'wide'})
+        +checkbox__button({
+          name: '1',
+          text: `Ширина коридоров в номере
+            не менее 91 см.`,
+          header: 'Широкий коридор'
+        })
+        +checkbox__button({
+          name: '2',
+          text: `На 1 этаже вас встретит специалист
+            и проводит до номера`,
+          header: 'Помощник для инвалидов'
+        })
     +form-elements__item
       +dropdown({name: 'guest3', defaultValue: 'Сколько гостей', label: 'dropdown', zIndex: 1, guests: 'guests'})
         +dropdown__button-container

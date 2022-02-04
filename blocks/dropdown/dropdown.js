@@ -13,7 +13,7 @@ const ITEM_HEIGHT = 37;
 const BUTTON_CONTAINER_HEIGHT = 40;
 
 // Высота выпадающего элемента в открытом состоянии без строк в пикселах
-const EMPTY_OPEN_HEIGHT = 52;
+const EMPTY_OPEN_HEIGHT = 51;
 
 // Количество элементов в общей строке: '3 гостя, 1 младенец' - 2 элемента
 const NUMBER_ITEMS_IN_VALUE = 2;
