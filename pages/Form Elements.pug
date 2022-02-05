@@ -20,6 +20,11 @@ include ../blocks/like/like
 include ../blocks/rate/rate
 include ../blocks/slider-toxin/slider-toxin
 include ../blocks/paginator/paginator
+include ../blocks/list/list
+include ../blocks/list-icon/list-icon
+include ../blocks/list-icon/__item/list-icon__item
+include ../blocks/review/review
+include ../blocks/list/__item/list__item
 +ui-kit({ title: 'Form elements', theme: 'white' })
   +ui-kit__header
   +form-elements
@@ -105,6 +110,9 @@ include ../blocks/paginator/paginator
         +checkbox__button({name: '4', text: 'Кроватка', checked: true})
         +checkbox__button({name: '5', text: 'Телевизор'})
         +checkbox__button({name: '6', text: 'Шампунь'})
+      +list-icon
+        +list-icon__item({ icon: 'insert_emoticon', header: 'Комфорт', text: 'Шумопоглощающие стены' })
+        +list-icon__item({ icon: 'location_city', header: 'Удобство', text: 'Окно в каждой из спален' })
     +form-elements__item
       +dropdown({name: 'guest2', defaultValue: 'Сколько гостей', label: 'dropdown', zIndex: 1, guests: 'guests'})
         +dropdown__button-container
@@ -123,6 +131,12 @@ include ../blocks/paginator/paginator
           text: `На 1 этаже вас встретит специалист и проводит до номера`,
           header: 'Помощник для инвалидов'
         })
+      +review({
+        likes: 11,
+        name: 'Мурад Сарафанов',
+        time: '5 дней назад',
+        text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.',
+      })
     +form-elements__item
       +dropdown({name: 'guest3', defaultValue: 'Сколько гостей', label: 'dropdown', zIndex: 1, guests: 'guests'})
         +dropdown__button-container
@@ -131,4 +145,8 @@ include ../blocks/paginator/paginator
         +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
         +dropdown__item({name: 'child', units: 'дети'})
         +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+      +list({ label: 'bullet list', marker: 'bullet'})
+        +list__item Нельзя с питомцами
+        +list__item Без вечеринок и мероприятий
+        +list__item Время прибытия — после 13:00, а выезд до 12:00
 

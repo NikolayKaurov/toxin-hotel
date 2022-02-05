@@ -25,4 +25,10 @@
 
 .button__input:disabled {
   color: rgba(31, 32, 65, 0.5);
+
+  cursor: auto;
+}
+
+.button__input:active {
+  transform: scale(0.95);
 }

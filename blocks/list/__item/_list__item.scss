@@ -1,0 +1,29 @@
+.list__item {
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(31, 32, 65, 0.75);
+
+  margin: 10px 0 0 0;
+
+  position: relative;
+}
+
+.list[data-marker='bullet'] {
+  .list__item {
+    padding: 0 0 0 20px;
+  }
+
+  .list__item::before {
+    position: absolute;
+    left: 0;
+    top: 6px;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 5px;
+    background: rgba(31, 32, 65, 0.25);
+
+    content: '';
+  }
+}

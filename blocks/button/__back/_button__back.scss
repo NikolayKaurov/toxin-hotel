@@ -22,7 +22,7 @@
 .button__input_big + .button__back {
   width: 0;
 
-  left: 320px;
+  left: 100%;
 
   z-index: 1;
 }
@@ -48,4 +48,17 @@
   line-height: 44px;
 
   z-index: 1;
+}
+
+.button__input:active + .button__back::after {
+  transform: scale(0.95);
+}
+
+.button__input:active + .button__back {
+  transform: scale(0.95);
+}
+
+.button__input.button__input_big:active + .button__back {
+  transform: scale(0.95);
+  left: 97.5%;
 }
