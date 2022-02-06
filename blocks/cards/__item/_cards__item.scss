@@ -1,0 +1,15 @@
+.cards__item {
+  display: grid;
+}
+
+.cards__item:nth-child(1) {
+  grid-template-rows: 414px auto;
+}
+
+.cards__item:nth-child(2) {
+  grid-template-rows: 552px auto;
+}
+
+.cards__item:nth-child(3) {
+  grid-template-rows: 509px 297px auto;
+}

@@ -1,6 +1,6 @@
 mixin dropdown__item({ name = 'undefined-name', units = 'units' } = { name: 'undefined-name', units: 'units' })
   .dropdown__item.js-dropdown__item(data-item-name= name data-units= units)
     .dropdown__label.js-dropdown__label
-    button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_minus(disabled tabindex=-1) -
-    input.dropdown__quantity.js-dropdown__quantity(disabled type='text' tabindex=-1 readonly)
-    button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_plus(tabindex=-1) +
+    button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_minus(disabled tabindex=-1 type='button') -
+    input.dropdown__quantity.js-dropdown__quantity(type='text' tabindex=-1 readonly)
+    button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_plus(tabindex=-1 type='button') +

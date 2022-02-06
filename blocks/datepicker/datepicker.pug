@@ -29,11 +29,11 @@ mixin datepicker({ name = 'undefined-name', label = '', labelArrival = '', label
             .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
     .datepicker__down.js-datepicker__down
       .datepicker__button-container
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_clear(tabindex=-1) очистить
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_confirm(tabindex=-1) применить
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_clear(type='button' tabindex=-1) очистить
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_confirm(type='button' tabindex=-1) применить
       .datepicker__calendar-container
         table.datepicker__calendar.js-datepicker__calendar
       .datepicker__month-year-container
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-minus(tabindex=-1) arrow_back
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-minus(type='button' tabindex=-1) arrow_back
         .datepicker__month-year.js-datepicker__month-year
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-plus(tabindex=-1) arrow_forward
+        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-plus(type='button' tabindex=-1) arrow_forward

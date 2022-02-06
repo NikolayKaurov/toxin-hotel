@@ -59,6 +59,10 @@ function handleQuantityInput(event) {
   event.data.dropdown__item.$dropdown__item.attr('data-quantity', value);
 }
 
+function handleQuantityMousedown(event) {
+  event.preventDefault();
+}
+
 function handleItemSetValue(event, value) {
   event.data.dropdown__item.$dropdown__quantity.val(value);
   event.data.dropdown__item.$dropdown__quantity.triggerHandler('input');
@@ -109,6 +113,13 @@ class Dropdown__item {
       null,
       { dropdown__item: this },
       handleQuantityInput,
+    );
+
+    this.$dropdown__quantity.on(
+      `mousedown.dropdown__quantity.${this.name}`,
+      null,
+      { dropdown__item: this },
+      handleQuantityMousedown,
     );
 
     this.$dropdown__item.on(

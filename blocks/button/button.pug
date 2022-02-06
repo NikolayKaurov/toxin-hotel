@@ -16,6 +16,6 @@ mixin button({ type = '', text = '', disabled = true })
     }
 
   .button
-    input.button__input(type='submit' value= text class= inputClass disabled= disabled)
+    input.button__input.js-button__input(type='submit' value= text class= inputClass disabled= disabled)
     if (type === 'white' || type === 'big')
       .button__back

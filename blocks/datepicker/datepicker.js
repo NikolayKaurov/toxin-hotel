@@ -142,6 +142,8 @@ function handleButtonMousedown(event) {
 
     event.data.datepicker.$datepicker__expands.removeClass('datepicker__expand_open');
 
+    event.data.datepicker.$datepicker.trigger('input');
+
     return;
   }
 
@@ -164,6 +166,7 @@ function handleButtonMousedown(event) {
       event.data.datepicker.todayMonth.getFullYear(),
       event.data.datepicker.todayMonth.getMonth(),
     );
+    event.data.datepicker.$datepicker.trigger('input');
   }
 
   event.data.datepicker.updateCalendar();
@@ -600,6 +603,8 @@ class Datepicker {
     this.updateDate({ date: 'arrival', value: this.confirmedArrival });
     this.updateDate({ date: 'departure', value: this.confirmedDeparture });
     this.lastSelectedDate = this.confirmedLastSelectedDate;
+
+    this.$datepicker.trigger('input');
   }
 }
 

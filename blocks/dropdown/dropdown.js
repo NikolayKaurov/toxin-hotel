@@ -93,6 +93,8 @@ function handleClear(event) {
   event.data.dropdown.$dropdown.addClass('dropdown_confirmed');
   event.data.dropdown.clearSnapshot();
   event.data.dropdown.$dropdown__buttons.prop('disabled', true);
+
+  event.data.dropdown.$dropdown.trigger('input');
 }
 
 function handleConfirm(event) {
@@ -259,6 +261,8 @@ class Dropdown {
     });
 
     this.$dropdown__value.text(this.getCommonValue());
+
+    this.$dropdown.trigger('input');
   }
 }
 

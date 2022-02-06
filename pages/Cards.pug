@@ -1,4 +1,27 @@
 include ../blocks/ui-kit/ui-kit
 include ../blocks/ui-kit/__header/ui-kit__header
+include ../blocks/cards/cards
+include ../blocks/cards/__item/cards__item
+include ../blocks/card-search/card-search
+include ../blocks/datepicker/datepicker
+include ../blocks/button/button
+include ../blocks/toggle/toggle
+include ../blocks/checkbox/checkbox
+include ../blocks/dropdown/dropdown
+include ../blocks/dropdown/__button-container/dropdown__button-container
+include ../blocks/dropdown/__button/dropdown__button
+include ../blocks/dropdown/__item/dropdown__item
 +ui-kit({ title: 'Cards', theme: 'gray' })
   +ui-kit__header
+  +cards
+    +cards__item
+      +card-search
+        +datepicker({ name: 'search-date', labelArrival: 'прибытие', labelDeparture: 'выезд', zIndex: 3})
+        +dropdown({name: 'search-guest', defaultValue: 'Сколько гостей', label: 'гости', zIndex: 2, guests: 'guests'})
+          +dropdown__button-container
+            +dropdown__button({action: 'confirm', text: 'применить'})
+            +dropdown__button({action: 'clear', text: 'очистить'})
+          +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
+          +dropdown__item({name: 'child', units: 'дети'})
+          +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+        +button({ type: 'big', text: 'подобрать номер', disabled: true })
