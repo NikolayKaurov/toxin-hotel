@@ -1,5 +1,12 @@
 .button {
   position: relative;
+  height: 44px;
+}
 
+.button_fill,.button_white {
+  width: 99px;
+}
+
+.button_big {
   width: 320px;
 }

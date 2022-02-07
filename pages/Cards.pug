@@ -11,6 +11,13 @@ include ../blocks/dropdown/dropdown
 include ../blocks/dropdown/__button-container/dropdown__button-container
 include ../blocks/dropdown/__button/dropdown__button
 include ../blocks/dropdown/__item/dropdown__item
+include ../blocks/card-registration/card-registration
+include ../blocks/text-field/text-field
+include ../blocks/radio/radio
+include ../blocks/radio/__button/radio__button
+include ../blocks/card-details/card-details
+include ../blocks/card-details/__header/card-details__header
+include ../blocks/card-details/__calc/card-details__calc
 +ui-kit({ title: 'Cards', theme: 'gray' })
   +ui-kit__header
   +cards
@@ -25,3 +32,16 @@ include ../blocks/dropdown/__item/dropdown__item
           +dropdown__item({name: 'child', units: 'дети'})
           +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
         +button({ type: 'big', text: 'подобрать номер', disabled: true })
+      +card-registration
+        +text-field({ name: 'registration-name', placeholder: 'Имя' })
+        +text-field({ name: 'registration-surname', placeholder: 'Фамилия' })
+        +radio({ name: 'registration-sex' })
+          +radio__button({ name: 'male', text: 'Мужчина', value: 'male', checked: true})
+          +radio__button({ name: 'female', text: 'Женщина', value: 'female' })
+        +text-field({ name: 'registration-birth', label: 'Дата рождения', mask: 'date' })
+        +text-field({ name: 'registration-email', placeholder: 'Email', label: 'Данные для входа в сервис' })
+        +text-field({ name: 'registration-password', placeholder: 'Пароль' })
+        +toggle({ name: 'registration-spam', text: 'Получать спецпредложения', value: 'spam' })
+        +button({ type: 'big', text: 'перейти к оплате', disabled: true })
+    +cards__item
+      +card-details({ number: '888', lux: '', price: 0 })

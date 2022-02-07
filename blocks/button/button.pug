@@ -1,21 +1,26 @@
 mixin button({ type = '', text = '', disabled = true })
   -
     let inputClass;
+    let buttonClass;
     switch (type) {
       case 'fill':
         inputClass = 'button__input_fill';
+        buttonClass = 'button_fill';
         break;
       case 'white':
         inputClass = 'button__input_white';
+        buttonClass = 'button_white';
         break;
       case 'big':
         inputClass = 'button__input_big';
+        buttonClass = 'button_big';
         break;
       default:
-        inputClass = ''
+        inputClass = '';
+        buttonClass = '';
     }
 
-  .button
+  .button(class= buttonClass)
     input.button__input.js-button__input(type='submit' value= text class= inputClass disabled= disabled)
     if (type === 'white' || type === 'big')
       .button__back

@@ -1,0 +1,14 @@
+mixin card-details({ number = '', lux = '', price = 0 } = {})
+  form.card-details.js-card-details
+    +card-details__header({ number, lux, price })
+    +datepicker({ name: 'details-date', labelArrival: 'прибытие', labelDeparture: 'выезд', zIndex: 3})
+    +dropdown({name: 'details-guest', defaultValue: 'Сколько гостей', label: 'гости', zIndex: 2, guests: 'guests'})
+      +dropdown__button-container
+        +dropdown__button({action: 'confirm', text: 'применить'})
+        +dropdown__button({action: 'clear', text: 'очистить'})
+      +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
+      +dropdown__item({name: 'child', units: 'дети'})
+      +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+    +card-details__calc({ discount: 0, fee: 0 })
+    +button({ type: 'big', text: 'забронировать', disabled: true })
+

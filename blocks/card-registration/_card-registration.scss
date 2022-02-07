@@ -1,0 +1,20 @@
+.card-registration {
+  display: grid;
+
+  width: 380px;
+  height: 646px;
+
+  box-sizing: border-box;
+
+  padding: 39px 0 0 29px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+
+  background: white;
+
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+
+  grid-template-rows: 50px 54px 54px 44px 84px 74px 54px 44px 74px auto;
+  grid-template-columns: 1fr;
+}

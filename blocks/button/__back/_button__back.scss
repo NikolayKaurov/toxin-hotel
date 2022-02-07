@@ -4,7 +4,7 @@
   left: 0;
   top: 0;
 
-  z-index: -1;
+  z-index: 0;
 
   width: 99px;
   height: 44px;
@@ -24,7 +24,7 @@
 
   left: 100%;
 
-  z-index: 1;
+  z-index: 2;
 }
 
 .button__input_big + .button__back::after {
@@ -47,7 +47,7 @@
   text-align: center;
   line-height: 44px;
 
-  z-index: 1;
+  z-index: 2;
 }
 
 .button__input:active + .button__back::after {

@@ -1,10 +1,6 @@
 import $ from 'jquery';
 
 function handleCardSearchInput(event) {
-  // console.log('ФОРМ ИНПУТ');
-  // console.log(`ВЗРОСЛЫХ: ${event.data.card.$adult.val()}`);
-  // console.log(`ПРИБЫТИЕ: ${event.data.card.$arrival.val()}`);
-  // console.log(`ВЫЕЗД: ${event.data.card.$departure.val()}`);
   if (
     parseInt(event.data.card.$adult.val(), 10)
     && event.data.card.$arrival.val()

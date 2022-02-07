@@ -1,0 +1,6 @@
+mixin card-registration
+  form.card-registration.js-card-registration
+    p.card-registration__header Регистрация аккаунта
+    block
+    .card-registration__footer Уже есть аккаунт на Toxin
+      +button({ type: 'white', text: 'войти', disabled: false })
