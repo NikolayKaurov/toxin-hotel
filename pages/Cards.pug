@@ -18,6 +18,7 @@ include ../blocks/radio/__button/radio__button
 include ../blocks/card-details/card-details
 include ../blocks/card-details/__header/card-details__header
 include ../blocks/card-details/__calc/card-details__calc
+include ../blocks/card-sign/card-sign
 +ui-kit({ title: 'Cards', theme: 'gray' })
   +ui-kit__header
   +cards
@@ -44,4 +45,7 @@ include ../blocks/card-details/__calc/card-details__calc
         +toggle({ name: 'registration-spam', text: 'Получать спецпредложения', value: 'spam' })
         +button({ type: 'big', text: 'перейти к оплате', disabled: true })
     +cards__item
-      +card-details({ number: '888', lux: '', price: 0 })
+      +card-details({ number: '888', lux: 'люкс', price: 9990, discount: 2179, feeAdd: 300 })
+      +card-sign
+    +cards__item
+      +datepicker({ name: 'search-date', labelArrival: 'прибытие', labelDeparture: 'выезд', zIndex: 3, modifier: 'demo' })

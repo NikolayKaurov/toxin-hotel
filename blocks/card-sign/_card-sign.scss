@@ -1,8 +1,8 @@
-.card-details {
+.card-sign {
   display: grid;
 
   width: 380px;
-  height: 512px;
+  height: 358px;
 
   box-sizing: border-box;
 
@@ -15,6 +15,6 @@
 
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
 
-  grid-template-rows: 50px 85px 82px 181px auto;
+  grid-template-rows: 50px 54px 64px 74px auto;
   grid-template-columns: 1fr;
 }

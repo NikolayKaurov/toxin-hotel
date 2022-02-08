@@ -1,0 +1,8 @@
+.card-details__calc-second-line {
+  display: grid;
+
+  width: 320px;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: 112px 108px 42px auto;
+}
