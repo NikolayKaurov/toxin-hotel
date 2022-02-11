@@ -1,7 +1,15 @@
 mixin review({ likes = 0, name = '', time = '', text = ''})
+  -
+    let srcImg = '';
+    if (name === 'Мурад Сарафанов') {
+      srcImg = require('../blocks/review/__photo/user1.png');
+    } else if (name === 'Патрисия Стёклышкова') {
+      srcImg = require('../blocks/review/__photo/user2.png');
+    }
+
   .review
     .review__avatar
-      .review__photo(data-name= name)
+      img.review__photo(src= srcImg)
       +like(likes)
     .review__body
       .review__name= name

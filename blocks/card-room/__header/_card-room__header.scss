@@ -1,0 +1,14 @@
+.card-room__header {
+  display: grid;
+
+  padding: 4px 0 0 0;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: 21px 56px 73px 55px auto;
+
+  color: rgba(31, 32, 65, 0.5);
+
+  font-size: 12px;
+
+  align-items: baseline;
+}

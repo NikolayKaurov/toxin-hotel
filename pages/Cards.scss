@@ -52,7 +52,6 @@
 @use 'blocks/dropdown/__quantity/dropdown__quantity';
 @use 'blocks/card-registration/card-registration';
 @use 'blocks/card-registration/__header/card-registration__header';
-@use 'blocks/card-registration/__footer/card-registration__footer';
 @use 'blocks/text-field/text-field';
 @use 'blocks/text-field/_date/text-field_date';
 @use 'blocks/text-field/__header/text-field__header';
@@ -65,6 +64,7 @@
 @use 'blocks/radio/__wrapper/radio__wrapper';
 @use 'blocks/radio/__button/radio__button';
 @use 'blocks/radio/__button-label/radio__button-label';
+@use 'blocks/card-registration/__footer/card-registration__footer';
 @use 'blocks/card-details/card-details';
 @use 'blocks/card-details/__header/card-details__header';
 @use 'blocks/card-details/__number/card-details__number';
@@ -88,3 +88,14 @@
 @use 'blocks/card-sign/card-sign';
 @use 'blocks/card-sign/__header/card-sign__header';
 @use 'blocks/card-sign/__footer/card-sign__footer';
+@use 'blocks/card-room/card-room';
+@use 'blocks/rate/rate';
+@use 'blocks/rate/__star/rate__star';
+@use 'blocks/card-room/__gallery/card-room__gallery';
+@use 'blocks/card-room/__image-chain/card-room__image-chain';
+@use 'blocks/card-room/__image/card-room__image';
+@use 'blocks/card-room/__header/card-room__header';
+@use 'blocks/card-room/__number/card-room__number';
+@use 'blocks/card-room/__numeric/card-room__numeric';
+@use 'blocks/card-room/__lux/card-room__lux';
+@use 'blocks/card-room/__price/card-room__price';

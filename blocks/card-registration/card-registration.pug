@@ -1,6 +1,15 @@
 mixin card-registration
   form.card-registration.js-card-registration
     p.card-registration__header Регистрация аккаунта
-    block
+    +text-field({name: 'registration-name', placeholder: 'Имя'})
+    +text-field({name: 'registration-surname', placeholder: 'Фамилия'})
+    +radio({name: 'registration-sex'})
+      +radio__button({name: 'male', text: 'Мужчина', value: 'male', checked: true})
+      +radio__button({name: 'female', text: 'Женщина', value: 'female'})
+    +text-field({name: 'registration-birth', label: 'Дата рождения', mask: 'date'})
+    +text-field({name: 'registration-email', placeholder: 'Email', label: 'Данные для входа в сервис'})
+    +text-field({name: 'registration-password', placeholder: 'Пароль'})
+    +toggle({name: 'registration-spam', text: 'Получать спецпредложения', value: 'spam'})
+    +button({type: 'big', text: 'перейти к оплате', disabled: true})
     .card-registration__footer Уже есть аккаунт на Toxin
       +button({ type: 'white', text: 'войти', disabled: false })

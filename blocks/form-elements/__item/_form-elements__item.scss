@@ -21,6 +21,10 @@
 
 .form-elements__item:nth-child(5) {
   grid-template-rows: 320px 378px auto;
+
+  .review {
+    width: 711px;
+  }
 }
 
 .form-elements__item:nth-child(6) {

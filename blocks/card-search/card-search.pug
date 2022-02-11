@@ -1,4 +1,12 @@
 mixin card-search
   form.card-search.js-card-search
     p.card-search__header Найдём номера под ваши пожелания
-    block
+    +datepicker({name: 'search-date', labelArrival: 'прибытие', labelDeparture: 'выезд', zIndex: 3})
+    +dropdown({name: 'search-guest', defaultValue: 'Сколько гостей', label: 'гости', zIndex: 2, guests: 'guests'})
+      +dropdown__button-container
+        +dropdown__button({action: 'confirm', text: 'применить'})
+        +dropdown__button({action: 'clear', text: 'очистить'})
+      +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
+      +dropdown__item({name: 'child', units: 'дети'})
+      +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+    +button({type: 'big', text: 'подобрать номер', disabled: true})

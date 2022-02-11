@@ -2,24 +2,14 @@
   width: 48px;
   height: 48px;
 
+  display: block;
+
   box-sizing: border-box;
 
   border: 2px solid white;
   border-radius: 32px;
 
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 48px;
-
   margin: 0 0 12px 0;
 
   filter: drop-shadow(0px 10px 20px rgba(31, 32, 65, 0.1));
-}
-
-.review__photo[data-name='Мурад Сарафанов'] {
-  background-image: url('./user1.png');
-}
-
-.review__photo[data-name='Патрисия Стёклышкова'] {
-  background-image: url('./user2.png');
 }
