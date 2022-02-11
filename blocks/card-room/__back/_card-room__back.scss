@@ -1,0 +1,21 @@
+.card-room__back {
+  position: absolute;
+
+  width: 44px;
+  height: 44px;
+
+  left: 0;
+  top: 53px;
+
+  font-family: material-icons, Arial, sans-serif;
+  font-size: 24px;
+  line-height: 44px;
+  text-align: center;
+  color: #FFFFFF;
+
+  transform: rotate(90deg);
+
+  z-index: 1;
+
+  cursor: pointer;
+}

@@ -1,21 +1,25 @@
 mixin card-room({ number = '', lux = '', price = 0, rate = 0, reviews = 0 } = {})
-  .card-room
+  .card-room.js-card-room(data-slide='0')
     .card-room__gallery
-      .card-room__image-chain
-        img.card-room__image(src=require('../blocks/card-room/__image/img1.png'))
-        img.card-room__image(src=require('../blocks/card-room/__image/img2.png'))
-        img.card-room__image(src=require('../blocks/card-room/__image/img3.png'))
-        img.card-room__image(src=require('../blocks/card-room/__image/img4.png'))
-      .card-room__nav
-    a.card-room__body
-      .card-room__header
-        .card-room__number №
-        .card-room__numeric= number
-        .card-room__lux= lux
-        .card-room__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
-        = 'в сутки'
-      .card-room__footer
-        +rate(rate)
-        .card-room__reviews= reviews
-        = 'Отзывов'
+      img.card-room__image(src=require('../blocks/card-room/__image/img1.png'))
+      img.card-room__image(src=require('../blocks/card-room/__image/img2.png'))
+      img.card-room__image(src=require('../blocks/card-room/__image/img3.png'))
+      img.card-room__image(src=require('../blocks/card-room/__image/img4.png'))
+      .card-room__back.js-card-room__back expand_more
+      .card-room__forward.js-card-room__forward expand_more
+      .card-room__nav.js-card-room__nav
+        .card-room__nav-item
+        .card-room__nav-item
+        .card-room__nav-item
+        .card-room__nav-item
+    a.card-room__header
+      .card-room__number №
+      .card-room__numeric= number
+      .card-room__lux= lux
+      .card-room__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
+      = 'в сутки'
+    .card-room__footer
+      +rate(rate)
+      .card-room__reviews= reviews
+      = 'Отзывов'
 

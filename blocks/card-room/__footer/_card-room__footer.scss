@@ -1,0 +1,19 @@
+.card-room__footer {
+  margin: 4px 20px 0 20px;
+
+  color: rgba(31, 32, 65, 0.5);
+
+  font-size: 14px;
+  line-height: 18px;
+
+  align-items: center;
+
+  height: 42px;
+
+  display: grid;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: 140px 28px auto;
+
+  border-top: 1px solid rgba(31, 32, 65, 0.1);
+}

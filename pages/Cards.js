@@ -8,6 +8,7 @@ import '../blocks/text-field/text-field';
 import '../blocks/radio/radio';
 import '../blocks/card-details/card-details';
 import '../blocks/card-sign/card-sign';
+import '../blocks/card-room/card-room';
 import '../blocks/dropdown/__button/dropdown__button';
 import '../blocks/dropdown/__item/dropdown__item';
 import '../favicons/favicons';

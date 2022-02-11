@@ -92,10 +92,15 @@
 @use 'blocks/rate/rate';
 @use 'blocks/rate/__star/rate__star';
 @use 'blocks/card-room/__gallery/card-room__gallery';
-@use 'blocks/card-room/__image-chain/card-room__image-chain';
 @use 'blocks/card-room/__image/card-room__image';
+@use 'blocks/card-room/__back/card-room__back';
+@use 'blocks/card-room/__forward/card-room__forward';
+@use 'blocks/card-room/__nav/card-room__nav';
+@use 'blocks/card-room/__nav-item/card-room__nav-item';
 @use 'blocks/card-room/__header/card-room__header';
 @use 'blocks/card-room/__number/card-room__number';
 @use 'blocks/card-room/__numeric/card-room__numeric';
 @use 'blocks/card-room/__lux/card-room__lux';
 @use 'blocks/card-room/__price/card-room__price';
+@use 'blocks/card-room/__footer/card-room__footer';
+@use 'blocks/card-room/__reviews/card-room__reviews';

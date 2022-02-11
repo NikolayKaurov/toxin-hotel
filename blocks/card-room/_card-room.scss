@@ -1,10 +1,13 @@
 .card-room {
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: 167px 33px auto;
+
   width: 270px;
   height: 257px;
 
   box-sizing: border-box;
-
-  //padding: 39px 0 0 29px;
 
   border-radius: 4px;
 
