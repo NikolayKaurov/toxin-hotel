@@ -18,6 +18,10 @@ function handleForwardMousedown(event) {
   event.data.$card.attr('data-slide', slide);
 }
 
+function handleNavMousedown(event) {
+  event.data.$card.attr('data-slide', parseInt(event.target.dataset.slide, 10));
+}
+
 class CardRoom {
   constructor(card) {
     this.$card = $(card);
@@ -39,6 +43,13 @@ class CardRoom {
       null,
       { $card: this.$card },
       handleForwardMousedown,
+    );
+
+    this.$nav.on(
+      'mousedown',
+      '.js-card-room__nav-item',
+      { $card: this.$card },
+      handleNavMousedown,
     );
   }
 }

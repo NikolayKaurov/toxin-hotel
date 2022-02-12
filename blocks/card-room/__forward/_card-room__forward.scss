@@ -19,3 +19,7 @@
 
   cursor: pointer;
 }
+
+.card-room__forward::selection {
+  background: transparent;
+}

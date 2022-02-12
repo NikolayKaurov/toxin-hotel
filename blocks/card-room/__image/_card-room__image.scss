@@ -13,19 +13,11 @@
   .card-room__image:nth-child(1) {
     opacity: 1;
   }
-
-  .card-room__nav-item:nth-child(1) {
-    background: white;
-  }
 }
 
 .card-room[data-slide='1'] {
   .card-room__image:nth-child(2) {
     opacity: 1;
-  }
-
-  .card-room__nav-item:nth-child(2) {
-    background: white;
   }
 }
 
@@ -33,19 +25,11 @@
   .card-room__image:nth-child(3) {
     opacity: 1;
   }
-
-  .card-room__nav-item:nth-child(3) {
-    background: white;
-  }
 }
 
 .card-room[data-slide='3'] {
   .card-room__image:nth-child(4) {
     opacity: 1;
-  }
-
-  .card-room__nav-item:nth-child(4) {
-    background: white;
   }
 }
 

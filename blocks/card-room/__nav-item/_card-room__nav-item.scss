@@ -9,4 +9,30 @@
   border-radius: 5px;
 
   z-index: 1;
+
+  cursor: pointer;
+}
+
+.card-room[data-slide='0'] {
+  .card-room__nav-item:nth-child(1) {
+    background: white;
+  }
+}
+
+.card-room[data-slide='1'] {
+  .card-room__nav-item:nth-child(2) {
+    background: white;
+  }
+}
+
+.card-room[data-slide='2'] {
+  .card-room__nav-item:nth-child(3) {
+    background: white;
+  }
+}
+
+.card-room[data-slide='3'] {
+  .card-room__nav-item:nth-child(4) {
+    background: white;
+  }
 }
