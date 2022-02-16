@@ -15,7 +15,12 @@
   background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
 }
 
-.button__input_white:disabled + .button__back {
+.button__input_white-narrow + .button__back {
+  width: 87px;
+  height: 34px;
+}
+
+.button__input_white:disabled + .button__back,.button__input_white-narrow:disabled + .button__back {
   opacity: 0.5;
 }
 

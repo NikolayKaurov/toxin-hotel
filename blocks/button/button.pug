@@ -7,9 +7,17 @@ mixin button({ type = '', text = '', disabled = true })
         inputClass = 'button__input_fill';
         buttonClass = 'button_fill';
         break;
+      case 'fill-wide':
+        inputClass = 'button__input_fill-wide';
+        buttonClass = 'button_fill-wide';
+        break;
       case 'white':
         inputClass = 'button__input_white';
         buttonClass = 'button_white';
+        break;
+      case 'white-narrow':
+        inputClass = 'button__input_white-narrow';
+        buttonClass = 'button_white-narrow';
         break;
       case 'big':
         inputClass = 'button__input_big';
@@ -22,5 +30,5 @@ mixin button({ type = '', text = '', disabled = true })
 
   .button(class= buttonClass)
     input.button__input.js-button__input(type='submit' value= text class= inputClass disabled= disabled)
-    if (type === 'white' || type === 'big')
+    if (type === 'white' || type === 'big'|| type === 'white-narrow')
       .button__back

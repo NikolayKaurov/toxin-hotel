@@ -22,7 +22,9 @@
 @use 'blocks/dropdown/__value/dropdown__value';
 @use 'blocks/button/button';
 @use 'blocks/button/__input/_fill/button__input_fill';
+@use 'blocks/button/__input/_fill-wide/button__input_fill-wide';
 @use 'blocks/button/__input/_white/button__input_white';
+@use 'blocks/button/__input/_white-narrow/button__input_white-narrow';
 @use 'blocks/button/__input/_big/button__input_big';
 @use 'blocks/button/__input/button__input';
 @use 'blocks/button/__back/button__back';
@@ -61,6 +63,15 @@
 @use 'blocks/subscription/__input/subscription__input';
 @use 'blocks/subscription/__submit/subscription__submit';
 @use 'blocks/checkbox/__button/checkbox__button';
+@use 'blocks/header/header';
+@use 'blocks/hamburger/hamburger';
+@use 'blocks/hamburger/__expand/hamburger__expand';
+@use 'blocks/hamburger/__label/hamburger__label';
+@use 'blocks/header/__item/header__item';
+@use 'blocks/header/__item/_about/header__item_about';
+@use 'blocks/logo/logo';
+@use 'blocks/logo/__toxin/logo__toxin';
+@use 'blocks/menu/menu';
 @use 'blocks/checkbox/__button-label/checkbox__button-label';
 @use 'blocks/checkbox/__header/checkbox__header';
 @use 'blocks/radio/radio';

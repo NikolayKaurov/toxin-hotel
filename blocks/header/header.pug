@@ -1,0 +1,16 @@
+mixin header
+  .header
+    +hamburger
+    +header__item({ href: 'https://www.figma.com/404/' })
+      +logo
+    +header__item({about: true}) О нас
+    +header__item
+      +menu({label: 'Услуги'})
+    +header__item Вакансии
+    +header__item Новости
+    +header__item
+      +menu({label: 'Соглашения'})
+    +header__item
+      +button({type: 'white-narrow', text: 'Войти', disabled: false})
+    +header__item
+      +button({type: 'fill-wide', text: 'Зарегистрироваться', disabled: false})

@@ -1,0 +1,7 @@
+mixin header__item({ about = false, href = 'https://google.com/404' } = {})
+  if (about)
+    a.header__item.header__item_about(href= href)
+      block
+  else
+    a.header__item(href= href)
+      block
