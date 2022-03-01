@@ -1,0 +1,18 @@
+.menu__item {
+  font-size: 14px;
+  line-height: 20px;
+
+  color: rgba(31, 32, 65, 0.5);
+
+  text-decoration: none;
+
+  padding: 10px 10px 0 10px;
+}
+
+.menu__item:last-child {
+  padding: 10px;
+}
+
+.menu__item::selection {
+  background: transparent;
+}

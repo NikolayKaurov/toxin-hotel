@@ -1,5 +1,6 @@
-mixin hamburger
+mixin hamburger({ id = '' } = {})
   .hamburger
-    input.hamburger__expand(type='checkbox' id='hamburger__expand')
-    label.hamburger__label(for='hamburger__expand')
+    input.hamburger__expand(type='checkbox' id= `hamburger__expand${id}`)
+    label.hamburger__label(for= `hamburger__expand${id}`)
     .hamburger__down
+      block

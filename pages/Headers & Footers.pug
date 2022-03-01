@@ -5,13 +5,17 @@ include ../blocks/header/header
 include ../blocks/hamburger/hamburger
 include ../blocks/checkbox/checkbox
 include ../blocks/button/button
+include ../blocks/hamburger/__item/hamburger__item
 include ../blocks/header/__item/header__item
 include ../blocks/logo/logo
 include ../blocks/menu/menu
+include ../blocks/menu/__item/menu__item
+include ../blocks/header/__user/header__user
 +ui-kit({ title: 'Headers & Footers', theme: 'gray' })
   +ui-kit__header
   +header-demo
     +header
+    +header({user: 'Юлий Цезарь', id: 'head2'})
 
 
 

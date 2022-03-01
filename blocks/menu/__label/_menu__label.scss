@@ -1,4 +1,4 @@
-/* .menu {
+.menu__label {
   font-size: 14px;
   line-height: 20px;
 
@@ -11,7 +11,7 @@
   position: relative;
 }
 
-.menu::after {
+.menu__label::after {
   font-family: material-icons, Arial, sans-serif;
   font-size: 24px;
   line-height: 21px;
@@ -24,29 +24,10 @@
   content: 'expand_more';
 }
 
-.menu::selection {
+.menu__label::selection {
   background: transparent;
 }
 
-.menu__input:checked ~ .menu::after {
+.menu__input:checked ~ .menu__label::after {
   content: 'expand_less';
-} */
-
-.menu {
-  height: 20px;
-
-  position: relative;
 }
-
-.header .menu:nth-child(4) {
-  width: 74px;
-
-  margin: 0 10px 0 10px;
-}
-
-.header .menu:nth-child(7) {
-  width: 116px;
-
-  margin: 0 10px 0 10px;
-}
-

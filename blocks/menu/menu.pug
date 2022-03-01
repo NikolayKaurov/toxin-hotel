@@ -1,5 +1,8 @@
-mixin menu({ label = '' } = {})
-  .menu= label
+mixin menu({ label = '', id = 'undefined-id' } = {})
+  .menu
+    input.menu__input(id= id type='checkbox')
+    label.menu__label(for= id)= label
     .menu__down
       block
+
 

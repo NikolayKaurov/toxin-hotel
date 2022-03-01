@@ -1,16 +1,52 @@
-mixin header
-  .header
-    +hamburger
-    +header__item({ href: 'https://www.figma.com/404/' })
-      +logo
-    +header__item({about: true}) О нас
-    +header__item
-      +menu({label: 'Услуги'})
-    +header__item Вакансии
-    +header__item Новости
-    +header__item
-      +menu({label: 'Соглашения'})
-    +header__item
-      +button({type: 'white-narrow', text: 'Войти', disabled: false})
-    +header__item
-      +button({type: 'fill-wide', text: 'Зарегистрироваться', disabled: false})
+mixin header({ user = '', id = '' } = {})
+  if (user === '')
+    .header
+      .header__wrapper
+        +hamburger({id})
+          +hamburger__item({text: 'О нас'})
+          +hamburger__item({text: 'Услуги'})
+          +hamburger__item({text: 'Вакансии'})
+          +hamburger__item({text: 'Новости'})
+          +hamburger__item({text: 'Соглашения'})
+          +hamburger__item({text: 'Войти'})
+          +hamburger__item({text: 'Зарегистрироваться'})
+        +header__item({ href: 'https://www.figma.com/404/' })
+          +logo
+        +header__item({about: true}) О нас
+        +menu({label: 'Услуги', id: 'service'})
+          +menu__item({text: 'Такси', href: 'https://yandex.ru'})
+          +menu__item({text: 'Завтрак'})
+        +header__item Вакансии
+        +header__item Новости
+        +menu({label: 'Соглашения', id: 'agreement'})
+          +menu__item({text: 'Пользовательское'})
+          +menu__item({text: 'Администраторское'})
+          +menu__item({text: 'Гостевое'})
+        +header__item
+          +button({type: 'white-narrow', text: 'Войти', disabled: false})
+        +header__item
+          +button({type: 'fill-wide', text: 'Зарегистрироваться', disabled: false})
+  else
+    .header.header_signed
+      .header__wrapper
+        +hamburger({id})
+          +hamburger__item({text: 'О нас'})
+          +hamburger__item({text: 'Услуги'})
+          +hamburger__item({text: 'Вакансии'})
+          +hamburger__item({text: 'Новости'})
+          +hamburger__item({text: 'Соглашения'})
+          +hamburger__item({text: 'Войти'})
+          +hamburger__item({text: 'Зарегистрироваться'})
+        +header__item({href: 'https://www.figma.com/404/'})
+          +logo
+        +header__item({about: true}) О нас
+        +menu({label: 'Услуги', id: `service${id}`})
+          +menu__item({text: 'Такси', href: 'https://yandex.ru'})
+          +menu__item({text: 'Завтрак'})
+        +header__item Вакансии
+        +header__item Новости
+        +menu({label: 'Соглашения', id: `agreement${id}`})
+          +menu__item({text: 'Пользовательское'})
+          +menu__item({text: 'Администраторское'})
+          +menu__item({text: 'Гостевое'})
+        +header__user({user})
