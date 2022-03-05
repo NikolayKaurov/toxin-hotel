@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  //justify-content: center;
+
+  background: white;
+
+  width: 100%;
+
+  box-shadow: 0 10px 20px rgba(31, 32, 65, 0.05);
+
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(31, 32, 65, 0.75);
+}

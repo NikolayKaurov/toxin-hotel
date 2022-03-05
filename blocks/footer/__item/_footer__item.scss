@@ -1,0 +1,35 @@
+.footer__wrapper-up {
+  .footer__item {
+    margin: 100px 0 0 0;
+
+    box-sizing: border-box;
+
+    //flex-shrink: 0;
+  }
+
+  .footer__item:first-child {
+    //margin: 100px 0 0 20px;
+
+    width: 23.33%;
+    max-width: 280px;
+
+    //flex-shrink: 1;
+  }
+
+  .footer__item:last-child {
+    //margin: 100px 20px 0 0;
+
+    width: 280px;
+  }
+
+  .footer__item:nth-child(2) {
+    width: 16.67%;
+    padding: 0 0 0 1.67%;
+  }
+
+  .footer__item:nth-child(3),
+  .footer__item:nth-child(4),
+  .footer__item:nth-child(5) {
+    width: 20%;
+  }
+}
