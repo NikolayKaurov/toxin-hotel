@@ -8,3 +8,15 @@
 
   padding: 0 20px;
 }
+
+@media all and (max-width: 1199px) {
+  .footer__wrapper-up {
+    display: none;
+  }
+}
+
+.footer_narrow {
+  .footer__wrapper-up {
+    display: none;
+  }
+}

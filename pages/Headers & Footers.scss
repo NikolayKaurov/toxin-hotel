@@ -37,6 +37,7 @@
 @use 'blocks/footer/footer';
 @use 'blocks/footer/__wrapper-up/footer__wrapper-up';
 @use 'blocks/footer/__item/footer__item';
+@use 'blocks/footer/__text/footer__text';
 @use 'blocks/footer/__header/footer__header';
 @use 'blocks/footer/__ref/footer__ref';
 @use 'blocks/subscription/subscription';
@@ -44,6 +45,10 @@
 @use 'blocks/subscription/__wrapper/subscription__wrapper';
 @use 'blocks/subscription/__input/subscription__input';
 @use 'blocks/subscription/__submit/subscription__submit';
+@use 'blocks/footer/__border/footer__border';
 @use 'blocks/footer/__wrapper-down/footer__wrapper-down';
 @use 'blocks/footer/__social/footer__social';
+@use 'blocks/footer/__twitter/footer__twitter';
+@use 'blocks/footer/__facebook/footer__facebook';
+@use 'blocks/footer/__instagram/footer__instagram';
 @use 'blocks/footer/__wrapper-narrow/footer__wrapper-narrow';

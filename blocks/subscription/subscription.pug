@@ -1,5 +1,11 @@
-mixin subscription(label = '')
-  form.subscription.js-subscription
+mixin subscription({ label = '', narrow = false } = {})
+  -
+    let modifier = '';
+    if (narrow) {
+      modifier = 'subscription_narrow';
+    }
+
+  form.subscription.js-subscription(class= modifier)
     if (label)
       p.subscription__label= label
     .subscription__wrapper

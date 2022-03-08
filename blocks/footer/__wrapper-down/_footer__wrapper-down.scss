@@ -1,3 +1,25 @@
 .footer__wrapper-down {
+  max-width: 1200px;
+  width: 83.3%;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 70px;
+
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+@media all and (max-width: 1199px) {
+  .footer__wrapper-down {
+    display: none;
+  }
+}
+
+.footer_narrow {
+  .footer__wrapper-down {
+    display: none;
+  }
 }

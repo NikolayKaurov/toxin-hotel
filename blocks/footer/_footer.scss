@@ -10,10 +10,22 @@
   background: white;
 
   width: 100%;
-
-  box-shadow: 0 10px 20px rgba(31, 32, 65, 0.05);
+  height: 443px;
 
   font-size: 14px;
   line-height: 24px;
   color: rgba(31, 32, 65, 0.75);
+
+  box-shadow: 0 10px 20px rgba(31, 32, 65, 0.1);
 }
+
+.footer.footer_narrow {
+  background: #e5e5e5;
+}
+
+@media all and (max-width: 1199px) {
+  .footer {
+    height: 367px;
+  }
+}
+

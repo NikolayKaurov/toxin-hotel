@@ -10,26 +10,34 @@
   .footer__item:first-child {
     //margin: 100px 0 0 20px;
 
-    width: 23.33%;
+    width: 22.41%;
     max-width: 280px;
 
-    //flex-shrink: 1;
+    flex-shrink: 0;
   }
 
   .footer__item:last-child {
     //margin: 100px 20px 0 0;
 
-    width: 280px;
+    width: 260px;
   }
 
   .footer__item:nth-child(2) {
-    width: 16.67%;
-    padding: 0 0 0 1.67%;
+    width: 20.69%;
+    padding: 0 0 0 3.45%;
+
+    flex-shrink: 0;
   }
 
-  .footer__item:nth-child(3),
-  .footer__item:nth-child(4),
-  .footer__item:nth-child(5) {
-    width: 20%;
+  .footer__item:nth-child(3) {
+    width: 17.24%;
+
+    flex-shrink: 1;
+  }
+
+  .footer__item:nth-child(4) {
+    width: 17.24%;
+
+    flex-shrink: 0;
   }
 }
