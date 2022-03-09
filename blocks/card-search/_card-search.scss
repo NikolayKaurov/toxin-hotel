@@ -18,3 +18,14 @@
   grid-template-rows: 80px 85px 95px auto;
   grid-template-columns: 1fr;
 }
+
+@media all and (max-width: 380px) {
+  .card-search {
+    width: 100%;
+
+    border-left: 0;
+    border-right: 0;
+
+    padding: 39px 0 0 calc((100% - 320px) / 2 );
+  }
+}

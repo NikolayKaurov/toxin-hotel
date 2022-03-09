@@ -1,0 +1,59 @@
+.landing {
+  width: 100%;
+
+  padding-top: 70px;
+
+  flex-grow: 1;
+  min-height: 760px;
+
+  display: flex;
+  justify-content: center;
+
+  background-size: 106.53% auto;
+  background-position: left -47px top -131px;
+
+  animation-name: background;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  //animation-direction: alternate;
+}
+
+@media all and (max-width: 1399px) {
+  @keyframes background {
+    1%, 33% {
+      background-image: url('./landing1.jpg');
+      background-size: cover;
+      background-position: left 0 top 0;
+    }
+    34%, 66% {
+      background-image: url('./landing2.jpg');
+      background-size: cover;
+      background-position: left 0 top 0;
+    }
+    67%, 100%, 0% {
+      background-image: url('./landing3.jpg');
+      background-size: cover;
+      background-position: left 0 top 0;
+    }
+  }
+}
+
+@media all and (min-width: 1400px) {
+  @keyframes background {
+    1%, 33% {
+      background-image: url('./landing1.jpg');
+      background-size: 106.53% auto;
+      background-position: left -47px top -131px;
+    }
+    34%, 66% {
+      background-image: url('./landing2.jpg');
+      background-size: 137.7% auto;
+      background-position: left -543px top -199px;
+    }
+    67%, 100%, 0% {
+      background-image: url('./landing3.jpg');
+      background-size: 111.11% auto;
+      background-position: left -160px top 0px;
+    }
+  }
+}

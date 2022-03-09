@@ -1,16 +1,6 @@
-mixin ui-kit({ title = 'ui-kit', theme = 'white' } = {})
-  -
-    let uiKitTheme;
-    switch (theme) {
-      case 'gray':
-        uiKitTheme = 'ui-kit_theme_gray';
-        break;
-      default:
-        uiKitTheme = 'ui-kit_theme_white';
-    }
-
+mixin page({ title = 'page' })
   doctype html
-  html.ui-kit(class= uiKitTheme lang='ru')
+  html.page(lang='ru')
     head
       meta(charset="utf-8")
       title= title
@@ -24,5 +14,5 @@ mixin ui-kit({ title = 'ui-kit', theme = 'white' } = {})
       link(rel="mask-icon" href="./assets/favicons/safari-pinned-tab.svg" color="#5bbad5")
       meta(name="msapplication-TileColor" content="#da532c")
       meta(name="theme-color" content="#ffffff")
-    body.ui-kit__body
+    body.page__body
       block

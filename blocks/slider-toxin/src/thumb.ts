@@ -46,8 +46,8 @@ function handleThumbMousemove(event: JQuery.TriggeredEvent) {
 }
 
 function handleThumbMouseup(event: JQuery.TriggeredEvent) {
-  $(document).off('mousemove touchmove', handleThumbMousemove);
-  $(document).off('mouseup touchend', handleThumbMouseup);
+  $(document).off('mousemove pointermove', handleThumbMousemove);
+  $(document).off('mouseup pointerup', handleThumbMouseup);
 
   /* eslint-disable-next-line */ /* Thumb.dragging - это сеттер */
   event.data.thumb.dragging = false;
@@ -76,14 +76,14 @@ function handleThumbMousedown(event: JQuery.TriggeredEvent) {
   event.data.thumb.shift = shift;
 
   $(document).on(
-    'mousemove touchmove',
+    'mousemove pointermove',
     null,
     { thumb: event.data.thumb },
     handleThumbMousemove,
   );
 
   $(document).on(
-    'mouseup touchend',
+    'mouseup pointerup',
     null,
     { thumb: event.data.thumb },
     handleThumbMouseup,
@@ -145,7 +145,7 @@ export default class Thumb {
     this.$tip = $('.js-slider__tip', this.$thumb);
 
     this.$thumb.on(
-      'mousedown touchstart',
+      'mousedown pointerdown',
       null,
       { thumb: this },
       handleThumbMousedown,

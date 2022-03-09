@@ -8,3 +8,9 @@
   width: 320px;
   margin: 0;
 }
+
+@media all and (max-width: 639px) {
+  .card-search__header {
+    text-align: center;
+  }
+}
