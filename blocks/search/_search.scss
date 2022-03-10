@@ -1,0 +1,23 @@
+.search {
+  width: 100%;
+
+  flex-grow: 1;
+  min-height: 1356px;
+
+  display: flex;
+  justify-content: center;
+
+  background: white;
+
+  border-bottom: 1px solid #e5e5e5;
+
+  position: relative;
+  z-index: 0;
+}
+
+@media all and (max-width: 1439px) {
+  .search {
+    padding-bottom: 50px;
+  }
+}
+

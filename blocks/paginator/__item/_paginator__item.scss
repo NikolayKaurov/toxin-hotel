@@ -3,10 +3,6 @@
 
   position: relative;
 
-  width: 40px;
-  height: 40px;
-
-  line-height: 40px;
   text-align: center;
   font-size: 12px;
 
@@ -42,54 +38,123 @@
   background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
 }
 
-@for $i from 1 through 99 {
-  .paginator[data-active='#{$i}'] {
-    .paginator__item:nth-child(#{$i - 2}):not(:first-child):not(:nth-child(2)) {
-      display: block;
-      pointer-events: none;
-      color: transparent;
-      border: transparent;
-      &:after {
-        content: '...';
-        position: absolute;
-        color: rgba(31, 32, 65, 0.5);
-        left: 50%;
-        transform: translate(-50%, 0);
-      }
-    }
-    .paginator__item:nth-child(#{$i - 1}):not(:first-child) {
-      display: block;
-    }
-    .paginator__item:nth-child(#{$i}):not(:first-child) {
-      display: block;
-    }
-    .paginator__item:nth-child(#{$i + 1}) {
-      display: block;
-      color: white;
-      font-weight: bold;
-      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+@media all and (min-width: 480px) {
+  .paginator__item {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
 
-      +.paginator__item:last-child {
-        display: none;
+  @for $i from 1 through 99 {
+    .paginator[data-active='#{$i}'] {
+      .paginator__item:nth-child(#{$i - 2}):not(:first-child):not(:nth-child(2)) {
+        display: block;
+        pointer-events: none;
+        color: transparent;
+        border: transparent;
+        &:after {
+          content: '...';
+          position: absolute;
+          color: rgba(31, 32, 65, 0.5);
+          left: 50%;
+          transform: translate(-50%, 0);
+        }
+      }
+      .paginator__item:nth-child(#{$i - 1}):not(:first-child) {
+        display: block;
+      }
+      .paginator__item:nth-child(#{$i}):not(:first-child) {
+        display: block;
+      }
+      .paginator__item:nth-child(#{$i + 1}) {
+        display: block;
+        color: white;
+        font-weight: bold;
+        background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+
+        +.paginator__item:last-child {
+          display: none;
+        }
+      }
+      .paginator__item:nth-child(#{$i + 2}):not(:last-child) {
+        display: block;
+      }
+      .paginator__item:nth-child(#{$i + 3}):not(:last-child) {
+        display: block;
+      }
+      .paginator__item:nth-child(#{$i + 4}):not(:last-child):not(:nth-last-child(2)) {
+        display: block;
+        pointer-events: none;
+        color: transparent;
+        border: transparent;
+        &:after {
+          content: '...';
+          position: absolute;
+          color: rgba(31, 32, 65, 0.5);
+          left: 50%;
+          transform: translate(-50%, 0);
+        }
       }
     }
-    .paginator__item:nth-child(#{$i + 2}):not(:last-child) {
-      display: block;
-    }
-    .paginator__item:nth-child(#{$i + 3}):not(:last-child) {
-      display: block;
-    }
-    .paginator__item:nth-child(#{$i + 4}):not(:last-child):not(:nth-last-child(2)) {
-      display: block;
-      pointer-events: none;
-      color: transparent;
-      border: transparent;
-      &:after {
-        content: '...';
-        position: absolute;
-        color: rgba(31, 32, 65, 0.5);
-        left: 50%;
-        transform: translate(-50%, 0);
+  }
+}
+
+@media all and (max-width: 479px) {
+  .paginator__item {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+  }
+
+  @for $i from 1 through 99 {
+    .paginator[data-active='#{$i}'] {
+      .paginator__item:nth-child(#{$i - 1}):not(:first-child):not(:nth-child(2)) {
+        display: block;
+        pointer-events: none;
+        color: transparent;
+        border: transparent;
+        &:after {
+          content: '...';
+          position: absolute;
+          color: rgba(31, 32, 65, 0.5);
+          left: 50%;
+          transform: translate(-50%, 0);
+        }
+      }
+      /* .paginator__item:nth-child(#{$i - 1}):not(:first-child) {
+        display: block;
+      } */
+      .paginator__item:nth-child(#{$i}):not(:first-child) {
+        display: block;
+      }
+      .paginator__item:nth-child(#{$i + 1}) {
+        display: block;
+        color: white;
+        font-weight: bold;
+        background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+
+        +.paginator__item:last-child {
+          display: none;
+        }
+      }
+      /* .paginator__item:nth-child(#{$i + 2}):not(:last-child) {
+        display: block;
+      } */
+      .paginator__item:nth-child(#{$i + 2}):not(:last-child) {
+        display: block;
+      }
+      .paginator__item:nth-child(#{$i + 3}):not(:last-child):not(:nth-last-child(2)) {
+        display: block;
+        pointer-events: none;
+        color: transparent;
+        border: transparent;
+        &:after {
+          content: '...';
+          position: absolute;
+          color: rgba(31, 32, 65, 0.5);
+          left: 50%;
+          transform: translate(-50%, 0);
+        }
       }
     }
   }

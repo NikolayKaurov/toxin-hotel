@@ -1,0 +1,12 @@
+.search__wrapper {
+  width: 80.56%;
+  max-width: 1160px;
+
+  display: flex;
+}
+
+@media all and (max-width: 1439px) {
+  .search__wrapper {
+    justify-content: center;
+  }
+}

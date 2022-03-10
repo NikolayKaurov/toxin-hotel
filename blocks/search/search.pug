@@ -1,0 +1,61 @@
+mixin search
+  .search
+    .search__wrapper
+      form.search__form
+        +datepicker({ name: 'date', zIndex: 5, label: 'Даты пребывания в отеле', modifier: 'filter' })
+        +dropdown({name: 'guest', defaultValue: 'Сколько гостей', label: 'гости', zIndex: 4, guests: 'guests', narrow: 'narrow'})
+          +dropdown__button-container
+            +dropdown__button({action: 'confirm', text: 'применить'})
+            +dropdown__button({action: 'clear', text: 'очистить'})
+          +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
+          +dropdown__item({name: 'child', units: 'дети'})
+          +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+        +slider-toxin({
+          label: 'диапазон цены',
+          description: 'Стоимость за сутки пребывания в номере',
+          start: 1000,
+          end: 15000,
+          step: 1000,
+          from: 5000,
+          to: 10000,
+          name: 'price',
+        })
+        +checkbox({label: 'правила дома', name: 'rule'})
+          +checkbox__button({name: 'smoke', text: 'Можно курить'})
+          +checkbox__button({name: 'pet', text: 'Можно с питомцами', checked: true})
+          +checkbox__button({name: 'guest', text: 'Можно пригласить гостей (до 10 человек)', checked: true})
+        +checkbox({label: 'доступность', name: 'reach', wide: 'wide'})
+          +checkbox__button({
+            name: 'wide',
+            text: `Ширина коридоров в номере не менее 91 см.`,
+            header: 'Широкий коридор'
+          })
+          +checkbox__button({
+            name: 'assistant',
+            text: `На 1 этаже вас встретит специалист и проводит до номера`,
+            header: 'Помощник для инвалидов'
+          })
+        +dropdown({
+          name: 'rooms',
+          defaultValue: 'Сколько комнат',
+          label: 'удобства номера',
+          description: '',
+          zIndex: 3,
+          narrow: 'narrow'
+        })
+          +dropdown__item({name: 'bath', units: 'ванные комнаты ванная ванных ванных'})
+          +dropdown__item({name: 'bed', units: 'кровати кровать кровати кроватей'})
+          +dropdown__item({name: 'bedroom', units: 'спальни спальня спальни спален'})
+        +checkbox({label: 'дополнительные удобства', name: 'extra', expand: 'expand'})
+          +checkbox__button({name: 'breakfast', text: 'Завтрак'})
+          +checkbox__button({name: 'table', text: 'Письменный стол', checked: true})
+          +checkbox__button({name: 'chair', text: 'Стул для кормления', checked: true})
+          +checkbox__button({name: 'cradle', text: 'Кроватка', checked: true})
+          +checkbox__button({name: 'tv', text: 'Телевизор'})
+          +checkbox__button({name: 'shampoo', text: 'Шампунь'})
+      .search__result
+        .search__header Номера, которые мы для вас подобрали
+        .search__rooms
+          block
+        +paginator({ length: 15 })
+

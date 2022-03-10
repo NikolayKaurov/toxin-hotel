@@ -1,0 +1,20 @@
+.search__rooms {
+  display: grid;
+
+  margin-bottom: 25px;
+}
+
+@media all and (min-width: 1440px) {
+  .search__rooms {
+    grid-template-rows: 278px 278px 278px 257px;
+    grid-template-columns: 282px 282px auto;
+  }
+}
+
+@media all and (max-width: 1439px) {
+  .search__rooms {
+    grid-template-rows: 278px 278px 278px 278px 278px 257px;
+    grid-template-columns: 282px auto;
+  }
+}
+
