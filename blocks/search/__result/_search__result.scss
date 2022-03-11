@@ -4,3 +4,15 @@
 
   margin: 0 0 0 60px;
 }
+
+@media all and (max-width: 1089px) {
+  .search__result {
+    margin: 0 0 0 10px;
+  }
+}
+
+@media all and (max-width: 639px) {
+  .search__result {
+    margin: 0;
+  }
+}

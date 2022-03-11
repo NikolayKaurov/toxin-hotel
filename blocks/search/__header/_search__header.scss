@@ -6,3 +6,11 @@
 
   padding: 30px 0 21px 0;
 }
+
+@media all and (max-width: 1089px) {
+  .search__header {
+    width: 320px;
+    text-align: center;
+  }
+}
+

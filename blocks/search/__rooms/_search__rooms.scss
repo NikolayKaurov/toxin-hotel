@@ -11,10 +11,22 @@
   }
 }
 
-@media all and (max-width: 1439px) {
+@media all and (min-width: 1090px) and (max-width: 1439px) {
   .search__rooms {
     grid-template-rows: 278px 278px 278px 278px 278px 257px;
     grid-template-columns: 282px auto;
+  }
+}
+
+@media all and (max-width: 1089px) {
+  .search__rooms {
+    grid-template-rows: 278px 278px 278px 278px 278px 278px 278px 278px 278px 278px 278px 257px;
+    grid-template-columns: 1fr;
+
+    width: 320px;
+
+    justify-items: center;
+    //text-align: center;
   }
 }
 
