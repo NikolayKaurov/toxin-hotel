@@ -1,5 +1,11 @@
-mixin list-icon__item({icon = '', header = '', text = ''})
-  .list-icon__item
+mixin list-icon__item({icon = '', header = '', text = '', underline = true} = {})
+  -
+    let itemClass = '';
+    if (underline === false) {
+      itemClass = 'list-icon__item_without-underline'
+    }
+
+  .list-icon__item(class= itemClass)
     .list-icon__icon= icon
     .list-icon__wrapper
       .list-icon__header= header

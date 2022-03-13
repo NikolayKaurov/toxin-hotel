@@ -50,7 +50,7 @@ include ../blocks/list/__item/list__item
       +text-field({ name: 'masked-field', placeholder: 'ДД.ММ.ГГГГ', label: 'masked text field', description: '', mask: 'date'})
       +datepicker({ name: 'NewYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 6, label: 'даты пребывания в отеле'})
       +datepicker({ name: 'OldYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 5, label: 'filter date dropdown', modifier: 'filter' })
-      +subscription('subscription text field')
+      +subscription({label: 'subscription text field'})
     +form-elements__item
       +checkbox({ label: 'checkbox buttons', name: 'check' })
         +checkbox__button({ name: '1', text: 'Можно курить' })

@@ -1,0 +1,13 @@
+.details__photo:nth-child(1) {
+  grid-area: a;
+}
+
+.details__photo:nth-child(2) {
+  grid-area: b;
+}
+
+.details__photo:nth-child(3) {
+  grid-area: c;
+
+  object-position: -171px -39px;
+}

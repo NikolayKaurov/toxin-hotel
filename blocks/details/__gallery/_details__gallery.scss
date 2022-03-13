@@ -1,0 +1,9 @@
+.details__gallery {
+  width: 100%;
+  height: 485px;
+
+  display: grid;
+  grid-template-columns: 981px auto;
+  grid-template-rows: 243px auto;
+  grid-template-areas: 'a b' 'a c';
+}

@@ -1,0 +1,32 @@
+.chart__bullet {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 5px;
+
+  margin-right: 5px;
+}
+
+.chart__item:nth-child(1) {
+  .chart__bullet {
+    background: linear-gradient(180deg, #FFE39C 0%, #FFBA9C 100%);
+  }
+}
+
+.chart__item:nth-child(2) {
+  .chart__bullet {
+    background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
+  }
+}
+
+.chart__item:nth-child(3) {
+  .chart__bullet {
+    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+  }
+}
+
+.chart__item:nth-child(4) {
+  .chart__bullet {
+    background: linear-gradient(180deg, #919191 0%, #3D4975 100%);
+  }
+}

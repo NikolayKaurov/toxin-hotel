@@ -1,0 +1,12 @@
+.details__body {
+  width: 80.56%;
+
+  padding-top: 70px;
+
+  display: grid;
+  grid-template-rows: 303px 336px auto;
+  grid-template-columns: 361px 419px auto;
+  grid-template-areas: 'a b c'
+                       'd d c'
+                       'e f c';
+}

@@ -1,0 +1,64 @@
+include ../blocks/page/page
+include ../blocks/details/details
+include ../blocks/header/header
+include ../blocks/hamburger/hamburger
+include ../blocks/checkbox/checkbox
+include ../blocks/button/button
+include ../blocks/hamburger/__item/hamburger__item
+include ../blocks/header/__item/header__item
+include ../blocks/logo/logo
+include ../blocks/menu/menu
+include ../blocks/menu/__item/menu__item
+include ../blocks/header/__user/header__user
+include ../blocks/list-icon/list-icon
+include ../blocks/list-icon/__item/list-icon__item
+include ../blocks/card-details/card-details
+include ../blocks/card-details/__header/card-details__header
+include ../blocks/datepicker/datepicker
+include ../blocks/toggle/toggle
+include ../blocks/dropdown/dropdown
+include ../blocks/dropdown/__button-container/dropdown__button-container
+include ../blocks/dropdown/__button/dropdown__button
+include ../blocks/dropdown/__item/dropdown__item
+include ../blocks/card-details/__calc/card-details__calc
+include ../blocks/footer/footer
+include ../blocks/subscription/subscription
+include ../blocks/footer/__social/footer__social
++page({title: 'Room details'})
+  +header
+  +details
+    .details__info
+      .details__header Сведения о номере
+      +list-icon
+        +list-icon__item({icon: 'insert_emoticon', header: 'Комфорт', text: 'Шумопоглощающие стены'})
+        +list-icon__item({icon: 'location_city', header: 'Удобство', text: 'Окно в каждой из спален'})
+        +list-icon__item({icon: 'whatshot', header: 'Уют', text: 'Номер оснащён камином', underline: false})
+    .details__chart
+      .details__header Сведения о номере
+      +chart({fabulous: 130, good: 65, satisfactorily: 65})
+    +card-details({ number: '888', lux: 'люкс', price: 9990, discount: 2179, feeAdd: 300 })
+    +details__reviews
+      .details__header Отзывы посетителей номера
+      .details__number-reviews 2 отзыва
+      +review({
+        likes: 11,
+        name: 'Мурад Сарафанов',
+        time: '5 дней назад',
+        text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.',
+      })
+      +review({
+        likes: 2,
+        name: 'Патрисия Стёклышкова',
+        time: 'Неделю назад',
+        text: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент',
+      })
+      +details__rules
+        .details__header Правила
+        +list({marker: 'bullet'})
+          +list__item Нельзя с питомцами
+          +list__item Без вечеринок и мероприятий
+          +list__item Время прибытия — после 13:00, а выезд до 12:00
+      +details__cancel
+        .details__header Правила
+        .details__paragraph Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
+  +footer

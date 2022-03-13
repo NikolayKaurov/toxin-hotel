@@ -45,7 +45,7 @@
     line-height: 40px;
   }
 
-  @for $i from 1 through 99 {
+  @for $i from 1 through 15 {
     .paginator[data-active='#{$i}'] {
       .paginator__item:nth-child(#{$i - 2}):not(:first-child):not(:nth-child(2)) {
         display: block;
@@ -106,7 +106,7 @@
     line-height: 35px;
   }
 
-  @for $i from 1 through 99 {
+  @for $i from 1 through 15 {
     .paginator[data-active='#{$i}'] {
       .paginator__item:nth-child(#{$i - 1}):not(:first-child):not(:nth-child(2)) {
         display: block;

@@ -149,25 +149,6 @@ function searchBEMEntities(template, bemEntities) {
   return useBEMEntities;
 }
 
-/*
-function getUseBEMEntities(sourceTemplates, bemEntities) {
-  const wantedBEMEntities = bemEntities;
-  let result = {};
-
-  /!* eslint-disable-next-line *!/
-  for (const template of Object.keys(sourceTemplates)) {
-    const useBEMEntities = searchBEMEntities(sourceTemplates[template], wantedBEMEntities);
-    result = { ...result, ...useBEMEntities };
-    Object.keys(useBEMEntities).forEach((key) => delete wantedBEMEntities[key]);
-    if ($.isEmptyObject(wantedBEMEntities)) {
-      break;
-    }
-  }
-
-  return result;
-}
-*/
-
 function createPUGHeaders(useBEMEntities) {
   let pugHeaders = '';
 
@@ -214,41 +195,10 @@ function createJSHeaders(useBEMEntities) {
     }
   });
 
-  // jsHeaders += 'import \'./style.scss\';\n';
   jsHeaders += 'import \'../favicons/favicons\';\n';
 
   return jsHeaders;
 }
-
-/*
-function rewriteSCSS(pages, scssHeaders) {
-  fs.writeFileSync(`${pages}${slash}style.scss`, scssHeaders);
-}
-*/
-
-/*
-function rewriteJS(pages, jsHeaders) {
-  fs.writeFileSync(`${pages}${slash}script.js`, jsHeaders);
-}
-*/
-
-/*
-function prependPUGHeaders(sourceTemplates, pugHeaders) {
-  const templatesWithHeaders = {};
-  Object.keys(sourceTemplates).forEach((template) => {
-    templatesWithHeaders[template] = pugHeaders + sourceTemplates[template];
-  });
-  return templatesWithHeaders;
-}
-*/
-
-/*
-function writeSourceTemplates(pages, sourceTemplates) {
-  Object.keys(sourceTemplates).forEach((template) => {
-    fs.writeFileSync(pages + slash + template, sourceTemplates[template]);
-  });
-}
-*/
 
 module.exports = function preprocessor(pages, blocks) {
   let sourceTemplates = readSourceTemplates(pages);
@@ -271,16 +221,4 @@ module.exports = function preprocessor(pages, blocks) {
     fs.writeFileSync(`${pages}${slash}${page}`.replace(/.pug$/, '.scss'), scssHeaders);
     fs.writeFileSync(`${pages}${slash}${page}`.replace(/.pug$/, '.js'), jsHeaders);
   });
-
-  // const useBEMEntities = getUseBEMEntities(sourceTemplates, bemEntities);
-
-  // const pugHeaders = createPUGHeaders(useBEMEntities);
-  // const scssHeaders = createSCSSHeaders(useBEMEntities);
-  // const jsHeaders = createJSHeaders(useBEMEntities);
-
-  // sourceTemplates = prependPUGHeaders(sourceTemplates, pugHeaders);
-  // writeSourceTemplates(pages, sourceTemplates);
-
-  // rewriteSCSS(pages, scssHeaders);
-  // rewriteJS(pages, jsHeaders);
 };
