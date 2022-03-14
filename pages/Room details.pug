@@ -1,5 +1,6 @@
 include ../blocks/page/page
 include ../blocks/details/details
+include ../blocks/details/__gallery/details__gallery
 include ../blocks/header/header
 include ../blocks/hamburger/hamburger
 include ../blocks/checkbox/checkbox
@@ -12,6 +13,7 @@ include ../blocks/menu/__item/menu__item
 include ../blocks/header/__user/header__user
 include ../blocks/list-icon/list-icon
 include ../blocks/list-icon/__item/list-icon__item
+include ../blocks/chart/chart
 include ../blocks/card-details/card-details
 include ../blocks/card-details/__header/card-details__header
 include ../blocks/datepicker/datepicker
@@ -21,6 +23,10 @@ include ../blocks/dropdown/__button-container/dropdown__button-container
 include ../blocks/dropdown/__button/dropdown__button
 include ../blocks/dropdown/__item/dropdown__item
 include ../blocks/card-details/__calc/card-details__calc
+include ../blocks/review/review
+include ../blocks/like/like
+include ../blocks/list/list
+include ../blocks/list/__item/list__item
 include ../blocks/footer/footer
 include ../blocks/subscription/subscription
 include ../blocks/footer/__social/footer__social
@@ -35,9 +41,9 @@ include ../blocks/footer/__social/footer__social
         +list-icon__item({icon: 'whatshot', header: 'Уют', text: 'Номер оснащён камином', underline: false})
     .details__chart
       .details__header Сведения о номере
-      +chart({fabulous: 130, good: 65, satisfactorily: 65})
+      +chart({fabulous: 0, good: 65, satisfactorily: 65, disappointed: 65})
     +card-details({ number: '888', lux: 'люкс', price: 9990, discount: 2179, feeAdd: 300 })
-    +details__reviews
+    .details__reviews
       .details__header Отзывы посетителей номера
       .details__number-reviews 2 отзыва
       +review({
@@ -52,13 +58,13 @@ include ../blocks/footer/__social/footer__social
         time: 'Неделю назад',
         text: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент',
       })
-      +details__rules
-        .details__header Правила
-        +list({marker: 'bullet'})
-          +list__item Нельзя с питомцами
-          +list__item Без вечеринок и мероприятий
-          +list__item Время прибытия — после 13:00, а выезд до 12:00
-      +details__cancel
-        .details__header Правила
-        .details__paragraph Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
+    .details__rules
+      .details__header Правила
+      +list({marker: 'bullet'})
+        +list__item Нельзя с питомцами
+        +list__item Без вечеринок и мероприятий
+        +list__item Время прибытия — после 13:00, а выезд до 12:00
+    .details__cancel
+      .details__header Правила
+      .details__paragraph Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
   +footer

@@ -1,7 +1,7 @@
 .details__body {
   width: 80.56%;
 
-  padding-top: 70px;
+  padding: 70px 0;
 
   display: grid;
   grid-template-rows: 303px 336px auto;
@@ -9,4 +9,7 @@
   grid-template-areas: 'a b c'
                        'd d c'
                        'e f c';
+  .card-details {
+    grid-area: c;
+  }
 }

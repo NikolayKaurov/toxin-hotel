@@ -1,8 +1,12 @@
-.details__info {
+.details__reviews {
+  position: relative;
+
   display: grid;
 
   grid-template-columns: 1fr;
   grid-template-rows: 44px auto;
 
-  grid-area: a;
+  grid-area: d;
+
+  max-width: 711px;
 }

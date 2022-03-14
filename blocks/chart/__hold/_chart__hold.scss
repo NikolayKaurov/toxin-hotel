@@ -4,5 +4,24 @@
   width: 120px;
   height: 120px;
 
-  clip: rect(0px, 120px, 120px, 61px);
+  clip: rect(0px, 120px, 120px, 59px);
+}
+
+.chart__hold.chart__hold_most {
+  clip: auto;
+}
+
+.chart__hold::before {
+  content: '';
+
+  position: absolute;
+
+  width: 2px;
+  height: 60px;
+
+  left: 59px;
+
+  background: white;
+
+  z-index: 1;
 }

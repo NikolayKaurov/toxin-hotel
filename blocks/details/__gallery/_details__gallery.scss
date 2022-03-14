@@ -6,4 +6,6 @@
   grid-template-columns: 981px auto;
   grid-template-rows: 243px auto;
   grid-template-areas: 'a b' 'a c';
+
+  overflow: hidden;
 }
