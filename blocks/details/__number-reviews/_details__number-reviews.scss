@@ -1,6 +1,7 @@
 .details__number-reviews {
   position: absolute;
-  right: 0;
+  top: 7px;
+  right: 1px;
 
   font-size: 14px;
   line-height: 14px;
@@ -8,4 +9,12 @@
   text-align: right;
 
   color: rgba(31, 32, 65, 0.5);
+}
+
+@media all and (max-width: 959px) {
+  .details__number-reviews {
+    right: auto;
+    left: 0;
+    top: 30px;
+  }
 }

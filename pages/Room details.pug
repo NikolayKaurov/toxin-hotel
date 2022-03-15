@@ -40,8 +40,8 @@ include ../blocks/footer/__social/footer__social
         +list-icon__item({icon: 'location_city', header: 'Удобство', text: 'Окно в каждой из спален'})
         +list-icon__item({icon: 'whatshot', header: 'Уют', text: 'Номер оснащён камином', underline: false})
     .details__chart
-      .details__header Сведения о номере
-      +chart({fabulous: 0, good: 65, satisfactorily: 65, disappointed: 65})
+      .details__header Впечатления от номера
+      +chart({fabulous: 130, good: 65, satisfactorily: 65, disappointed: 0})
     +card-details({ number: '888', lux: 'люкс', price: 9990, discount: 2179, feeAdd: 300 })
     .details__reviews
       .details__header Отзывы посетителей номера
@@ -59,12 +59,12 @@ include ../blocks/footer/__social/footer__social
         text: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент',
       })
     .details__rules
-      .details__header Правила
+      .details__header.details__header_indent Правила
       +list({marker: 'bullet'})
         +list__item Нельзя с питомцами
         +list__item Без вечеринок и мероприятий
         +list__item Время прибытия — после 13:00, а выезд до 12:00
     .details__cancel
-      .details__header Правила
+      .details__header Отмена
       .details__paragraph Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
   +footer

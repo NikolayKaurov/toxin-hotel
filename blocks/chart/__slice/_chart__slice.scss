@@ -9,23 +9,6 @@
   border-radius: 60px;
 }
 
-/*
-.chart__slice::before {
-  content: '';
-
-  position: absolute;
-
-  width: 10px;
-  height: 60px;
-
-  left: 55px;
-
-  background: white;
-
-  z-index: 1;
-}
-*/
-
 .chart__slice.chart__slice_most {
   clip: auto;
 }

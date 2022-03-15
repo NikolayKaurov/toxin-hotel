@@ -12,12 +12,15 @@ mixin chart({ fabulous = 0, good = 0, satisfactorily = 0, disappointed = 0 } = {
       .chart__hold.chart__hold_most
         .chart__slice.chart__slice_most(class= voices[0][0])
       .chart__hold
-        .chart__slice(class= voices[1][0] style= `transform: rotate(${voices[1][1]}deg);`)
-      .chart__hold(style= `transform: rotate(${voices[1][1]}deg);`)
-        .chart__slice(class= voices[2][0] style= `transform: rotate(${voices[2][1]}deg);`)
-      .chart__hold(style= `transform: rotate(${voices[1][1] + voices[2][1]}deg);`)
-        .chart__slice(class= voices[3][0] style= `transform: rotate(${voices[3][1]}deg);`)
-      .chart__hold(style= `transform: rotate(${voices[1][1] + voices[2][1] + +voices[3][1]}deg);`)
+        .chart__slice(class= voices[1][0] style= `transform: rotate(-${voices[1][1]}deg);`)
+      .chart__hold(style= `transform: rotate(-${voices[1][1]}deg);`)
+        .chart__slice(class= voices[2][0] style= `transform: rotate(-${voices[2][1]}deg);`)
+      .chart__hold(style= `transform: rotate(-${voices[1][1] + voices[2][1]}deg);`)
+        .chart__slice(class= voices[3][0] style= `transform: rotate(-${voices[3][1]}deg);`)
+      .chart__hold(style= `transform: rotate(-${voices[1][1] + voices[2][1] + +voices[3][1]}deg);`)
+      .chart__total
+        .chart__total-number= total
+        = 'голосов'
     .chart__legend
       .chart__item
         .chart__bullet

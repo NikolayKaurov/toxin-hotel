@@ -46,6 +46,8 @@
 @use 'blocks/chart/__figure/chart__figure';
 @use 'blocks/chart/__hold/chart__hold';
 @use 'blocks/chart/__slice/chart__slice';
+@use 'blocks/chart/__total/chart__total';
+@use 'blocks/chart/__total-number/chart__total-number';
 @use 'blocks/chart/__legend/chart__legend';
 @use 'blocks/chart/__item/chart__item';
 @use 'blocks/chart/__bullet/chart__bullet';
@@ -114,6 +116,7 @@
 @use 'blocks/review/__time/review__time';
 @use 'blocks/review/__text/review__text';
 @use 'blocks/details/__rules/details__rules';
+@use 'blocks/details/__header/_indent/details__header_indent';
 @use 'blocks/list/list';
 @use 'blocks/list/__label/list__label';
 @use 'blocks/list/__item/list__item';
