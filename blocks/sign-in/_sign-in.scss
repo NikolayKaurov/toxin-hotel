@@ -1,0 +1,44 @@
+.sign-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 684px;
+
+  flex-grow: 1;
+
+  animation-name: background;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+}
+
+@media all and (max-width: 1399px) {
+  @keyframes background {
+    1%, 50% {
+      background-image: url('./sign2.jpg');
+      background-size: cover;
+      background-position: left 0 top 0;
+    }
+    51%, 100%, 0% {
+      background-image: url('./sign1.jpg');
+      background-size: cover;
+      background-position: left 0 top 0;
+    }
+  }
+}
+
+@media all and (min-width: 1400px) {
+  @keyframes background {
+    1%, 50% {
+      background-image: url('./sign2.jpg');
+      background-size: 106.53% auto;
+      background-position: left -44px top -236px;
+    }
+    51%, 100%, 0% {
+      background-image: url('./sign1.jpg');
+      background-size: 137.7% auto;
+      background-position: left -47px top -284px;
+    }
+  }
+}
+

@@ -10,11 +10,11 @@ mixin header({ user = '', id = '' } = {})
           +hamburger__item({text: 'Соглашения'})
           +hamburger__item({text: 'Войти'})
           +hamburger__item({text: 'Зарегистрироваться'})
-        +header__item({ href: 'https://www.figma.com/404/' })
+        +header__item({ href: './Landing page.html' })
           +logo
         +header__item({about: true}) О нас
         +menu({label: 'Услуги', id: 'service'})
-          +menu__item({text: 'Такси', href: 'https://yandex.ru'})
+          +menu__item({text: 'Такси'})
           +menu__item({text: 'Завтрак'})
         +header__item Вакансии
         +header__item Новости
@@ -22,9 +22,9 @@ mixin header({ user = '', id = '' } = {})
           +menu__item({text: 'Пользовательское'})
           +menu__item({text: 'Администраторское'})
           +menu__item({text: 'Гостевое'})
-        +header__item
+        +header__item({ href: './Sign in.html' })
           +button({type: 'white-narrow', text: 'Войти', disabled: false})
-        +header__item
+        +header__item({ href: './Registration.html' })
           +button({type: 'fill-wide', text: 'Зарегистрироваться', disabled: false})
   else
     .header.header_signed

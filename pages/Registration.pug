@@ -1,27 +1,25 @@
-include ../blocks/ui-kit/ui-kit
-include ../blocks/ui-kit/__header/ui-kit__header
-include ../blocks/header-demo/header-demo
+include ../blocks/page/page
 include ../blocks/header/header
 include ../blocks/hamburger/hamburger
 include ../blocks/checkbox/checkbox
 include ../blocks/button/button
 include ../blocks/hamburger/__item/hamburger__item
 include ../blocks/header/__item/header__item
-include ../blocks/page/page
 include ../blocks/logo/logo
 include ../blocks/menu/menu
 include ../blocks/menu/__item/menu__item
 include ../blocks/header/__user/header__user
+include ../blocks/sign-in/sign-in
+include ../blocks/card-registration/card-registration
+include ../blocks/text-field/text-field
+include ../blocks/radio/radio
+include ../blocks/radio/__button/radio__button
+include ../blocks/toggle/toggle
 include ../blocks/footer/footer
 include ../blocks/subscription/subscription
 include ../blocks/footer/__social/footer__social
-+ui-kit({ title: 'Headers & Footers', theme: 'gray' })
-  +ui-kit__header
-  +header-demo
-    +header
-    +header({user: 'Юлий Цезарь', id: 'head2'})
-    +footer
-    +footer({narrow: true})
-
-
-
++page({title: 'Registration'})
+  +header
+  +sign-in({registration: true})
+    +card-registration
+  +footer

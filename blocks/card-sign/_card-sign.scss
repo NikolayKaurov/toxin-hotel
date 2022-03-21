@@ -18,3 +18,15 @@
   grid-template-rows: 50px 54px 64px 74px auto;
   grid-template-columns: 1fr;
 }
+
+@media all and (max-width: 400px) {
+  .card-sign {
+    width: 100%;
+
+    border-left: 0;
+    border-right: 0;
+
+    padding: 39px 0 0 calc((100% - 320px) / 2 );
+  }
+}
+

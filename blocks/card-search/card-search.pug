@@ -1,5 +1,5 @@
 mixin card-search
-  form.card-search.js-card-search
+  form.card-search.js-card-search(action='./Search room.html')
     p.card-search__header Найдём номера под ваши пожелания
     +datepicker({name: 'search-date', labelArrival: 'прибытие', labelDeparture: 'выезд', zIndex: 3})
     +dropdown({name: 'search-guest', defaultValue: 'Сколько гостей', label: 'гости', zIndex: 2, guests: 'guests'})

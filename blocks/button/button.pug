@@ -1,7 +1,8 @@
-mixin button({ type = '', text = '', disabled = true })
+mixin button({ type = '', text = '', disabled = true, submit = true } = {})
   -
     let inputClass;
     let buttonClass;
+    let buttonType = 'submit';
     switch (type) {
       case 'fill':
         inputClass = 'button__input_fill';
@@ -27,8 +28,11 @@ mixin button({ type = '', text = '', disabled = true })
         inputClass = '';
         buttonClass = '';
     }
+    if (!submit) {
+      buttonType = 'button';
+    }
 
   .button(class= buttonClass)
-    input.button__input.js-button__input(type='submit' value= text class= inputClass disabled= disabled)
+    input.button__input.js-button__input(type= buttonType value= text class= inputClass disabled= disabled)
     if (type === 'white' || type === 'big'|| type === 'white-narrow')
       .button__back

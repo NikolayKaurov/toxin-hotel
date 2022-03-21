@@ -68,15 +68,6 @@ module.exports = {
   },
 
   entry: entries,
-  /* `${pages}${slash}script.js` , */
-  /*
-  {
-    script: {
-      import: `${pages}${slash}script.js`,
-      dependOn: 'shared',
-    },
-    shared: 'jquery',
-  }, */
   output: {
     filename: '[name].js',
     path: dist,

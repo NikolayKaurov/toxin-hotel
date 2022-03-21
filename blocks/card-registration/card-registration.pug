@@ -10,6 +10,7 @@ mixin card-registration
     +text-field({name: 'registration-email', placeholder: 'Email', label: 'Данные для входа в сервис'})
     +text-field({name: 'registration-password', placeholder: 'Пароль'})
     +toggle({name: 'registration-spam', text: 'Получать спецпредложения', value: 'spam'})
-    +button({type: 'big', text: 'перейти к оплате', disabled: true})
+    +button({type: 'big', text: 'зарегистрироваться', disabled: true})
     .card-registration__footer Уже есть аккаунт на Toxin
-      +button({ type: 'white', text: 'войти', disabled: false })
+      a.card-registration__sign-in(href='./Sign in.html')
+        +button({ type: 'white', text: 'войти', disabled: false, submit: false })

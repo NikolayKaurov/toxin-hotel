@@ -5,4 +5,5 @@ mixin card-sign
     +text-field({ name: 'sign-password', placeholder: 'Пароль' })
     +button({ type: 'big', text: 'войти', disabled: true })
     .card-sign__footer Нет аккаунта на Toxin?
-      +button({ type: 'white', text: 'Создать', disabled: false })
+      a.card-sign__registration(href='./Registration.html')
+        +button({ type: 'white', text: 'Создать', disabled: false, submit: false })

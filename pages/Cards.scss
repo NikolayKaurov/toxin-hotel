@@ -100,6 +100,10 @@
 @use 'blocks/card-room/__nav/card-room__nav';
 @use 'blocks/card-room/__nav-item/card-room__nav-item';
 @use 'blocks/card-room/__header/card-room__header';
+@use 'blocks/details/details';
+@use 'blocks/details/__gallery/details__gallery';
+@use 'blocks/details/__photo/details__photo';
+@use 'blocks/details/__body/details__body';
 @use 'blocks/card-room/__number/card-room__number';
 @use 'blocks/card-room/__numeric/card-room__numeric';
 @use 'blocks/card-room/__lux/card-room__lux';
