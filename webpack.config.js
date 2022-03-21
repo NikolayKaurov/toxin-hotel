@@ -27,7 +27,7 @@ fs.readdirSync(pages).forEach((page) => {
     const chunks = [name, 'jquery'];
     templates.push(new HtmlWebpackPlugin({
       chunks,
-      filename: page.replace(/\.pug$/i, '.html'),
+      filename: page !== 'index.pug' ? page.replace(/\.pug$/i, '.html') : '../index.html',
       template: pages + slash + page,
       inject: 'body',
     }));
@@ -55,7 +55,8 @@ module.exports = {
   devServer: {
     hot: true,
     static: {
-      directory: dist,
+      // directory: dist,
+      directory: __dirname,
     },
     watchFiles: {
       paths: [pages, blocks],
