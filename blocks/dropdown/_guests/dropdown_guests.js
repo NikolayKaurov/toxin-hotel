@@ -30,4 +30,5 @@ class Dropdown_guests extends Dropdown {
 $('.js-dropdown_guests').each((index, element) => {
   const dropdown = new Dropdown_guests(element);
   dropdown.init();
+  console.log('Гости');
 });

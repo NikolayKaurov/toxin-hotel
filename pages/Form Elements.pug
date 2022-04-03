@@ -4,8 +4,8 @@ include ../blocks/form-elements/form-elements
 include ../blocks/form-elements/__item/form-elements__item
 include ../blocks/text-field/text-field
 include ../blocks/dropdown/dropdown
-include ../blocks/button/button
 include ../blocks/dropdown/__button-container/dropdown__button-container
+include ../blocks/button/button
 include ../blocks/dropdown/__button/dropdown__button
 include ../blocks/dropdown/__item/dropdown__item
 include ../blocks/datepicker/datepicker
@@ -147,15 +147,34 @@ include ../blocks/list/__item/list__item
         text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.',
       })
     +form-elements__item
-      +dropdown({name: 'guest3', defaultValue: 'Сколько гостей', label: 'dropdown', zIndex: 1, guests: 'guests'})
-        +dropdown__button-container
-          +dropdown__button({action: 'confirm', text: 'применить'})
-          +dropdown__button({action: 'clear', text: 'очистить'})
-        +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
-        +dropdown__item({name: 'child', units: 'дети'})
-        +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+      +dropdown({
+        name: 'guest3',
+        defaultValue: 'Сколько гостей',
+        label: 'dropdown',
+        zIndex: 1,
+        guests: true,
+        clear: true,
+        confirm: true,
+        items: [
+          {
+            name: 'adult',
+            units: 'взрослые гость гостя гостей',
+          },
+          {
+            name: 'child',
+            units: 'дети',
+          },
+          {
+            name: 'baby',
+            units: 'младенцы младенец младенца младенцев',
+          },
+          {
+            name: 'hobo',
+            units: 'бомжы бомж бомжа бомжей',
+          },
+        ]
+      })
       +list({ label: 'bullet list', marker: 'bullet'})
         +list__item Нельзя с питомцами
         +list__item Без вечеринок и мероприятий
         +list__item Время прибытия — после 13:00, а выезд до 12:00
-

@@ -55,8 +55,8 @@ module.exports = {
   devServer: {
     hot: true,
     static: {
-      // directory: dist,
-      directory: __dirname,
+      directory: dist,
+      // directory: __dirname,
     },
     watchFiles: {
       paths: [pages, blocks],

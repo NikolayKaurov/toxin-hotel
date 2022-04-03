@@ -105,7 +105,7 @@ function handleConfirm(event) {
   event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.closedHeight);
 }
 
-function getValueWithCaseSelect({ value = 0, cases = 'units' } = { value: 0, cases: 'units' }) {
+function getValueWithCaseSelect({ value = 0, cases = 'units' } = {}) {
   if (value === 0) {
     return '';
   }
@@ -159,6 +159,8 @@ class Dropdown {
     this.timeFocus = 0;
 
     this.rollbackSnapshot = [];
+
+    console.log('Конструктор');
   }
 
   init() {

@@ -1,20 +1,76 @@
-mixin dropdown({ narrow = null, guests = null, name = 'undefined-name', defaultValue = '', label = '', description = '', zIndex = 1 } = {})
+mixin dropdown(options)
   -
-    let modifiers = '';
-    if (narrow === 'narrow') {
+    var {
+      narrow = false, //- узкий, шириной 266px
+      guests = false, //- первая и вторая строки складываются
+      name = "undefined-name", //- префикс для имён полей ввода
+      defaultValue = "", //- значение по умолчанию для общей строки
+      label = "", //- надпись слева сверху
+      description = "", //- надпись справа сверху
+      zIndex = 1, //- чем выше на странице компонент, тем больше нужен z-index
+      clear = false, //- есть кнопка "очистить"
+      confirm = false, //- есть кнопка "применить"
+      items = [], //- строки в выпадающем элементе
+    } = options;
+    items.reverse(); //- в выпадающем элементе строки идут снизу вверх, flex-direction: column-reverse;
+    var modifiers = '';
+    if (narrow) {
       modifiers += ' dropdown_narrow';
     }
-    if (guests === 'guests') {
+    if (guests) {
       modifiers += ' js-dropdown_guests dropdown_guests';
     }
 
-  .dropdown.dropdown_confirmed.js-dropdown(data-dropdown-name= name data-z-index= zIndex data-default-value= defaultValue class= modifiers tabindex=0)
+  .dropdown.dropdown_confirmed.js-dropdown(
+    data-dropdown-name= name
+    data-z-index= zIndex
+    data-default-value= defaultValue
+    class= modifiers
+    tabindex="0"
+  )
     .dropdown__header
       if (label)
         .dropdown__label= label
       if (description)
         .dropdown__label= description
     .dropdown__down.js-dropdown__down
-      block
+      if (clear || confirm)
+        .dropdown__button-container
+          if (confirm)
+            button.dropdown__button.js-dropdown__button.js-dropdown__button_action_confirm(
+              disabled
+              tabindex="-1"
+              type="button"
+            ) применить
+          if (clear)
+            button.dropdown__button.js-dropdown__button.js-dropdown__button_action_clear(
+              disabled
+              tabindex="-1"
+              type='button'
+            ) очистить
+      each item in items
+        .dropdown__item.js-dropdown__item(
+          data-item-name= item.name
+          data-units= item.units
+        )
+          .dropdown__label.js-dropdown__label
+          button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_minus(
+            disabled
+            tabindex="-1"
+            type="button"
+          ) -
+          input.dropdown__quantity.js-dropdown__quantity(
+            type="number"
+            tabindex="-1"
+            readonly
+            placeholder="0"
+            min="0"
+            max="99"
+            step="1"
+          )
+          button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_plus(
+            tabindex="-1"
+            type="button"
+          ) +
     .dropdown__drop.js-dropdown__drop
       .dropdown__value.js-dropdown__value= defaultValue
