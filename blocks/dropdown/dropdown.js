@@ -21,6 +21,9 @@ const NUMBER_ITEMS_IN_VALUE = 2;
 // Длительность появления одной строки в выпадающем элементе в миллисекундах
 const ITEM_DURATION_OPEN = 100;
 
+// максимальное значение счётчиков, минимальное значение 0
+const MAX = 99;
+
 function handleFocus(event) {
   event.data.dropdown.$dropdown.addClass('dropdown_open');
   event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.openHeight);
@@ -33,19 +36,17 @@ function handleBlur(event) {
     return;
   }
 
-  if (
-    event.data.dropdown.$dropdown.hasClass('dropdown_rollback')
-    && !(event.data.dropdown.$dropdown.hasClass('dropdown_confirmed'))
-  ) {
+  if (event.data.dropdown.isRollbackable()) {
     event.data.dropdown.rollback();
     event.data.dropdown.$dropdown__buttons.each((index, button) => {
+      const $button = $(button);
       if (
-        event.data.dropdown.getCommonValue() !== event.data.dropdown.defaultValue
-        && $(button).hasClass('js-dropdown__button_action_clear')
+        $button.hasClass('js-dropdown__button_action_clear')
+        && event.data.dropdown.getCommonValue() !== event.data.dropdown.defaultValue
       ) {
-        $(button).prop('disabled', false);
+        $button.prop('disabled', false);
       } else {
-        $(button).prop('disabled', true);
+        $button.prop('disabled', true);
       }
     });
   }
@@ -55,17 +56,20 @@ function handleBlur(event) {
 }
 
 function handleInput(event) {
-  const value = event.data.dropdown.getCommonValue();
   event.data.dropdown.$dropdown.removeClass('dropdown_confirmed');
+
+  const value = event.data.dropdown.getCommonValue();
   event.data.dropdown.$dropdown__value.text(value);
+
   event.data.dropdown.$dropdown__buttons.each((index, button) => {
+    const $button = $(button);
     if (
-      value === event.data.dropdown.defaultValue
-      && $(button).hasClass('js-dropdown__button_action_clear')
+      $button.hasClass('js-dropdown__button_action_clear')
+      && value === event.data.dropdown.defaultValue
     ) {
-      $(button).prop('disabled', true);
+      $button.prop('disabled', true);
     } else {
-      $(button).prop('disabled', false);
+      $button.prop('disabled', false);
     }
   });
 }
@@ -85,8 +89,8 @@ function handleDropMousedown(event) {
 }
 
 function handleClear(event) {
-  event.data.dropdown.$dropdown__items.each((index, item) => {
-    $(item).trigger('setValue', 0);
+  event.data.dropdown.$dropdown__quantities.each((index, quantity) => {
+    $(quantity).trigger('setValue', 0);
   });
 
   event.data.dropdown.$dropdown__value.text(event.data.dropdown.defaultValue);
@@ -94,7 +98,7 @@ function handleClear(event) {
   event.data.dropdown.clearSnapshot();
   event.data.dropdown.$dropdown__buttons.prop('disabled', true);
 
-  event.data.dropdown.$dropdown.trigger('input');
+  // event.data.dropdown.$dropdown.trigger('input');
 }
 
 function handleConfirm(event) {
@@ -103,6 +107,37 @@ function handleConfirm(event) {
 
   event.data.dropdown.$dropdown.removeClass('dropdown_open');
   event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.closedHeight);
+}
+
+function handleCounterButtonMousedown(event) {
+  const $quantity = $('.js-dropdown__quantity', $(event.delegateTarget));
+  const $button = $(event.target);
+
+  let value = parseInt($quantity.val(), 10);
+
+  if ($button.hasClass('js-dropdown__counter-button_action_plus')) {
+    value += 1;
+  } else {
+    value -= 1;
+  }
+
+  if (value > 0 && value < MAX) {
+    event.data.dropdown.$dropdown.addClass('dropdown_keeping-focus');
+    $button.addClass('js-dropdown__counter-button_pressed');
+  }
+
+  $quantity
+    .val(value)
+    .trigger('input');
+}
+
+function handleCounterButtonMouseup(event) {
+  const $button = $(event.target);
+  if ($button.hasClass('js-dropdown__counter-button_pressed')) {
+    $button.removeClass('js-dropdown__counter-button_pressed');
+
+    event.data.dropdown.$dropdown.trigger('focus');
+  }
 }
 
 function getValueWithCaseSelect({ value = 0, cases = 'units' } = {}) {
@@ -139,45 +174,100 @@ function getValueWithCaseSelect({ value = 0, cases = 'units' } = {}) {
   return `${value} ${genitive}`;
 }
 
+function handleQuantityInput(event) {
+  const $item = $(event.delegateTarget);
+  const value = parseInt($(event.target).val(), 10);
+
+  $('.js-dropdown__counter-button', $item).each((index, button) => {
+    const $button = $(button);
+    if ($button.hasClass('js-dropdown__counter-button_action_plus')) {
+      if (value < MAX) {
+        $button.prop('disabled', false);
+      } else {
+        $button.prop('disabled', true);
+      }
+    } else if (value > 0) {
+      $button.prop('disabled', false);
+    } else {
+      $button.prop('disabled', true);
+    }
+  });
+
+  $item.attr(
+    'data-value',
+    getValueWithCaseSelect({ value, cases: $item.data('units') }),
+  );
+
+  $item.attr('data-quantity', value);
+}
+
+function handleQuantityMousedown(event) {
+  event.preventDefault();
+}
+
+function handleQuantitySetValue(event, value) {
+  const $quantity = $(event.target);
+  $quantity.val(value);
+  $quantity.trigger('input');
+}
+
+function handleButtonMousedown(event) {
+  const $button = $(event.target);
+  $button.prop('disabled', true);
+
+  if ($button.hasClass('js-dropdown__button_action_clear')) {
+    event.data.dropdown.$dropdown.trigger('clear');
+    return;
+  }
+
+  if ($button.hasClass('js-dropdown__button_action_confirm')) {
+    event.data.dropdown.$dropdown.trigger('confirm');
+  }
+}
+
 class Dropdown {
+  #rollbackSnapshot = [];
+
+  #guest = false;
+
   constructor(dropdown) {
     this.$dropdown = $(dropdown);
 
-    this.name = dropdown.dataset.dropdownName;
-    this.zIndex = dropdown.dataset.zIndex;
+    this.$dropdown__value = $('.js-dropdown__value', this.$dropdown);
+    this.$dropdown__down = $('.js-dropdown__down', this.$dropdown);
+    this.$dropdown__items = $($('.js-dropdown__item', this.$dropdown).get().reverse());
+    this.$dropdown__quantities = $($('.js-dropdown__quantity', this.$dropdown).get().reverse());
+    this.$dropdown__buttons = $('.js-dropdown__button', this.$dropdown);
+
     this.defaultValue = dropdown.dataset.defaultValue;
 
     this.openHeight = '';
     this.closedHeight = '';
 
-    this.$dropdown__value = $('.js-dropdown__value', this.$dropdown);
-    this.$dropdown__drop = $('.js-dropdown__drop', this.$dropdown);
-    this.$dropdown__down = $('.js-dropdown__down', this.$dropdown);
-    this.$dropdown__items = $($('.js-dropdown__item', this.$dropdown).get().reverse());
-    this.$dropdown__buttons = $('.js-dropdown__button', this.$dropdown);
-
     this.timeFocus = 0;
-
-    this.rollbackSnapshot = [];
-
-    console.log('Конструктор');
   }
 
   init() {
+    this.#guest = this.$dropdown.hasClass('js-dropdown_guest');
+
+    this.$dropdown__value.text(this.defaultValue);
+
     let openHeight = EMPTY_OPEN_HEIGHT;
     let durationOpen = 0;
 
     this.$dropdown__items.each((index, item) => {
-      $(item).attr('data-dropdown-name', this.name);
+      const $item = $(item);
+
+      $('.js-dropdown__label', $item).text(item.dataset.units.split(' ')[0]);
+
+      $('.js-dropdown__counter-button_action_minus', $item).prop('disabled', true);
+
+      $('.js-dropdown__quantity', $item).val(0);
 
       openHeight += ITEM_HEIGHT;
       durationOpen += ITEM_DURATION_OPEN;
 
-      this.rollbackSnapshot.push('0');
-    });
-
-    this.$dropdown__buttons.each((index, button) => {
-      $(button).attr('data-dropdown-name', this.name);
+      this.#rollbackSnapshot.push(0);
     });
 
     if (this.$dropdown__buttons.length) {
@@ -188,30 +278,78 @@ class Dropdown {
     this.openHeight = `${openHeight}px`;
     this.closedHeight = `${CLOSED_HEIGHT}px`;
 
-    this.$dropdown__down.css({
-      transition: `height ${durationOpen}ms`,
-      height: this.closedHeight,
-      'z-index': () => 2 * this.zIndex - 1,
+    const name = this.$dropdown.data('dropdown-name');
+    const zIndex = this.$dropdown.data('z-index');
+
+    this.$dropdown__down
+      .css({
+        transition: `height ${durationOpen}ms`,
+        height: this.closedHeight,
+        'z-index': () => 2 * zIndex - 1,
+      });
+
+    this.$dropdown__items
+      .on(
+        `mousedown.dropdown__item.${name}`,
+        '.js-dropdown__counter-button',
+        { dropdown: this },
+        handleCounterButtonMousedown,
+      )
+      .on(
+        `mouseup.dropdown__item.${name} mouseout.dropdown__item.${name}`,
+        '.js-dropdown__counter-button',
+        { dropdown: this },
+        handleCounterButtonMouseup,
+      )
+      .on(
+        `input.dropdown__item.${name}`,
+        '.js-dropdown__quantity',
+        { dropdown: this },
+        handleQuantityInput,
+      )
+      .on(
+        `setValue.dropdown__item.${name}`,
+        '.js-dropdown__quantity',
+        handleQuantitySetValue,
+      );
+
+    $('.js-dropdown__drop', this.$dropdown)
+      .css({
+        transition: `border ${durationOpen}ms`,
+        'z-index': () => 2 * zIndex,
+      })
+      .on(
+        `mousedown.dropdown__drop.${name}`,
+        null,
+        { dropdown: this },
+        handleDropMousedown,
+      );
+
+    this.$dropdown
+      .on(`focus.dropdown.${name}`, null, { dropdown: this }, handleFocus)
+      .on(`blur.dropdown.${name}`, null, { dropdown: this }, handleBlur)
+      .on(`input.dropdown.${name}`, null, { dropdown: this }, handleInput)
+      .on(`clear.dropdown.${name}`, null, { dropdown: this }, handleClear)
+      .on(`confirm.dropdown.${name}`, null, { dropdown: this }, handleConfirm)
+      .on(`mousedown.dropdown.${name}`, '.dropdown__quantity', handleQuantityMousedown)
+      .on(
+        `mousedown.dropdown.${name}`,
+        '.dropdown__button',
+        { dropdown: this },
+        handleButtonMousedown,
+      );
+
+    this.$dropdown__buttons.each((index, button) => {
+      if ($(button).hasClass('js-dropdown__button_action_confirm')) {
+        this.$dropdown.addClass('dropdown_rollbackable');
+      }
     });
+  }
 
-    this.$dropdown__drop.css({
-      transition: `border ${durationOpen}ms`,
-      'z-index': () => 2 * this.zIndex,
-    });
-
-    this.$dropdown__value.text(this.defaultValue);
-
-    this.$dropdown.on(`focus.dropdown.${this.name}`, null, { dropdown: this }, handleFocus);
-    this.$dropdown.on(`blur.dropdown.${this.name}`, null, { dropdown: this }, handleBlur);
-    this.$dropdown.on(`input.dropdown.${this.name}`, null, { dropdown: this }, handleInput);
-    this.$dropdown.on(`clear.dropdown.${this.name}`, null, { dropdown: this }, handleClear);
-    this.$dropdown.on(`confirm.dropdown.${this.name}`, null, { dropdown: this }, handleConfirm);
-
-    this.$dropdown__drop.on(
-      `mousedown.dropdown__drop.${this.name}`,
-      null,
-      { dropdown: this },
-      handleDropMousedown,
+  isRollbackable() {
+    return (
+      this.$dropdown.hasClass('dropdown_rollbackable')
+      && !this.$dropdown.hasClass('dropdown_confirmed')
     );
   }
 
@@ -222,6 +360,26 @@ class Dropdown {
   getCommonValue() {
     let value = '';
     let numberItems = 0;
+
+    if (this.#guest) {
+      const firstItem = this.$dropdown__items.get(0);
+      const secondItem = this.$dropdown__items.get(1);
+
+      let guestsValue = 0;
+
+      if (secondItem) {
+        guestsValue = parseInt(secondItem.dataset.quantity, 10) || 0;
+        secondItem.dataset.value = '';
+      }
+
+      if (firstItem) {
+        guestsValue += parseInt(firstItem.dataset.quantity, 10) || 0;
+        firstItem.dataset.value = getValueWithCaseSelect({
+          value: guestsValue,
+          cases: firstItem.dataset.units,
+        });
+      }
+    }
 
     this.$dropdown__items.each((index, item) => {
       if (item.dataset.value !== '') {
@@ -247,36 +405,28 @@ class Dropdown {
 
   takeSnapshot() {
     this.$dropdown__items.each((index, item) => {
-      this.rollbackSnapshot[index] = item.dataset.quantity;
+      this.#rollbackSnapshot[index] = item.dataset.quantity;
     });
   }
 
   clearSnapshot() {
-    this.rollbackSnapshot.forEach((value, index) => {
-      this.rollbackSnapshot[index] = '0';
+    this.#rollbackSnapshot.forEach((value, index) => {
+      this.#rollbackSnapshot[index] = '0';
     });
   }
 
   rollback() {
-    this.$dropdown__items.each((index, item) => {
-      $(item).trigger('setValue', this.rollbackSnapshot[index]);
+    this.$dropdown__quantities.each((index, quantity) => {
+      $(quantity).trigger('setValue', this.#rollbackSnapshot[index]);
     });
 
-    this.$dropdown__value.text(this.getCommonValue());
+    // this.$dropdown__value.text(this.getCommonValue());
 
     this.$dropdown.trigger('input');
   }
 }
 
-function isDropdownWithJSModifier(dropdown) {
-  return !!($(dropdown).attr('class').match(/js-dropdown_[^_]/));
-}
-
 $('.js-dropdown').each((index, element) => {
-  if (!isDropdownWithJSModifier(element)) {
-    const dropdown = new Dropdown(element);
-    dropdown.init();
-  }
+  const dropdown = new Dropdown(element);
+  dropdown.init();
 });
-
-export { Dropdown, getValueWithCaseSelect };

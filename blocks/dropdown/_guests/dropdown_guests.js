@@ -1,8 +1,8 @@
+/*
 import $ from 'jquery';
 
 import { Dropdown, getValueWithCaseSelect } from '../dropdown';
 
-/* eslint-disable-next-line */
 class Dropdown_guests extends Dropdown {
   getCommonValue() {
     const firstItem = this.$dropdown__items.get(0);
@@ -30,5 +30,5 @@ class Dropdown_guests extends Dropdown {
 $('.js-dropdown_guests').each((index, element) => {
   const dropdown = new Dropdown_guests(element);
   dropdown.init();
-  console.log('Гости');
 });
+*/

@@ -23,7 +23,7 @@ class Dropdown__button {
 
   init() {
     if (this.$dropdown__button.hasClass('js-dropdown__button_action_confirm')) {
-      this.$dropdown.addClass('dropdown_rollback');
+      this.$dropdown.addClass('dropdown_rollbackable');
     }
 
     this.$dropdown__button.on(

@@ -1,8 +1,8 @@
-mixin dropdown(options)
+mixin dropdown(options={})
   -
     var {
-      narrow = false, //- узкий, шириной 266px
-      guests = false, //- первая и вторая строки складываются
+      narrow = false, //- узкий, шириной 266px (если false ширина 320px)
+      guest = false, //- первая и вторая строки складываются
       name = "undefined-name", //- префикс для имён полей ввода
       defaultValue = "", //- значение по умолчанию для общей строки
       label = "", //- надпись слева сверху
@@ -17,11 +17,11 @@ mixin dropdown(options)
     if (narrow) {
       modifiers += ' dropdown_narrow';
     }
-    if (guests) {
-      modifiers += ' js-dropdown_guests dropdown_guests';
+    if (guest) {
+      modifiers += ' js-dropdown_guest';
     }
 
-  .dropdown.dropdown_confirmed.js-dropdown(
+  .dropdown.js-dropdown.dropdown_confirmed(
     data-dropdown-name= name
     data-z-index= zIndex
     data-default-value= defaultValue
@@ -46,24 +46,28 @@ mixin dropdown(options)
             button.dropdown__button.js-dropdown__button.js-dropdown__button_action_clear(
               disabled
               tabindex="-1"
-              type='button'
+              type="button"
             ) очистить
       each item in items
         .dropdown__item.js-dropdown__item(
-          data-item-name= item.name
+          data-name= item.name
           data-units= item.units
+          data-value=""
+          data-quantity="0"
         )
           .dropdown__label.js-dropdown__label
           button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_minus(
             disabled
             tabindex="-1"
             type="button"
+            data-name= item.name
           ) -
           input.dropdown__quantity.js-dropdown__quantity(
+            name= `${name}-${item.name}`
+            data-name= item.name
             type="number"
             tabindex="-1"
             readonly
-            placeholder="0"
             min="0"
             max="99"
             step="1"
@@ -71,6 +75,7 @@ mixin dropdown(options)
           button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_plus(
             tabindex="-1"
             type="button"
+            data-name= item.name
           ) +
     .dropdown__drop.js-dropdown__drop
       .dropdown__value.js-dropdown__value= defaultValue

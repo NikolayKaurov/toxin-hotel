@@ -1,6 +1,5 @@
 import '../blocks/text-field/text-field';
 import '../blocks/dropdown/dropdown';
-import '../blocks/dropdown/_guests/dropdown_guests';
 import '../blocks/datepicker/datepicker';
 import '../blocks/checkbox/checkbox';
 import '../blocks/subscription/subscription';
