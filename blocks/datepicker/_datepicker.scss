@@ -4,6 +4,288 @@
   width: 320px;
 }
 
-.datepicker.datepicker_filter {
+.datepicker_filter {
   width: 266px;
+}
+
+.datepicker__input {
+  display: none;
+}
+
+.datepicker__drop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.datepicker_demo {
+  .datepicker__drop {
+    display: none;
+  }
+}
+
+.datepicker__header {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  margin: 0 0 5px 0;
+}
+
+.datepicker__expand {
+  width: 133px;
+  height: 42px;
+
+  padding: 0 0 0 15px;
+  margin: 0 0 5px 0;
+
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+
+  background: white;
+
+  outline: 0;
+
+  cursor: pointer;
+}
+
+.datepicker__expand::selection {
+  background: transparent;
+}
+
+.datepicker_filter {
+  .datepicker__expand {
+    width: 249px;
+  }
+}
+
+.datepicker__value {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 14px;
+  line-height: 42px;
+
+  color: rgba(31, 32, 65, 0.75);
+}
+
+.datepicker__value::after {
+  content: 'expand_more';
+
+  font-family: material-icons, Arial, sans-serif;
+  font-size: 24px;
+  line-height: 42px;
+  color: rgba(31, 32, 65, 0.5);
+
+  width: 44px;
+  text-align: center;
+}
+
+.datepicker__value::selection {
+  background: transparent;
+}
+
+.datepicker__expand_open {
+  .datepicker__value::after {
+    content: 'expand_less';
+  }
+}
+
+.datepicker__down {
+  background: white;
+
+  position: absolute;
+
+  box-sizing: border-box;
+  width: inherit;
+  height: 0;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column-reverse;
+
+  border: 0px solid rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+
+  box-shadow: 0 10px 20px 0 rgba(31, 32, 65, 0.05);
+}
+
+.datepicker__month-year-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  padding: 0 20px 0 20px;
+}
+
+.datepicker__button {
+  background-color: transparent;
+
+  border: 0;
+  outline: 0;
+
+  margin: 0;
+  padding: 20px 0 19px 0;
+
+  font-family: montserrat, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: bold;
+  color: #bc9cff;
+
+  cursor: pointer;
+}
+
+.datepicker__month-year-container {
+  .datepicker__button {
+    text-transform: none;
+    font-family: material-icons, Arial, sans-serif;
+    font-size: 24px;
+    line-height: 24px;
+  }
+}
+
+.datepicker__button:active {
+  transform: scale(0.95);
+}
+
+.datepicker__button:disabled {
+  cursor: default;
+}
+
+.datepicker__month-year {
+  font-size: 19px;
+  line-height: 24px;
+  font-weight: bold;
+  color: #1f2041;
+
+  cursor: default;
+
+  padding: 0 0 0 3px;
+}
+
+.datepicker__month-year::selection {
+  background: transparent;
+}
+
+.datepicker__calendar-container {
+  padding: 10px 0 0 0;
+
+  display: flex;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.datepicker__calendar {
+  border-collapse: collapse;
+}
+
+.datepicker__calendar-header {
+  font-weight: bold;
+  color: #BC9CFF;
+}
+
+.datepicker__row {
+  color: rgba(31, 32, 65, 0.5);
+}
+
+.datepicker__cell {
+  width: 40px;
+  height: 40px;
+
+  line-height: 40px;
+  text-align: center;
+
+  font-size: 12px;
+
+  padding: 0;
+
+  cursor: default;
+
+  position: relative;
+}
+
+.datepicker__cell::selection {
+  background: transparent;
+}
+
+.datepicker__cell_other-month {
+  color: rgba(31, 32, 65, 0.25);
+}
+
+.datepicker__cell_highlight {
+  cursor: pointer;
+}
+
+.datepicker__cell_today {
+  color: white;
+  font-weight: bold;
+
+  background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
+
+  border-radius: 22px;
+}
+
+.datepicker__cell_selected {
+  color: white;
+  font-weight: bold;
+
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+
+  border-radius: 22px;
+}
+
+.datepicker_filter {
+  .datepicker__cell {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+  }
+}
+
+.datepicker__cell-period {
+  z-index: -1;
+
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+  opacity: 0.25;
+}
+
+.datepicker__cell-period_sunday {
+  border-bottom-right-radius: 22px;
+  border-top-right-radius: 22px;
+}
+
+.datepicker__cell-period_monday {
+  border-bottom-left-radius: 22px;
+  border-top-left-radius: 22px;
+}
+
+.datepicker__cell-period_arrival {
+  width: 50%;
+
+  right: 0;
+}
+
+.datepicker__cell-period_departure {
+  width: 50%;
+}
+
+.datepicker__button-container {
+  display: flex;
+  justify-content: space-between;
+
+  flex-shrink: 0;
+
+  padding: 0 20px 0 20px;
 }

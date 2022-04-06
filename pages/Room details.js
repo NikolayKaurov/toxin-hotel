@@ -4,7 +4,5 @@ import '../blocks/datepicker/datepicker';
 import '../blocks/dropdown/dropdown';
 import '../blocks/like/like';
 import '../blocks/subscription/subscription';
-import '../blocks/dropdown/__button/dropdown__button';
-import '../blocks/dropdown/__item/dropdown__item';
 import '../favicons/favicons';
 import './Room details.scss';

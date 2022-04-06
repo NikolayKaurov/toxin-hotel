@@ -314,7 +314,9 @@ class Datepicker {
   }
 
   init() {
-    this.$datepicker__monthYear.text(`${MONTHS[this.calendarMonth.getMonth()]} ${this.calendarMonth.getFullYear()}`);
+    this.$datepicker__monthYear.text(
+      `${MONTHS[this.calendarMonth.getMonth()]} ${this.calendarMonth.getFullYear()}`,
+    );
     const calendarHTML = this.getCalendarHTMLandSetCalendarHeight();
     if (this.demo) {
       this.setCalendarHeight();
@@ -535,7 +537,7 @@ class Datepicker {
     this.$datepicker__calendar.html(calendarHTML);
   }
 
-  updateDate({ date = '', value = '' } = { date: '', value: '' }) {
+  updateDate({ date = '', value = '' } = {}) {
     if (date === 'arrival') {
       this.arrivalDate.setTime(Date.parse(value));
       this.arrivalDate.setHours(0, 0, 0);

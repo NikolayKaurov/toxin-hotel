@@ -1,4 +1,4 @@
-mixin dropdown(options={})
+mixin dropdown(options)
   -
     var {
       narrow = false, //- узкий, шириной 266px (если false ширина 320px)
@@ -21,7 +21,7 @@ mixin dropdown(options={})
       modifiers += ' js-dropdown_guest';
     }
 
-  .dropdown.js-dropdown.dropdown_confirmed(
+  .dropdown.js-dropdown(
     data-dropdown-name= name
     data-z-index= zIndex
     data-default-value= defaultValue
@@ -68,6 +68,7 @@ mixin dropdown(options={})
             type="number"
             tabindex="-1"
             readonly
+            placeholder="0"
             min="0"
             max="99"
             step="1"

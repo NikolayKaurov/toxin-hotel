@@ -56,20 +56,21 @@ function handleBlur(event) {
 }
 
 function handleInput(event) {
-  event.data.dropdown.$dropdown.removeClass('dropdown_confirmed');
-
   const value = event.data.dropdown.getCommonValue();
   event.data.dropdown.$dropdown__value.text(value);
 
   event.data.dropdown.$dropdown__buttons.each((index, button) => {
     const $button = $(button);
-    if (
-      $button.hasClass('js-dropdown__button_action_clear')
-      && value === event.data.dropdown.defaultValue
-    ) {
-      $button.prop('disabled', true);
-    } else {
+    if ($button.hasClass('js-dropdown__button_action_clear')) {
+      if (value === event.data.dropdown.defaultValue) {
+        $button.prop('disabled', true);
+      } else {
+        $button.prop('disabled', false);
+      }
+    } else if (event.data.dropdown.isRollbackable()) {
       $button.prop('disabled', false);
+    } else {
+      $button.prop('disabled', true);
     }
   });
 }
@@ -94,16 +95,12 @@ function handleClear(event) {
   });
 
   event.data.dropdown.$dropdown__value.text(event.data.dropdown.defaultValue);
-  event.data.dropdown.$dropdown.addClass('dropdown_confirmed');
   event.data.dropdown.clearSnapshot();
   event.data.dropdown.$dropdown__buttons.prop('disabled', true);
-
-  // event.data.dropdown.$dropdown.trigger('input');
 }
 
 function handleConfirm(event) {
   event.data.dropdown.takeSnapshot();
-  event.data.dropdown.$dropdown.addClass('dropdown_confirmed');
 
   event.data.dropdown.$dropdown.removeClass('dropdown_open');
   event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.closedHeight);
@@ -267,7 +264,7 @@ class Dropdown {
       openHeight += ITEM_HEIGHT;
       durationOpen += ITEM_DURATION_OPEN;
 
-      this.#rollbackSnapshot.push(0);
+      this.#rollbackSnapshot.push('0');
     });
 
     if (this.$dropdown__buttons.length) {
@@ -347,10 +344,19 @@ class Dropdown {
   }
 
   isRollbackable() {
-    return (
-      this.$dropdown.hasClass('dropdown_rollbackable')
-      && !this.$dropdown.hasClass('dropdown_confirmed')
-    );
+    if (!this.$dropdown.hasClass('dropdown_rollbackable')) {
+      return false;
+    }
+
+    let rollbackable = false;
+
+    this.$dropdown__quantities.each((index, quantity) => {
+      if (this.#rollbackSnapshot[index] !== $(quantity).val()) {
+        rollbackable = true;
+      }
+    });
+
+    return rollbackable;
   }
 
   setTimeFocus(time) {
@@ -419,8 +425,6 @@ class Dropdown {
     this.$dropdown__quantities.each((index, quantity) => {
       $(quantity).trigger('setValue', this.#rollbackSnapshot[index]);
     });
-
-    // this.$dropdown__value.text(this.getCommonValue());
 
     this.$dropdown.trigger('input');
   }

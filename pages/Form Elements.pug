@@ -4,10 +4,7 @@ include ../blocks/form-elements/form-elements
 include ../blocks/form-elements/__item/form-elements__item
 include ../blocks/text-field/text-field
 include ../blocks/dropdown/dropdown
-include ../blocks/dropdown/__button-container/dropdown__button-container
 include ../blocks/button/button
-include ../blocks/dropdown/__button/dropdown__button
-include ../blocks/dropdown/__item/dropdown__item
 include ../blocks/datepicker/datepicker
 include ../blocks/toggle/toggle
 include ../blocks/checkbox/checkbox
@@ -40,14 +37,36 @@ include ../blocks/list/__item/list__item
     +form-elements__item
       +text-field({ name: 'simple-field', placeholder: 'Email', label: 'text field', description: 'default'})
       +text-field({ name: 'hover-field', placeholder: 'This is pretty awesome', label: 'text field', description: 'hover / focus'})
-      +dropdown({ name: 'guest', defaultValue: 'Сколько гостей', label: 'dropdown', zIndex: 7, guests: 'guests' })
-        +dropdown__button-container
-          +dropdown__button({action: 'clear', text: 'очистить'})
-        +dropdown__item({name: 'liver', units: 'жильцы жилец жильца жильцов'})
-        +dropdown__item({name: 'hobo', units: 'бомжы бомж бомжа бомжей'})
-        +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
-        +dropdown__item({name: 'child', units: 'дети'})
-        +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+      +dropdown({
+        name: 'guest',
+        defaultValue: 'Сколько гостей',
+        label: 'dropdown',
+        zIndex: 7,
+        guest: true,
+        clear: true,
+        items:[
+          {
+            name: 'adult',
+            units: 'взрослые гость гостя гостей',
+          },
+          {
+            name: 'child',
+            units: 'дети ребёнок ребёнка детей',
+          },
+          {
+            name: 'baby',
+            units: 'младенцы младенец младенца младенцев',
+          },
+          {
+            name: 'hobo',
+            units: 'бомжы бомж бомжа бомжей',
+          },
+          {
+            name: 'live',
+            units: 'жильцы жилец жильца жильцов',
+          },
+        ]
+      })
       +text-field({ name: 'masked-field', placeholder: 'ДД.ММ.ГГГГ', label: 'masked text field', description: '', mask: 'date'})
       +datepicker({ name: 'NewYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 6, label: 'даты пребывания в отеле'})
       +datepicker({ name: 'OldYear', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 5, label: 'filter date dropdown', modifier: 'filter' })
@@ -90,21 +109,50 @@ include ../blocks/list/__item/list__item
         +button({ type: 'big', text: 'перейти к оплате', disabled: false })
       +paginator({ length: 15, label: 'pagination', demo: 'demo' })
     +form-elements__item
-      +dropdown({name: 'room', defaultValue: 'Сколько комнат', label: 'dropdown', description: 'default', zIndex: 4, narrow: 'narrow' })
-        +dropdown__item({name: 'bath', units: 'ванные комнаты ванная ванных ванных'})
-        +dropdown__item({name: 'bed', units: 'кровати кровать кровати кроватей'})
-        +dropdown__item({name: 'bedroom', units: 'спальни спальня спальни спален'})
+      +dropdown({
+        name: 'room',
+        defaultValue: 'Сколько комнат',
+        label: 'dropdown',
+        description: 'default',
+        zIndex: 4,
+        narrow: true,
+        items: [
+          {
+            name: 'bedroom',
+            units: 'спальни спальня спальни спален'
+          },
+          {
+            name: 'bed',
+            units: 'кровати кровать кровати кроватей'
+          },
+          {
+            name: 'bath',
+            units: 'ванные комнаты ванная ванных ванных'
+          },
+        ]
+      })
       +dropdown({
         name: 'room1',
         defaultValue: 'Сколько комнат',
         label: 'dropdown',
         description: 'expanded',
         zIndex: 3,
-        narrow: 'narrow',
+        narrow: true,
+        items: [
+          {
+            name: 'bedroom',
+            units: 'спальни спальня спальни спален'
+          },
+          {
+            name: 'bed',
+            units: 'кровати кровать кровати кроватей'
+          },
+          {
+            name: 'bath',
+            units: 'ванные комнаты ванная ванных ванных'
+          },
+        ]
       })
-        +dropdown__item({name: 'bath', units: `ванные комнаты ванная ванных ванных` })
-        +dropdown__item({name: 'bed', units: 'кровати кровать кровати кроватей'})
-        +dropdown__item({name: 'bedroom', units: 'спальни спальня спальни спален'})
       +checkbox({label: 'expandable checkbox list', name: 'check1', expand: 'expand' })
         +checkbox__button({name: '1', text: 'Завтрак'})
         +checkbox__button({name: '2', text: 'Письменный стол', checked: true })
@@ -123,12 +171,28 @@ include ../blocks/list/__item/list__item
         +list-icon__item({ icon: 'insert_emoticon', header: 'Комфорт', text: 'Шумопоглощающие стены' })
         +list-icon__item({ icon: 'location_city', header: 'Удобство', text: 'Окно в каждой из спален' })
     +form-elements__item
-      +dropdown({name: 'guest2', defaultValue: 'Сколько гостей', label: 'dropdown', zIndex: 1, guests: 'guests'})
-        +dropdown__button-container
-          +dropdown__button({action: 'confirm', text: 'применить'})
-        +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
-        +dropdown__item({name: 'child', units: 'дети'})
-        +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
+      +dropdown({
+        name: 'guest2',
+        defaultValue: 'Сколько гостей',
+        label: 'dropdown',
+        zIndex: 1,
+        guest: true,
+        confirm: true,
+        items: [
+          {
+            name: 'adult',
+            units: 'взрослые гость гостя гостей'
+          },
+          {
+            name: 'child',
+            units: 'дети'
+          },
+          {
+            name: 'baby',
+            units: 'младенцы младенец младенца младенцев'
+          },
+        ]
+      })
       +checkbox({label: 'rich checkbox buttons', name: 'check4', wide: 'wide'})
         +checkbox__button({
           name: '1',
@@ -167,10 +231,6 @@ include ../blocks/list/__item/list__item
           {
             name: 'baby',
             units: 'младенцы младенец младенца младенцев',
-          },
-          {
-            name: 'hobo',
-            units: 'бомжы бомж бомжа бомжей',
           },
         ]
       })

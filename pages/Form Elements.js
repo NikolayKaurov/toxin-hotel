@@ -7,7 +7,5 @@ import '../blocks/radio/radio';
 import '../blocks/like/like';
 import '../blocks/slider-toxin/slider-toxin';
 import '../blocks/paginator/paginator';
-import '../blocks/dropdown/__button/dropdown__button';
-import '../blocks/dropdown/__item/dropdown__item';
 import '../favicons/favicons';
 import './Form Elements.scss';
