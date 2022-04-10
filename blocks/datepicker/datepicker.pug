@@ -1,74 +1,74 @@
-mixin datepicker(options)
+mixin datepicker(options={})
   -
     var {
-      name = 'undefined-name',
-      label = '',
-      labelArrival = '',
-      labelDeparture = '',
-      modifier = '',
-      zIndex = 1
+      name = 'undefined-name', //- префикс для имён полей ввода
+      label = '', //- заголовок для объединённого экспанда (FILTER DATE DROPDOWN)
+      labelArrival = '', //- заголовок для экспанда прибытия
+      labelDeparture = '', //- заголовок для экспанда выезда
+      modifier = '', //- filter или demo (или отсутствует)
+      zIndex = 1, //- чем выше на странице компонент, тем больше нужен z-index
     } = options;
-    var datepicker_modifier = '';
+    var datepickerModifier = '';
     if (modifier === 'filter') {
-      datepicker_modifier = 'datepicker_filter js-datepicker_filter';
+      datepickerModifier = 'datepicker_format_filter';
     } else if (modifier === 'demo') {
-      datepicker_modifier = 'datepicker_demo js-datepicker_demo';
+      datepickerModifier = 'datepicker_format_demo';
     }
 
   .datepicker.js-datepicker(
-    class= datepicker_modifier
+    class= datepickerModifier
     data-name= name
     data-z-index= zIndex
   )
-    input.datepicker__input.js-datepicker__input_arrival(
+    input.datepicker__input.js-datepicker__input.js-datepicker__input_date_arrival(
       type="date"
       name= `${name}-arrival`
     )
-    input.datepicker__input.js-datepicker__input_departure(
+    input.datepicker__input.js-datepicker__input.js-datepicker__input_date_departure(
       type="date"
       name= `${name}-departure`
     )
-    if (modifier === 'filter')
-      .datepicker__drop.js-datepicker__drop
-        .datepicker__value-container.js-datepicker__value-container
-          .datepicker__header= label
-          .datepicker__expand.js-datepicker__expand.datepicker__expand_filter.js-datepicker__expand_filter(
-            tabindex="0"
-          )
-            .datepicker__value.js-datepicker__value Укажите даты пребывания
-    else if (modifier !== 'demo')
-      .datepicker__drop.js-datepicker__drop
-        .datepicker__value-container.js-datepicker__value-container
-          .datepicker__header= labelArrival
-          .datepicker__expand.js-datepicker__expand.datepicker__expand_arrival.js-datepicker__expand_arrival(
-            tabindex="0"
-          )
-            .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
-        .datepicker__value-container.js-datepicker__value-container
-          .datepicker__header= labelDeparture
-          .datepicker__expand.js-datepicker__expand.datepicker__expand_departure.js-datepicker__expand_departure(
-            tabindex="0"
-          )
-            .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
+    .datepicker__drop.js-datepicker__drop.datepicker__drop_format_filter
+      .datepicker__header= label
+      .datepicker__expand.js-datepicker__expand.datepicker__expand_format_filter.js-datepicker__expand_format_filter(
+        tabindex="0"
+      )
+        .datepicker__value.js-datepicker__value Укажите даты пребывания
+    .datepicker__drop.js-datepicker__drop
+      .datepicker__container
+        .datepicker__header= labelArrival
+        .datepicker__expand.js-datepicker__expand.datepicker__expand_date_arrival.js-datepicker__expand_date_arrival(
+          tabindex="0"
+        )
+          .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
+      .datepicker__container
+        .datepicker__header= labelDeparture
+        .datepicker__expand.js-datepicker__expand.datepicker__expand_date_departure.js-datepicker__expand_date_departure(
+          tabindex="0"
+        )
+          .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
     .datepicker__down.js-datepicker__down
       .datepicker__button-container
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_clear(
+        button.datepicker__button.js-datepicker__button.datepicker__button_action_clear.js-datepicker__button_action_clear(
           type="button"
           tabindex="-1"
+          disabled
         ) очистить
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_confirm(
+        button.datepicker__button.js-datepicker__button.datepicker__button_action_confirm.js-datepicker__button_action_confirm(
           type="button"
           tabindex="-1"
+          disabled
         ) применить
       .datepicker__calendar-container
         table.datepicker__calendar.js-datepicker__calendar
       .datepicker__month-year-container
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-minus(
+        button.datepicker__button.js-datepicker__button.datepicker__button_action_month-minus.js-datepicker__button_action_month-minus(
           type="button"
           tabindex="-1"
+          disabled
         ) arrow_back
         .datepicker__month-year.js-datepicker__month-year
-        button.datepicker__button.js-datepicker__button.js-datepicker__button_action_month-plus(
+        button.datepicker__button.js-datepicker__button.datepicker__button_action_month-plus.js-datepicker__button_action_month-plus(
           type="button"
           tabindex="-1"
         ) arrow_forward

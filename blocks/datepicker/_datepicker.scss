@@ -4,7 +4,7 @@
   width: 320px;
 }
 
-.datepicker_filter {
+.datepicker_format_filter {
   width: 266px;
 }
 
@@ -17,7 +17,35 @@
   justify-content: space-between;
 }
 
-.datepicker_demo {
+.datepicker__drop_format_filter {
+  display: none;
+}
+
+.datepicker_format_filter {
+  .datepicker__drop {
+    display: none;
+  }
+
+  .datepicker__drop_format_filter {
+    display: block;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .datepicker {
+    width: 266px;
+  }
+
+  .datepicker__drop {
+    display: none;
+  }
+
+  .datepicker__drop_format_filter {
+    display: block;
+  }
+}
+
+.datepicker_format_demo {
   .datepicker__drop {
     display: none;
   }
@@ -53,10 +81,8 @@
   background: transparent;
 }
 
-.datepicker_filter {
-  .datepicker__expand {
-    width: 249px;
-  }
+.datepicker__expand_format_filter {
+  width: 249px;
 }
 
 .datepicker__value {
@@ -140,6 +166,10 @@
   cursor: pointer;
 }
 
+.datepicker__button:active {
+  transform: scale(0.95);
+}
+
 .datepicker__month-year-container {
   .datepicker__button {
     text-transform: none;
@@ -147,14 +177,22 @@
     font-size: 24px;
     line-height: 24px;
   }
-}
 
-.datepicker__button:active {
-  transform: scale(0.95);
+  .datepicker__button:active {
+    transform: scale(0.85);
+  }
 }
 
 .datepicker__button:disabled {
+  color: rgba(31, 32, 65, 0.5);
+
+  pointer-events: none;
+
   cursor: default;
+}
+
+.datepicker__button::selection {
+  background: transparent;
 }
 
 .datepicker__month-year {
@@ -214,15 +252,15 @@
   background: transparent;
 }
 
-.datepicker__cell_other-month {
+.datepicker__cell_date_other-month {
   color: rgba(31, 32, 65, 0.25);
 }
 
-.datepicker__cell_highlight {
+.datepicker__cell_pointed {
   cursor: pointer;
 }
 
-.datepicker__cell_today {
+.datepicker__cell_date_today {
   color: white;
   font-weight: bold;
 
@@ -240,7 +278,15 @@
   border-radius: 22px;
 }
 
-.datepicker_filter {
+.datepicker_format_filter {
+  .datepicker__cell {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+  }
+}
+
+@media all and (max-width: 400px) {
   .datepicker__cell {
     width: 32px;
     height: 32px;
@@ -261,23 +307,23 @@
   opacity: 0.25;
 }
 
-.datepicker__cell-period_sunday {
+.datepicker__cell-period_date_sunday {
   border-bottom-right-radius: 22px;
   border-top-right-radius: 22px;
 }
 
-.datepicker__cell-period_monday {
+.datepicker__cell-period_date_monday {
   border-bottom-left-radius: 22px;
   border-top-left-radius: 22px;
 }
 
-.datepicker__cell-period_arrival {
+.datepicker__cell-period_date_arrival {
   width: 50%;
 
   right: 0;
 }
 
-.datepicker__cell-period_departure {
+.datepicker__cell-period_date_departure {
   width: 50%;
 }
 

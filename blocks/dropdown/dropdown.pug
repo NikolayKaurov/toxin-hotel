@@ -1,4 +1,4 @@
-mixin dropdown(options)
+mixin dropdown(options={})
   -
     var {
       narrow = false, //- узкий, шириной 266px (если false ширина 320px)
@@ -15,10 +15,13 @@ mixin dropdown(options)
     items.reverse(); //- в выпадающем элементе строки идут снизу вверх, flex-direction: column-reverse;
     var modifiers = '';
     if (narrow) {
-      modifiers += ' dropdown_narrow';
+      modifiers += ' dropdown_size_narrow';
     }
     if (guest) {
-      modifiers += ' js-dropdown_guest';
+      modifiers += ' dropdown_guest';
+    }
+    if (confirm) {
+      modifiers += ' dropdown_rollbackable';
     }
 
   .dropdown.js-dropdown(

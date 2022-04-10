@@ -1,10 +1,16 @@
 .dropdown {
-  outline: 1px;
+  outline: 0;
 
   width: 320px;
 }
 
-.dropdown_narrow {
+@media all and (max-width: 400px) {
+  .dropdown {
+    width: 266px;
+  }
+}
+
+.dropdown_size_narrow {
   width: 266px;
 }
 
@@ -159,6 +165,8 @@
 .dropdown__counter-button:disabled {
   border: 1px solid rgba(31, 32, 65, 0.25);
 
+  pointer-events: none;
+
   cursor: default;
 }
 
@@ -236,6 +244,8 @@
 
 .dropdown__button:disabled {
   color: rgba(31, 32, 65, 0.5);
+
+  pointer-events: none;
 
   cursor: default;
 }

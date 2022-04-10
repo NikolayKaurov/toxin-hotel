@@ -17,13 +17,6 @@
 @use 'blocks/button/__input/_big/button__input_big';
 @use 'blocks/button/__input/button__input';
 @use 'blocks/button/__back/button__back';
-@use 'blocks/toggle/toggle';
-@use 'blocks/toggle/__button/toggle__button';
-@use 'blocks/checkbox/checkbox';
-@use 'blocks/checkbox/__expand/checkbox__expand';
-@use 'blocks/checkbox/__label/checkbox__label';
-@use 'blocks/checkbox/__down/checkbox__down';
-@use 'blocks/toggle/__label/toggle__label';
 @use 'blocks/dropdown/dropdown';
 @use 'blocks/card-registration/card-registration';
 @use 'blocks/card-registration/__header/card-registration__header';
@@ -39,6 +32,13 @@
 @use 'blocks/radio/__wrapper/radio__wrapper';
 @use 'blocks/radio/__button/radio__button';
 @use 'blocks/radio/__button-label/radio__button-label';
+@use 'blocks/toggle/toggle';
+@use 'blocks/toggle/__button/toggle__button';
+@use 'blocks/checkbox/checkbox';
+@use 'blocks/checkbox/__expand/checkbox__expand';
+@use 'blocks/checkbox/__label/checkbox__label';
+@use 'blocks/checkbox/__down/checkbox__down';
+@use 'blocks/toggle/__label/toggle__label';
 @use 'blocks/card-registration/__footer/card-registration__footer';
 @use 'blocks/card-details/card-details';
 @use 'blocks/card-details/__header/card-details__header';

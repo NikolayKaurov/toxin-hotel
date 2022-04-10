@@ -1,8 +1,8 @@
 import '../blocks/text-field/text-field';
 import '../blocks/dropdown/dropdown';
 import '../blocks/datepicker/datepicker';
-import '../blocks/checkbox/checkbox';
 import '../blocks/subscription/subscription';
+import '../blocks/checkbox/checkbox';
 import '../blocks/radio/radio';
 import '../blocks/like/like';
 import '../blocks/slider-toxin/slider-toxin';

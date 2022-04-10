@@ -24,13 +24,13 @@ const ITEM_DURATION_OPEN = 100;
 // максимальное значение счётчиков, минимальное значение 0
 const MAX = 99;
 
-function handleFocus(event) {
-  event.data.dropdown.$dropdown.addClass('dropdown_open');
-  event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.openHeight);
+function handleDropdownFocus(event) {
+  event.data.dropdown.open();
+
   event.data.dropdown.setTimeFocus(event.timeStamp);
 }
 
-function handleBlur(event) {
+function handleDropdownBlur(event) {
   if (event.data.dropdown.$dropdown.hasClass('dropdown_keeping-focus')) {
     event.data.dropdown.$dropdown.removeClass('dropdown_keeping-focus');
     return;
@@ -38,25 +38,14 @@ function handleBlur(event) {
 
   if (event.data.dropdown.isRollbackable()) {
     event.data.dropdown.rollback();
-    event.data.dropdown.$dropdown__buttons.each((index, button) => {
-      const $button = $(button);
-      if (
-        $button.hasClass('js-dropdown__button_action_clear')
-        && event.data.dropdown.getCommonValue() !== event.data.dropdown.defaultValue
-      ) {
-        $button.prop('disabled', false);
-      } else {
-        $button.prop('disabled', true);
-      }
-    });
   }
 
-  event.data.dropdown.$dropdown.removeClass('dropdown_open');
-  event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.closedHeight);
+  event.data.dropdown.close();
 }
 
-function handleInput(event) {
+function handleDropdownInput(event) {
   const value = event.data.dropdown.getCommonValue();
+
   event.data.dropdown.$dropdown__value.text(value);
 
   event.data.dropdown.$dropdown__buttons.each((index, button) => {
@@ -81,29 +70,10 @@ function handleDropMousedown(event) {
   }
 
   if (event.data.dropdown.$dropdown.hasClass('dropdown_open')) {
-    event.data.dropdown.$dropdown.removeClass('dropdown_open');
-    event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.closedHeight);
+    event.data.dropdown.close();
   } else {
-    event.data.dropdown.$dropdown.addClass('dropdown_open');
-    event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.openHeight);
+    event.data.dropdown.open();
   }
-}
-
-function handleClear(event) {
-  event.data.dropdown.$dropdown__quantities.each((index, quantity) => {
-    $(quantity).trigger('setValue', 0);
-  });
-
-  event.data.dropdown.$dropdown__value.text(event.data.dropdown.defaultValue);
-  event.data.dropdown.clearSnapshot();
-  event.data.dropdown.$dropdown__buttons.prop('disabled', true);
-}
-
-function handleConfirm(event) {
-  event.data.dropdown.takeSnapshot();
-
-  event.data.dropdown.$dropdown.removeClass('dropdown_open');
-  event.data.dropdown.$dropdown__down.css('height', event.data.dropdown.closedHeight);
 }
 
 function handleCounterButtonMousedown(event) {
@@ -123,9 +93,7 @@ function handleCounterButtonMousedown(event) {
     $button.addClass('js-dropdown__counter-button_pressed');
   }
 
-  $quantity
-    .val(value)
-    .trigger('input');
+  $quantity.val(value).trigger('input');
 }
 
 function handleCounterButtonMouseup(event) {
@@ -202,24 +170,23 @@ function handleQuantityMousedown(event) {
   event.preventDefault();
 }
 
-function handleQuantitySetValue(event, value) {
-  const $quantity = $(event.target);
-  $quantity.val(value);
-  $quantity.trigger('input');
-}
-
 function handleButtonMousedown(event) {
   const $button = $(event.target);
   $button.prop('disabled', true);
 
   if ($button.hasClass('js-dropdown__button_action_clear')) {
-    event.data.dropdown.$dropdown.trigger('clear');
+    event.data.dropdown.clearSnapshot();
+
+    event.data.dropdown.$dropdown__quantities.each((index, quantity) => {
+      $(quantity).val(0).trigger('input');
+    });
+
     return;
   }
 
-  if ($button.hasClass('js-dropdown__button_action_confirm')) {
-    event.data.dropdown.$dropdown.trigger('confirm');
-  }
+  event.data.dropdown.takeSnapshot();
+
+  event.data.dropdown.close();
 }
 
 class Dropdown {
@@ -227,37 +194,38 @@ class Dropdown {
 
   #guest = false;
 
+  #$dropdown__down = $();
+
+  #$dropdown__items = $();
+
+  #openHeight = '';
+
+  #closedHeight = `${CLOSED_HEIGHT}px`;
+
   constructor(dropdown) {
     this.$dropdown = $(dropdown);
 
-    this.$dropdown__value = $('.js-dropdown__value', this.$dropdown);
-    this.$dropdown__down = $('.js-dropdown__down', this.$dropdown);
-    this.$dropdown__items = $($('.js-dropdown__item', this.$dropdown).get().reverse());
-    this.$dropdown__quantities = $($('.js-dropdown__quantity', this.$dropdown).get().reverse());
-    this.$dropdown__buttons = $('.js-dropdown__button', this.$dropdown);
-
     this.defaultValue = dropdown.dataset.defaultValue;
-
-    this.openHeight = '';
-    this.closedHeight = '';
-
-    this.timeFocus = 0;
   }
 
   init() {
-    this.#guest = this.$dropdown.hasClass('js-dropdown_guest');
+    this.timeFocus = 0;
 
-    this.$dropdown__value.text(this.defaultValue);
+    this.$dropdown__value = $('.js-dropdown__value', this.$dropdown);
+    this.#$dropdown__items = $($('.js-dropdown__item', this.$dropdown).get().reverse());
+    this.#$dropdown__down = $('.js-dropdown__down', this.$dropdown);
+    this.$dropdown__quantities = $($('.js-dropdown__quantity', this.$dropdown).get().reverse());
+    this.$dropdown__buttons = $('.js-dropdown__button', this.$dropdown);
+
+    this.#guest = this.$dropdown.hasClass('dropdown_guest');
 
     let openHeight = EMPTY_OPEN_HEIGHT;
     let durationOpen = 0;
 
-    this.$dropdown__items.each((index, item) => {
+    this.#$dropdown__items.each((index, item) => {
       const $item = $(item);
 
       $('.js-dropdown__label', $item).text(item.dataset.units.split(' ')[0]);
-
-      $('.js-dropdown__counter-button_action_minus', $item).prop('disabled', true);
 
       $('.js-dropdown__quantity', $item).val(0);
 
@@ -272,42 +240,37 @@ class Dropdown {
       durationOpen += ITEM_DURATION_OPEN;
     }
 
-    this.openHeight = `${openHeight}px`;
-    this.closedHeight = `${CLOSED_HEIGHT}px`;
+    this.#openHeight = `${openHeight}px`;
 
-    const name = this.$dropdown.data('dropdown-name');
     const zIndex = this.$dropdown.data('z-index');
 
-    this.$dropdown__down
+    this.#$dropdown__down
       .css({
         transition: `height ${durationOpen}ms`,
-        height: this.closedHeight,
+        height: this.#closedHeight,
         'z-index': () => 2 * zIndex - 1,
       });
 
-    this.$dropdown__items
+    const name = this.$dropdown.data('dropdown-name');
+
+    this.#$dropdown__items
       .on(
-        `mousedown.dropdown__item.${name}`,
+        `mousedown.dropdown__counter-button.${name}`,
         '.js-dropdown__counter-button',
         { dropdown: this },
         handleCounterButtonMousedown,
       )
       .on(
-        `mouseup.dropdown__item.${name} mouseout.dropdown__item.${name}`,
+        `mouseup.dropdown__counter-button.${name} mouseout.dropdown__counter-button.${name}`,
         '.js-dropdown__counter-button',
         { dropdown: this },
         handleCounterButtonMouseup,
       )
       .on(
-        `input.dropdown__item.${name}`,
+        `input.dropdown__quantity.${name}`,
         '.js-dropdown__quantity',
         { dropdown: this },
         handleQuantityInput,
-      )
-      .on(
-        `setValue.dropdown__item.${name}`,
-        '.js-dropdown__quantity',
-        handleQuantitySetValue,
       );
 
     $('.js-dropdown__drop', this.$dropdown)
@@ -323,24 +286,30 @@ class Dropdown {
       );
 
     this.$dropdown
-      .on(`focus.dropdown.${name}`, null, { dropdown: this }, handleFocus)
-      .on(`blur.dropdown.${name}`, null, { dropdown: this }, handleBlur)
-      .on(`input.dropdown.${name}`, null, { dropdown: this }, handleInput)
-      .on(`clear.dropdown.${name}`, null, { dropdown: this }, handleClear)
-      .on(`confirm.dropdown.${name}`, null, { dropdown: this }, handleConfirm)
-      .on(`mousedown.dropdown.${name}`, '.dropdown__quantity', handleQuantityMousedown)
+      .on(`focus.dropdown.${name}`, null, { dropdown: this }, handleDropdownFocus)
+      .on(`blur.dropdown.${name}`, null, { dropdown: this }, handleDropdownBlur)
+      .on(`input.dropdown.${name}`, null, { dropdown: this }, handleDropdownInput)
       .on(
-        `mousedown.dropdown.${name}`,
+        `mousedown.dropdown__quantity.${name}`,
+        '.dropdown__quantity',
+        handleQuantityMousedown,
+      )
+      .on(
+        `mousedown.dropdown__button.${name}`,
         '.dropdown__button',
         { dropdown: this },
         handleButtonMousedown,
       );
+  }
 
-    this.$dropdown__buttons.each((index, button) => {
-      if ($(button).hasClass('js-dropdown__button_action_confirm')) {
-        this.$dropdown.addClass('dropdown_rollbackable');
-      }
-    });
+  open() {
+    this.$dropdown.addClass('dropdown_open');
+    this.#$dropdown__down.css('height', this.#openHeight);
+  }
+
+  close() {
+    this.$dropdown.removeClass('dropdown_open');
+    this.#$dropdown__down.css('height', this.#closedHeight);
   }
 
   isRollbackable() {
@@ -368,8 +337,8 @@ class Dropdown {
     let numberItems = 0;
 
     if (this.#guest) {
-      const firstItem = this.$dropdown__items.get(0);
-      const secondItem = this.$dropdown__items.get(1);
+      const firstItem = this.#$dropdown__items.get(0);
+      const secondItem = this.#$dropdown__items.get(1);
 
       let guestsValue = 0;
 
@@ -387,7 +356,7 @@ class Dropdown {
       }
     }
 
-    this.$dropdown__items.each((index, item) => {
+    this.#$dropdown__items.each((index, item) => {
       if (item.dataset.value !== '') {
         if (numberItems === NUMBER_ITEMS_IN_VALUE) {
           value += '...';
@@ -410,7 +379,7 @@ class Dropdown {
   }
 
   takeSnapshot() {
-    this.$dropdown__items.each((index, item) => {
+    this.#$dropdown__items.each((index, item) => {
       this.#rollbackSnapshot[index] = item.dataset.quantity;
     });
   }
@@ -423,10 +392,8 @@ class Dropdown {
 
   rollback() {
     this.$dropdown__quantities.each((index, quantity) => {
-      $(quantity).trigger('setValue', this.#rollbackSnapshot[index]);
+      $(quantity).val(this.#rollbackSnapshot[index]).trigger('input');
     });
-
-    this.$dropdown.trigger('input');
   }
 }
 
