@@ -39,12 +39,14 @@ mixin datepicker(options={})
         .datepicker__header= labelArrival
         .datepicker__expand.js-datepicker__expand.datepicker__expand_date_arrival.js-datepicker__expand_date_arrival(
           tabindex="0"
+          data-date=""
         )
           .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
       .datepicker__container
         .datepicker__header= labelDeparture
         .datepicker__expand.js-datepicker__expand.datepicker__expand_date_departure.js-datepicker__expand_date_departure(
           tabindex="0"
+          data-date=""
         )
           .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
     .datepicker__down.js-datepicker__down

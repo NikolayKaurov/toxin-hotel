@@ -14,7 +14,7 @@ const MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', '�
 const SHORT_MONTHS = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
 function handleExpandFocusin(event) {
-  $(event.target).addClass('datepicker__expand_open');
+  $(event.target).addClass('datepicker__expand_open js-datepicker__expand_open');
 
   event.data.datepicker.open();
 
@@ -30,9 +30,13 @@ function handleExpandFocusout(event) {
     return;
   }
 
-  $(event.target).removeClass('datepicker__expand_open');
+  $(event.target).removeClass('datepicker__expand_open js-datepicker__expand_open');
 
-  if ($('.datepicker__expand_open', $datepicker).length === 0) {
+  if (!event.data.datepicker.isOpen()) {
+    if (event.data.datepicker.isRollbackable()) {
+      event.data.datepicker.rollback();
+    }
+
     event.data.datepicker.close();
   }
 }
@@ -44,21 +48,20 @@ function handleExpandMousedown(event) {
 
   const $expand = $(event.delegateTarget);
 
-  if ($expand.hasClass('datepicker__expand_open')) {
-    $expand.removeClass('datepicker__expand_open');
+  if ($expand.hasClass('js-datepicker__expand_open')) {
+    $expand.removeClass('datepicker__expand_open js-datepicker__expand_open');
     event.data.datepicker.close();
   } else {
-    $expand.addClass('datepicker__expand_open');
+    $expand.addClass('datepicker__expand_open js-datepicker__expand_open');
     event.data.datepicker.open();
   }
 }
 
 function handleExpandKeydown(event) {
+  const { $expandDeparture } = event.data.datepicker;
+
   if (event.which === 9) {
-    $('.js-datepicker__expand_date_departure', event.data.datepicker.$datepicker)
-      .addClass(
-        'datepicker__expand_open',
-      );
+    $expandDeparture.addClass('datepicker__expand_open js-datepicker__expand_open');
   }
 }
 
@@ -75,24 +78,165 @@ function handleDownMouseup(event) {
   if ($down.hasClass('datepicker__down_pressed')) {
     $down.removeClass('datepicker__down_pressed');
 
-    $('.datepicker__expand_open', $datepicker).trigger('focus');
+    $('.js-datepicker__expand_open', $datepicker).trigger('focus');
   }
 }
 
 function handleButtonMousedown(event) {
   const $button = $(event.target);
-  const month = event.data.datepicker.calendarMonth;
+  const {
+    dates,
+    today,
+    calendarMonth: month,
+    $arrival,
+    $departure,
+    $expandArrival,
+    $expandDeparture,
+    $valueArrival,
+    $valueDeparture,
+    $valueFilter,
+  } = event.data.datepicker;
 
-  if ($button.hasClass('datepicker__button_action_month-minus')) {
+  if ($button.hasClass('js-datepicker__button_action_month-minus')) {
     month.setMonth(month.getMonth() - 1);
-  } else if ($button.hasClass('datepicker__button_action_month-plus')) {
+  } else if ($button.hasClass('js-datepicker__button_action_month-plus')) {
     month.setMonth(month.getMonth() + 1);
+  } else if ($button.hasClass('js-datepicker__button_action_clear')) {
+    month.setMonth(today.getMonth());
+    dates[0] = '';
+    dates[1] = '';
+    $expandArrival.attr('data-date', '');
+    $expandDeparture.attr('data-date', '');
+    $valueArrival.text('ДД.ММ.ГГГГ');
+    $valueDeparture.text('ДД.ММ.ГГГГ');
+    $valueFilter.text('Укажите даты пребывания');
+    $arrival.val('');
+    $departure.val('');
+  } else {
+    $button.prop('disabled', true);
+
+    $arrival.val($expandArrival.attr('data-date'));
+    $departure.val($expandDeparture.attr('data-date'));
+
+    event.data.datepicker.close();
+
+    return;
+  }
+
+  event.data.datepicker.updateCalendar();
+}
+
+function handleCellMousedown(event) {
+  const $cell = $(event.target);
+  const {
+    dates,
+    $datepicker,
+    $expandArrival,
+    $expandDeparture,
+    $valueArrival,
+    $valueDeparture,
+    $valueFilter,
+  } = event.data.datepicker;
+
+  if (!$cell.hasClass('datepicker__cell_clickable')) {
+    return;
+  }
+
+  const cellDate = $cell.data('date');
+
+  const $openExpand = $('.js-datepicker__expand_open', $datepicker);
+
+  // не фильтр и не демо
+  const regularFormat = $openExpand.hasClass('js-datepicker__expand_date_arrival')
+    || $openExpand.hasClass('js-datepicker__expand_date_departure');
+
+  if (regularFormat) {
+    if (dates[1] === $openExpand.attr('data-date')) {
+      dates[1] = cellDate;
+    } else {
+      dates[0] = cellDate;
+    }
+  } else {
+    dates.push(cellDate);
+    dates.shift();
+  }
+
+  if (
+    dates[1] === ''
+    || dates[0] === ''
+  ) {
+    if (regularFormat) {
+      $openExpand.attr('data-date', cellDate);
+
+      $('.js-datepicker__value', $openExpand).text(
+        cellDate.split('-').reverse().join('.'),
+      );
+    } else {
+      $expandArrival.attr('data-date', cellDate);
+      $valueArrival.text(
+        cellDate.split('-').reverse().join('.'),
+      );
+    }
+
+    const date = new Date(cellDate);
+
+    $valueFilter.text(
+      `${date.getDate()} ${SHORT_MONTHS[date.getMonth()]}`,
+    );
+  } else {
+    let arrival;
+    let departure;
+
+    if (dates[0] > dates[1]) {
+      [departure, arrival] = dates;
+    } else {
+      [arrival, departure] = dates;
+    }
+
+    const dateArrival = new Date(arrival);
+    const dateDeparture = new Date(departure);
+
+    $expandArrival.attr('data-date', arrival);
+    $valueArrival.text(
+      arrival.split('-').reverse().join('.'),
+    );
+
+    $expandDeparture.attr('data-date', departure);
+    $valueDeparture.text(
+      departure.split('-').reverse().join('.'),
+    );
+
+    $valueFilter.text(
+      `${dateArrival.getDate()} ${SHORT_MONTHS[dateArrival.getMonth()]} - ${dateDeparture.getDate()} ${SHORT_MONTHS[dateDeparture.getMonth()]}`,
+    );
+  }
+
+  if (regularFormat) {
+    if ($expandArrival.attr('data-date') === cellDate) {
+      $expandDeparture.addClass('js-datepicker__expand_open datepicker__expand_open');
+      $expandArrival.removeClass('js-datepicker__expand_open datepicker__expand_open');
+    } else {
+      $expandDeparture.removeClass('js-datepicker__expand_open datepicker__expand_open');
+      $expandArrival.addClass('js-datepicker__expand_open datepicker__expand_open');
+    }
   }
 
   event.data.datepicker.updateCalendar();
 }
 
 class Datepicker {
+  #weeks = 1;
+
+  #$back;
+
+  #$monthYear;
+
+  #$clear;
+
+  #$confirm;
+
+  #$calendar;
+
   constructor(datepicker) {
     this.$datepicker = $(datepicker);
   }
@@ -157,25 +301,36 @@ class Datepicker {
         handleExpandMousedown,
       );
 
-    $('.js-datepicker__expand_date_arrival', this.$datepicker)
+    this.$expandArrival = $('.js-datepicker__expand_date_arrival', this.$datepicker)
       .on(
-        `keydown.datepicker__expand_arrival.${name}`,
+        `keydown.datepicker__expand_date_arrival.${name}`,
         null,
         { datepicker: this },
         handleExpandKeydown,
       );
 
-    this.$back = $('.js-datepicker__button_action_month-minus', this.$down);
-    this.$monthYear = $('.js-datepicker__month-year', this.$down);
-    this.$clear = $('.js-datepicker__button_action_clear', this.$down);
-    this.$confirm = $('.js-datepicker__button_action_confirm', this.$down);
-    this.$calendar = $('.js-datepicker__calendar', this.$down);
+    this.$valueArrival = $('.js-datepicker__value', this.$expandArrival);
+    this.$expandDeparture = $('.js-datepicker__expand_date_departure', this.$datepicker);
+    this.$valueDeparture = $('.js-datepicker__value', this.$expandDeparture);
+    this.$expandFilter = $('.js-datepicker__expand_format_filter', this.$datepicker);
+    this.$valueFilter = $('.js-datepicker__value', this.$expandFilter);
+    this.#$back = $('.js-datepicker__button_action_month-minus', this.$down);
+    this.#$monthYear = $('.js-datepicker__month-year', this.$down);
+    this.#$clear = $('.js-datepicker__button_action_clear', this.$down);
+    this.#$confirm = $('.js-datepicker__button_action_confirm', this.$down);
+    this.#$calendar = $('.js-datepicker__calendar', this.$down)
+      .on(
+        `mousedown.datepicker__cell.${name}`,
+        '.js-datepicker__cell',
+        { datepicker: this },
+        handleCellMousedown,
+      );
 
     this.updateCalendar();
   }
 
   open() {
-    const openHeight = EMPTY_CALENDAR_HEIGHT + $('tr', this.$calendar).length * parseInt($('td', this.$calendar).css('height'), 10);
+    const openHeight = EMPTY_CALENDAR_HEIGHT + this.#weeks * parseInt($('td', this.#$calendar).css('height'), 10);
 
     this.$down.css({
       height: `${openHeight}px`,
@@ -185,6 +340,10 @@ class Datepicker {
   }
 
   close() {
+    this.$expandArrival.removeClass('js-datepicker__expand_open datepicker__expand_open');
+    this.$expandDeparture.removeClass('js-datepicker__expand_open datepicker__expand_open');
+    this.$expandFilter.removeClass('js-datepicker__expand_open datepicker__expand_open');
+
     this.$down.css({
       height: '0px',
       border: '0px solid rgba(31, 32, 65, 0)',
@@ -206,8 +365,59 @@ class Datepicker {
     ));
   }
 
+  rollback() {
+    let arrival = this.$arrival.val();
+    const departure = this.$departure.val();
+
+    this.$expandArrival.attr('data-date', arrival);
+    this.$expandDeparture.attr('data-date', departure);
+
+    if (arrival) {
+      this.$valueArrival.text(arrival.split('-').reverse().join('.'));
+    } else {
+      this.$valueArrival.text('ДД.ММ.ГГГГ');
+    }
+    if (departure) {
+      this.$valueDeparture.text(departure.split('-').reverse().join('.'));
+    } else {
+      this.$valueDeparture.text('ДД.ММ.ГГГГ');
+    }
+
+    this.dates[0] = arrival;
+    this.dates[1] = departure;
+
+    if (
+      arrival === ''
+      && departure === ''
+    ) {
+      this.$valueFilter.text('Укажите даты пребывания');
+    } else if (
+      arrival !== ''
+      && departure !== ''
+    ) {
+      const dateArrival = new Date(arrival);
+      const dateDeparture = new Date(departure);
+
+      this.$valueFilter.text(
+        `${dateArrival.getDate()} ${SHORT_MONTHS[dateArrival.getMonth()]} - ${dateDeparture.getDate()} ${SHORT_MONTHS[dateDeparture.getMonth()]}`,
+      );
+    } else {
+      arrival = `${arrival}${departure}`;
+      const date = new Date(arrival);
+
+      this.$valueFilter.text(
+        `${date.getDate()} ${SHORT_MONTHS[date.getMonth()]}`,
+      );
+
+      this.dates[0] = '';
+      this.dates[1] = arrival;
+    }
+
+    this.updateCalendar();
+  }
+
   isOpen() {
-    return $('.datepicker__expand_open', this.$datepicker).length > 0
+    return $('.js-datepicker__expand_open', this.$datepicker).length > 0
       || this.$datepicker.hasClass('datepicker_format_demo');
   }
 
@@ -216,12 +426,12 @@ class Datepicker {
       this.today.getMonth() === this.calendarMonth.getMonth()
       && this.today.getFullYear() === this.calendarMonth.getFullYear()
     ) {
-      this.$back.prop('disabled', true);
+      this.#$back.prop('disabled', true);
     } else {
-      this.$back.prop('disabled', false);
+      this.#$back.prop('disabled', false);
     }
 
-    this.$monthYear.text(`${MONTHS[this.calendarMonth.getMonth()]} ${this.calendarMonth.getFullYear()}`);
+    this.#$monthYear.text(`${MONTHS[this.calendarMonth.getMonth()]} ${this.calendarMonth.getFullYear()}`);
 
     const cycleDate = new Date(this.calendarMonth.getFullYear(), this.calendarMonth.getMonth());
 
@@ -234,18 +444,21 @@ class Datepicker {
     let arrival = new Date(this.dates[0]);
     let departure = new Date(this.dates[1]);
 
+    arrival.setHours(0, 0, 0);
+    departure.setHours(0, 0, 0);
+
     if (period) {
       if (arrival > departure) {
         [arrival, departure] = [departure, arrival];
       }
     }
 
-    let weeks = 1;
+    this.#weeks = 1;
 
     let calendarHTML = CALENDAR_HEAD;
 
     do {
-      weeks += 1;
+      this.#weeks += 1;
 
       calendarHTML += '<tr class="datepicker__row">';
 
@@ -259,7 +472,9 @@ class Datepicker {
         ) {
           cellClasses += ' datepicker__cell_selected';
         } else if (cycleDate.getTime() === this.today.getTime()) {
-          cellClasses += ' datepicker__cell_date_today';
+          cellClasses += ' datepicker__cell_date_today datepicker__cell_clickable';
+        } else if (cycleDate > this.today) {
+          cellClasses += ' datepicker__cell_clickable';
         }
 
         if (cycleDate.getMonth() !== this.calendarMonth.getMonth()) {
@@ -292,17 +507,17 @@ class Datepicker {
         const zeroMonth = cycleDate.getMonth() < 9 ? '0' : '';
         const zeroDate = cycleDate.getDate() < 10 ? '0' : '';
 
-        calendarHTML += `<td class="datepicker__cell${cellClasses}" data-date="${cycleDate.getFullYear()}-${zeroMonth}${cycleDate.getMonth() + 1}-${zeroDate}${cycleDate.getDate()}">${cycleDate.getDate()}${cellPeriod}</td>`;
+        calendarHTML += `<td class="js-datepicker__cell datepicker__cell${cellClasses}" data-date="${cycleDate.getFullYear()}-${zeroMonth}${cycleDate.getMonth() + 1}-${zeroDate}${cycleDate.getDate()}">${cycleDate.getDate()}${cellPeriod}</td>`;
 
         cycleDate.setDate(cycleDate.getDate() + 1);
       }
       calendarHTML += '</tr>';
     } while (cycleDate.getMonth() === this.calendarMonth.getMonth());
 
-    this.$calendar.html(calendarHTML);
+    this.#$calendar.html(calendarHTML);
 
     if (this.isOpen()) {
-      const openHeight = EMPTY_CALENDAR_HEIGHT + weeks * parseInt($('td', this.$calendar).css('height'), 10);
+      const openHeight = EMPTY_CALENDAR_HEIGHT + this.#weeks * parseInt($('td', this.#$calendar).css('height'), 10);
 
       this.$down.css({
         height: `${openHeight}px`,
@@ -312,15 +527,15 @@ class Datepicker {
     }
 
     if (!!this.dates[0] || !!this.dates[1]) {
-      this.$clear.prop('disabled', false);
+      this.#$clear.prop('disabled', false);
     } else {
-      this.$clear.prop('disabled', true);
+      this.#$clear.prop('disabled', true);
     }
 
     if (this.isRollbackable()) {
-      this.$confirm.prop('disabled', false);
+      this.#$confirm.prop('disabled', false);
     } else {
-      this.$confirm.prop('disabled', true);
+      this.#$confirm.prop('disabled', true);
     }
   }
 }
