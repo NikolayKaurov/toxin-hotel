@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
-import './src/slider.ts';
-import './src/slider.scss';
+import 'toxin-slider/slider.ts';
+import 'toxin-slider/slider.scss';
 
 function handleSlide(event, { scope }) {
   $('.js-slider-toxin__value', event.data.$slider).text(scope);

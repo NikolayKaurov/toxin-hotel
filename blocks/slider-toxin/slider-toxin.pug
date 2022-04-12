@@ -1,5 +1,24 @@
-mixin slider-toxin({ start = 0, end = 0, step = 0, from = 0, to = 0, label = '', description = '', name = 'undefined-name' } = {})
-  .slider-toxin.js-slider-toxin(data-start= start data-end= end data-step= step data-from= from data-to= to data-name= name)
+mixin slider-toxin(options={})
+  -
+    var {
+      start = 0,
+      end = 0,
+      step = 0,
+      from = 0,
+      to = 0,
+      label = '',
+      description = '',
+      name = 'undefined-name'
+    } = options;
+
+  .slider-toxin.js-slider-toxin(
+    data-start= start
+    data-end= end
+    data-step= step
+    data-from= from
+    data-to= to
+    data-name= name
+  )
     .slider-toxin__header
       .slider-toxin__label= label
       .slider-toxin__value.js-slider-toxin__value

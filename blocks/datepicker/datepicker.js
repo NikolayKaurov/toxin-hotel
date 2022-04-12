@@ -102,7 +102,7 @@ function handleButtonMousedown(event) {
   } else if ($button.hasClass('js-datepicker__button_action_month-plus')) {
     month.setMonth(month.getMonth() + 1);
   } else if ($button.hasClass('js-datepicker__button_action_clear')) {
-    month.setMonth(today.getMonth());
+    month.setFullYear(today.getFullYear(), today.getMonth());
     dates[0] = '';
     dates[1] = '';
     $expandArrival.attr('data-date', '');

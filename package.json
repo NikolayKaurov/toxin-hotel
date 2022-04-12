@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "jquery": "^3.6.0",
-    "jsdom": "^19.0.0"
+    "jsdom": "^19.0.0",
+    "toxin-slider": "^1.0.0"
   }
 }

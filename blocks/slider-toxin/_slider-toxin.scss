@@ -3,3 +3,31 @@
 
   outline: 0;
 }
+
+.slider-toxin__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-toxin__label {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.slider-toxin__value {
+  margin: 0 0 10px 0;
+
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(31, 32, 65, 0.5);
+}
+
+.slider-toxin__description {
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(31, 32, 65, 0.5);
+}
+
+
