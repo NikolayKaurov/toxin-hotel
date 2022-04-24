@@ -1,38 +1,52 @@
-mixin button({ type = '', text = '', disabled = true, submit = true } = {})
+mixin button(options={})
   -
-    let inputClass;
-    let buttonClass;
-    let buttonType = 'submit';
-    switch (type) {
-      case 'fill':
-        inputClass = 'button__input_fill';
-        buttonClass = 'button_fill';
+    var {
+      width = '', //- ultra-narrow - 61px, narrow - 87px, regular - 99px, wide - 196px, ultra-wide - 320px
+      low = false, //- low - 34px, regular - 44px
+      purple = false,
+      bordered = false,
+      arrowed = false,
+      text = '',
+      disabled = true,
+      submit = true
+    } = options;
+    var buttonClass = '';
+    switch (width) {
+      case 'narrow':
+        buttonClass += ' button_width_narrow';
         break;
-      case 'fill-wide':
-        inputClass = 'button__input_fill-wide';
-        buttonClass = 'button_fill-wide';
+      case 'regular':
+        buttonClass += ' button_width_regular';
         break;
-      case 'white':
-        inputClass = 'button__input_white';
-        buttonClass = 'button_white';
+      case 'wide':
+        buttonClass += ' button_width_wide';
         break;
-      case 'white-narrow':
-        inputClass = 'button__input_white-narrow';
-        buttonClass = 'button_white-narrow';
-        break;
-      case 'big':
-        inputClass = 'button__input_big';
-        buttonClass = 'button_big';
+      case 'ultra-wide':
+        buttonClass += ' button_width_ultra-wide';
         break;
       default:
-        inputClass = '';
-        buttonClass = '';
+        buttonClass += ' button_width_ultra-narrow';
     }
+    if (low) {
+      buttonClass += ' button_height_low';
+    } else {
+      buttonClass += ' button_height_regular';
+    }
+    if (purple) {
+      buttonClass += ' button_color_purple';
+    } else if (bordered) {
+      buttonClass += ' button_bordered';
+    }
+    if (arrowed) {
+      buttonClass += ' button_arrowed';
+    }
+    var buttonType = 'submit';
     if (!submit) {
       buttonType = 'button';
     }
 
-  .button(class= buttonClass)
-    input.button__input.js-button__input(type= buttonType value= text class= inputClass disabled= disabled)
-    if (type === 'white' || type === 'big'|| type === 'white-narrow')
-      .button__back
+  button.button(
+    type= buttonType
+    class= buttonClass
+    disabled= disabled
+  )= text

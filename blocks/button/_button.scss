@@ -1,22 +1,81 @@
 .button {
   position: relative;
-  height: 44px;
+
+  box-sizing: border-box;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+
+  font-family: montserrat, Arial, sans-serif;
+  color: #BC9CFF;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  cursor: pointer;
 }
 
-.button_fill,.button_white {
+.button_width_ultra-narrow {
+  width: 61px;
+}
+
+.button_width_narrow {
+  width: 87px;
+}
+
+.button_width_regular {
   width: 99px;
 }
 
-.button_big {
+.button_width_wide {
+  width: 196px;
+}
+
+.button_width_ultra-wide {
   width: 320px;
 }
 
-.button_fill-wide {
-  width: 196px;
+@media all and (max-width: 400px) {
+  .button_width_ultra-wide {
+    width: 266px;
+  }
+}
+
+.button_height_low {
   height: 34px;
 }
 
-.button_white-narrow {
-  width: 87px;
-  height: 34px;
+.button_height_regular {
+  height: 44px;
+}
+
+.button_bordered {
+  background: white;
+
+  border: 2px solid transparent;
+
+  background-clip: padding-box;
+
+  &::before {
+    position: absolute;
+
+    content: '';
+
+    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+
+    z-index: -1;
+
+    border-radius: inherit;
+
+    width: inherit;
+    height: inherit;
+  }
 }

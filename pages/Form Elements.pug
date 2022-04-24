@@ -100,7 +100,12 @@ include ../blocks/list/__item/list__item
         name: 'price-range',
       })
       +demo-block({ type: 'buttons', label: 'buttons' })
-        +button({ type: 'fill', text: 'click me', disabled: false })
+        +button({
+          width: 'regular',
+          bordered: true,
+          text: 'click me',
+          disabled: false
+        })
         +button({ type: 'fill', text: 'click me' })
         +button({ type: 'white', text: 'click me', disabled: false })
         +button({ type: 'white', text: 'click me' })

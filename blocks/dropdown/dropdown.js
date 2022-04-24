@@ -124,11 +124,11 @@ function getValueWithCaseSelect({ value = 0, cases = 'units' } = {}) {
   const lastTwoDigits = value % 100;
   const lastDigit = value % 10;
 
-  if (
-    (lastTwoDigits > 4 && lastTwoDigits < 21)
+  const genitivePluralValue = (lastTwoDigits > 4 && lastTwoDigits < 21)
     || lastDigit > 4
-    || lastDigit === 0
-  ) {
+    || lastDigit === 0;
+
+  if (genitivePluralValue) {
     return `${value} ${genitivePlural}`;
   }
 

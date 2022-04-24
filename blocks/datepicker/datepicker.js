@@ -85,7 +85,7 @@ function handleDownMouseup(event) {
 function handleButtonMousedown(event) {
   const $button = $(event.target);
   const {
-    dates,
+    dateQueue,
     today,
     calendarMonth: month,
     $arrival,
@@ -103,8 +103,8 @@ function handleButtonMousedown(event) {
     month.setMonth(month.getMonth() + 1);
   } else if ($button.hasClass('js-datepicker__button_action_clear')) {
     month.setFullYear(today.getFullYear(), today.getMonth());
-    dates[0] = '';
-    dates[1] = '';
+    dateQueue[0] = '';
+    dateQueue[1] = '';
     $expandArrival.attr('data-date', '');
     $expandDeparture.attr('data-date', '');
     $valueArrival.text('ДД.ММ.ГГГГ');
@@ -129,7 +129,7 @@ function handleButtonMousedown(event) {
 function handleCellMousedown(event) {
   const $cell = $(event.target);
   const {
-    dates,
+    dateQueue,
     $datepicker,
     $expandArrival,
     $expandDeparture,
@@ -151,20 +151,17 @@ function handleCellMousedown(event) {
     || $openExpand.hasClass('js-datepicker__expand_date_departure');
 
   if (regularFormat) {
-    if (dates[1] === $openExpand.attr('data-date')) {
-      dates[1] = cellDate;
+    if (dateQueue[1] === $openExpand.attr('data-date')) {
+      dateQueue[1] = cellDate;
     } else {
-      dates[0] = cellDate;
+      dateQueue[0] = cellDate;
     }
   } else {
-    dates.push(cellDate);
-    dates.shift();
+    dateQueue.push(cellDate);
+    dateQueue.shift();
   }
 
-  if (
-    dates[1] === ''
-    || dates[0] === ''
-  ) {
+  if (dateQueue[0] === '') {
     if (regularFormat) {
       $openExpand.attr('data-date', cellDate);
 
@@ -173,6 +170,7 @@ function handleCellMousedown(event) {
       );
     } else {
       $expandArrival.attr('data-date', cellDate);
+
       $valueArrival.text(
         cellDate.split('-').reverse().join('.'),
       );
@@ -187,10 +185,10 @@ function handleCellMousedown(event) {
     let arrival;
     let departure;
 
-    if (dates[0] > dates[1]) {
-      [departure, arrival] = dates;
+    if (dateQueue[0] > dateQueue[1]) {
+      [departure, arrival] = dateQueue;
     } else {
-      [arrival, departure] = dates;
+      [arrival, departure] = dateQueue;
     }
 
     const dateArrival = new Date(arrival);
@@ -248,7 +246,7 @@ class Datepicker {
     this.today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     this.calendarMonth = new Date(now.getFullYear(), now.getMonth());
 
-    this.dates = ['', ''];
+    this.dateQueue = ['', ''];
 
     this.$arrival = $('.js-datepicker__input_date_arrival', this.$datepicker);
     this.$departure = $('.js-datepicker__input_date_departure', this.$datepicker);
@@ -357,11 +355,11 @@ class Datepicker {
 
   isRollbackable() {
     return !((
-      this.dates[0] === this.$arrival.val()
-      && this.dates[1] === this.$departure.val()
+      this.dateQueue[0] === this.$arrival.val()
+      && this.dateQueue[1] === this.$departure.val()
     ) || (
-      this.dates[1] === this.$arrival.val()
-      && this.dates[0] === this.$departure.val()
+      this.dateQueue[1] === this.$arrival.val()
+      && this.dateQueue[0] === this.$departure.val()
     ));
   }
 
@@ -383,8 +381,8 @@ class Datepicker {
       this.$valueDeparture.text('ДД.ММ.ГГГГ');
     }
 
-    this.dates[0] = arrival;
-    this.dates[1] = departure;
+    this.dateQueue[0] = arrival;
+    this.dateQueue[1] = departure;
 
     if (
       arrival === ''
@@ -409,8 +407,8 @@ class Datepicker {
         `${date.getDate()} ${SHORT_MONTHS[date.getMonth()]}`,
       );
 
-      this.dates[0] = '';
-      this.dates[1] = arrival;
+      this.dateQueue[0] = '';
+      this.dateQueue[1] = arrival;
     }
 
     this.updateCalendar();
@@ -439,10 +437,10 @@ class Datepicker {
     const dayOfWeek = cycleDate.getDay() ? cycleDate.getDay() - 1 : 6;
     cycleDate.setDate(cycleDate.getDate() - dayOfWeek);
 
-    const period = !!this.dates[0] && !!this.dates[1];
+    const period = !!this.dateQueue[0] && !!this.dateQueue[1];
 
-    let arrival = new Date(this.dates[0]);
-    let departure = new Date(this.dates[1]);
+    let arrival = new Date(this.dateQueue[0]);
+    let departure = new Date(this.dateQueue[1]);
 
     arrival.setHours(0, 0, 0);
     departure.setHours(0, 0, 0);
@@ -526,7 +524,7 @@ class Datepicker {
       });
     }
 
-    if (!!this.dates[0] || !!this.dates[1]) {
+    if (!!this.dateQueue[0] || !!this.dateQueue[1]) {
       this.#$clear.prop('disabled', false);
     } else {
       this.#$clear.prop('disabled', true);
