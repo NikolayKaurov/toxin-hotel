@@ -102,16 +102,35 @@ include ../blocks/list/__item/list__item
       +demo-block({ type: 'buttons', label: 'buttons' })
         +button({
           width: 'regular',
+          purple: true,
+          text: 'click me',
+          disabled: false
+        })
+        +button({
+          width: 'regular',
+          purple: true,
+          text: 'click me',
+        })
+        +button({
+          width: 'regular',
           bordered: true,
           text: 'click me',
           disabled: false
         })
-        +button({ type: 'fill', text: 'click me' })
-        +button({ type: 'white', text: 'click me', disabled: false })
-        +button({ type: 'white', text: 'click me' })
+        +button({
+          width: 'regular',
+          bordered: true,
+          text: 'click me',
+        })
         +button({ text: 'click me', disabled: false })
         +button({ text: 'click me' })
-        +button({ type: 'big', text: 'перейти к оплате', disabled: false })
+        +button({
+          width: 'ultra-wide',
+          purple: true,
+          arrowed: true,
+          text: 'перейти к оплате',
+          disabled: false
+        })
       +paginator({ length: 15, label: 'pagination', demo: 'demo' })
     +form-elements__item
       +dropdown({

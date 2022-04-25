@@ -21,6 +21,24 @@
   text-transform: uppercase;
 
   cursor: pointer;
+
+  outline: 0;
+}
+
+.button:active {
+  transform: scale(0.9);
+}
+
+.button::selection {
+  background: transparent;
+}
+
+.button:disabled {
+  color: rgba(31, 32, 65, 0.5);
+
+  cursor: auto;
+
+  pointer-events: none;
 }
 
 .button_width_ultra-narrow {
@@ -51,10 +69,14 @@
 
 .button_height_low {
   height: 34px;
+
+  line-height: 34px;
 }
 
 .button_height_regular {
   height: 44px;
+
+  line-height: 44px;
 }
 
 .button_bordered {
@@ -78,4 +100,50 @@
     width: inherit;
     height: inherit;
   }
+
+  &:active {
+    border: 2px solid #BC9CFF;
+  }
+
+  &:active::before {
+    display: none;
+  }
+
+  &:disabled {
+    color: #BC9CFF;
+  }
+
+  &:disabled::before {
+    opacity: 0.5;
+  }
+}
+
+.button_color_purple {
+  color: white;
+
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+
+  &:disabled {
+    color: white;
+
+    opacity: 0.5;
+  }
+}
+
+.button_arrowed::after {
+  content: 'arrow_forward';
+
+  position: absolute;
+  right: 0;
+
+  font-family: material-icons, Arial, sans-serif;
+  color: white;
+  font-size: 24px;
+  font-weight: normal;
+  text-transform: none;
+  text-align: center;
+  line-height: inherit;
+
+  width: 44px;
+  height: inherit;
 }

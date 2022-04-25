@@ -45,8 +45,9 @@ mixin button(options={})
       buttonType = 'button';
     }
 
-  button.button(
+  button.button.js-button(
     type= buttonType
     class= buttonClass
     disabled= disabled
   )= text
+

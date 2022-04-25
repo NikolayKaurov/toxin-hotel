@@ -3,6 +3,8 @@ import $ from 'jquery';
 // minimum interval between getting focus and clicking the mouse 50 milliseconds
 const INTERVAL = 50;
 
+const PRESSING_TIME = 1000;
+
 // высота выпадающего элемента без календаря
 const EMPTY_CALENDAR_HEIGHT = 129;
 
@@ -82,6 +84,10 @@ function handleDownMouseup(event) {
   }
 }
 
+function setCurrentMonth(datepicker) {
+  datepicker.setCurrentMonth();
+}
+
 function handleButtonMousedown(event) {
   const $button = $(event.target);
   const {
@@ -99,10 +105,18 @@ function handleButtonMousedown(event) {
 
   if ($button.hasClass('js-datepicker__button_action_month-minus')) {
     month.setMonth(month.getMonth() - 1);
+
+    if (
+      today.getFullYear() !== month.getFullYear()
+      || today.getMonth() !== month.getMonth()
+    ) {
+      event.data.datepicker.setTimerClick(
+        setTimeout(setCurrentMonth, PRESSING_TIME, event.data.datepicker),
+      );
+    }
   } else if ($button.hasClass('js-datepicker__button_action_month-plus')) {
     month.setMonth(month.getMonth() + 1);
   } else if ($button.hasClass('js-datepicker__button_action_clear')) {
-    month.setFullYear(today.getFullYear(), today.getMonth());
     dateQueue[0] = '';
     dateQueue[1] = '';
     $expandArrival.attr('data-date', '');
@@ -111,12 +125,12 @@ function handleButtonMousedown(event) {
     $valueDeparture.text('ДД.ММ.ГГГГ');
     $valueFilter.text('Укажите даты пребывания');
     $arrival.val('');
-    $departure.val('');
+    $departure.val('').trigger('input');
   } else {
     $button.prop('disabled', true);
 
     $arrival.val($expandArrival.attr('data-date'));
-    $departure.val($expandDeparture.attr('data-date'));
+    $departure.val($expandDeparture.attr('data-date')).trigger('input');
 
     event.data.datepicker.close();
 
@@ -124,6 +138,10 @@ function handleButtonMousedown(event) {
   }
 
   event.data.datepicker.updateCalendar();
+}
+
+function handleBackMouseup(event) {
+  clearTimeout(event.data.datepicker.timerClick);
 }
 
 function handleCellMousedown(event) {
@@ -241,6 +259,7 @@ class Datepicker {
 
   init() {
     this.timeFocus = 0;
+    this.timerClick = 0;
 
     const now = new Date();
     this.today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -312,7 +331,13 @@ class Datepicker {
     this.$valueDeparture = $('.js-datepicker__value', this.$expandDeparture);
     this.$expandFilter = $('.js-datepicker__expand_format_filter', this.$datepicker);
     this.$valueFilter = $('.js-datepicker__value', this.$expandFilter);
-    this.#$back = $('.js-datepicker__button_action_month-minus', this.$down);
+    this.#$back = $('.js-datepicker__button_action_month-minus', this.$down)
+      .on(
+        `mouseup.month-minus.${name} mouseout.month-minus.${name}`,
+        null,
+        { datepicker: this },
+        handleBackMouseup,
+      );
     this.#$monthYear = $('.js-datepicker__month-year', this.$down);
     this.#$clear = $('.js-datepicker__button_action_clear', this.$down);
     this.#$confirm = $('.js-datepicker__button_action_confirm', this.$down);
@@ -351,6 +376,10 @@ class Datepicker {
 
   setTimeFocus(time) {
     this.timeFocus = time;
+  }
+
+  setTimerClick(id) {
+    this.timerClick = id;
   }
 
   isRollbackable() {
@@ -535,6 +564,12 @@ class Datepicker {
     } else {
       this.#$confirm.prop('disabled', true);
     }
+  }
+
+  setCurrentMonth() {
+    this.calendarMonth.setFullYear(this.today.getFullYear(), this.today.getMonth());
+
+    this.updateCalendar();
   }
 }
 

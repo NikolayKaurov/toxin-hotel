@@ -1,14 +1,77 @@
-mixin card-details({ number = '', lux = '', price = 0, discount = 0, fee = 0, feeAdd = 0 } = {})
-  form.card-details.js-card-details(data-price= price data-discount= discount data-fee= fee data-feeAdd= feeAdd)
-    +card-details__header({ number, lux, price })
-    +datepicker({ name: 'details-date', labelArrival: 'прибытие', labelDeparture: 'выезд', zIndex: 3})
-    +dropdown({name: 'details-guest', defaultValue: 'Сколько гостей', label: 'гости', zIndex: 2, guests: 'guests'})
-      +dropdown__button-container
-        +dropdown__button({action: 'confirm', text: 'применить'})
-        +dropdown__button({action: 'clear', text: 'очистить'})
-      +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
-      +dropdown__item({name: 'child', units: 'дети'})
-      +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
-    +card-details__calc({ price, discount, fee, feeAdd })
-    +button({ type: 'big', text: 'забронировать', disabled: true })
+mixin card-details(options={})
+  -
+    var {
+      number = '',
+      lux = '',
+      price = 0,
+      discount = 0,
+      fee = 0,
+      feeAdd = 0,
+    } = options;
+
+  form.card-details.js-card-details(
+    data-price= price
+    data-discount= discount
+    data-fee= fee
+    data-feeAdd= feeAdd
+  )
+    .card-details__header
+      .card-details__number №
+      .card-details__numeric= number
+      .card-details__lux= lux
+      .card-details__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
+      = 'в сутки'
+    +datepicker({
+      name: 'details-date',
+      labelArrival: 'прибытие',
+      labelDeparture: 'выезд',
+      label: 'даты пребывания в отеле',
+      zIndex: 3,
+    })
+    +dropdown({
+      name: 'details-guest',
+      defaultValue: 'Сколько гостей',
+      label: 'гости',
+      zIndex: 2,
+      guest: true,
+      items: [
+        {
+          name: 'adult',
+          units: 'взрослые гость гостя гостей',
+        },
+        {
+          name: 'child',
+          units: 'дети',
+        },
+        {
+          name: 'baby',
+          units: 'младенцы младенец младенца младенцев',
+        },
+      ],
+    })
+    .card-details__calc
+      .card-details__calc-first-line
+        .card-details__calc-price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
+        = 'х'
+        .card-details__calc-days.js-card-details__calc-days 0 суток
+        .card-details__total-price.js-card-details__total-price 0₽
+      .card-details__calc-second-line
+        = 'Сбор за услуги:'
+        .card-details__discount= `скидка ${new Intl.NumberFormat('ru-RU').format(discount)}₽`
+        .card-details__info i
+        .card-details__total-discount= `${new Intl.NumberFormat('ru-RU').format(fee)}₽`
+      .card-details__calc-third-line
+        = 'Сбор за дополнительные услуги'
+        .card-details__info i
+        .card-details__fee-add= `${new Intl.NumberFormat('ru-RU').format(feeAdd)}₽`
+      .card-details__total-line
+        = 'Итого'
+        .card-details__dash
+        .card-details__total.js-card-details__total 0₽
+    +button({
+      width: 'ultra-wide',
+      arrowed: true,
+      purple: true,
+      text: 'забронировать',
+    })
 
