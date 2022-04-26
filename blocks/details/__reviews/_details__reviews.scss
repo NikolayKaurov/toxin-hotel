@@ -29,3 +29,9 @@
     grid-template-rows: 63px 254px 254px;
   }
 }
+
+@media all and (max-width: 400px) {
+  .details__reviews {
+    width: 90%;
+  }
+}

@@ -19,12 +19,6 @@ function handleCardDetailsInput(event) {
 
   $submit.prop('disabled', !fullInput);
 
-  /* if (fullInput) {
-    $submit.prop('disabled', false);
-  } else {
-    $submit.prop('disabled', true);
-  } */
-
   if ($departure.val() && $arrival.val()) {
     const days = (Date.parse($departure.val()) - Date.parse($arrival.val())) / 86400000;
 

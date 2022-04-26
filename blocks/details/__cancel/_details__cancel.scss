@@ -11,3 +11,9 @@
     width: 310px;
   }
 }
+
+@media all and (max-width: 400px) {
+  .details__cancel {
+    width: 90%;
+  }
+}

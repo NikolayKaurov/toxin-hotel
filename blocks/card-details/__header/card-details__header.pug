@@ -1,7 +1,0 @@
-mixin card-details__header({ number = '', lux = '', price = 0})
-  .card-details__header
-    .card-details__number №
-    .card-details__numeric= number
-    .card-details__lux= lux
-    .card-details__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
-    = 'в сутки'

@@ -15,10 +15,8 @@ include ../blocks/list-icon/list-icon
 include ../blocks/list-icon/__item/list-icon__item
 include ../blocks/chart/chart
 include ../blocks/card-details/card-details
-include ../blocks/card-details/__header/card-details__header
 include ../blocks/datepicker/datepicker
 include ../blocks/dropdown/dropdown
-include ../blocks/card-details/__calc/card-details__calc
 include ../blocks/review/review
 include ../blocks/like/like
 include ../blocks/list/list
@@ -38,7 +36,7 @@ include ../blocks/footer/__social/footer__social
     .details__chart
       .details__header Впечатления от номера
       +chart({fabulous: 60, good: 60, satisfactorily: 50, disappointed: 0})
-    +card-details({ number: '888', lux: 'люкс', price: 9990, discount: 2179, feeAdd: 300 })
+    +card-details({ number: '888', lux: 'люкс', price: 9990, discount: 2179, fee: 0, feeAdd: 300 })
     .details__reviews
       .details__header Отзывы посетителей номера
       .details__number-reviews 2 отзыва
