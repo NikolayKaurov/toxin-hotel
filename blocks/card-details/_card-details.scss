@@ -168,14 +168,14 @@
   grid-template-columns: 220px 42px auto;
 
   line-height: 18px;
-
-  white-space: pre-line;
 }
 
 .card-details__fee-add {
   text-align: right;
 
   flex-grow: 1;
+
+  padding: 0 0 0 10px;
 }
 
 .card-details__total-line {

@@ -2,12 +2,15 @@ import $ from 'jquery';
 
 function getPlaceholder(value) {
   const placeholder = 'ДД.ММ.ГГГГ'.split('');
+
   value.split('').forEach((symbol, index) => {
     placeholder[index] = symbol;
   });
+
   return placeholder.join('');
 }
 
+/*
 function handleInputKeydown(event) {
   const value = $(event.target).val();
 
@@ -87,11 +90,77 @@ function handleInputKeydown(event) {
     $(event.target).val(`${value.replace(/\.2$/, '.202')}`);
   }
 }
+*/
+
+function handleInputPaste(event) {
+  event.preventDefault();
+}
 
 function handleInputInput(event) {
-  const value = $(event.target).val();
+  const $input = $(event.target);
 
-  event.data.textField.$input_double.attr(
+  let value = $input.val();
+
+  const { preValue, $double } = event.data.textField;
+
+  if (preValue.length > value.length) {
+    const dotHasBeenRemoved = preValue === `${value}.`;
+
+    const numberAfterDotHasBeenRemoved = value.match(/\.$/)
+      && value === preValue.slice(0, preValue.length - 1);
+    /* if (value.match(/^(\d{2}|\d{2}\.\d{2})$/)) {
+      value = value.replace(/\d$/, '');
+    }
+    value = value.replace(/\.$/, ''); */
+    if (dotHasBeenRemoved || numberAfterDotHasBeenRemoved) {
+      value = value.slice(0, value.length - 1);
+    }
+  } else if (value.match(/^[4-9]$/)) {
+    value = `0${value}.`;
+  } else if (value.match(/^(0[1-9]|[12]\d|3[01])$/)) {
+    value = `${value}.`;
+  } else if (value.match(/^[3-9][2-9]$/)) {
+    value = `0${value[0]}.0${value[1]}.`;
+  } else if (value.match(/^[4-9][01]$/)) {
+    value = `0${value[0]}.${value[1]}.`;
+  } else if (value === '00') {
+    value = '0';
+  } else if (value.match(/^\d{2}[01]$/)) {
+    value = `${value[0]}${value[1]}.${value[2]}`;
+  } else if (value.match(/^\d{2}[2-9]$/)) {
+    value = `${value[0]}${value[1]}.0${value[2]}.`;
+  } else if (value.match(/^\d{2}\.[2-9]$/)) {
+    value = `${value[0]}${value[1]}.0${value[3]}.`;
+  } else if (value.match(/^\d{2}\.00$/)) {
+    value = value.replace(/0$/, '');
+  } else if (value.match(/^\d{2}\.(0\d|1[0-2])$/)) {
+    value = `${value}.`;
+  } else if (value.match(/^\d{2}\.[1-9][3-9]$/)) {
+    value = `${value.slice(0, 3)}0${value[3]}.19${value[4]}`;
+  } else if (value.match(/^\d{2}\.[2-9][0-2]$/)) {
+    value = `${value.slice(0, 3)}0${value[3]}.20${value[4]}`;
+  } else if (value.match(/^\d{2}\.\d{2}\.0$/)) {
+    value = `${value.slice(0, 6)}200`;
+  } else if (value.match(/^\d{2}\.\d{2}\.[3-9]$/)) {
+    value = `${value.slice(0, 6)}19${value[6]}`;
+  } else if (value.match(/^\d{2}\.\d{2}0$/)) {
+    value = `${value.slice(0, 5)}.200`;
+  } else if (value.match(/^\d{2}\.\d{2}[3-9]$/)) {
+    value = `${value.slice(0, 5)}.19${value[5]}`;
+  } else if (value.match(/^\d{2}\.\d{2}[12]$/)) {
+    value = `${value.slice(0, 5)}.${value[5]}`;
+  } else if (value.match(/^\d{2}\.\d{2}\.(2[1-9]|1[0-8])$/)) {
+    value = `${value.slice(0, 6)}20${value[6]}${value[7]}`;
+  } else if (!value.match(/^(\d{1,2}|\d{2}\.\d{0,2}|\d{2}\.\d{2}\.\d{0,4})$/)) {
+    value = preValue;
+  }
+
+  $input.val(value);
+  $double.attr('placeholder', getPlaceholder(value));
+
+  event.data.textField.setPreValue(value);
+
+  /* event.data.textField.$input_double.attr(
     'placeholder',
     getPlaceholder(value),
   );
@@ -106,66 +175,57 @@ function handleInputInput(event) {
     event.data.textField.$textField.removeClass('text-field_invalid');
   } else {
     event.data.textField.$textField.addClass('text-field_invalid');
-  }
+  } */
 }
 
 function handleInputChange(event) {
-  const value = $(event.target).val();
+  const $input = $(event.target);
 
-  if (
-    (
-      value.match(/^\d{2}\.\d{2}\.\d{4}$/)
-      && !Number.isNaN(Date.parse(value.split('.').reverse().join('-')))
-    )
-    || value === ''
-  ) {
-    event.data.textField.$textField.removeClass('text-field_invalid');
+  const value = $input.val();
+
+  const correctValue = value.match(/^\d{2}\.\d{2}\.\d{4}$/)
+    && !Number.isNaN(Date.parse(value.split('.').reverse().join('-')));
+
+  const emptyValue = value === '';
+
+  if (correctValue || emptyValue) {
+    $input.removeClass('text-field__input_invalid');
   } else {
-    event.data.textField.$textField.addClass('text-field_invalid');
+    $input.addClass('text-field__input_invalid');
   }
 }
 
 class TextField {
   constructor(textField) {
     this.$textField = $(textField);
-    this.$input = $('.js-text-field__input', this.$textField);
-    this.$input_double = $();
   }
 
   init() {
-    this.$input.attr('placeholder', '');
-
-    this.$input.on(
-      'keydown',
-      null,
-      { textField: this },
-      handleInputKeydown,
-    ).on(
-      'input',
-      null,
-      { textField: this },
-      handleInputInput,
-    ).on(
-      'change',
-      null,
-      { textField: this },
-      handleInputChange,
-    );
+    $('.js-text-field__input', this.$textField)
+      .attr('placeholder', '')
+      .on('input', null, { textField: this }, handleInputInput)
+      .on('change', null, { textField: this }, handleInputChange)
+      .on('paste', handleInputPaste);
 
     $('.js-text-field__wrapper', this.$textField)
       .append(`<input
-        class="js-text-field__input js-text-field__input_double text-field__input text-field__input_double"
-        disabled
-        placeholder="ДД.ММ.ГГГГ"
-      >`);
+          type="text"
+          class="text-field__input text-field__input_double js-text-field__input js-text-field__input_double"
+          disabled
+          placeholder="ДД.ММ.ГГГГ"
+        >`);
 
-    this.$input_double = $('.js-text-field__input_double', this.$textField);
+    this.$double = $('.js-text-field__input_double', this.$textField);
+
+    this.preValue = '';
+  }
+
+  setPreValue(value) {
+    this.preValue = value;
   }
 }
 
-$('.js-text-field').each((index, element) => {
-  if ($(element).hasClass('js-text-field_date')) {
-    const textField = new TextField(element);
-    textField.init();
-  }
+$('.js-text-field_mask_date').each((index, element) => {
+  const textField = new TextField(element);
+  textField.init();
 });

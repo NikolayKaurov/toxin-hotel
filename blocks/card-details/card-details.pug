@@ -59,9 +59,9 @@ mixin card-details(options={})
         = 'Сбор за услуги:'
         .card-details__discount= `скидка ${new Intl.NumberFormat('ru-RU').format(discount)}₽`
         .card-details__info i
-          .card-details__info-text Скидка всем ветеранам диванных войск. Ветеранам кариматных войск скидка предоставляется в двойном размере.
+          .card-details__info-text Скидка предоставляется всем пассажирам авиакомпании «Чёрный лебедь».
         .card-details__total-discount= `${new Intl.NumberFormat('ru-RU').format(fee)}₽`
-      .card-details__calc-third-line= 'Сбор за дополнительные\r\nуслуги'
+      .card-details__calc-third-line= 'Сбор за дополнительные услуги'
         .card-details__info i
           .card-details__info-text Сбор за зубную щётку, халат, полотенце, шампунь, чипсы в холодильнике, побудку звонком в номер в назначенное время.
         .card-details__fee-add= `${new Intl.NumberFormat('ru-RU').format(feeAdd)}₽`

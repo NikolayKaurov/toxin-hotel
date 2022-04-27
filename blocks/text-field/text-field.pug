@@ -1,8 +1,15 @@
-mixin text-field({ name = 'undefined-name', placeholder = 'text', label = '', description = '', mask = '' } = {})
+mixin text-field(options={})
   -
-    let classString = '';
+    var {
+      name = 'undefined-name',
+      placeholder = 'text',
+      label = '',
+      description = '',
+      mask = ''
+    } = options;
+    var classString = '';
     if (mask === 'date') {
-      classString = 'text-field_date js-text-field_date';
+      classString = 'text-field_mask_date js-text-field_mask_date';
     }
 
   .text-field.js-text-field(class= classString)
@@ -12,4 +19,4 @@ mixin text-field({ name = 'undefined-name', placeholder = 'text', label = '', de
       if (description)
         p.text-field__label= description
     .text-field__wrapper.js-text-field__wrapper
-      input.text-field__input.js-text-field__input(name= name placeholder= placeholder type='text')
+      input.text-field__input.js-text-field__input(name= name placeholder= placeholder type="text")
