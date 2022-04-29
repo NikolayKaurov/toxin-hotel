@@ -65,7 +65,7 @@ function isCorrectDate(days, month, year) {
     return false;
   }
 
-  wrong = (daysTemp === 31) && [4, 6, 9, 10].includes(monthTemp);
+  wrong = (daysTemp === 31) && [4, 6, 9, 11].includes(monthTemp);
 
   return !wrong;
 }
@@ -76,7 +76,9 @@ function handleInputPaste(event) {
 
 function handleInputInput(event) {
   const input = event.target;
-  const $input = $(event.target);
+  const $input = $(input);
+
+  $input.removeClass('text-field__input_invalid');
 
   let selectPos = input.selectionStart;
 
@@ -86,29 +88,31 @@ function handleInputInput(event) {
 
   if (preValue.length > value.length) {
     if (!value.match(/^(\d{0,2}\.?|\d{0,2}\.\d{0,2}\.?|\d{0,2}\.\d{0,2}\.\d{0,4})$/)) {
-      value = preValue;
+      value = preValue; // запрет на удаление точек внутри строки
     } else {
-      value = value.replace(/\.$/, ''); // удалить точки в конце строки, если одна - одну
+      value = value.replace(/\.$/, ''); // удалить точки на конце строки, если одна - одну
       value = value.replace(/\.$/, ''); // если 2 - обе
     }
-    /* const dotHasBeenRemoved = preValue === `${value}.`;
-
-    const numberAfterDotHasBeenRemoved = value.match(/\.$/)
-      && value === preValue.slice(0, preValue.length - 1);
-
-    if (dotHasBeenRemoved || numberAfterDotHasBeenRemoved) {
-      value = value.slice(0, value.length - 1);
-    } */
   } else if (!value.match(/^(\d{0,3}|\d{0,2}\.\d{1,3}|\d{0,2}\.\d{0,2}\.\d{1,4})$/)) {
-    value = preValue;
+    value = preValue; // запрет некорректного ввода
     selectPos -= 1;
   } else {
-    /* if (value.match(/^(\d{3}|\d{0,2}\.\d{3})$/)) {
-      if (selectPos === value.length) {
-        selectPos += 1;
-      }
-      value = `${value.slice(0, value.length - 1)}.${value[value.length - 1]}`;
-    } */
+    let addPos = 0;
+
+    // номер подстроки, в которую только что была введена цифра
+    // 0 - день, 1 - месяц, 2 - год
+    let lastEditedSubstring = (value.slice(0, selectPos).match(/\./g) || []).length;
+
+    if (value.match(/^(3[2-9]|[4-9]\d)$/)) {
+      value = `0${value}`;
+      addPos += 1;
+      lastEditedSubstring = 1;
+    } else if (value.match(/^\d{0,2}\.(1[3-9]|[2-9]\d)$/)) {
+      value = `${value.slice(0, value.length - 2)}0${value.slice(value.length - 2, value.length)}`;
+      addPos += 1;
+      lastEditedSubstring = 2;
+    }
+
     let days;
     let month;
     let year;
@@ -116,34 +120,48 @@ function handleInputInput(event) {
     if (value.match(/^\d{3}$/)) {
       days = value.slice(0, 2);
       month = value.slice(2);
+
+      addPos += 1;
+      lastEditedSubstring = 1;
     } else if (value.match(/^\d{0,2}\.\d{3}$/)) {
       [days, month] = value.slice(0, value.length - 1).split('.');
       year = value[value.length - 1];
+
+      addPos += 1;
+      lastEditedSubstring = 2;
     } else {
       [days, month, year] = value.split('.');
     }
 
     if (isCorrectDate(days, month, year)) {
-      if (days) {
-        if (days.match(/^[4-9]$/)) {
-          days = `0${days}`;
+      if (year) {
+        if (year.match(/^(0[1-9]?|1[0-8]|2[1-9]|[3-9]\d?)$/)) {
+          if (lastEditedSubstring > 1) {
+            addPos += 2;
+          }
+        }
+
+        if (year.match(/^(0[1-9]?|1[0-8]|2[1-9])$/)) {
+          year = `20${year}`;
+        } else if (year.match(/^[3-9]\d?$/)) {
+          year = `19${year}`;
         }
       }
 
       if (month) {
         if (month.match(/^[2-9]$/)) {
           month = `0${month}`;
+
+          if (lastEditedSubstring > 0) {
+            addPos += 1;
+          }
         }
       }
 
-      if (year) {
-        const twoDigitYear = (year.length === 2) && (!year.match(/^(19|20)$/));
-        if (twoDigitYear) {
-          if (parseInt(year, 10) < 30) {
-            year = parseInt(`20${year}`, 10);
-          } else {
-            year = parseInt(`19${year}`, 10);
-          }
+      if (days) {
+        if (days.match(/^[4-9]$/)) {
+          days = `0${days}`;
+          addPos += 1;
         }
       }
 
@@ -162,51 +180,12 @@ function handleInputInput(event) {
       }
 
       value = newValue.join('.');
+      selectPos += addPos;
     } else {
-      value = preValue;
+      value = preValue; // запрет на ввод некорректной даты
       selectPos -= 1;
     }
-    // console.log([days, month, year].join('.'));
   }
-  /* else if (value.match(/^[4-9]$/)) {
-    value = `0${value}.`;
-  } else if (value.match(/^(0[1-9]|[12]\d|3[01])$/)) {
-    value = `${value}.`;
-  } else if (value.match(/^[3-9][2-9]$/)) {
-    value = `0${value[0]}.0${value[1]}.`;
-  } else if (value.match(/^[4-9][01]$/)) {
-    value = `0${value[0]}.${value[1]}.`;
-  } else if (value === '00') {
-    value = '0';
-  } else if (value.match(/^\d{2}[01]$/)) {
-    value = `${value[0]}${value[1]}.${value[2]}`;
-  } else if (value.match(/^\d{2}[2-9]$/)) {
-    value = `${value[0]}${value[1]}.0${value[2]}.`;
-  } else if (value.match(/^\d{2}\.[2-9]$/)) {
-    value = `${value[0]}${value[1]}.0${value[3]}.`;
-  } else if (value.match(/^\d{2}\.00$/)) {
-    value = value.replace(/0$/, '');
-  } else if (value.match(/^\d{2}\.(0\d|1[0-2])$/)) {
-    value = `${value}.`;
-  } else if (value.match(/^\d{2}\.[1-9][3-9]$/)) {
-    value = `${value.slice(0, 3)}0${value[3]}.19${value[4]}`;
-  } else if (value.match(/^\d{2}\.[2-9][0-2]$/)) {
-    value = `${value.slice(0, 3)}0${value[3]}.20${value[4]}`;
-  } else if (value.match(/^\d{2}\.\d{2}\.0$/)) {
-    value = `${value.slice(0, 6)}200`;
-  } else if (value.match(/^\d{2}\.\d{2}\.[3-9]$/)) {
-    value = `${value.slice(0, 6)}19${value[6]}`;
-  } else if (value.match(/^\d{2}\.\d{2}0$/)) {
-    value = `${value.slice(0, 5)}.200`;
-  } else if (value.match(/^\d{2}\.\d{2}[3-9]$/)) {
-    value = `${value.slice(0, 5)}.19${value[5]}`;
-  } else if (value.match(/^\d{2}\.\d{2}[12]$/)) {
-    value = `${value.slice(0, 5)}.${value[5]}`;
-  } else if (value.match(/^\d{2}\.\d{2}\.(2[1-9]|1[0-8])$/)) {
-    value = `${value.slice(0, 6)}20${value[6]}${value[7]}`;
-  } */ /* else if (!value.match(/^(\d{1,2}|\d{2}\.\d{0,2}|\d{2}\.\d{2}\.\d{0,4})$/)) {
-    value = preValue;
-  } */
 
   $input.val(value);
   $double.attr('placeholder', getPlaceholder(value));
@@ -214,23 +193,6 @@ function handleInputInput(event) {
   input.setSelectionRange(selectPos, selectPos);
 
   event.data.textField.setPreValue(value);
-
-  /* event.data.textField.$input_double.attr(
-    'placeholder',
-    getPlaceholder(value),
-  );
-
-  if (
-    value.match(/^(\d{1,2}|\d{2}\.\d{0,2}|\d{2}\.\d{2}\.\d{0,3})?$/)
-    || (
-      value.match(/^\d{2}\.\d{2}\.\d{4}$/)
-      && !Number.isNaN(Date.parse(value.split('.').reverse().join('-')))
-    )
-  ) {
-    event.data.textField.$textField.removeClass('text-field_invalid');
-  } else {
-    event.data.textField.$textField.addClass('text-field_invalid');
-  } */
 }
 
 function handleInputChange(event) {
