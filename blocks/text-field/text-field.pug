@@ -1,22 +1,31 @@
 mixin text-field(options={})
   -
-    var {
+    const {
       name = 'undefined-name',
       placeholder = 'text',
       label = '',
       description = '',
-      mask = ''
+      type = '',
     } = options;
-    var classString = '';
-    if (mask === 'date') {
-      classString = 'text-field_mask_date js-text-field_mask_date';
+    let classString = '';
+    let typeString = 'text';
+    if (type === 'date') {
+      classString = 'text-field_type_date js-text-field_type_date';
+    } else if (type === 'password') {
+      typeString = 'password';
+    } else if (type === 'email') {
+      typeString = 'email';
     }
 
-  .text-field.js-text-field(class= classString)
+  .text-field.js-text-field(class= classString data-name= name)
     .text-field__header
       if (label)
         p.text-field__label= label
       if (description)
         p.text-field__label= description
     .text-field__wrapper.js-text-field__wrapper
-      input.text-field__input.js-text-field__input(name= name placeholder= placeholder type="text")
+      input.text-field__input.js-text-field__input(
+        name= name
+        placeholder= placeholder
+        type= typeString
+      )

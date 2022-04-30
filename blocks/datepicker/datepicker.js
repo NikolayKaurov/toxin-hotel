@@ -3,14 +3,13 @@ import $ from 'jquery';
 // minimum interval between getting focus and clicking the mouse 50 milliseconds
 const INTERVAL = 50;
 
+// время зажатия кнопки назад для переключения на текущий месяц 1 секунда
 const PRESSING_TIME = 1000;
 
 // высота выпадающего элемента без календаря
 const EMPTY_CALENDAR_HEIGHT = 129;
 
 const DURATION_OPEN = 500;
-
-const CALENDAR_HEAD = '<tr class="datepicker__calendar-header"><th class="datepicker__cell">Пн</th><th class="datepicker__cell">Вт</th><th class="datepicker__cell">Ср</th><th class="datepicker__cell">Чт</th><th class="datepicker__cell">Пт</th><th class="datepicker__cell">Сб</th><th class="datepicker__cell">Вс</th></tr>';
 
 const MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 const SHORT_MONTHS = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
@@ -341,7 +340,7 @@ class Datepicker {
     this.#$monthYear = $('.js-datepicker__month-year', this.$down);
     this.#$clear = $('.js-datepicker__button_action_clear', this.$down);
     this.#$confirm = $('.js-datepicker__button_action_confirm', this.$down);
-    this.#$calendar = $('.js-datepicker__calendar', this.$down)
+    this.#$calendar = $('.js-datepicker__calendar-body', this.$down)
       .on(
         `mousedown.datepicker__cell.${name}`,
         '.js-datepicker__cell',
@@ -482,7 +481,7 @@ class Datepicker {
 
     this.#weeks = 1;
 
-    let calendarHTML = CALENDAR_HEAD;
+    let calendarHTML = '';
 
     do {
       this.#weeks += 1;

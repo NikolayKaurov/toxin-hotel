@@ -1,6 +1,6 @@
 mixin dropdown(options={})
   -
-    var {
+    const {
       narrow = false, //- узкий, шириной 266px (если false ширина 320px)
       guest = false, //- первая и вторая строки складываются
       name = "undefined-name", //- префикс для имён полей ввода
@@ -13,7 +13,7 @@ mixin dropdown(options={})
       items = [], //- строки в выпадающем элементе
     } = options;
     items.reverse(); //- в выпадающем элементе строки идут снизу вверх, flex-direction: column-reverse;
-    var modifiers = '';
+    let modifiers = '';
     if (narrow) {
       modifiers += ' dropdown_size_narrow';
     }
@@ -33,9 +33,9 @@ mixin dropdown(options={})
   )
     .dropdown__header
       if (label)
-        .dropdown__label= label
+        p.dropdown__label= label
       if (description)
-        .dropdown__label= description
+        p.dropdown__label= description
     .dropdown__down.js-dropdown__down
       if (clear || confirm)
         .dropdown__button-container
@@ -58,7 +58,7 @@ mixin dropdown(options={})
           data-value=""
           data-quantity="0"
         )
-          .dropdown__label.js-dropdown__label
+          p.dropdown__label.js-dropdown__label
           button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_minus(
             disabled
             tabindex="-1"
@@ -82,4 +82,4 @@ mixin dropdown(options={})
             data-name= item.name
           ) +
     .dropdown__drop.js-dropdown__drop
-      .dropdown__value.js-dropdown__value= defaultValue
+      p.dropdown__value.js-dropdown__value= defaultValue

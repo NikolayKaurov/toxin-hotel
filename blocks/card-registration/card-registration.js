@@ -35,7 +35,7 @@ class CardRegistration {
     this.$email = $($fields.get(3));
     this.$password = $($fields.get(4));
 
-    this.$submit = $($('.js-button__input', this.$card).get(0));
+    this.$submit = $($('.js-button', this.$card).get(0));
   }
 
   init() {

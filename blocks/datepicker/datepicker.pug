@@ -1,6 +1,6 @@
 mixin datepicker(options={})
   -
-    var {
+    const {
       name = 'undefined-name', //- префикс для имён полей ввода
       label = '', //- заголовок для объединённого экспанда (FILTER DATE DROPDOWN)
       labelArrival = '', //- заголовок для экспанда прибытия
@@ -8,7 +8,7 @@ mixin datepicker(options={})
       modifier = '', //- filter или demo (или отсутствует)
       zIndex = 1, //- чем выше на странице компонент, тем больше нужен z-index
     } = options;
-    var datepickerModifier = '';
+    let datepickerModifier = '';
     if (modifier === 'filter') {
       datepickerModifier = 'datepicker_format_filter';
     } else if (modifier === 'demo') {
@@ -29,26 +29,26 @@ mixin datepicker(options={})
       name= `${name}-departure`
     )
     .datepicker__drop.js-datepicker__drop.datepicker__drop_format_filter
-      .datepicker__header= label
+      p.datepicker__header= label
       .datepicker__expand.js-datepicker__expand.datepicker__expand_format_filter.js-datepicker__expand_format_filter(
         tabindex="0"
       )
-        .datepicker__value.js-datepicker__value Укажите даты пребывания
+        p.datepicker__value.js-datepicker__value Укажите даты пребывания
     .datepicker__drop.js-datepicker__drop
       .datepicker__container
-        .datepicker__header= labelArrival
+        p.datepicker__header= labelArrival
         .datepicker__expand.js-datepicker__expand.datepicker__expand_date_arrival.js-datepicker__expand_date_arrival(
           tabindex="0"
           data-date=""
         )
-          .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
+          p.datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
       .datepicker__container
-        .datepicker__header= labelDeparture
+        p.datepicker__header= labelDeparture
         .datepicker__expand.js-datepicker__expand.datepicker__expand_date_departure.js-datepicker__expand_date_departure(
           tabindex="0"
           data-date=""
         )
-          .datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
+          p.datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
     .datepicker__down.js-datepicker__down
       .datepicker__button-container
         button.datepicker__button.js-datepicker__button.datepicker__button_action_clear.js-datepicker__button_action_clear(
@@ -62,14 +62,24 @@ mixin datepicker(options={})
           disabled
         ) применить
       .datepicker__calendar-container
-        table.datepicker__calendar.js-datepicker__calendar
+        table.datepicker__calendar
+          thead.datepicker__thead
+            tr.datepicker__calendar-header
+              th.datepicker__cell(scope="col") Пн
+              th.datepicker__cell(scope="col") Вт
+              th.datepicker__cell(scope="col") Ср
+              th.datepicker__cell(scope="col") Чт
+              th.datepicker__cell(scope="col") Пт
+              th.datepicker__cell(scope="col") Сб
+              th.datepicker__cell(scope="col") Вс
+          tbody.datepicker__calendar-body.js-datepicker__calendar-body
       .datepicker__month-year-container
         button.datepicker__button.js-datepicker__button.datepicker__button_action_month-minus.js-datepicker__button_action_month-minus(
           type="button"
           tabindex="-1"
           disabled
         ) arrow_back
-        .datepicker__month-year.js-datepicker__month-year
+        p.datepicker__month-year.js-datepicker__month-year
         button.datepicker__button.js-datepicker__button.datepicker__button_action_month-plus.js-datepicker__button_action_month-plus(
           type="button"
           tabindex="-1"

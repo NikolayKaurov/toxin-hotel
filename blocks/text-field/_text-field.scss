@@ -65,7 +65,7 @@
   }
 }
 
-.text-field_mask_date {
+.text-field_type_date {
   .text-field__input {
     position: absolute;
 
@@ -93,4 +93,8 @@
   .text-field__input_double {
     border: 1px solid transparent;
   }
+}
+
+.text-field__date {
+  display: none;
 }

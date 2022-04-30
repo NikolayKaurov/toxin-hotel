@@ -199,40 +199,55 @@ function handleInputChange(event) {
   const $input = $(event.target);
 
   const value = $input.val();
+  const dateValue = value.split('.').reverse().join('-');
+
+  const { $dateInput } = event.data.textField;
 
   const correctValue = value.match(/^\d{2}\.\d{2}\.\d{4}$/)
-    && !Number.isNaN(Date.parse(value.split('.').reverse().join('-')));
+    && !Number.isNaN(Date.parse(dateValue));
 
   const emptyValue = value === '';
 
   if (correctValue || emptyValue) {
     $input.removeClass('text-field__input_invalid');
+
+    $dateInput.val(dateValue);
   } else {
     $input.addClass('text-field__input_invalid');
   }
 }
 
 class TextField {
+  #$textField;
+
   constructor(textField) {
-    this.$textField = $(textField);
+    this.#$textField = $(textField);
   }
 
   init() {
-    $('.js-text-field__input', this.$textField)
+    $('.js-text-field__input', this.#$textField)
       .attr('placeholder', '')
       .on('input', null, { textField: this }, handleInputInput)
       .on('change', null, { textField: this }, handleInputChange)
       .on('paste', handleInputPaste);
 
-    $('.js-text-field__wrapper', this.$textField)
+    const name = this.#$textField.data('name');
+
+    $('.js-text-field__wrapper', this.#$textField)
       .append(`<input
           type="text"
           class="text-field__input text-field__input_double js-text-field__input js-text-field__input_double"
           disabled
           placeholder="ДД.ММ.ГГГГ"
+        >
+        <input
+          type="date"
+          class="text-field__date js-text-field__date"
+          name="${name}-date"
         >`);
 
-    this.$double = $('.js-text-field__input_double', this.$textField);
+    this.$double = $('.js-text-field__input_double', this.#$textField);
+    this.$dateInput = $('.js-text-field__date', this.#$textField);
 
     this.preValue = '';
   }
@@ -242,7 +257,7 @@ class TextField {
   }
 }
 
-$('.js-text-field_mask_date').each((index, element) => {
+$('.js-text-field_type_date').each((index, element) => {
   const textField = new TextField(element);
   textField.init();
 });
