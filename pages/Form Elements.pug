@@ -19,7 +19,6 @@ include ../blocks/menu/menu
 include ../blocks/menu/__item/menu__item
 include ../blocks/header/__user/header__user
 include ../blocks/radio/radio
-include ../blocks/radio/__button/radio__button
 include ../blocks/demo-block/demo-block
 include ../blocks/toggle/toggle
 include ../blocks/like/like
@@ -35,8 +34,18 @@ include ../blocks/list/__item/list__item
   +ui-kit__header
   +form-elements
     +form-elements__item
-      +text-field({ name: 'simple-field', placeholder: 'Email', label: 'text field', description: 'default'})
-      +text-field({ name: 'hover-field', placeholder: 'This is pretty awesome', label: 'text field', description: 'hover / focus'})
+      +text-field({
+        name: 'simple-field',
+        placeholder: 'Email',
+        label: 'text field',
+        description: 'default',
+      })
+      +text-field({
+        name: 'hover-field',
+        placeholder: 'This is pretty awesome',
+        label: 'text field',
+        description: 'hover / focus',
+      })
       +dropdown({
         name: 'guest',
         defaultValue: 'Сколько гостей',
@@ -67,21 +76,60 @@ include ../blocks/list/__item/list__item
           },
         ]
       })
-      +text-field({ name: 'birth', label: 'masked text field', type: 'date'})
-      +datepicker({ name: 'date-regular', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 6, label: 'даты пребывания в отеле'})
-      +datepicker({ name: 'date-filter', labelArrival: 'date dropdown', labelDeparture: 'date dropdown', zIndex: 5, label: 'filter date dropdown', modifier: 'filter' })
+      +text-field({
+        name: 'birth',
+        label: 'masked text field',
+        type: 'date',
+      })
+      +datepicker({
+        name: 'date-regular',
+        labelArrival: 'date dropdown',
+        labelDeparture: 'date dropdown',
+        label: 'даты пребывания в отеле',
+        zIndex: 6,
+      })
+      +datepicker({
+        name: 'date-filter',
+        label: 'filter date dropdown',
+        zIndex: 5,
+        modifier: 'filter',
+      })
       +subscription({label: 'subscription text field'})
     +form-elements__item
       +checkbox({ label: 'checkbox buttons', name: 'check' })
         +checkbox__button({ name: '1', text: 'Можно курить' })
         +checkbox__button({ name: '2', text: 'Можно с питомцами', checked: true })
         +checkbox__button({ name: '3', text: 'Можно пригласить гостей (до 10 человек)', checked: true })
-      +radio({ label: 'radio buttons', name: 'radio' })
-        +radio__button({ name: 'male', text: 'Мужчина', checked: true })
-        +radio__button({ name: 'female', text: 'Женщина' })
+      +radio({
+        name: 'sex',
+        items: [
+          {
+            value: 'male',
+            text: 'Мужчина',
+            checked: true,
+          },
+          {
+            value: 'female',
+            text: 'Женщина',
+          },
+          {
+            value: 'it',
+            text: 'Трансгендер',
+          },
+        ],
+      })
       +demo-block({ type: 'toggle', label: 'toggle'})
-        +toggle({ name: 'toggle1', text: 'Получать спецпредложения', checked: true })
-        +toggle({ name: 'toggle2', text: 'Получать спецпредложения' })
+        +toggle({
+          name: 'toggle1',
+          value: 'spam',
+          text: 'Получать спецпредложения',
+          checked: true,
+        })
+        +toggle({
+          name: 'toggle2',
+          value: 'spam',
+          text: 'Получать спецпредложения'
+        })
       +demo-block({ type: 'like', label: 'like button' })
         +like(2)
         +like(11)

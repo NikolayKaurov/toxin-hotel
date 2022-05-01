@@ -26,17 +26,9 @@
 @use 'blocks/sign-in/sign-in';
 @use 'blocks/sign-in/_registration/sign-in_registration';
 @use 'blocks/card-registration/card-registration';
-@use 'blocks/card-registration/__header/card-registration__header';
 @use 'blocks/text-field/text-field';
 @use 'blocks/radio/radio';
-@use 'blocks/radio/__label/radio__label';
-@use 'blocks/radio/__wrapper/radio__wrapper';
-@use 'blocks/radio/__button/radio__button';
-@use 'blocks/radio/__button-label/radio__button-label';
 @use 'blocks/toggle/toggle';
-@use 'blocks/toggle/__button/toggle__button';
-@use 'blocks/toggle/__label/toggle__label';
-@use 'blocks/card-registration/__footer/card-registration__footer';
 @use 'blocks/footer/footer';
 @use 'blocks/footer/__wrapper-up/footer__wrapper-up';
 @use 'blocks/footer/__item/footer__item';

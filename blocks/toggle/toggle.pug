@@ -1,6 +1,20 @@
-mixin toggle({ name = 'undefined-name', text = '', checked = false, value = '' } = {})
+mixin toggle(options={})
+  -
+    const {
+      name = 'undefined-name',
+      text = '',
+      checked = false,
+      value = 'on',
+    } = options;
+
   .toggle
-    input.toggle__button(type='checkbox' name= name id= name value= value checked= checked )
-    label.toggle__label(for= name)= text
+    input.toggle__button(
+      type="checkbox"
+      name= name
+      id= `${name}-${value}`
+      value= value
+      checked= checked
+    )
+    label.toggle__label(for= `${name}-${value}`)= text
 
 

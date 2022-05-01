@@ -3,7 +3,6 @@ import '../blocks/dropdown/dropdown';
 import '../blocks/datepicker/datepicker';
 import '../blocks/subscription/subscription';
 import '../blocks/checkbox/checkbox';
-import '../blocks/radio/radio';
 import '../blocks/like/like';
 import '../blocks/slider-toxin/slider-toxin';
 import '../blocks/paginator/paginator';

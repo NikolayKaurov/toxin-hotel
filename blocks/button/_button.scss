@@ -29,6 +29,10 @@
   transform: scale(0.9);
 }
 
+.button:focus {
+  text-shadow: 0 0 15px #bc9cff;
+}
+
 .button::selection {
   background: transparent;
 }
@@ -128,6 +132,11 @@
 
     opacity: 0.5;
   }
+}
+
+.button_bordered:focus,.button_color_purple:focus {
+  text-shadow: none;
+  box-shadow: 0 0 10px #bc9cff;
 }
 
 .button_arrowed::after {

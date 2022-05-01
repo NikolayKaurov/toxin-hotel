@@ -1,6 +1,19 @@
-mixin radio({ label = '', name = 'undefined-name' })
-  .radio.js-radio(data-name= name)
-    if (label)
-      .radio__label= label
-    .radio__wrapper
-      block
+mixin radio(options={})
+  -
+    const {
+      name = 'undefined-name',
+      items = [],
+    } = options;
+
+  .radio
+    each item in items
+      input.radio__button(
+        type="radio"
+        name= name
+        id= `${name}-${item.value}`
+        value= item.value
+        checked= item.checked
+      )
+      label.radio__label(
+        for= `${name}-${item.value}`
+      )= item.text

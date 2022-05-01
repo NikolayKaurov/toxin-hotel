@@ -228,15 +228,16 @@ class TextField {
     $('.js-text-field__input', this.#$textField)
       .attr('placeholder', '')
       .on('input', null, { textField: this }, handleInputInput)
-      .on('change', null, { textField: this }, handleInputChange)
+      .on('change focusout', null, { textField: this }, handleInputChange)
       .on('paste', handleInputPaste);
 
     const name = this.#$textField.data('name');
 
     $('.js-text-field__wrapper', this.#$textField)
-      .append(`<input
+      .append(`
+        <input
           type="text"
-          class="text-field__input text-field__input_double js-text-field__input js-text-field__input_double"
+          class="text-field__input text-field__input_double js-text-field__input_double"
           disabled
           placeholder="ДД.ММ.ГГГГ"
         >

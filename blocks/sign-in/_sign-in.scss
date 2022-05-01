@@ -3,6 +3,10 @@
   justify-content: center;
   align-items: center;
 
+  box-sizing: border-box;
+
+  width: calc(100vw - (100vw - 100%));
+
   min-height: 684px;
 
   flex-grow: 1;

@@ -1,8 +1,8 @@
 mixin button(options={})
   -
-    var {
+    const {
       width = '', //- ultra-narrow - 61px, narrow - 87px, regular - 99px, wide - 196px, ultra-wide - 320px
-      low = false, //- low - 34px, regular - 44px
+      low = false, //- высота кнопки low - 34px, regular - 44px
       purple = false,
       bordered = false,
       arrowed = false,
@@ -10,7 +10,7 @@ mixin button(options={})
       disabled = true,
       submit = true
     } = options;
-    var buttonClass = '';
+    let buttonClass = '';
     switch (width) {
       case 'narrow':
         buttonClass += ' button_width_narrow';
@@ -40,7 +40,7 @@ mixin button(options={})
     if (arrowed) {
       buttonClass += ' button_arrowed';
     }
-    var buttonType = 'submit';
+    let buttonType = 'submit';
     if (!submit) {
       buttonType = 'button';
     }
