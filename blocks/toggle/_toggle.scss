@@ -52,7 +52,11 @@
 }
 
 .toggle__button:focus + .toggle__label::before {
-  box-shadow: 0 0 10px #BC9CFF;
+  box-shadow: 0 0 10px rgba(31, 32, 65, 0.5);
+}
+
+.toggle__button:checked:focus + .toggle__label::before {
+  box-shadow: 0 0 10px #bc9cff;
 }
 
 .toggle__button:checked + .toggle__label::before {
@@ -64,4 +68,5 @@
 
   background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
 }
+
 

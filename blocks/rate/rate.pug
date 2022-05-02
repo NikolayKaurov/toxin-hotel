@@ -1,7 +1,6 @@
 mixin rate(rating = 0)
-  .rate(data-rating= rating)
-    .rate__star
-    .rate__star
-    .rate__star
-    .rate__star
-    .rate__star
+  - let i = 0;
+  .rate.js-rate(data-rating= rating)
+    while i < 5
+      - i += 1;
+      .rate__star.js-rate__star(data-rating= i)

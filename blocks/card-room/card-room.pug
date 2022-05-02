@@ -1,98 +1,107 @@
-mixin card-room({ number = '', lux = '', price = 0, rate = 0, reviews = 0 } = {})
+mixin card-room(options={})
   -
+    const {
+      number = '',
+      lux = '',
+      price = 0,
+      rate = 0,
+      reviews = 0
+    } = options;
     let img1 = '';
     let img2 = '';
     let img3 = '';
     let img4 = '';
     switch(number) {
       case '888':
-        img1 = require('../blocks/card-room/__image/img1.jpg');
-        img2 = require('../blocks/card-room/__image/img2.jpg');
-        img3 = require('../blocks/card-room/__image/img3.jpg');
-        img4 = require('../blocks/card-room/__image/img4.jpg');
+        img1 = require('../blocks/card-room/img/room-888.jpg');
+        img2 = require('../blocks/card-room/img/room-740.jpg');
+        img3 = require('../blocks/card-room/img/room-982.jpg');
+        img4 = require('../blocks/card-room/img/room-678.jpg');
         break;
       case '840':
-        img1 = require('../blocks/card-room/__image/img2.jpg');
-        img2 = require('../blocks/card-room/__image/img3.jpg');
-        img3 = require('../blocks/card-room/__image/img4.jpg');
-        img4 = require('../blocks/card-room/__image/img5.jpg');
+        img1 = require('../blocks/card-room/img/room-840.jpg');
+        img2 = require('../blocks/card-room/img/room-982.jpg');
+        img3 = require('../blocks/card-room/img/room-678.jpg');
+        img4 = require('../blocks/card-room/img/room-450.jpg');
         break;
       case '980':
-        img1 = require('../blocks/card-room/__image/img3.jpg');
-        img2 = require('../blocks/card-room/__image/img4.jpg');
-        img3 = require('../blocks/card-room/__image/img5.jpg');
-        img4 = require('../blocks/card-room/__image/img6.jpg');
+        img1 = require('../blocks/card-room/img/room-980.jpg');
+        img2 = require('../blocks/card-room/img/room-678.jpg');
+        img3 = require('../blocks/card-room/img/room-450.jpg');
+        img4 = require('../blocks/card-room/img/room-350.jpg');
         break;
       case '856':
-        img1 = require('../blocks/card-room/__image/img4.jpg');
-        img2 = require('../blocks/card-room/__image/img5.jpg');
-        img3 = require('../blocks/card-room/__image/img6.jpg');
-        img4 = require('../blocks/card-room/__image/img7.jpg');
+        img1 = require('../blocks/card-room/img/room-856.jpg');
+        img2 = require('../blocks/card-room/img/room-450.jpg');
+        img3 = require('../blocks/card-room/img/room-350.jpg');
+        img4 = require('../blocks/card-room/img/room-666.jpg');
         break;
       case '740':
-        img1 = require('../blocks/card-room/__image/img5.jpg');
-        img2 = require('../blocks/card-room/__image/img6.jpg');
-        img3 = require('../blocks/card-room/__image/img7.jpg');
-        img4 = require('../blocks/card-room/__image/img8.jpg');
+        img1 = require('../blocks/card-room/img/room-740.jpg');
+        img2 = require('../blocks/card-room/img/room-350.jpg');
+        img3 = require('../blocks/card-room/img/room-666.jpg');
+        img4 = require('../blocks/card-room/img/room-444.jpg');
         break;
       case '982':
-        img1 = require('../blocks/card-room/__image/img6.jpg');
-        img2 = require('../blocks/card-room/__image/img7.jpg');
-        img3 = require('../blocks/card-room/__image/img8.jpg');
-        img4 = require('../blocks/card-room/__image/img9.jpg');
+        img1 = require('../blocks/card-room/img/room-982.jpg');
+        img2 = require('../blocks/card-room/img/room-666.jpg');
+        img3 = require('../blocks/card-room/img/room-444.jpg');
+        img4 = require('../blocks/card-room/img/room-352.jpg');
         break;
       case '678':
-        img1 = require('../blocks/card-room/__image/img7.jpg');
-        img2 = require('../blocks/card-room/__image/img8.jpg');
-        img3 = require('../blocks/card-room/__image/img9.jpg');
-        img4 = require('../blocks/card-room/__image/img10.jpg');
+        img1 = require('../blocks/card-room/img/room-678.jpg');
+        img2 = require('../blocks/card-room/img/room-444.jpg');
+        img3 = require('../blocks/card-room/img/room-352.jpg');
+        img4 = require('../blocks/card-room/img/room-888.jpg');
         break;
       case '450':
-        img1 = require('../blocks/card-room/__image/img8.jpg');
-        img2 = require('../blocks/card-room/__image/img9.jpg');
-        img3 = require('../blocks/card-room/__image/img10.jpg');
-        img4 = require('../blocks/card-room/__image/img11.jpg');
+        img1 = require('../blocks/card-room/img/room-450.jpg');
+        img2 = require('../blocks/card-room/img/room-352.jpg');
+        img3 = require('../blocks/card-room/img/room-888.jpg');
+        img4 = require('../blocks/card-room/img/room-840.jpg');
         break;
       case '350':
-        img1 = require('../blocks/card-room/__image/img9.jpg');
-        img2 = require('../blocks/card-room/__image/img10.jpg');
-        img3 = require('../blocks/card-room/__image/img11.jpg');
-        img4 = require('../blocks/card-room/__image/img12.jpg');
+        img1 = require('../blocks/card-room/img/room-350.jpg');
+        img2 = require('../blocks/card-room/img/room-888.jpg');
+        img3 = require('../blocks/card-room/img/room-840.jpg');
+        img4 = require('../blocks/card-room/img/room-980.jpg');
         break;
       case '666':
-        img1 = require('../blocks/card-room/__image/img10.jpg');
-        img2 = require('../blocks/card-room/__image/img11.jpg');
-        img3 = require('../blocks/card-room/__image/img12.jpg');
-        img4 = require('../blocks/card-room/__image/img1.jpg');
+        img1 = require('../blocks/card-room/img/room-666.jpg');
+        img2 = require('../blocks/card-room/img/room-840.jpg');;
+        img3 = require('../blocks/card-room/img/room-980.jpg');
+        img4 = require('../blocks/card-room/img/room-856.jpg');
         break;
       case '444':
-        img1 = require('../blocks/card-room/__image/img11.jpg');
-        img2 = require('../blocks/card-room/__image/img12.jpg');
-        img3 = require('../blocks/card-room/__image/img1.jpg');
-        img4 = require('../blocks/card-room/__image/img2.jpg');
+        img1 = require('../blocks/card-room/img/room-444.jpg');
+        img2 = require('../blocks/card-room/img/room-980.jpg');
+        img3 = require('../blocks/card-room/img/room-856.jpg');
+        img4 = require('../blocks/card-room/img/room-740.jpg');
         break;
       case '352':
-        img1 = require('../blocks/card-room/__image/img12.jpg');
-        img2 = require('../blocks/card-room/__image/img1.jpg');
-        img3 = require('../blocks/card-room/__image/img2.jpg');
-        img4 = require('../blocks/card-room/__image/img3.jpg');
+        img1 = require('../blocks/card-room/img/room-352.jpg');
+        img2 = require('../blocks/card-room/img/room-856.jpg');
+        img3 = require('../blocks/card-room/img/room-740.jpg');
+        img4 = require('../blocks/card-room/img/room-982.jpg');
         break;
     }
 
-  .card-room.js-card-room(data-slide='0')
+  .card-room.js-card-room(data-slide="0")
     .card-room__gallery
-      img.card-room__image(src= img1)
-      img.card-room__image(src= img2)
-      img.card-room__image(src= img3)
-      img.card-room__image(src= img4)
-      .card-room__back.js-card-room__back expand_more
-      .card-room__forward.js-card-room__forward expand_more
+      form.card-room__form(action="./room-details.html")
+        button.card-room__button(tabindex="-1")
+          img.card-room__image(src= img1 alt="Room photo")
+          img.card-room__image(src= img2 alt="Room photo")
+          img.card-room__image(src= img3 alt="Room photo")
+          img.card-room__image(src= img4 alt="Room photo")
+      .card-room__back.js-card-room__back
+      .card-room__forward.js-card-room__forward
       .card-room__nav.js-card-room__nav
-        .card-room__nav-item.js-card-room__nav-item(data-slide='0')
-        .card-room__nav-item.js-card-room__nav-item(data-slide='1')
-        .card-room__nav-item.js-card-room__nav-item(data-slide='2')
-        .card-room__nav-item.js-card-room__nav-item(data-slide='3')
-    a.card-room__header(href='./Room details.html')
+        .card-room__nav-item.js-card-room__nav-item(data-slide="0")
+        .card-room__nav-item.js-card-room__nav-item(data-slide="1")
+        .card-room__nav-item.js-card-room__nav-item(data-slide="2")
+        .card-room__nav-item.js-card-room__nav-item(data-slide="3")
+    .card-room__header
       .card-room__number №
       .card-room__numeric= number
       .card-room__lux= lux
@@ -102,4 +111,3 @@ mixin card-room({ number = '', lux = '', price = 0, rate = 0, reviews = 0 } = {}
       +rate(rate)
       .card-room__reviews= reviews
       .card-room__reviews-text Отзывов
-
