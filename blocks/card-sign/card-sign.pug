@@ -1,9 +1,20 @@
 mixin card-sign
-  form.card-sign.js-card-sign
+  .card-sign
     p.card-sign__header Войти
-    +text-field({ name: 'sign-email', placeholder: 'Email' })
-    +text-field({ name: 'sign-password', placeholder: 'Пароль' })
-    +button({ type: 'big', text: 'войти', disabled: true })
+    form.card-sign__form.js-card-sign__form
+      +text-field({ name: 'sign-email', placeholder: 'Email', type: 'email' })
+      +text-field({ name: 'sign-password', placeholder: 'Пароль', type: 'password' })
+      +button({
+        width: 'ultra-wide',
+        text: 'войти',
+        purple: true,
+        arrowed: true,
+      })
     .card-sign__footer Нет аккаунта на Toxin?
-      a.card-sign__registration(href='./Registration.html')
-        +button({ type: 'white', text: 'Создать', disabled: false, submit: false })
+      form.card-sign__registration(action="./registration.html")
+        +button({
+          width: 'regular',
+          bordered: true,
+          text: 'Создать',
+          disabled: false,
+        })

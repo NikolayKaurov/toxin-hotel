@@ -1,7 +1,6 @@
 include ../blocks/ui-kit/ui-kit
 include ../blocks/ui-kit/__header/ui-kit__header
 include ../blocks/cards/cards
-include ../blocks/cards/__item/cards__item
 include ../blocks/card-search/card-search
 include ../blocks/datepicker/datepicker
 include ../blocks/button/button
@@ -19,13 +18,13 @@ include ../blocks/rate/rate
 +ui-kit({ title: 'Cards', theme: 'gray' })
   +ui-kit__header
   +cards
-    +cards__item
+    .cards__item
       +card-search
       +card-registration
-    +cards__item
+    .cards__item
       +card-details({ number: '888', lux: 'люкс', price: 9990, discount: 2179, feeAdd: 300 })
       +card-sign
-    +cards__item
-      +datepicker({ name: 'search-date', labelArrival: 'прибытие', labelDeparture: 'выезд', zIndex: 3, modifier: 'demo' })
+    .cards__item
+      +datepicker({ modifier: 'demo' })
       +card-room({ number: '888', lux: 'люкс', price: 9990, rate: 5, reviews: 145 })
       +card-room({ number: '840', price: 9990, rate: 4, reviews: 65 })

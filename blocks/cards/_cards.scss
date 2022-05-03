@@ -5,3 +5,22 @@
   grid-template-columns: 420px 420px auto;
   grid-template-rows: 1fr;
 }
+
+.cards__item {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.cards__item:nth-child(1) {
+  grid-template-rows: 414px auto;
+}
+
+.cards__item:nth-child(2) {
+  grid-template-rows: 552px auto;
+
+  padding: 2px 0 0 0;
+}
+
+.cards__item:nth-child(3) {
+  grid-template-rows: 410px 297px auto;
+}

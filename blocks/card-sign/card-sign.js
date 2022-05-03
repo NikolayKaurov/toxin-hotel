@@ -9,26 +9,30 @@ function validateEmail(email) {
 }
 
 function handleCardSignInput(event) {
-  if (
-    validateEmail(event.data.card.$email.val())
-    && event.data.card.$password.val().length > 7
-  ) {
-    event.data.card.$submit.prop('disabled', false);
-  } else {
-    event.data.card.$submit.prop('disabled', true);
-  }
+  const {
+    $email,
+    $password,
+    $submit,
+  } = event.data.card;
+
+  const fullInput = validateEmail($email.val()) && $password.val().length > 7;
+
+  $submit.prop('disabled', !fullInput);
 }
 
 class CardSign {
+  #$card;
+
   constructor(card) {
-    this.$card = $(card);
-    this.$email = $($('.js-text-field__input', this.$card).get(0));
-    this.$password = $($('.js-text-field__input', this.$card).get(1));
-    this.$submit = $('.js-button__input', this.$card);
+    this.#$card = $(card);
   }
 
   init() {
-    this.$card.on(
+    this.$email = $('.js-text-field__input[name="sign-email"]', this.#$card);
+    this.$password = $('.js-text-field__input[name="sign-password"]', this.#$card);
+    this.$submit = $('.js-button', this.#$card);
+
+    this.#$card.on(
       'input',
       null,
       { card: this },
@@ -37,7 +41,7 @@ class CardSign {
   }
 }
 
-$('.js-card-sign').each((index, element) => {
+$('.js-card-sign__form').each((index, element) => {
   const card = new CardSign(element);
   card.init();
 });

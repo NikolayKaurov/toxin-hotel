@@ -1,7 +1,21 @@
-mixin chart({ fabulous = 0, good = 0, satisfactorily = 0, disappointed = 0 } = {})
+mixin chart(options={})
   -
-    let total = fabulous + good + satisfactorily + disappointed;
-    let voices = [['chart__slice_fabulous', total > 0 ? 360 * fabulous / total : 0],
+    const {
+      fabulous = 0,
+      good = 0,
+      satisfactorily = 0,
+      disappointed = 0
+    } = options;
+    const total = fabulous + good + satisfactorily + disappointed;
+    let voicesWord = 'голосов';
+    if (total % 100 < 5 || total % 100 > 20) {
+      if (total % 10 === 1) {
+        voicesWord = 'голос';
+      } else if ((total % 10 > 1 && total % 10 < 5)){
+        voicesWord = 'голоса';
+      }
+    }
+    const voices = [['chart__slice_fabulous', total > 0 ? 360 * fabulous / total : 0],
                   ['chart__slice_good', total > 0 ? 360 * good / total : 0],
                   ['chart__slice_satisfactorily', total > 0 ? 360 * satisfactorily / total : 0],
                   ['chart__slice_disappointed', total > 0 ? 360 * disappointed / total : 0]];
@@ -20,7 +34,7 @@ mixin chart({ fabulous = 0, good = 0, satisfactorily = 0, disappointed = 0 } = {
       .chart__hold(style= `transform: rotate(-${voices[1][1] + voices[2][1] + +voices[3][1]}deg);`)
       .chart__total
         .chart__total-number= total
-        = 'голосов'
+        = voicesWord
     .chart__legend
       .chart__item
         .chart__bullet

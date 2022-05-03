@@ -5,9 +5,7 @@
 @use 'blocks/ui-kit/__body/ui-kit__body';
 @use 'blocks/ui-kit/__header/ui-kit__header';
 @use 'blocks/cards/cards';
-@use 'blocks/cards/__item/cards__item';
 @use 'blocks/card-search/card-search';
-@use 'blocks/card-search/__header/card-search__header';
 @use 'blocks/datepicker/datepicker';
 @use 'blocks/button/button';
 @use 'blocks/dropdown/dropdown';
@@ -23,7 +21,5 @@
 @use 'blocks/sign-in/_registration/sign-in_registration';
 @use 'blocks/card-details/card-details';
 @use 'blocks/card-sign/card-sign';
-@use 'blocks/card-sign/__header/card-sign__header';
-@use 'blocks/card-sign/__footer/card-sign__footer';
 @use 'blocks/card-room/card-room';
 @use 'blocks/rate/rate';

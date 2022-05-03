@@ -1,27 +1,29 @@
 import $ from 'jquery';
 
 function handleCardSearchInput(event) {
-  if (
-    parseInt(event.data.card.$adult.val(), 10)
-    && event.data.card.$arrival.val()
-    && event.data.card.$departure.val()
-  ) {
-    event.data.card.$submit.prop('disabled', false);
-  } else {
-    event.data.card.$submit.prop('disabled', true);
-  }
+  const {
+    $arrival,
+    $departure,
+    $adult,
+    $submit,
+  } = event.data.card;
+
+  const fullInput = $departure.val() && $arrival.val() && parseInt($adult.val(), 10);
+
+  $submit.prop('disabled', !fullInput);
 }
 
 class CardSearch {
   constructor(card) {
     this.$card = $(card);
-    this.$arrival = $('.js-datepicker__input_arrival', this.$card);
-    this.$departure = $('.js-datepicker__input_departure', this.$card);
-    this.$adult = $($('.js-dropdown__quantity', this.$card).get(2));
-    this.$submit = $('.js-button__input', this.$card);
   }
 
   init() {
+    this.$arrival = $('.js-datepicker__input_date_arrival', this.$card);
+    this.$departure = $('.js-datepicker__input_date_departure', this.$card);
+    this.$adult = $('.js-dropdown__quantity[name="search-guest-adult"]', this.$card);
+    this.$submit = $('.js-button', this.$card);
+
     this.$card.on(
       'input',
       null,
