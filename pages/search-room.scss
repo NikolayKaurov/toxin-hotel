@@ -6,10 +6,6 @@
 @use 'blocks/hamburger/hamburger';
 @use 'blocks/hamburger/__expand/hamburger__expand';
 @use 'blocks/checkbox/checkbox';
-@use 'blocks/checkbox/__expand/checkbox__expand';
-@use 'blocks/checkbox/__label/checkbox__label';
-@use 'blocks/checkbox/__down/checkbox__down';
-@use 'blocks/button/button';
 @use 'blocks/hamburger/__label/hamburger__label';
 @use 'blocks/hamburger/__down/hamburger__down';
 @use 'blocks/hamburger/__item/hamburger__item';
@@ -22,6 +18,7 @@
 @use 'blocks/menu/__label/menu__label';
 @use 'blocks/menu/__down/menu__down';
 @use 'blocks/menu/__item/menu__item';
+@use 'blocks/button/button';
 @use 'blocks/header/__user/header__user';
 @use 'blocks/search/search';
 @use 'blocks/search/__wrapper/search__wrapper';
@@ -29,9 +26,6 @@
 @use 'blocks/datepicker/datepicker';
 @use 'blocks/dropdown/dropdown';
 @use 'blocks/slider-toxin/slider-toxin';
-@use 'blocks/checkbox/__button/checkbox__button';
-@use 'blocks/checkbox/__button-label/checkbox__button-label';
-@use 'blocks/checkbox/__header/checkbox__header';
 @use 'blocks/search/__result/search__result';
 @use 'blocks/search/__header/search__header';
 @use 'blocks/search/__rooms/search__rooms';

@@ -1,4 +1,3 @@
-import '../blocks/checkbox/checkbox';
 import '../blocks/card-details/card-details';
 import '../blocks/datepicker/datepicker';
 import '../blocks/dropdown/dropdown';

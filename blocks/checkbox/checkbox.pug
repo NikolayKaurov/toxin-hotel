@@ -1,12 +1,37 @@
-mixin checkbox({ label = '', name = 'undefined-name', expand = '', wide = '' })
-  .checkbox.js-checkbox(data-name= name data-expand= expand data-wide= wide)
-    if (expand === 'expand')
-      input.checkbox__expand(type='checkbox' id= name + '-checkbox__expand')
-      label.checkbox__label(for= name + '-checkbox__expand')= label || 'undefined-label'
-      .checkbox__down
-        block
-    else if (label)
-      .checkbox__label= label
-      block
-    else
-      block
+mixin checkbox(options={})
+  -
+    const {
+      id = 'unique-id', //- требуется ТОЛЬКО для раскрываемого списка чекбоксов
+      expand = '', //- заголовок раскрываемого списка чекбоксов
+      items = [],
+    } = options;
+
+  .checkbox
+    if (expand)
+      input.checkbox__input(
+        type="checkbox"
+        id= id
+        checked
+      )
+      label.checkbox__expand-label(for= id)= expand
+    each item in items
+      -
+        const {
+          name = 'undefined-name',
+          value = 'on',
+          checked = false,
+          text = '',
+          explanation = '',
+        } = item;
+      label.checkbox__label
+        input.checkbox__input(
+          type="checkbox"
+          name= name
+          value= value
+          checked= checked
+        )
+        if (explanation)
+          span.checkbox__text.checkbox__text_bold= text
+          span.checkbox__explanation= explanation
+        else
+          span.checkbox__text= text

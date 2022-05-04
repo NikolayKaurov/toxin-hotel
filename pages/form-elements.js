@@ -2,7 +2,6 @@ import '../blocks/text-field/text-field';
 import '../blocks/dropdown/dropdown';
 import '../blocks/datepicker/datepicker';
 import '../blocks/subscription/subscription';
-import '../blocks/checkbox/checkbox';
 import '../blocks/like/like';
 import '../blocks/rate/rate';
 import '../blocks/slider-toxin/slider-toxin';

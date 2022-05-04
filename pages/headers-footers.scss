@@ -10,10 +10,6 @@
 @use 'blocks/hamburger/hamburger';
 @use 'blocks/hamburger/__expand/hamburger__expand';
 @use 'blocks/checkbox/checkbox';
-@use 'blocks/checkbox/__expand/checkbox__expand';
-@use 'blocks/checkbox/__label/checkbox__label';
-@use 'blocks/checkbox/__down/checkbox__down';
-@use 'blocks/button/button';
 @use 'blocks/hamburger/__label/hamburger__label';
 @use 'blocks/hamburger/__down/hamburger__down';
 @use 'blocks/hamburger/__item/hamburger__item';
@@ -28,6 +24,7 @@
 @use 'blocks/menu/__label/menu__label';
 @use 'blocks/menu/__down/menu__down';
 @use 'blocks/menu/__item/menu__item';
+@use 'blocks/button/button';
 @use 'blocks/header/__user/header__user';
 @use 'blocks/footer/footer';
 @use 'blocks/footer/__wrapper-up/footer__wrapper-up';

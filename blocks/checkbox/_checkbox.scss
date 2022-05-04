@@ -1,13 +1,138 @@
 .checkbox {
-  width: 222px;
+  display: flex;
+  flex-direction: column;
 
-  position: relative;
-}
-
-.checkbox[data-expand='expand'] {
   width: 266px;
 }
 
-.checkbox[data-wide='wide'] {
-  width: 266px;
+.checkbox__input {
+  position: absolute;
+
+  opacity: 0;
+}
+
+.checkbox__expand-label {
+  display: flex;
+  justify-content: space-between;
+
+  font-weight: bold;
+  color: #1f2041;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  width: inherit;
+
+  margin-bottom: 17px;
+}
+
+.checkbox__expand-label::selection {
+  background: transparent;
+}
+
+.checkbox__input:focus + .checkbox__expand-label {
+  text-shadow: 0 0 15px #bc9cff;
+}
+
+.checkbox__expand-label::after {
+  content: 'expand_less';
+
+  width: 44px;
+  height: 15px;
+
+  font-family: material-icons, Arial, sans-serif;
+  font-size: 24px;
+  line-height: 15px;
+  color: rgba(31, 32, 65, 0.5);
+  font-style: normal;
+  text-transform: none;
+  text-align: center;
+}
+
+.checkbox__input:checked + .checkbox__expand-label::after {
+  content: 'expand_more';
+}
+
+.checkbox__label {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 10px;
+
+  background: white;
+
+  z-index: 1;
+
+  cursor: pointer;
+
+  width: inherit;
+}
+
+.checkbox__input:checked ~ .checkbox__label {
+  display: none;
+}
+
+.checkbox__label:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox__text {
+  display: inline-flex;
+
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(31, 32, 65, 0.5);
+}
+
+.checkbox__text::selection {
+  background: transparent;
+}
+
+.checkbox__text::before {
+  content: '';
+
+  width: 20px;
+  height: 20px;
+
+  box-sizing: border-box;
+
+  background: white;
+
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+
+  margin-right: 10px;
+
+  flex-shrink: 0;
+}
+
+.checkbox__input:checked + .checkbox__text::before {
+  background-image: url('./img/check.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  border: 1px solid #bc9cff;
+}
+
+.checkbox__input:focus + .checkbox__text::before {
+  box-shadow: 0 0 15px rgba(31, 32, 65, 0.5);
+}
+
+.checkbox__input:focus:checked + .checkbox__text::before {
+  box-shadow: 0 0 15px #bc9cff;
+}
+
+.checkbox__text_bold {
+  font-weight: bold;
+  color: rgba(31, 32, 65, 0.75);
+}
+
+.checkbox__explanation {
+  padding: 5px 0 0 30px;
+
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(31, 32, 65, 0.5);
 }
