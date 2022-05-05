@@ -1,30 +1,41 @@
 include ../blocks/ui-kit/ui-kit
 include ../blocks/ui-kit/__header/ui-kit__header
 include ../blocks/colors-and-type/colors-and-type
-include ../blocks/colors-and-type/__item/colors-and-type__item
 include ../blocks/list-colors/list-colors
-include ../blocks/list-colors/__item/list-colors__item
 include ../blocks/list-type/list-type
-include ../blocks/list-type/__item/list-type__item
 include ../blocks/like/like
 +ui-kit({ title: 'Colors & Type', theme: 'white' })
   +ui-kit__header
   +colors-and-type
-    +colors-and-type__item
-      +list-colors
-        +list-colors__item('Dark Shade 100%')
-        +list-colors__item('Dark Shade 75%')
-        +list-colors__item('Dark Shade 50%')
-        +list-colors__item('Dark Shade 25%')
-        +list-colors__item('Dark Shade 5%')
-        +list-colors__item('Purple')
-        +list-colors__item('Green')
-    +colors-and-type__item
-      +list-type
-        +list-type__item({ type : 'h1', description : 'This one is the sub-section or widget title' })
-        +list-type__item({ type : 'h2', description : 'Next one is the item title inside widgets' })
-        +list-type__item({ type : 'h3', description : 'This is a label or CTA text' })
-        +list-type__item({ type : 'Body', description : 'This is the body text which is used for most of the design, like paragraphs, lists, etc.' })
+    .colors-and-type__item
+      +list-colors([
+        'Dark Shade 100%',
+        'Dark Shade 75%',
+        'Dark Shade 50%',
+        'Dark Shade 25%',
+        'Dark Shade 5%',
+        'Purple',
+        'Green',
+      ])
+    .colors-and-type__item
+      +list-type([
+        {
+          type: 'h1',
+          description: 'This one is the sub-section or widget title',
+        },
+        {
+          type: 'h2',
+          description: 'Next one is the item title inside widgets',
+        },
+        {
+          type: 'h3',
+          description: 'This is a label or CTA text',
+        },
+        {
+          type: 'Body',
+          description: 'This is the body text which is used for most of the design, like paragraphs, lists, etc.',
+        },
+      ])
 
-            
+
 

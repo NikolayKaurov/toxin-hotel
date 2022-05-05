@@ -5,12 +5,7 @@
 
   border-bottom: 1px solid #e5e5e5;
 
-  width: calc(100vw - (100vw - 100%));
+  width: 100%;
+
+  flex-grow: 1;
 }
-
-/* @media all and (max-width: 400px) {
-  .details {
-    width: calc(100vw - (100vw - 100%));
-  }
-} */
-

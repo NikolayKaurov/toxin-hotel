@@ -1,4 +1,35 @@
-mixin list-colors
+mixin list-colors(items=[])
   .list-colors
-    block
-
+    each item in items
+      -
+        let squareColor = '';
+        let colorValue = '';
+        if (item.toLowerCase().includes('dark shade 5%')) {
+          squareColor = 'list-colors__item_color_dark-shade-05';
+          colorValue = '#1f2041';
+        } else if (item.toLowerCase().includes('dark shade 25%')) {
+          squareColor = 'list-colors__item_color_dark-shade-25';
+          colorValue = '#1f2041';
+        } else if (item.toLowerCase().includes('dark shade 50%')) {
+          squareColor = 'list-colors__item_color_dark-shade-50';
+          colorValue = '#1f2041';
+        } else if (item.toLowerCase().includes('dark shade 75%')) {
+          squareColor = 'list-colors__item_color_dark-shade-75';
+          colorValue = '#1f2041';
+        } else if (item.toLowerCase().includes('dark shade')) {
+          squareColor = 'list-colors__item_color_dark-shade';
+          colorValue = '#1f2041';
+        } else if (item.toLowerCase().includes('green')) {
+          squareColor = 'list-colors__item_color_green';
+          colorValue = '#6fcf97';
+        } else if (item.toLowerCase().includes('purple')) {
+          squareColor = 'list-colors__item_color_purple';
+          colorValue = '#bc9cff';
+        }
+      .list-colors__item
+        .list-colors__item.list-colors__item_square(class= squareColor)
+        .list-colors__item
+          .list-colors__item
+            p.list-colors__color-name= item
+          .list-colors__item
+            p.list-colors__color-value= colorValue

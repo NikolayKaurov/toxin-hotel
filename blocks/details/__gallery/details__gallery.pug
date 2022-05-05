@@ -1,5 +1,8 @@
 mixin details__gallery
   .details__gallery
-    img.details__photo(src=require('../blocks/details/__photo/photo1.jpg'))
-    img.details__photo(src=require('../blocks/details/__photo/photo2.jpg'))
-    img.details__photo(src=require('../blocks/details/__photo/photo3.jpg'))
+    .details__img
+      img.details__photo(src=require('../blocks/details/img/details-1.jpg') alt="Room photo")
+    .details__img
+      img.details__photo(src=require('../blocks/details/img/details-2.jpg') alt="Room photo")
+    .details__img
+      img.details__photo(src=require('../blocks/details/img/details-3.jpg') alt="Room photo")
