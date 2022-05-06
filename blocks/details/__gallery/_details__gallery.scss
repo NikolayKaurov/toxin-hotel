@@ -1,16 +1,11 @@
 .details__gallery {
   width: 100%;
   max-width: 1920px;
-  height: 485px;
+  height: 52vmin;
+  max-height: 485px;
 
   display: grid;
   grid-template-columns: 68.125% auto;
   grid-template-rows: 50.1% auto;
-  grid-template-areas: 'a b' 'a c';
+  grid-template-areas:  'armchair bed' 'armchair coffee-table';
 }
-
-/*@media all and (max-width: 851px) {
-  .details__gallery {
-    grid-template-areas: 'a a' 'a a';
-  }
-}*/

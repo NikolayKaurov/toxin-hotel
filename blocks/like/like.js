@@ -1,17 +1,15 @@
 import $ from 'jquery';
 
 function handleLikeMousedown(event) {
-  const number = parseFloat(event.data.$like.attr('data-number'));
-  console.log(number);
+  const { $like, $number } = event.data;
+  const number = parseInt($like.attr('data-likes'), 10);
 
-  if (event.data.$like.hasClass('like_active')) {
-    event.data.$like.removeClass('like_active');
-    event.data.$like.attr('data-number', `${number - 1}`);
-    event.data.$number.text(`${number - 1}`);
+  if ($like.hasClass('like_active')) {
+    $like.removeClass('like_active').attr('data-likes', `${number - 1}`);
+    $number.text(`${number - 1}`);
   } else {
-    event.data.$like.addClass('like_active');
-    event.data.$like.attr('data-number', `${number + 1}`);
-    event.data.$number.text(`${number + 1}`);
+    $like.addClass('like_active').attr('data-likes', `${number + 1}`);
+    $number.text(`${number + 1}`);
   }
 }
 

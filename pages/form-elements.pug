@@ -16,19 +16,9 @@ include ../blocks/rate/rate
 include ../blocks/slider-toxin/slider-toxin
 include ../blocks/paginator/paginator
 include ../blocks/list/list
-include ../blocks/list-icon/list-icon
-include ../blocks/list-icon/__item/list-icon__item
-include ../blocks/header/header
-include ../blocks/hamburger/hamburger
-include ../blocks/hamburger/__item/hamburger__item
-include ../blocks/header/__item/header__item
-include ../blocks/page/page
-include ../blocks/logo/logo
-include ../blocks/menu/menu
-include ../blocks/menu/__item/menu__item
-include ../blocks/header/__user/header__user
+include ../blocks/advantage/advantage
 include ../blocks/review/review
-include ../blocks/list/__item/list__item
+include ../blocks/bullet-list/bullet-list
 +ui-kit({ title: 'Form elements', theme: 'white' })
   +ui-kit__header
   +form-elements
@@ -133,13 +123,13 @@ include ../blocks/list/__item/list__item
       })
       +demo-block({ type: 'toggle', label: 'toggle'})
         +toggle({
-          name: 'toggle1',
+          name: 'spam-1',
           value: 'spam',
           text: 'Получать спецпредложения',
           checked: true,
         })
         +toggle({
-          name: 'toggle2',
+          name: 'spam-2',
           value: 'spam',
           text: 'Получать спецпредложения'
         })
@@ -217,7 +207,7 @@ include ../blocks/list/__item/list__item
         ]
       })
       +dropdown({
-        name: 'room1',
+        name: 'room-1',
         defaultValue: 'Сколько комнат',
         label: 'dropdown',
         description: 'expanded',
@@ -305,9 +295,17 @@ include ../blocks/list/__item/list__item
           },
         ],
       })
-      +list-icon
-        +list-icon__item({ icon: 'insert_emoticon', header: 'Комфорт', text: 'Шумопоглощающие стены' })
-        +list-icon__item({ icon: 'location_city', header: 'Удобство', text: 'Окно в каждой из спален' })
+      +advantage([
+        {
+          text: 'Комфорт',
+          explanation: 'Шумопоглощающие стены',
+        },
+        {
+          icon: 'location_city',
+          text: 'Удобство',
+          explanation: 'Окно в каждой из спален',
+        },
+      ])
     +form-elements__item
       +dropdown({
         name: 'guest2',
@@ -353,7 +351,7 @@ include ../blocks/list/__item/list__item
       })
     +form-elements__item
       +dropdown({
-        name: 'guest3',
+        name: 'guest-3',
         defaultValue: 'Сколько гостей',
         label: 'dropdown',
         zIndex: 1,
@@ -367,7 +365,7 @@ include ../blocks/list/__item/list__item
           },
           {
             name: 'child',
-            units: 'дети ребёнок ребёнка детей',
+            units: 'дети',
           },
           {
             name: 'baby',
@@ -375,7 +373,9 @@ include ../blocks/list/__item/list__item
           },
         ]
       })
-      +list({ label: 'bullet list', marker: 'bullet'})
-        +list__item Нельзя с питомцами
-        +list__item Без вечеринок и мероприятий
-        +list__item Время прибытия — после 13:00, а выезд до 12:00
+      +bullet-list([
+        'Нельзя с питомцами',
+        'Без вечеринок и мероприятий',
+        'Время прибытия — после 13:00, а выезд до 12:00',
+      ])
+

@@ -11,16 +11,14 @@ include ../blocks/menu/menu
 include ../blocks/menu/__item/menu__item
 include ../blocks/button/button
 include ../blocks/header/__user/header__user
-include ../blocks/list-icon/list-icon
-include ../blocks/list-icon/__item/list-icon__item
+include ../blocks/advantage/advantage
 include ../blocks/chart/chart
 include ../blocks/card-details/card-details
 include ../blocks/datepicker/datepicker
 include ../blocks/dropdown/dropdown
 include ../blocks/review/review
 include ../blocks/like/like
-include ../blocks/list/list
-include ../blocks/list/__item/list__item
+include ../blocks/bullet-list/bullet-list
 include ../blocks/footer/footer
 include ../blocks/subscription/subscription
 include ../blocks/footer/__social/footer__social
@@ -29,14 +27,27 @@ include ../blocks/footer/__social/footer__social
   +details
     .details__info
       .details__header Сведения о номере
-      +list-icon
-        +list-icon__item({icon: 'insert_emoticon', header: 'Комфорт', text: 'Шумопоглощающие стены'})
-        +list-icon__item({icon: 'location_city', header: 'Удобство', text: 'Окно в каждой из спален'})
-        +list-icon__item({icon: 'whatshot', header: 'Уют', text: 'Номер оснащён камином', underline: false})
+      +advantage([
+        {
+          text: 'Комфорт',
+          explanation: 'Шумопоглощающие стены',
+        },
+        {
+          icon: 'location_city',
+          text: 'Удобство',
+          explanation: 'Окно в каждой из спален',
+        },
+        {
+          icon: 'whatshot',
+          text: 'Уют',
+          explanation: 'Номер оснащён камином',
+          underlined: false,
+        },
+      ])
     .details__chart
       .details__header Впечатления от номера
-      +chart({fabulous: 120, good: 120, satisfactorily: 120, disappointed: 0})
-    +card-details({ number: '888', lux: 'люкс', price: 9990, discount: 2179, fee: 999, feeAdd: 300 })
+      +chart({fabulous: 113, good: 90, satisfactorily: 41, disappointed: 19})
+    +card-details({ number: '888', lux: 'люкс', price: 9990, discount: 2179, fee: 0, feeAdd: 300 })
     .details__reviews
       .details__header Отзывы посетителей номера
       .details__number-reviews 2 отзыва
@@ -54,10 +65,11 @@ include ../blocks/footer/__social/footer__social
       })
     .details__rules
       .details__header.details__header_indent Правила
-      +list({marker: 'bullet'})
-        +list__item Нельзя с питомцами
-        +list__item Без вечеринок и мероприятий
-        +list__item Время прибытия — после 13:00, а выезд до 12:00
+      +bullet-list([
+        'Нельзя с питомцами',
+        'Без вечеринок и мероприятий',
+        'Время прибытия — после 13:00, а выезд до 12:00',
+      ])
     .details__cancel
       .details__header Отмена
       .details__paragraph Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.

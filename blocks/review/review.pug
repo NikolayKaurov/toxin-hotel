@@ -1,5 +1,11 @@
-mixin review({ likes = 0, name = '', time = '', text = ''})
+mixin review(options={})
   -
+    const {
+      likes = 0,
+      name = '',
+      time = '',
+      text = ''
+    } = options;
     let srcImg = '';
     if (name === 'Мурад Сарафанов') {
       srcImg = require('../blocks/review/img/user-1.jpg');
@@ -8,10 +14,10 @@ mixin review({ likes = 0, name = '', time = '', text = ''})
     }
 
   .review
-    .review__avatar
-      img.review__photo(src= srcImg)
+    .review__user
+      img.review__photo(src= srcImg alt="User photo")
       +like(likes)
     .review__body
-      .review__name= name
-      .review__time= time
-      .review__text= text
+      span.review__name= name
+      span.review__time= time
+      p.review__text= text

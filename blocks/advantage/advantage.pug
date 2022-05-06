@@ -1,0 +1,19 @@
+mixin advantage(items=[])
+  .advantage
+    each item in items
+      -
+        const {
+          icon = 'insert_emoticon',
+          text = '',
+          explanation = '',
+          underlined = true,
+        } = item;
+        let itemClass = '';
+        if (underlined) {
+          itemClass = 'advantage__item_underlined'
+        }
+      .advantage__item(class= itemClass)
+        .advantage__icon= icon
+        .advantage__text
+          span.advantage__header= text
+          span.advantage__explanation= explanation

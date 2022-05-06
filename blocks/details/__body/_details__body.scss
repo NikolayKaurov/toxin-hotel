@@ -2,7 +2,8 @@
   width: 80.56%;
   max-width: 1160px;
 
-  padding: 70px 0 73px 0;
+  //padding: 70px 0 73px;
+  padding: min(70px, 8vmin) 0 min(70px, 8vmin);
 
   display: grid;
   grid-template-rows: 303px 336px auto;

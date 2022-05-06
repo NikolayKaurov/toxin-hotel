@@ -35,3 +35,41 @@
 .like::selection {
   background: transparent;
 }
+
+.like_active {
+  border: 1px solid #BC9CFF;
+}
+
+.like_active::before {
+  content: 'favorite';
+
+  color: #BC9CFF;
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.like__number {
+  color: rgba(31, 32, 65, 0.25);
+  font-size: 10px;
+  line-height: 17px;
+
+  height: 18px;
+
+  text-align: center;
+
+  position: relative;
+  left: 24px;
+
+  transform: translate(-50%, 0);
+}
+
+.like__number::selection {
+  background: transparent;
+}
+
+.like_active {
+  .like__number {
+    color: #BC9CFF;
+  }
+}

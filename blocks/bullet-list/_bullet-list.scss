@@ -1,0 +1,38 @@
+.bullet-list {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+  padding: 0;
+
+  list-style-type: none;
+}
+
+.bullet-list__item {
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(31, 32, 65, 0.75);
+
+  margin-bottom: 10px;
+
+  display: flex;
+}
+
+.bullet-list__item:last-child {
+  margin-bottom: 0;
+}
+
+.bullet-list__item::before {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 5px;
+  background: rgba(31, 32, 65, 0.25);
+
+  margin: 7px 10px 0 0;
+
+  content: '';
+
+  flex-shrink: 0;
+  flex-grow: 0;
+}
