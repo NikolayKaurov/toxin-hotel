@@ -1,6 +1,6 @@
 @use "sass:math";
 
-@media all and (min-width: 401px) {
+@media all and (min-width: 1025px) {
   $size: 120px;
   $half: math.div($size, 2);
 
@@ -36,7 +36,7 @@
   }
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 1024px) {
   $size: 100px;
   $half: math.div($size, 2);
 

@@ -9,3 +9,297 @@
 
   flex-grow: 1;
 }
+
+.details__gallery {
+  width: 100%;
+  max-width: 1920px;
+  height: 52vmin;
+  max-height: 485px;
+
+  display: grid;
+  grid-template-columns: 68.125% auto;
+  grid-template-rows: 50.1% auto;
+  grid-template-areas:
+    'armchair bed'
+    'armchair coffee-table';
+}
+
+.details__gallery-slot {
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+.details__gallery-slot:nth-child(1) {
+  grid-area: armchair;
+}
+
+.details__gallery-slot:nth-child(2) {
+  grid-area: bed;
+}
+
+.details__gallery-slot:nth-child(3) {
+  grid-area: coffee-table;
+}
+
+.details__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details__body {
+  width: 80.56%;
+  max-width: 1160px;
+
+  padding: min(70px, 8vmin) 0 min(69px, 8vmin);
+
+  display: grid;
+  grid-template-rows: 304px auto 160px;
+  grid-template-columns: 280px auto 38.79%;
+  grid-template-areas: 'advantage chart card'
+                       'reviews reviews card'
+                       'rules cancel card';
+}
+
+.details__header {
+  font-size: 19px;
+  line-height: 23px;
+  color: #1F2041;
+  font-weight: bold;
+}
+
+.details__header_indented {
+  padding-left: 20px;
+}
+
+.details__advantage {
+  display: grid;
+
+  grid-template-rows: 44px auto;
+
+  grid-area: advantage;
+}
+
+.details__chart {
+  display: grid;
+  grid-template-rows: 45px auto;
+
+  grid-area: chart;
+
+  justify-self: end;
+
+  padding-right: 38px;
+}
+
+.details__card {
+  grid-area: card;
+
+  justify-self: end;
+}
+
+.details__reviews {
+  display: grid;
+  align-items: start;
+
+  grid-template-rows: 24px auto;
+  grid-row-gap: 20px;
+
+  grid-area: reviews;
+
+  padding-bottom: 30px;
+
+  height: fit-content;
+}
+
+.details__reviews-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: fit-content;
+}
+
+.details__number-reviews {
+  font-size: 14px;
+  line-height: 14px;
+
+  color: rgba(31, 32, 65, 0.5);
+}
+
+.details__rules {
+  display: grid;
+
+  grid-template-rows: 41px auto;
+
+  grid-area: rules;
+
+  height: fit-content;
+}
+
+.details__cancel {
+  display: grid;
+
+  grid-template-rows: 41px auto;
+
+  grid-area: cancel;
+  justify-self: end;
+
+  height: fit-content;
+
+  padding-right: 9px;
+
+  max-width: 341px;
+}
+
+.details__paragraph {
+  font-size: 14px;
+  line-height: 24px;
+
+  color: rgba(31, 32, 65, 0.75);
+}
+
+@media all and (min-width: 1025px) and (max-width: 1366px) {
+  .details__body {
+    grid-template-rows: 170px 342px auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 100px 280px;
+
+    grid-template-areas: 'chart chart chart chart card card'
+                         'reviews reviews reviews reviews card card'
+                         'reviews reviews reviews reviews empty advantage'
+                         'rules rules cancel cancel cancel advantage';
+  }
+
+  .details__chart {
+    padding-right: 0;
+
+    justify-self: center;
+  }
+
+  .details__advantage {
+    justify-self: end;
+    padding-top: 50px;
+  }
+
+  .details__reviews {
+    padding-top: 50px;
+    padding-right: 50px;
+  }
+
+  .details__cancel {
+    padding-right: 40px;
+    padding-left: 40px;
+    max-width: none;
+  }
+}
+
+@media all and (min-width: 801px) and (max-width: 1024px) {
+  .details__body {
+    width: 90%;
+
+    grid-template-rows: 170px 342px auto auto;
+    grid-template-columns: auto 380px;
+
+    grid-template-areas: 'chart card'
+                         'advantage card'
+                         'reviews reviews'
+                         'rules cancel';
+  }
+
+  .details__chart {
+    padding-right: 0;
+
+    justify-self: center;
+  }
+
+  .details__advantage {
+    justify-self: center;
+
+    padding-top: 50px;
+  }
+
+  .details__reviews {
+    padding-top: 50px;
+    padding-right: 0;
+  }
+
+  .details__rules {
+    padding-right: 50px;
+  }
+
+  .details__cancel {
+    padding-right: 0;
+    max-width: none;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .details__body {
+    width: 100%;
+
+    grid-template-rows: 512px auto auto auto auto auto;
+    grid-template-columns: 1fr;
+
+    justify-items: center;
+
+    grid-template-areas: 'card'
+                         'advantage'
+                         'chart'
+                         'reviews'
+                         'cancel'
+                         'rules';
+  }
+
+  .details__card {
+    justify-self: center;
+  }
+
+  .details__chart {
+    justify-self: center;
+    padding-right: 0;
+  }
+
+  .details__advantage {
+    justify-self: center;
+
+    padding: 60px 0;
+  }
+
+  .details__reviews {
+    padding: 60px 10%;
+
+    grid-template-rows: auto;
+  }
+
+  .details__reviews-header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding-bottom: 20px;
+  }
+
+  .details__number-reviews {
+    padding-top: 10px;
+  }
+
+  .details__rules {
+    padding: 0 10%;
+  }
+
+  .details__cancel {
+    padding: 0 10% 60px 10%;
+
+    max-width: none;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .details__body {
+    padding-top: 0;
+  }
+
+  .details__card {
+    width: 100%;
+  }
+}
