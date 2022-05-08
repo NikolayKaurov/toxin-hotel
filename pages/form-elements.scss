@@ -11,10 +11,6 @@
 @use 'blocks/button/button';
 @use 'blocks/datepicker/datepicker';
 @use 'blocks/subscription/subscription';
-@use 'blocks/subscription/__label/subscription__label';
-@use 'blocks/subscription/__wrapper/subscription__wrapper';
-@use 'blocks/subscription/__input/subscription__input';
-@use 'blocks/subscription/__submit/subscription__submit';
 @use 'blocks/checkbox/checkbox';
 @use 'blocks/radio/radio';
 @use 'blocks/demo-block/__label/demo-block__label';
@@ -32,8 +28,6 @@
 @use 'blocks/paginator/__item/paginator__item';
 @use 'blocks/paginator/__description-container/paginator__description-container';
 @use 'blocks/paginator/__description/paginator__description';
-@use 'blocks/list/list';
-@use 'blocks/list/__label/list__label';
 @use 'blocks/advantage/advantage';
 @use 'blocks/review/review';
 @use 'blocks/bullet-list/bullet-list';

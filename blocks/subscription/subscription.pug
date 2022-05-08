@@ -1,13 +1,14 @@
-mixin subscription({ label = '', narrow = false } = {})
+mixin subscription(options={})
   -
+    const {
+      wide = false,
+    } = options;
     let modifier = '';
-    if (narrow) {
-      modifier = 'subscription_narrow';
+    if (wide) {
+      modifier = 'subscription_width_wide';
     }
 
   form.subscription.js-subscription(class= modifier)
-    if (label)
-      p.subscription__label= label
-    .subscription__wrapper
-      input.subscription__input.js-subscription__input(name='subscription-email' placeholder='Email' type='text')
-      input.subscription__submit.js-subscription__submit(type='submit' value='arrow_forward' disabled)
+    input.subscription__input.js-subscription__input(name="subscription-email" placeholder="Email" type="email")
+    button.subscription__button.js-subscription__button(type="submit" disabled) arrow_forward
+

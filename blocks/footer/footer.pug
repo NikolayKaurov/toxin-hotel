@@ -1,44 +1,81 @@
-mixin footer({ narrow = false } = {} )
+mixin footer(options={})
   -
+    const {
+      narrow = false
+    } = options;
     let footerClass = '';
     if (narrow) {
-      footerClass = 'footer_narrow';
+      footerClass = 'footer_width_narrow';
     }
 
   .footer(class= footerClass)
-    .footer__wrapper-up
-      .footer__item
+    .footer__body
+      .footer__logo
         +logo
-        p.footer__text Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
-      .footer__item
-        .footer__header Навигация
-        a.footer__ref(href='https://google.com/404') О нас
-        a.footer__ref(href='https://google.com/404') Новости
-        a.footer__ref(href='https://google.com/404') Служба поддержки
-        a.footer__ref(href='https://google.com/404') Услуги
-      .footer__item
-        .footer__header О нас
-        a.footer__ref(href='https://google.com/404') О сервисе
-        a.footer__ref(href='https://google.com/404') Наша команда
-        a.footer__ref(href='https://google.com/404') Вакансии
-        a.footer__ref(href='https://google.com/404') Инвесторы
-      .footer__item
-        .footer__header Служба поддержки
-        a.footer__ref(href='https://google.com/404') Соглашения
-        a.footer__ref(href='https://google.com/404') Сообщества
-        a.footer__ref(href='https://google.com/404') Связь с нами
-      .footer__item
-        .footer__header Подписка
-        p.footer__text Получайте специальные предложения и новости сервиса
-        +subscription({ narrow: true })
-    .footer__border
-    .footer__wrapper-down
-      .footer__item Copyright © 2018 Toxin отель. Все права защищены.
-      +footer__social
-    .footer__wrapper-narrow
-      +logo
-      p.footer__text Copyright © 2018 Toxin отель. Все права защищены.
-      +footer__social
+      p.footer__paragraph Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
+      .footer__nav-header Навигация
+      .footer__about
+        +hyper({ text: 'О нас'})
+      .footer__news
+        +hyper({ text: 'Новости'})
+      .footer__help
+        +hyper({ text: 'Служба поддержки'})
+      .footer__service
+        +hyper({ text: 'Услуги'})
+      .footer__about-header О нас
+      .footer__about-service
+        +hyper({ text: 'О сервисе'})
+      .footer__team
+        +hyper({ text: 'Наша команда'})
+      .footer__vacancy
+        +hyper({ text: 'Вакансии'})
+      .footer__investors
+        +hyper({ text: 'Инвесторы'})
+      .footer__help-header Служба поддержки
+      .footer__agreements
+        +hyper({ text: 'Соглашения'})
+      .footer__communities
+        +hyper({ text: 'Сообщества'})
+      .footer__contacts
+        +hyper({ text: 'Связь с нами'})
+      .footer__subscription-header Подписка
+      .footer__subscription
+        p.footer__subscription-paragraph Получайте специальные предложения и новости сервиса
+        +subscription
+
+
+    //-  .footer__item
+    //-    +logo
+    //-    p.footer__text Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
+    //-  .footer__item
+    //-    .footer__header Навигация
+    //-    a.footer__ref(href='https://google.com/404') О нас
+    //-    a.footer__ref(href='https://google.com/404') Новости
+    //-    a.footer__ref(href='https://google.com/404') Служба поддержки
+    //-    a.footer__ref(href='https://google.com/404') Услуги
+    //-  .footer__item
+    //-    .footer__header О нас
+    //-    a.footer__ref(href='https://google.com/404') О сервисе
+    //-    a.footer__ref(href='https://google.com/404') Наша команда
+    //-    a.footer__ref(href='https://google.com/404') Вакансии
+    //-    a.footer__ref(href='https://google.com/404') Инвесторы
+    //-  .footer__item
+    //-    .footer__header Служба поддержки
+    //-    a.footer__ref(href='https://google.com/404') Соглашения
+    //-    a.footer__ref(href='https://google.com/404') Сообщества
+    //-    a.footer__ref(href='https://google.com/404') Связь с нами
+    //-  .footer__item
+    //-    .footer__header Подписка
+    //-    p.footer__text Получайте специальные предложения и новости сервиса
+    //-    +subscription
+    //-.footer__border
+    //-.footer__wrapper-down
+    //-  .footer__item Copyright © 2018 Toxin отель. Все права защищены.
+    //-  +footer__social
+    //-.footer__wrapper-narrow
+    //-  +logo
+    //-  p.footer__text Copyright © 2018 Toxin отель. Все права защищены.
+    //-  +footer__social
 
 
 

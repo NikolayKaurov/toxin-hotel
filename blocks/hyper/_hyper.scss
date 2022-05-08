@@ -1,0 +1,24 @@
+.hyper {
+  text-decoration: none;
+
+  outline: 0;
+
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.hyper_weight_bold {
+  font-weight: bold;
+}
+
+.hyper:link {
+  color: rgba(31, 32, 65, 0.5);
+}
+
+.hyper:visited {
+  color: rgba(31, 32, 65, 0.25);
+}
+
+.hyper:focus {
+  text-shadow: 0 0 15px rgba(31, 32, 65, 0.5);
+}

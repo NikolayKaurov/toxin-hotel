@@ -5,12 +5,10 @@
 
   flex-direction: column;
 
-  //justify-content: center;
-
   background: white;
 
   width: 100%;
-  height: 443px;
+  height: fit-content;
 
   font-size: 14px;
   line-height: 24px;
@@ -21,13 +19,123 @@
   flex-grow: 0;
 }
 
-.footer.footer_narrow {
+.footer_width_narrow {
   background: #e5e5e5;
 }
 
-@media all and (max-width: 1199px) {
-  .footer {
-    height: 367px;
-  }
+.footer__body {
+  max-width: 1160px;
+  width: 80.56%;
+  height: 272px;
+
+  padding-top: 100px;
+
+  display: grid;
+  grid-template-rows: 36px 39px 38px 38px auto;
+  grid-template-columns: 22.41% 20.69% 108px auto 260px;
+  grid-template-areas:
+    'logo nav-header about-header help-header subscription-header'
+    'paragraph about about-service agreements subscription'
+    'paragraph news team communities subscription'
+    'paragraph help vacancy contacts subscription'
+    'empty service investors nothing nothing';
+
 }
 
+.footer__logo {
+  grid-area: logo;
+}
+
+.footer__paragraph {
+  padding-top: 7px;
+
+  grid-area: paragraph;
+}
+
+.footer__nav-header {
+  grid-area: nav-header;
+}
+
+.footer__about {
+  grid-area: about;
+}
+
+.footer__news {
+  grid-area: news;
+}
+
+.footer__help {
+  grid-area: help;
+}
+
+.footer__service {
+  grid-area: service;
+}
+
+.footer__nav-header,.footer__about,.footer__news,.footer__help,.footer__service {
+  padding-left: 16.67%;
+}
+
+.footer__about-header {
+  grid-area: about-header;
+}
+
+.footer__about-service {
+  grid-area: about-service;
+}
+
+.footer__team {
+  grid-area: team;
+}
+
+.footer__vacancy {
+  grid-area: vacancy;
+}
+
+.footer__investors {
+  grid-area: investors;
+}
+
+.footer__help-header {
+  grid-area: help-header;
+}
+
+.footer__agreements {
+  grid-area: agreements;
+}
+
+.footer__communities {
+  grid-area: communities;
+}
+
+.footer__contacts {
+  grid-area: contacts;
+}
+
+.footer__help-header,.footer__agreements,.footer__communities,.footer__contacts {
+  padding-left: 31.5%;
+}
+
+.footer__subscription-header {
+  grid-area: subscription-header;
+}
+
+.footer__subscription-paragraph {
+  margin-top: 1px;
+  margin-bottom: 22px;
+}
+
+.footer__subscription {
+  grid-area: subscription;
+}
+
+.footer__nav-header,.footer__about-header,.footer__help-header,.footer__subscription-header {
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  color: #1F2041;
+
+  padding-top: 4px;
+}

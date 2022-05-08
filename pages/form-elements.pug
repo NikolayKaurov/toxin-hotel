@@ -15,7 +15,6 @@ include ../blocks/like/like
 include ../blocks/rate/rate
 include ../blocks/slider-toxin/slider-toxin
 include ../blocks/paginator/paginator
-include ../blocks/list/list
 include ../blocks/advantage/advantage
 include ../blocks/review/review
 include ../blocks/bullet-list/bullet-list
@@ -83,7 +82,7 @@ include ../blocks/bullet-list/bullet-list
         zIndex: 5,
         modifier: 'filter',
       })
-      +subscription({label: 'subscription text field'})
+      +subscription({ wide: true })
     +form-elements__item
       +checkbox({
         items: [

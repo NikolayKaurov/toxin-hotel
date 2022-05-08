@@ -158,6 +158,8 @@
   line-height: 24px;
 
   color: rgba(31, 32, 65, 0.75);
+
+  margin: 0;
 }
 
 @media all and (min-width: 1025px) and (max-width: 1366px) {
@@ -221,7 +223,6 @@
 
   .details__reviews {
     padding-top: 50px;
-    padding-right: 0;
   }
 
   .details__rules {
@@ -234,7 +235,50 @@
   }
 }
 
-@media all and (max-width: 800px) {
+@media all and (min-width: 641px) and (max-width: 800px) {
+  .details__body {
+    width: 100%;
+
+    grid-template-rows: 562px auto auto auto;
+    grid-template-columns: 1fr 1fr;
+
+    grid-template-areas: 'card card'
+                         'advantage chart'
+                         'reviews reviews'
+                         'rules cancel';
+  }
+
+  .details__card {
+    justify-self: center;
+
+    padding-bottom: 50px;
+  }
+
+  .details__chart {
+    justify-self: center;
+    padding-right: 0;
+  }
+
+  .details__advantage {
+    justify-self: center;
+  }
+
+  .details__reviews {
+    padding: 60px 10%;
+  }
+
+  .details__rules {
+    padding: 0 10%;
+  }
+
+  .details__cancel {
+    padding: 0 10%;
+
+    max-width: none;
+  }
+}
+
+@media all and (max-width: 640px) {
   .details__body {
     width: 100%;
 

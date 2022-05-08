@@ -8,12 +8,13 @@ function validateEmail(email) {
     );
 }
 
-function handleInputInput(event) {
-  if (validateEmail($(event.target).val())) {
-    $('.js-subscription__submit', event.data.subscription.$subscription).prop('disabled', false);
-  } else {
-    $('.js-subscription__submit', event.data.subscription.$subscription).prop('disabled', true);
-  }
+function handleEmailInput(event) {
+  const {
+    $email,
+    $submit,
+  } = event.data;
+
+  $submit.prop('disabled', !validateEmail($email.val()));
 }
 
 class Subscription {
@@ -22,12 +23,16 @@ class Subscription {
   }
 
   init() {
-    $('.js-subscription__input', this.$subscription).on(
-      'input',
-      null,
-      { subscription: this },
-      handleInputInput,
-    );
+    this.$submit = $('.js-subscription__button', this.$subscription);
+    this.$email = $('.js-subscription__input', this.$subscription);
+
+    this.$email
+      .on(
+        'input',
+        null,
+        { $email: this.$email, $submit: this.$submit },
+        handleEmailInput,
+      );
   }
 }
 

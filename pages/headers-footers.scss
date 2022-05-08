@@ -18,7 +18,6 @@
 @use 'blocks/page/page';
 @use 'blocks/page/__body/page__body';
 @use 'blocks/logo/logo';
-@use 'blocks/logo/__toxin/logo__toxin';
 @use 'blocks/menu/menu';
 @use 'blocks/menu/__input/menu__input';
 @use 'blocks/menu/__label/menu__label';
@@ -27,16 +26,12 @@
 @use 'blocks/button/button';
 @use 'blocks/header/__user/header__user';
 @use 'blocks/footer/footer';
-@use 'blocks/footer/__wrapper-up/footer__wrapper-up';
+@use 'blocks/hyper/hyper';
+@use 'blocks/subscription/subscription';
 @use 'blocks/footer/__item/footer__item';
 @use 'blocks/footer/__text/footer__text';
 @use 'blocks/footer/__header/footer__header';
 @use 'blocks/footer/__ref/footer__ref';
-@use 'blocks/subscription/subscription';
-@use 'blocks/subscription/__label/subscription__label';
-@use 'blocks/subscription/__wrapper/subscription__wrapper';
-@use 'blocks/subscription/__input/subscription__input';
-@use 'blocks/subscription/__submit/subscription__submit';
 @use 'blocks/footer/__border/footer__border';
 @use 'blocks/footer/__wrapper-down/footer__wrapper-down';
 @use 'blocks/footer/__social/footer__social';
