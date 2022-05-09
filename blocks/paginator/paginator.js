@@ -1,7 +1,12 @@
 import $ from 'jquery';
 
-function handleItemClick(event) {
-  let active = parseFloat(event.data.$paginator.attr('data-active'));
+function handleItemMousedown(event) {
+  const {
+    $paginator,
+    $description,
+  } = event.data;
+
+  let active = parseFloat($paginator.attr('data-active'));
 
   const number = $(event.target).attr('data-number');
 
@@ -13,9 +18,8 @@ function handleItemClick(event) {
     active = parseFloat(number);
   }
 
-  event.data.$paginator.attr('data-active', active);
+  $paginator.attr('data-active', active);
 
-  const $description = $('.js-paginator__description', event.data.$paginator);
   $description.text(`${(active - 1) * 12 + 1} – ${active * 12} из 100+ вариантов аренды`);
 }
 
@@ -25,14 +29,14 @@ class Paginator {
   }
 
   init() {
-    this.$paginator.on(
-      'click',
-      '.js-paginator__item',
-      { $paginator: this.$paginator },
-      handleItemClick,
-    );
+    this.$description = $('.js-paginator__description', this.$paginator);
 
-    $('.js-paginator__item:nth-child(2)', this.$paginator).trigger('click');
+    this.$paginator.on(
+      'mousedown',
+      '.js-paginator__item',
+      { $paginator: this.$paginator, $description: this.$description },
+      handleItemMousedown,
+    );
   }
 }
 

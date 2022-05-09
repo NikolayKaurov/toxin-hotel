@@ -9,7 +9,6 @@ include ../blocks/datepicker/datepicker
 include ../blocks/subscription/subscription
 include ../blocks/checkbox/checkbox
 include ../blocks/radio/radio
-include ../blocks/demo-block/demo-block
 include ../blocks/toggle/toggle
 include ../blocks/like/like
 include ../blocks/rate/rate
@@ -21,12 +20,13 @@ include ../blocks/bullet-list/bullet-list
 +ui-kit({ title: 'Form elements', theme: 'white' })
   +ui-kit__header
   +form-elements
-    +form-elements__item
+    .form-elements__item
       +text-field({
         name: 'simple-field',
         placeholder: 'Email',
         label: 'text field',
         description: 'default',
+        type: 'email',
       })
       +text-field({
         name: 'hover-field',
@@ -82,8 +82,10 @@ include ../blocks/bullet-list/bullet-list
         zIndex: 5,
         modifier: 'filter',
       })
+      .form-elements__label subscription text field
       +subscription({ wide: true })
-    +form-elements__item
+    .form-elements__item
+      .form-elements__label Checkbox Buttons
       +checkbox({
         items: [
           {
@@ -102,6 +104,7 @@ include ../blocks/bullet-list/bullet-list
           },
         ],
       })
+      .form-elements__label Radio Buttons
       +radio({
         name: 'sex',
         items: [
@@ -114,31 +117,29 @@ include ../blocks/bullet-list/bullet-list
             value: 'female',
             text: 'Женщина',
           },
-          {
-            value: 'it',
-            text: 'Трансгендер',
-          },
         ],
       })
-      +demo-block({ type: 'toggle', label: 'toggle'})
-        +toggle({
+      .form-elements__label toggle
+      +toggle({
           name: 'spam-1',
           value: 'spam',
           text: 'Получать спецпредложения',
           checked: true,
         })
-        +toggle({
+      +toggle({
           name: 'spam-2',
           value: 'spam',
           text: 'Получать спецпредложения'
         })
-      +demo-block({ type: 'like', label: 'like button' })
+      .form-elements__label like button
+      .form-elements__like-wrapper
         +like(2)
         +like(11)
-      +demo-block({ type: 'rate', label: 'rate button' })
+      .form-elements__label rate button
+      .form-elements__rate-wrapper
         +rate(4)
         +rate(5)
-    +form-elements__item
+    .form-elements__item
       +slider-toxin({
         label: 'Range slider',
         description: '',
@@ -149,40 +150,49 @@ include ../blocks/bullet-list/bullet-list
         to: 10000,
         name: 'price-range',
       })
-      +demo-block({ type: 'buttons', label: 'buttons' })
-        +button({
-          width: 'regular',
-          purple: true,
-          text: 'click me',
-          disabled: false
-        })
-        +button({
-          width: 'regular',
-          purple: true,
-          text: 'click me',
-        })
-        +button({
-          width: 'regular',
-          bordered: true,
-          text: 'click me',
-          disabled: false
-        })
-        +button({
-          width: 'regular',
-          bordered: true,
-          text: 'click me',
-        })
-        +button({ text: 'click me', disabled: false })
-        +button({ text: 'click me' })
-        +button({
-          width: 'ultra-wide',
-          purple: true,
-          arrowed: true,
-          text: 'перейти к оплате',
-          disabled: false
-        })
-      +paginator({ length: 15, label: 'pagination', demo: 'demo' })
-    +form-elements__item
+      .form-elements__label buttons
+      .form-elements__button-wrapper
+        .form-elements__button
+          +button({
+            width: 'regular',
+            purple: true,
+            text: 'click me',
+            disabled: false
+          })
+        .form-elements__button
+          +button({
+            width: 'regular',
+            purple: true,
+            text: 'click me',
+          })
+        .form-elements__button
+          +button({
+            width: 'regular',
+            bordered: true,
+            text: 'click me',
+            disabled: false
+          })
+        .form-elements__button
+          +button({
+            width: 'regular',
+            bordered: true,
+            text: 'click me',
+          })
+        .form-elements__button
+          +button({ text: 'click me', disabled: false })
+        .form-elements__button
+          +button({ text: 'click me' })
+        .form-elements__button
+          +button({
+            width: 'ultra-wide',
+            purple: true,
+            arrowed: true,
+            text: 'перейти к оплате',
+            disabled: false
+          })
+      .form-elements__label pagination
+      +paginator({ length: 15 })
+    .form-elements__item
       +dropdown({
         name: 'room',
         defaultValue: 'Сколько комнат',
@@ -305,7 +315,7 @@ include ../blocks/bullet-list/bullet-list
           explanation: 'Окно в каждой из спален',
         },
       ])
-    +form-elements__item
+    .form-elements__item
       +dropdown({
         name: 'guest2',
         defaultValue: 'Сколько гостей',
@@ -328,6 +338,7 @@ include ../blocks/bullet-list/bullet-list
           },
         ]
       })
+      .form-elements__label Rich Checkbox Buttons
       +checkbox({
         items: [
           {
@@ -342,13 +353,14 @@ include ../blocks/bullet-list/bullet-list
           },
         ],
       })
-      +review({
-        likes: 11,
-        name: 'Мурад Сарафанов',
-        time: '5 дней назад',
-        text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.',
-      })
-    +form-elements__item
+      .form-elements__review-wrapper
+        +review({
+          likes: 11,
+          name: 'Мурад Сарафанов',
+          time: '5 дней назад',
+          text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.',
+        })
+    .form-elements__item
       +dropdown({
         name: 'guest-3',
         defaultValue: 'Сколько гостей',
@@ -372,6 +384,7 @@ include ../blocks/bullet-list/bullet-list
           },
         ]
       })
+      .form-elements__label bullet-list
       +bullet-list([
         'Нельзя с питомцами',
         'Без вечеринок и мероприятий',

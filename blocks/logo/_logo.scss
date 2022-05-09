@@ -1,6 +1,16 @@
-.logo {
+.logo__button {
   width: 106px;
   height: 40px;
 
+  background-color: transparent;
   background-image: url('./img/toxin.svg');
+
+  cursor: pointer;
+
+  outline: 0;
+  border: 0;
+}
+
+.logo__button:focus {
+  filter: drop-shadow(0 0 5px rgba(188, 156, 255, 1));
 }
