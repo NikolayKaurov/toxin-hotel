@@ -1,3 +1,4 @@
+import '../blocks/hamburger/hamburger';
 import '../blocks/card-sign/card-sign';
 import '../blocks/text-field/text-field';
 import '../blocks/subscription/subscription';

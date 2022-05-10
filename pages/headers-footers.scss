@@ -8,11 +8,10 @@
 @use 'blocks/header/header';
 @use 'blocks/header/__wrapper/header__wrapper';
 @use 'blocks/hamburger/hamburger';
-@use 'blocks/hamburger/__expand/hamburger__expand';
-@use 'blocks/checkbox/checkbox';
-@use 'blocks/hamburger/__label/hamburger__label';
-@use 'blocks/hamburger/__down/hamburger__down';
 @use 'blocks/hamburger/__item/hamburger__item';
+@use 'blocks/hyper/hyper';
+@use 'blocks/toggle/toggle';
+@use 'blocks/checkbox/checkbox';
 @use 'blocks/header/__item/header__item';
 @use 'blocks/header/__item/_about/header__item_about';
 @use 'blocks/page/page';
@@ -26,5 +25,4 @@
 @use 'blocks/menu/__item/menu__item';
 @use 'blocks/header/__user/header__user';
 @use 'blocks/footer/footer';
-@use 'blocks/hyper/hyper';
 @use 'blocks/subscription/subscription';

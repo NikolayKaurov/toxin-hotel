@@ -1,6 +1,39 @@
-mixin hamburger({ id = '' } = {})
-  .hamburger
-    input.hamburger__expand(type='checkbox' id= `hamburger__expand${id}`)
-    label.hamburger__label(for= `hamburger__expand${id}`)
-    .hamburger__down
-      block
+mixin hamburger(options={})
+  -
+    const {
+      title = '',
+      items = [],
+    } = options;
+    let hamburgerClass = '';
+    if (title) {
+      hamburgerClass = 'hamburger_titled';
+    }
+  .hamburger.js-hamburger(tabindex="0" class= hamburgerClass)= title
+    .hamburger__menu
+      each item in items
+        -
+          const {
+            subtitle = null,
+            subitems = [],
+            text = '404',
+            link = 'https://google.com/404',
+            out = true,
+          } = item;
+        .hamburger__item.js-hamburger__item
+          if (subtitle)
+            .hamburger__subhamburger.js-hamburger__subhamburger(tabindex="0")= subtitle
+              .hamburger__menu
+                each subitem in subitems
+                  -
+                    const {
+                      text = '404',
+                      link = 'https://google.com/404',
+                      out = true,
+                    } = subitem;
+                  .hamburger__item.js-hamburger__item
+                    +hyper({text, link, out})
+          else
+            +hyper({text, link, out})
+
+
+

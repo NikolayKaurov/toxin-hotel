@@ -2,14 +2,57 @@ mixin header({ user = '', id = '' } = {})
   if (user === '')
     .header
       .header__wrapper
-        +hamburger({id})
-          +hamburger__item({text: 'О нас'})
-          +hamburger__item({text: 'Услуги'})
-          +hamburger__item({text: 'Вакансии'})
-          +hamburger__item({text: 'Новости'})
-          +hamburger__item({text: 'Соглашения'})
-          +hamburger__item({text: 'Войти', href: './Sign in.html'})
-          +hamburger__item({text: 'Зарегистрироваться', href: './Registration.html'})
+        +hamburger({
+          title: '',
+          items: [
+            {
+              text: 'Регистрация',
+              link: 'https://natribu.org/ru/',
+            },
+            {
+              text: 'О них',
+            },
+            {
+              text: 'Обо всех',
+            },
+            {
+              subtitle: 'Ни о чём',
+              subitems: [
+                {
+                  text: 'Такси',
+                  link: 'https://taxi.com',
+                },
+                {
+                  text: 'Завтрак',
+                  link: 'https://breakfast.com',
+                },
+              ],
+            },
+            {
+              text: 'Ещё одна ссылка',
+            },
+            {
+              subtitle: 'каларупаТочкаКом',
+              subitems: [
+                {
+                  text: 'хабр',
+                  link: 'https://taxi.com',
+                },
+                {
+                  text: 'хУЯБР',
+                  link: 'https://breakfast.com',
+                },
+              ],
+            },
+          ]
+        })
+          //- +hamburger__item({text: 'О нас'})
+          //- +hamburger__item({text: 'Услуги'})
+          //- +hamburger__item({text: 'Вакансии'})
+          //- +hamburger__item({text: 'Новости'})
+          //- +hamburger__item({text: 'Соглашения'})
+          //- +hamburger__item({text: 'Войти', href: './Sign in.html'})
+          //- +hamburger__item({text: 'Зарегистрироваться', href: './Registration.html'})
         +header__item({ href: './Landing page.html' })
           +logo
         +header__item({about: true}) О нас

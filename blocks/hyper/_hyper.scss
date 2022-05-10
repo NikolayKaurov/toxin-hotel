@@ -5,6 +5,8 @@
 
   font-size: 14px;
   line-height: 17px;
+
+  text-shadow: none;
 }
 
 .hyper_weight_bold {
@@ -21,4 +23,8 @@
 
 .hyper:focus {
   text-shadow: 0 0 15px rgba(31, 32, 65, 0.5);
+}
+
+.hyper::selection {
+  background: transparent;
 }
