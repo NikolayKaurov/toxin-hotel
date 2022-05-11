@@ -14,17 +14,19 @@ function handleCardSearchInput(event) {
 }
 
 class CardSearch {
+  #$card;
+
   constructor(card) {
-    this.$card = $(card);
+    this.#$card = $(card);
   }
 
   init() {
-    this.$arrival = $('.js-datepicker__input_date_arrival', this.$card);
-    this.$departure = $('.js-datepicker__input_date_departure', this.$card);
-    this.$adult = $('.js-dropdown__quantity[name="search-guest-adult"]', this.$card);
-    this.$submit = $('.js-button', this.$card);
+    this.$arrival = $('.js-datepicker__input_date_arrival', this.#$card);
+    this.$departure = $('.js-datepicker__input_date_departure', this.#$card);
+    this.$adult = $('.js-dropdown__quantity[name="search-guest-adult"]', this.#$card);
+    this.$submit = $('.js-button', this.#$card);
 
-    this.$card.on(
+    this.#$card.on(
       'input',
       null,
       { card: this },

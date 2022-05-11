@@ -1,4 +1,4 @@
-import '../blocks/hamburger/hamburger';
+import '../blocks/burger/burger';
 import '../blocks/datepicker/datepicker';
 import '../blocks/dropdown/dropdown';
 import '../blocks/slider-toxin/slider-toxin';

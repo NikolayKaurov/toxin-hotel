@@ -18,13 +18,15 @@ function handleEmailInput(event) {
 }
 
 class Subscription {
+  #$subscription;
+
   constructor(subscription) {
-    this.$subscription = $(subscription);
+    this.#$subscription = $(subscription);
   }
 
   init() {
-    this.$submit = $('.js-subscription__button', this.$subscription);
-    this.$email = $('.js-subscription__input', this.$subscription);
+    this.$submit = $('.js-subscription__button', this.#$subscription);
+    this.$email = $('.js-subscription__input', this.#$subscription);
 
     this.$email
       .on(

@@ -27,32 +27,34 @@ function handleNavMousedown(event) {
 }
 
 class CardRoom {
+  #$card;
+
   constructor(card) {
-    this.$card = $(card);
+    this.#$card = $(card);
   }
 
   init() {
-    $('.js-card-room__back', this.$card)
+    $('.js-card-room__back', this.#$card)
       .on(
         'mousedown',
         null,
-        { $card: this.$card },
+        { $card: this.#$card },
         handleBackMousedown,
       );
 
-    $('.js-card-room__forward', this.$card)
+    $('.js-card-room__forward', this.#$card)
       .on(
         'mousedown',
         null,
-        { $card: this.$card },
+        { $card: this.#$card },
         handleForwardMousedown,
       );
 
-    $('.js-card-room__nav', this.$card)
+    $('.js-card-room__nav', this.#$card)
       .on(
         'mousedown',
         '.js-card-room__nav-item',
-        { $card: this.$card },
+        { $card: this.#$card },
         handleNavMousedown,
       );
   }

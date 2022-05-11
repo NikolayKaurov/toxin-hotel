@@ -1,39 +1,38 @@
-mixin hamburger(options={})
+mixin burger(options={})
   -
     const {
       title = '',
       items = [],
     } = options;
-    let hamburgerClass = '';
+    let burgerClass = '';
     if (title) {
-      hamburgerClass = 'hamburger_titled';
+      burgerClass = 'burger_titled';
     }
-  .hamburger.js-hamburger(tabindex="0" class= hamburgerClass)= title
-    .hamburger__menu
+  .burger.js-burger(tabindex="0" class= burgerClass)= title
+    .burger__menu
       each item in items
         -
           const {
-            subtitle = null,
+            subtitle = '',
             subitems = [],
             text = '404',
             link = 'https://google.com/404',
             out = true,
+            bold = false,
           } = item;
-        .hamburger__item.js-hamburger__item
+        .burger__item.js-burger__item
           if (subtitle)
-            .hamburger__subhamburger.js-hamburger__subhamburger(tabindex="0")= subtitle
-              .hamburger__menu
+            .burger__submenu.js-burger__submenu(tabindex="0" data-timeStamp="0" data-timerID="0")= subtitle
+              .burger__menu
                 each subitem in subitems
                   -
                     const {
                       text = '404',
                       link = 'https://google.com/404',
                       out = true,
+                      bold = false,
                     } = subitem;
-                  .hamburger__item.js-hamburger__item
-                    +hyper({text, link, out})
+                  .burger__item.js-burger__item
+                    +hyper({text, link, out, bold})
           else
-            +hyper({text, link, out})
-
-
-
+            +hyper({text, link, out, bold})

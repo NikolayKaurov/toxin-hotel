@@ -49,8 +49,10 @@ function handleCardDetailsInput(event) {
 }
 
 class CardDetails {
+  #$card;
+
   constructor(card) {
-    this.$card = $(card);
+    this.#$card = $(card);
 
     this.price = parseFloat(card.dataset.price);
     this.discount = parseFloat(card.dataset.discount);
@@ -59,15 +61,15 @@ class CardDetails {
   }
 
   init() {
-    this.$days = $('.js-card-details__calc-days', this.$card);
-    this.$totalPrice = $('.js-card-details__total-price', this.$card);
-    this.$total = $('.js-card-details__total', this.$card);
-    this.$submit = $('.js-button', this.$card);
-    this.$arrival = $('.js-datepicker__input_date_arrival', this.$card);
-    this.$departure = $('.js-datepicker__input_date_departure', this.$card);
-    this.$adult = $('.js-dropdown__quantity[name="details-guest-adult"]', this.$card);
+    this.$days = $('.js-card-details__calc-days', this.#$card);
+    this.$totalPrice = $('.js-card-details__total-price', this.#$card);
+    this.$total = $('.js-card-details__total', this.#$card);
+    this.$submit = $('.js-button', this.#$card);
+    this.$arrival = $('.js-datepicker__input_date_arrival', this.#$card);
+    this.$departure = $('.js-datepicker__input_date_departure', this.#$card);
+    this.$adult = $('.js-dropdown__quantity[name="details-guest-adult"]', this.#$card);
 
-    this.$card.on(
+    this.#$card.on(
       'input',
       null,
       { card: this },

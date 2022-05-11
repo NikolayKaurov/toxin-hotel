@@ -1,28 +1,25 @@
 include ../blocks/ui-kit/ui-kit
 include ../blocks/ui-kit/__header/ui-kit__header
-include ../blocks/header-demo/header-demo
+include ../blocks/headers-footers/headers-footers
 include ../blocks/header/header
-include ../blocks/hamburger/hamburger
-include ../blocks/hamburger/__item/hamburger__item
+include ../blocks/burger/burger
 include ../blocks/hyper/hyper
 include ../blocks/toggle/toggle
 include ../blocks/checkbox/checkbox
-include ../blocks/header/__item/header__item
-include ../blocks/page/page
+include ../blocks/cards/cards
+include ../blocks/form-elements/form-elements
 include ../blocks/logo/logo
 include ../blocks/button/button
-include ../blocks/menu/menu
-include ../blocks/menu/__item/menu__item
-include ../blocks/header/__user/header__user
+include ../blocks/sign-in/sign-in
 include ../blocks/footer/footer
 include ../blocks/subscription/subscription
 +ui-kit({ title: 'Headers & Footers', theme: 'gray' })
   +ui-kit__header
-  +header-demo
+  +headers-footers
     +header
-    +header({user: 'Юлий Цезарь', id: 'head2'})
+    +header({ user: 'Юлий Цезарь' })
     +footer
-    +footer({narrow: true})
+    +footer({ narrow: true })
 
 
 

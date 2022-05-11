@@ -1,4 +1,4 @@
-.hamburger {
+.burger {
   width: 40px;
   height: 40px;
 
@@ -9,7 +9,7 @@
   outline: 0;
 }
 
-.hamburger::after {
+.burger::after {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -23,19 +23,51 @@
   content: 'menu';
 }
 
-.hamburger_open::after {
+.burger_open::after {
   content: 'close';
 }
 
-.hamburger:focus::after {
+.burger:focus::after {
   text-shadow: 0 0 10px rgba(31, 32, 65, 0.75);
 }
 
-.hamburger__menu {
+.burger::selection {
+  background: transparent;
+}
+
+.burger_titled {
+  width: fit-content;
+  height: fit-content;
+
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(31, 32, 65, 0.5);
+}
+
+.burger_titled::after {
+  left: 100%;
+  transform: none;
+
+  height: inherit;
+  width: fit-content;
+
+  font-family: material-icons, Arial, sans-serif;
+  line-height: 20px;
+  font-size: 24px;
+  color: rgba(31, 32, 65, 0.5);
+
+  content: 'expand_more';
+}
+
+.burger_titled.burger_open::after {
+  content: 'expand_less';
+}
+
+.burger__menu {
   display: none;
 
   position: absolute;
-  top: 170%;
+  top: 110%;
 
   flex-direction: column;
 
@@ -48,23 +80,23 @@
   z-index: 1;
 }
 
-.hamburger_open {
-  .hamburger__menu {
+.burger_open {
+  .burger__menu {
     display: flex;
   }
 }
 
-.hamburger__item {
+.burger__item {
   width: fit-content;
 
   padding: 20px 20px 0 20px;
 }
 
-.hamburger__item:last-child {
+.burger__item:last-child {
   padding: 20px;
 }
 
-.hamburger__subhamburger {
+.burger__submenu {
   display: flex;
   align-items: center;
 
@@ -77,15 +109,15 @@
   position: relative;
 }
 
-.hamburger__subhamburger::selection {
+.burger__submenu::selection {
   background: transparent;
 }
 
-.hamburger__subhamburger:focus {
+.burger__submenu:focus {
   text-shadow: 0 0 15px rgba(31, 32, 65, 0.5);
 }
 
-.hamburger__subhamburger::after {
+.burger__submenu::after {
   font-family: material-icons, Arial, sans-serif;
   font-size: 24px;
   line-height: 21px;
@@ -99,12 +131,12 @@
   transform: rotate(270deg);
 }
 
-.hamburger__subhamburger_open::after {
+.burger__submenu_open::after {
   transform: rotate(90deg);
 }
 
-.hamburger__subhamburger {
-  .hamburger__menu {
+.burger__submenu {
+  .burger__menu {
     display: none;
 
     top: 0;
@@ -112,8 +144,8 @@
   }
 }
 
-.hamburger__subhamburger_open {
-  .hamburger__menu {
+.burger__submenu_open {
+  .burger__menu {
     display: flex;
   }
 }

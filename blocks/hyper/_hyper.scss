@@ -9,12 +9,13 @@
   text-shadow: none;
 }
 
-.hyper_weight_bold {
-  font-weight: bold;
-}
-
 .hyper:link {
   color: rgba(31, 32, 65, 0.5);
+}
+
+.hyper_weight_bold {
+  font-weight: bold;
+  color: rgba(31, 32, 65, 0.75);
 }
 
 .hyper:visited {
