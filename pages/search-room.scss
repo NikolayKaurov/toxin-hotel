@@ -9,10 +9,10 @@
 @use 'blocks/headers-footers/headers-footers';
 @use 'blocks/cards/cards';
 @use 'blocks/form-elements/form-elements';
-@use 'blocks/logo/logo';
-@use 'blocks/button/button';
 @use 'blocks/sign-in/sign-in';
 @use 'blocks/sign-in/_registration/sign-in_registration';
+@use 'blocks/logo/logo';
+@use 'blocks/button/button';
 @use 'blocks/search/search';
 @use 'blocks/search/__wrapper/search__wrapper';
 @use 'blocks/search/__form/search__form';

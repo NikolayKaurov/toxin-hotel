@@ -9,15 +9,13 @@
 @use 'blocks/headers-footers/headers-footers';
 @use 'blocks/cards/cards';
 @use 'blocks/form-elements/form-elements';
-@use 'blocks/logo/logo';
-@use 'blocks/button/button';
 @use 'blocks/sign-in/sign-in';
 @use 'blocks/sign-in/_registration/sign-in_registration';
+@use 'blocks/logo/logo';
+@use 'blocks/button/button';
 @use 'blocks/landing/landing';
-@use 'blocks/landing/__wrapper/landing__wrapper';
 @use 'blocks/card-search/card-search';
 @use 'blocks/datepicker/datepicker';
 @use 'blocks/dropdown/dropdown';
-@use 'blocks/landing/__annotation/landing__annotation';
 @use 'blocks/footer/footer';
 @use 'blocks/subscription/subscription';
