@@ -1,61 +1,92 @@
 mixin search
   .search
-    .search__wrapper
-      form.search__form
-        +datepicker({ name: 'date', zIndex: 5, label: 'Даты пребывания в отеле', modifier: 'filter' })
-        +dropdown({name: 'guest', defaultValue: 'Сколько гостей', label: 'гости', zIndex: 4, guests: 'guests', narrow: 'narrow'})
-          +dropdown__button-container
-            +dropdown__button({action: 'confirm', text: 'применить'})
-            +dropdown__button({action: 'clear', text: 'очистить'})
-          +dropdown__item({name: 'baby', units: 'младенцы младенец младенца младенцев'})
-          +dropdown__item({name: 'child', units: 'дети'})
-          +dropdown__item({name: 'adult', units: 'взрослые гость гостя гостей'})
-        +slider-toxin({
-          label: 'диапазон цены',
-          description: 'Стоимость за сутки пребывания в номере',
-          start: 1000,
-          end: 15000,
-          step: 1000,
-          from: 5000,
-          to: 10000,
-          name: 'price',
-        })
-        +checkbox({label: 'правила дома', name: 'rule'})
-          +checkbox__button({name: 'smoke', text: 'Можно курить'})
-          +checkbox__button({name: 'pet', text: 'Можно с питомцами', checked: true})
-          +checkbox__button({name: 'guest', text: 'Можно пригласить гостей (до 10 человек)', checked: true})
-        +checkbox({label: 'доступность', name: 'reach', wide: 'wide'})
-          +checkbox__button({
+    form.search__form
+      +datepicker({ name: 'date-filter', label: 'даты пребывания в отеле', zIndex: 5, modifier: 'filter' })
+      +dropdown({
+        name: 'guest',
+        defaultValue: 'Сколько гостей',
+        label: 'гости',
+        zIndex: 4,
+        guest: true,
+        narrow: true,
+        items: [
+          { name: 'adult', units: 'взрослые гость гостя гостей' },
+          { name: 'child', units: 'дети ребёнок ребёнка детей' },
+          { name: 'baby', units: 'младенцы младенец младенца младенцев'},
+        ]
+      })
+      +slider-toxin({
+        label: 'диапазон цены',
+        description: 'Стоимость за сутки пребывания в номере',
+        name: 'price',
+        start: 1000,
+        end: 15000,
+        step: 1000,
+        from: 5000,
+        to: 10000,
+      })
+      .search__label правила дома
+      +checkbox({
+        items: [
+          { name: 'smoke', text: 'Можно курить' },
+          { name: 'pet', text: 'Можно с питомцами', checked: true },
+          { name: 'party', text: 'Можно пригласить гостей (до 10 человек)', checked: true },
+        ],
+      })
+      .search__label доступность
+      +checkbox({
+        items: [
+          {
             name: 'wide',
-            text: `Ширина коридоров в номере не менее 91 см.`,
-            header: 'Широкий коридор'
-          })
-          +checkbox__button({
-            name: 'assistant',
-            text: `На 1 этаже вас встретит специалист и проводит до номера`,
-            header: 'Помощник для инвалидов'
-          })
-        +dropdown({
-          name: 'rooms',
-          defaultValue: 'Сколько комнат',
-          label: 'удобства номера',
-          description: '',
-          zIndex: 3,
-          narrow: 'narrow'
-        })
-          +dropdown__item({name: 'bath', units: 'ванные комнаты ванная ванных ванных'})
-          +dropdown__item({name: 'bed', units: 'кровати кровать кровати кроватей'})
-          +dropdown__item({name: 'bedroom', units: 'спальни спальня спальни спален'})
-        +checkbox({label: 'дополнительные удобства', name: 'extra', expand: 'expand'})
-          +checkbox__button({name: 'breakfast', text: 'Завтрак'})
-          +checkbox__button({name: 'table', text: 'Письменный стол', checked: true})
-          +checkbox__button({name: 'chair', text: 'Стул для кормления', checked: true})
-          +checkbox__button({name: 'cradle', text: 'Кроватка', checked: true})
-          +checkbox__button({name: 'tv', text: 'Телевизор'})
-          +checkbox__button({name: 'shampoo', text: 'Шампунь'})
-      .search__result
-        .search__header Номера, которые мы для вас подобрали
-        .search__rooms
-          block
-        +paginator({ length: 15 })
+            text: 'Широкий коридор',
+            explanation: 'Ширина коридоров в номере не менее 91 см.',
+          },
+          {
+            name: 'help',
+            text: 'Помощник для инвалидов',
+            explanation: 'На 1 этаже вас встретит специалист и проводит до номера',
+          },
+        ],
+      })
+      +dropdown({
+        name: 'room',
+        defaultValue: 'Сколько комнат',
+        label: 'удобства номера',
+        zIndex: 3,
+        narrow: true,
+        items: [
+          { name: 'bedroom', units: 'спальни спальня спальни спален' },
+          { name: 'bed', units: 'кровати кровать кровати кроватей' },
+          { name: 'bath', units: 'ванные комнаты ванная ванных ванных' },
+        ]
+      })
+      +checkbox({
+        id: 'expand-1',
+        expand: 'дополнительные удобства',
+        items: [
+          { text: 'Завтрак', name: 'breakfast' },
+          { text: 'Письменный стол', name: 'table', checked: true },
+          { text: 'Стул для кормления', name: 'chair', checked: true },
+          { text: 'Кроватка', name: 'bed', checked: true },
+          { text: 'Телевизор', name: 'tv' },
+          { text: 'Шампунь', name: 'shampoo' },
+        ],
+      })
+    .search__result
+      .search__header Номера, которые мы для вас подобрали
+      .search__cards
+        +card-room({ number: '888', price: 9990, rate: 5, reviews: 145, lux: 'люкс' })
+        +card-room({ number: '840', price: 9900, rate: 4, reviews: 65 })
+        +card-room({ number: '980', price: 8500, rate: 3, reviews: 35, lux: 'люкс' })
+        +card-room({ number: '856', price: 7300, rate: 5, reviews: 19 })
+        +card-room({ number: '740', price: 6000, rate: 4, reviews: 44 })
+        +card-room({ number: '982', price: 5800, rate: 3, reviews: 56 })
+        +card-room({ number: '678', price: 5500, rate: 5, reviews: 45 })
+        +card-room({ number: '450', price: 5300, rate: 4, reviews: 39 })
+        +card-room({ number: '350', price: 5000, rate: 3, reviews: 77 })
+        +card-room({ number: '666', price: 5000, rate: 5, reviews: 25 })
+        +card-room({ number: '444', price: 5000, rate: 3, reviews: 15 })
+        +card-room({ number: '352', price: 5000, rate: 3, reviews: 55 })
+      .search__paginator
+  .search__border
 
