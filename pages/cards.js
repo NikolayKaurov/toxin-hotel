@@ -7,5 +7,5 @@ import '../blocks/card-details/card-details';
 import '../blocks/card-sign/card-sign';
 import '../blocks/card-room/card-room';
 import '../blocks/rate/rate';
-import '../favicons/favicons';
 import './cards.scss';
+import '../favicons/favicons';

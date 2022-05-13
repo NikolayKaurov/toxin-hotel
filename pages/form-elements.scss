@@ -1,13 +1,8 @@
 @use 'fonts/fonts';
 @use 'blocks/ui-kit/ui-kit';
-@use 'blocks/ui-kit/_theme/ui-kit_theme_gray';
-@use 'blocks/ui-kit/_theme/ui-kit_theme_white';
-@use 'blocks/ui-kit/__body/ui-kit__body';
-@use 'blocks/ui-kit/__header/ui-kit__header';
 @use 'blocks/form-elements/form-elements';
 @use 'blocks/text-field/text-field';
 @use 'blocks/dropdown/dropdown';
-@use 'blocks/button/button';
 @use 'blocks/datepicker/datepicker';
 @use 'blocks/subscription/subscription';
 @use 'blocks/checkbox/checkbox';
@@ -16,6 +11,7 @@
 @use 'blocks/like/like';
 @use 'blocks/rate/rate';
 @use 'blocks/slider-toxin/slider-toxin';
+@use 'blocks/button/button';
 @use 'blocks/paginator/paginator';
 @use 'blocks/advantage/advantage';
 @use 'blocks/review/review';

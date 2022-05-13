@@ -1,5 +1,9 @@
-mixin ui-kit({ title = 'ui-kit', theme = 'white' } = {})
+mixin ui-kit(options={})
   -
+    const {
+      title = 'ui-kit',
+      theme = 'white'
+    } = options;
     let uiKitTheme;
     switch (theme) {
       case 'gray':
@@ -10,7 +14,7 @@ mixin ui-kit({ title = 'ui-kit', theme = 'white' } = {})
     }
 
   doctype html
-  html.ui-kit(class= uiKitTheme lang='ru')
+  html.ui-kit(class= uiKitTheme lang="ru")
     head
       meta(charset="utf-8")
       title= title
@@ -25,4 +29,5 @@ mixin ui-kit({ title = 'ui-kit', theme = 'white' } = {})
       meta(name="msapplication-TileColor" content="#da532c")
       meta(name="theme-color" content="#ffffff")
     body.ui-kit__body
+      .ui-kit__header
       block

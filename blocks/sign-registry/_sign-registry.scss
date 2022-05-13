@@ -1,0 +1,45 @@
+.sign-registry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  width: 100%;
+
+  min-height: 684px;
+
+  flex-grow: 1;
+
+  background-size: cover;
+
+  animation-name: background;
+  animation-duration: 120s;
+  animation-iteration-count: infinite;
+}
+
+.sign-registry_shifted {
+  padding-left: 5px;
+}
+
+@keyframes background {
+  100%, 0%, 50% {
+    background-image: url('./img/sign-in-1.jpg');
+  }
+  50.1%, 100% {
+    background-image: url('./img/sign-in-2.jpg');
+  }
+}
+
+@media all and (max-width: 640px) {
+  .sign-registry {
+    min-height: auto;
+
+    padding-top: 19px;
+    padding-bottom: 19px;
+  }
+
+  .sign-registry_shifted {
+    padding-left: 0;
+  }
+}

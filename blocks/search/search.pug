@@ -25,29 +25,31 @@ mixin search
         from: 5000,
         to: 10000,
       })
-      .search__label правила дома
-      +checkbox({
-        items: [
-          { name: 'smoke', text: 'Можно курить' },
-          { name: 'pet', text: 'Можно с питомцами', checked: true },
-          { name: 'party', text: 'Можно пригласить гостей (до 10 человек)', checked: true },
-        ],
-      })
-      .search__label доступность
-      +checkbox({
-        items: [
-          {
-            name: 'wide',
-            text: 'Широкий коридор',
-            explanation: 'Ширина коридоров в номере не менее 91 см.',
-          },
-          {
-            name: 'help',
-            text: 'Помощник для инвалидов',
-            explanation: 'На 1 этаже вас встретит специалист и проводит до номера',
-          },
-        ],
-      })
+      .search__form-item
+        .search__label правила дома
+        +checkbox({
+          items: [
+            { name: 'smoke', text: 'Можно курить' },
+            { name: 'pet', text: 'Можно с питомцами', checked: true },
+            { name: 'party', text: 'Можно пригласить гостей (до 10 человек)', checked: true },
+          ],
+        })
+      .search__form-item
+        .search__label доступность
+        +checkbox({
+          items: [
+            {
+              name: 'wide',
+              text: 'Широкий коридор',
+              explanation: 'Ширина коридоров в номере не менее 91 см.',
+            },
+            {
+              name: 'help',
+              text: 'Помощник для инвалидов',
+              explanation: 'На 1 этаже вас встретит специалист и проводит до номера',
+            },
+          ],
+        })
       +dropdown({
         name: 'room',
         defaultValue: 'Сколько комнат',
@@ -73,7 +75,7 @@ mixin search
         ],
       })
     .search__result
-      .search__header Номера, которые мы для вас подобрали
+      .search__header Номера, которые мы для вас подобрали
       .search__cards
         +card-room({ number: '888', price: 9990, rate: 5, reviews: 145, lux: 'люкс' })
         +card-room({ number: '840', price: 9900, rate: 4, reviews: 65 })
@@ -88,5 +90,6 @@ mixin search
         +card-room({ number: '444', price: 5000, rate: 3, reviews: 15 })
         +card-room({ number: '352', price: 5000, rate: 3, reviews: 55 })
       .search__paginator
+        +paginator({ length: 15 })
   .search__border
 

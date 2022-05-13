@@ -4,6 +4,7 @@ import '../blocks/dropdown/dropdown';
 import '../blocks/slider-toxin/slider-toxin';
 import '../blocks/card-room/card-room';
 import '../blocks/rate/rate';
+import '../blocks/paginator/paginator';
 import '../blocks/subscription/subscription';
-import '../favicons/favicons';
 import './search-room.scss';
+import '../favicons/favicons';

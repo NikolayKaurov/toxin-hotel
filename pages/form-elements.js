@@ -6,5 +6,5 @@ import '../blocks/like/like';
 import '../blocks/rate/rate';
 import '../blocks/slider-toxin/slider-toxin';
 import '../blocks/paginator/paginator';
-import '../favicons/favicons';
 import './form-elements.scss';
+import '../favicons/favicons';

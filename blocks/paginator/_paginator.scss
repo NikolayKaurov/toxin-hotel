@@ -1,9 +1,17 @@
+.paginator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: fit-content;
+}
+
 .paginator__body {
   display: flex;
 }
 
 .paginator__description {
-  margin: 9px 0 0 6px;
+  padding: 9px 0 0 0;
 
   color: rgba(31, 32, 65, 0.75);
 }
@@ -48,7 +56,7 @@
   background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
 }
 
-@media all and (min-width: 1281px) {
+@media all and (min-width: 781px) {
   .paginator__item {
     width: 40px;
     height: 40px;
@@ -109,7 +117,7 @@
   }
 }
 
-@media all and (max-width: 1280px) {
+@media all and (max-width: 780px) {
   .paginator__item {
     width: 32px;
     height: 32px;

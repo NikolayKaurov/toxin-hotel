@@ -1,0 +1,12 @@
+mixin sign-registry(options={})
+  -
+    const {
+      registry = false,
+    } = options;
+
+  if (registry)
+    .sign-registry.sign-registry_shifted
+      block
+  else
+    .sign-registry
+      block

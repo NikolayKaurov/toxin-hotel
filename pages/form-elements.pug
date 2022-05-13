@@ -1,9 +1,7 @@
 include ../blocks/ui-kit/ui-kit
-include ../blocks/ui-kit/__header/ui-kit__header
 include ../blocks/form-elements/form-elements
 include ../blocks/text-field/text-field
 include ../blocks/dropdown/dropdown
-include ../blocks/button/button
 include ../blocks/datepicker/datepicker
 include ../blocks/subscription/subscription
 include ../blocks/checkbox/checkbox
@@ -12,12 +10,12 @@ include ../blocks/toggle/toggle
 include ../blocks/like/like
 include ../blocks/rate/rate
 include ../blocks/slider-toxin/slider-toxin
+include ../blocks/button/button
 include ../blocks/paginator/paginator
 include ../blocks/advantage/advantage
 include ../blocks/review/review
 include ../blocks/bullet-list/bullet-list
 +ui-kit({ title: 'Form elements', theme: 'white' })
-  +ui-kit__header
   +form-elements
     .form-elements__item
       +text-field({
