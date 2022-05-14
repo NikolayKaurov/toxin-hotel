@@ -2,18 +2,18 @@
 
 ## Страницы поиска номеров в отеле
 
-- [Landing page](./dist/index.html)
-- [Search room](./dist/search-room.html)
-- [Room details](./dist/room-details.html)
-- [Registration](./dist/registration.html)
-- [Sign in](./dist/sign-in.html)
+- [Landing page](https://nikolaykaurov.github.io/dist/)
+- [Search room](https://nikolaykaurov.github.io/dist/search-room.html)
+- [Room details](https://nikolaykaurov.github.io/dist/room-details.html)
+- [Registration](https://nikolaykaurov.github.io/dist/registration.html)
+- [Sign in](https://nikolaykaurov.github.io/dist/sign-in.html)
 
 ## Страницы ui-kit
 
-- [Headers & Footers](./dist/headers-footers.html)
-- [Cards](./dist/cards.html)
-- [Form Elements](./dist/form-elements.html)
-- [Colors & Type](./dist/colors-type.html)
+- [Headers & Footers](https://nikolaykaurov.github.io/dist/headers-footers.html)
+- [Cards](https://nikolaykaurov.github.io/dist//cards.html)
+- [Form Elements](https://nikolaykaurov.github.io/dist/form-elements.html)
+- [Colors & Type](https://nikolaykaurov.github.io/dist/colors-type.html)
 
 Страницы ui-kit также доступны по ссылкам в меню "Соглашения" в шапке сайта. 
 
