@@ -11,7 +11,7 @@
 ## Страницы ui-kit
 
 - [Headers & Footers](https://nikolaykaurov.github.io/dist/headers-footers.html)
-- [Cards](https://nikolaykaurov.github.io/dist//cards.html)
+- [Cards](https://nikolaykaurov.github.io/dist/cards.html)
 - [Form Elements](https://nikolaykaurov.github.io/dist/form-elements.html)
 - [Colors & Type](https://nikolaykaurov.github.io/dist/colors-type.html)
 
