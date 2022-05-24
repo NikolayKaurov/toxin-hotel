@@ -11,7 +11,11 @@ function handleStarMouseout(event) {
 }
 
 function handleStarMousedown(event) {
-  event.data.rate.setRating($(event.target).data('rating'));
+  const { rate } = event.data;
+  const rating = parseInt($(event.target).data('rating'), 10);
+
+  rate.setRating(rating);
+  rate.$input.val(rating);
 }
 
 class Rate {
@@ -25,7 +29,15 @@ class Rate {
     this.$rate
       .on('mouseover', '.js-rate__star', { rate: this }, handleStarMouseover)
       .on('mouseout', '.js-rate__star', { rate: this }, handleStarMouseout)
-      .on('mousedown', '.js-rate__star', { rate: this }, handleStarMousedown);
+      .on('mousedown', '.js-rate__star', { rate: this }, handleStarMousedown)
+      .append(`
+        <input
+          type="number"
+          class="rate__input js-rate__input"
+          name="rating"
+        >`);
+
+    this.$input = $('.js-rate__input').val(parseInt(this.rating, 10));
   }
 
   setRating(rating) {
