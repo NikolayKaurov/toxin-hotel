@@ -4,9 +4,10 @@ mixin card-room(options={})
       number = '',
       lux = '',
       price = 0,
-      rate = 0,
+      rating = 0,
       reviews = 0
     } = options;
+    const rateOptions = { rating };
     let img1 = '';
     let img2 = '';
     let img3 = '';
@@ -108,6 +109,6 @@ mixin card-room(options={})
       .card-room__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
       = 'в сутки'
     .card-room__footer
-      +rate(rate)
+      +rate(rateOptions)
       .card-room__reviews= reviews
       .card-room__reviews-text Отзывов

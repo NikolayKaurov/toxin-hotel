@@ -33,7 +33,7 @@ class Rate {
   }
 }
 
-$('.js-rate').each((index, element) => {
+$('.js-rate.rate_enabled').each((index, element) => {
   const rate = new Rate(element);
   rate.init();
 });

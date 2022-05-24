@@ -1,6 +1,16 @@
-mixin rate(rating = 0)
-  - let i = 0;
-  .rate.js-rate(data-rating= rating)
+mixin rate(options={})
+  -
+    const {
+      rating = 0,
+      enabled = false,
+    } = options;
+    let rateClass = '';
+    if (enabled) {
+      rateClass = 'rate_enabled';
+    }
+    let i = 0;
+
+  .rate.js-rate(class= rateClass data-rating= rating)
     while i < 5
       - i += 1;
       .rate__star.js-rate__star(data-rating= i)

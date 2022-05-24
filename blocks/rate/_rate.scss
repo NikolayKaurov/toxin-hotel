@@ -2,12 +2,16 @@
   display: flex;
 }
 
+.rate_enabled {
+  .rate__star {
+    cursor: pointer;
+  }
+}
+
 .rate__star {
   width: 24px;
   height: 24px;
   position: relative;
-
-  cursor: pointer;
 }
 
 .rate__star::after {

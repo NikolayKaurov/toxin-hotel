@@ -134,8 +134,8 @@ include ../blocks/bullet-list/bullet-list
         +like(11)
       .form-elements__label rate button
       .form-elements__rate-wrapper
-        +rate(4)
-        +rate(5)
+        +rate({ rating: 4, enabled: true})
+        +rate({ rating: 5, enabled: true})
     .form-elements__item
       +slider-toxin({
         label: 'Range slider',
