@@ -2,11 +2,10 @@ mixin datepicker(options={})
   -
     const {
       name = 'undefined-name', //- префикс для имён полей ввода
-      label = '', //- заголовок для объединённого экспанда (FILTER DATE DROPDOWN)
+      labelCommon = '', //- заголовок для объединённого экспанда (FILTER DATE DROPDOWN)
       labelArrival = '', //- заголовок для экспанда прибытия
       labelDeparture = '', //- заголовок для экспанда выезда
       modifier = '', //- filter или demo (или отсутствует)
-      zIndex = 1, //- чем выше на странице компонент, тем больше нужен z-index
     } = options;
     let datepickerModifier = '';
     if (modifier === 'filter') {
@@ -17,70 +16,57 @@ mixin datepicker(options={})
 
   .datepicker.js-datepicker(
     class= datepickerModifier
-    data-name= name
-    data-z-index= zIndex
+    tabindex="0"
   )
-    input.datepicker__input.js-datepicker__input.js-datepicker__input_date_arrival(
+    input.datepicker__input.js-datepicker__input_date_arrival(
       type="date"
       name= `${name}-arrival`
     )
-    input.datepicker__input.js-datepicker__input.js-datepicker__input_date_departure(
+    input.datepicker__input.js-datepicker__input_date_departure(
       type="date"
       name= `${name}-departure`
     )
-    .datepicker__drop.js-datepicker__drop.datepicker__drop_format_filter
-      p.datepicker__header= label
-      .datepicker__expand.js-datepicker__expand.datepicker__expand_format_filter.js-datepicker__expand_format_filter(
-        tabindex="0"
-      )
-        p.datepicker__value.js-datepicker__value Укажите даты пребывания
-    .datepicker__drop.js-datepicker__drop
-      .datepicker__container
+    p.datepicker__header.datepicker__header_format_filter= labelCommon
+    .datepicker__drop.datepicker__drop_format_filter.js-datepicker__drop_format_filter
+      = 'Укажите даты пребывания'
+    .datepicker__wrapper
+      .datepicker__wrapper
         p.datepicker__header= labelArrival
-        .datepicker__expand.js-datepicker__expand.datepicker__expand_date_arrival.js-datepicker__expand_date_arrival(
-          tabindex="0"
-          data-date=""
-        )
-          p.datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
-      .datepicker__container
+        .datepicker__drop.js-datepicker__drop_date_arrival ДД.ММ.ГГГГ
+      .datepicker__wrapper
         p.datepicker__header= labelDeparture
-        .datepicker__expand.js-datepicker__expand.datepicker__expand_date_departure.js-datepicker__expand_date_departure(
-          tabindex="0"
-          data-date=""
-        )
-          p.datepicker__value.js-datepicker__value ДД.ММ.ГГГГ
+        .datepicker__drop.js-datepicker__drop_date_departure ДД.ММ.ГГГГ
     .datepicker__down.js-datepicker__down
-      .datepicker__button-container
-        button.datepicker__button.js-datepicker__button.datepicker__button_action_clear.js-datepicker__button_action_clear(
-          type="button"
-          tabindex="-1"
-          disabled
-        ) очистить
-        button.datepicker__button.js-datepicker__button.datepicker__button_action_confirm.js-datepicker__button_action_confirm(
-          type="button"
-          tabindex="-1"
-          disabled
-        ) применить
-      .datepicker__calendar-container
-        table.datepicker__calendar
-          thead.datepicker__thead
-            tr.datepicker__calendar-header
-              th.datepicker__cell(scope="col") Пн
-              th.datepicker__cell(scope="col") Вт
-              th.datepicker__cell(scope="col") Ср
-              th.datepicker__cell(scope="col") Чт
-              th.datepicker__cell(scope="col") Пт
-              th.datepicker__cell(scope="col") Сб
-              th.datepicker__cell(scope="col") Вс
-          tbody.datepicker__calendar-body.js-datepicker__calendar-body
-      .datepicker__month-year-container
-        button.datepicker__button.js-datepicker__button.datepicker__button_action_month-minus.js-datepicker__button_action_month-minus(
+      .datepicker__wrapper
+        button.datepicker__button.js-datepicker__button_action_month-minus(
           type="button"
           tabindex="-1"
           disabled
         ) arrow_back
-        p.datepicker__month-year.js-datepicker__month-year
-        button.datepicker__button.js-datepicker__button.datepicker__button_action_month-plus.js-datepicker__button_action_month-plus(
+        p.datepicker__month-year.js-datepicker__month-year MONTH YEAR
+        button.datepicker__button.js-datepicker__button_action_month-plus(
           type="button"
           tabindex="-1"
         ) arrow_forward
+      table.datepicker__calendar
+        thead.datepicker__thead
+          tr.datepicker__calendar-header
+            th.datepicker__cell(scope="col") Пн
+            th.datepicker__cell(scope="col") Вт
+            th.datepicker__cell(scope="col") Ср
+            th.datepicker__cell(scope="col") Чт
+            th.datepicker__cell(scope="col") Пт
+            th.datepicker__cell(scope="col") Сб
+            th.datepicker__cell(scope="col") Вс
+        tbody.datepicker__tbody.js-datepicker__tbody
+      .datepicker__wrapper
+        button.datepicker__button.js-datepicker__button_action_clear(
+          type="button"
+          tabindex="-1"
+          disabled
+        ) очистить
+        button.datepicker__button.js-datepicker__button_action_confirm(
+          type="button"
+          tabindex="-1"
+          disabled
+        ) применить

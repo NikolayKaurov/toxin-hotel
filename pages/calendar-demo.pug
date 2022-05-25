@@ -1,0 +1,21 @@
+include ../blocks/ui-kit/ui-kit
+include ../blocks/datepicker/datepicker
++ui-kit({ title: 'КАЛЕНДАРЬ В РАЗРАБОТКЕ', theme: 'white' })
+  .wrapper(style="display: flex;")
+    .wrapper(style="margin: 100px;")
+      +datepicker({
+        name: 'test-calendar',
+        labelCommon: 'даты пребывания в отеле',
+        labelArrival: 'прибытие',
+        labelDeparture: 'выезд',
+        modifier: '',
+      })
+    .wrapper(style="margin: 100px;")
+      +datepicker({
+        name: 'test-calendar',
+        labelCommon: 'даты пребывания в отеле',
+        labelArrival: 'прибытие',
+        labelDeparture: 'выезд',
+        modifier: 'filter',
+      })
+
