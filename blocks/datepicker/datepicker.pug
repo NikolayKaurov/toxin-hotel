@@ -17,6 +17,7 @@ mixin datepicker(options={})
   .datepicker.js-datepicker(
     class= datepickerModifier
     tabindex="0"
+    data-active="arrival"
   )
     input.datepicker__input.js-datepicker__input_date_arrival(
       type="date"
@@ -38,13 +39,13 @@ mixin datepicker(options={})
         .datepicker__drop.js-datepicker__drop_date_departure ДД.ММ.ГГГГ
     .datepicker__down.js-datepicker__down
       .datepicker__wrapper
-        button.datepicker__button.js-datepicker__button_action_month-minus(
+        button.datepicker__button.datepicker__button_action_back.js-datepicker__button_action_back(
           type="button"
           tabindex="-1"
           disabled
         ) arrow_back
-        p.datepicker__month-year.js-datepicker__month-year MONTH YEAR
-        button.datepicker__button.js-datepicker__button_action_month-plus(
+        p.datepicker__month-year.js-datepicker__month-year
+        button.datepicker__button.datepicker__button_action_forward.js-datepicker__button_action_forward(
           type="button"
           tabindex="-1"
         ) arrow_forward

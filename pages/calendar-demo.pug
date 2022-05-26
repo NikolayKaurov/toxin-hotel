@@ -2,7 +2,7 @@ include ../blocks/ui-kit/ui-kit
 include ../blocks/datepicker/datepicker
 +ui-kit({ title: 'КАЛЕНДАРЬ В РАЗРАБОТКЕ', theme: 'white' })
   .wrapper(style="display: flex;")
-    .wrapper(style="margin: 100px;")
+    .wrapper(style="margin: 50px;")
       +datepicker({
         name: 'test-calendar',
         labelCommon: 'даты пребывания в отеле',
@@ -10,12 +10,20 @@ include ../blocks/datepicker/datepicker
         labelDeparture: 'выезд',
         modifier: '',
       })
-    .wrapper(style="margin: 100px;")
+    .wrapper(style="margin: 50px;")
       +datepicker({
         name: 'test-calendar',
         labelCommon: 'даты пребывания в отеле',
         labelArrival: 'прибытие',
         labelDeparture: 'выезд',
         modifier: 'filter',
+      })
+    .wrapper(style="margin: 50px;")
+      +datepicker({
+        name: 'test-calendar',
+        labelCommon: 'даты пребывания в отеле',
+        labelArrival: 'прибытие',
+        labelDeparture: 'выезд',
+        modifier: 'demo',
       })
 

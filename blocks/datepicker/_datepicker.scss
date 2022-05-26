@@ -50,6 +50,8 @@
     width: 150px;
     height: 44px;
 
+    background: white;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -101,6 +103,8 @@
   }
 
   &__down {
+    background: white;
+
     position: absolute;
 
     width: 100%;
@@ -108,12 +112,179 @@
     margin-top: 5px;
 
     display: none;
+
     flex-direction: column;
     align-items: center;
+
+    border: 1px solid rgba(31, 32, 65, 0.25);
+    border-radius: 4px;
+
+    box-shadow: 0 10px 20px 0 rgba(31, 32, 65, 0.05);
   }
 
   &_open &__down {
     display: flex;
+  }
+
+  &__button {
+    background-color: transparent;
+
+    border: 0;
+
+    padding: 20px;
+
+    font-family: montserrat, Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    color: #bc9cff;
+
+    cursor: pointer;
+
+    &_action_back,&_action_forward {
+      font-family: material-icons, Arial, sans-serif;
+      text-transform: none;
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    &:active {
+      transform: scale(0.85);
+    }
+
+    &:disabled {
+      color: rgba(31, 32, 65, 0.5);
+
+      pointer-events: none;
+
+      cursor: default;
+    }
+
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  &__month-year {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 19px;
+    font-weight: bold;
+    color: #1f2041;
+
+    cursor: default;
+
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  &_format_filter &__month-year {
+    font-size: 17px;
+  }
+
+  &__calendar {
+    border-collapse: collapse;
+
+    margin-top: 10px;
+  }
+
+  &__calendar-header {
+    font-weight: bold;
+    color: #BC9CFF;
+  }
+
+  &__row {
+    color: rgba(31, 32, 65, 0.5);
+  }
+
+  &__cell {
+    width: 40px;
+    height: 40px;
+
+    line-height: 40px;
+    text-align: center;
+
+    font-size: 12px;
+
+    padding: 0;
+
+    cursor: default;
+
+    position: relative;
+
+    border-radius: 22px;
+
+    &_clickable {
+      cursor: pointer;
+    }
+
+    &_date_other-month {
+      color: rgba(31, 32, 65, 0.25);
+    }
+
+    &_date_today {
+      color: #1f2041;
+    }
+
+    &_format_cursor {
+      color: white;
+      font-weight: bold;
+
+      background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
+    }
+
+    &_selected {
+      color: white;
+      font-weight: bold;
+
+      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+    }
+
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  &_format_filter &__cell {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+  }
+
+  &__cell-period {
+    z-index: -1;
+
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+    opacity: 0.25;
+
+    &_date_sunday {
+      border-bottom-right-radius: 22px;
+      border-top-right-radius: 22px;
+    }
+
+    &_date_monday {
+      border-bottom-left-radius: 22px;
+      border-top-left-radius: 22px;
+    }
+
+    &_date_arrival {
+      width: 50%;
+
+      right: 0;
+    }
+
+    &_date_departure {
+      width: 50%;
+    }
   }
 }
 
@@ -128,7 +299,27 @@
     &__header_format_filter,&__drop_format_filter {
       display: flex;
     }
+
+    &__month-year {
+      font-size: 17px;
+    }
+
+    &__cell {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+    }
   }
 }
 
+.datepicker {
+  &_format_demo &__drop,&_format_demo &__header {
+    display: none;
+  }
 
+  &_format_demo &__down {
+    margin-top: 0;
+
+    display: flex;
+  }
+}
