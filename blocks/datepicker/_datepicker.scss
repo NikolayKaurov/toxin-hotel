@@ -109,6 +109,8 @@
 
     width: 100%;
 
+    box-sizing: border-box;
+
     margin-top: 5px;
 
     display: none;
@@ -120,6 +122,8 @@
     border-radius: 4px;
 
     box-shadow: 0 10px 20px 0 rgba(31, 32, 65, 0.05);
+
+    z-index: 0;
   }
 
   &_open &__down {
@@ -130,6 +134,7 @@
     background-color: transparent;
 
     border: 0;
+    outline: 0;
 
     padding: 20px;
 
@@ -215,8 +220,6 @@
 
     position: relative;
 
-    border-radius: 22px;
-
     &_clickable {
       cursor: pointer;
     }
@@ -226,21 +229,23 @@
     }
 
     &_date_today {
-      color: #1f2041;
+      font-weight: bold;
+      color: #BC9CFF;
     }
 
     &_format_cursor {
-      color: white;
-      font-weight: bold;
-
       background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
     }
 
     &_selected {
+      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+    }
+
+    &_format_cursor,&_selected {
       color: white;
       font-weight: bold;
 
-      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+      border-radius: 22px;
     }
 
     &::selection {

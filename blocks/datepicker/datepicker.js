@@ -10,26 +10,52 @@ class Datepicker {
 
   init() {
     this.$datepicker
-      .on('focusin', { datepicker: this }, handleDatepickerFocusin)
-      .on('mousedown', { datepicker: this }, handleDatepickerMousedown);
+      .on('keydown', { datepicker: this }, handleDatepickerKeydown);
 
-    $('.js-datepicker__down', this.$datepicker).on('mousedown', stop);
+    if (!this.$datepicker.hasClass('datepicker_format_demo')) {
+      this.$datepicker
+        .on('focusin', { datepicker: this }, handleDatepickerFocusin)
+        .on('mousedown', { datepicker: this }, handleDatepickerMousedown);
+
+      $('.js-datepicker__down', this.$datepicker)
+        .on('mousedown', stop);
+    }
 
     this.$arrival = $('.js-datepicker__input_date_arrival', this.$datepicker)
       .val('');
+
     this.$departure = $('.js-datepicker__input_date_departure', this.$datepicker)
       .val('');
+
     this.$dropFilter = $('.js-datepicker__drop_format_filter', this.$datepicker);
+
     this.$dropArrival = $('.js-datepicker__drop_date_arrival', this.$datepicker)
       .on('mousedown', { datepicker: this }, handleArrivalMousedown);
+
     this.$dropDeparture = $('.js-datepicker__drop_date_departure', this.$datepicker)
       .on('mousedown', { datepicker: this }, handleDepartureMousedown);
-    this.$back = $('.js-datepicker__button_action_back', this.$datepicker);
-    // this.$forward = $('.js-datepicker__button_action_forward', this.$datepicker);
+
+    this.$back = $('.js-datepicker__button_action_back', this.$datepicker)
+      .on('mousedown', { datepicker: this }, handleBackMousedown);
+
+    $('.js-datepicker__button_action_forward', this.$datepicker)
+      .on('mousedown', { datepicker: this }, handleForwardMousedown);
+
     this.$monthYear = $('.js-datepicker__month-year', this.$datepicker);
-    this.$calendar = $('.js-datepicker__tbody', this.$datepicker);
-    this.$clear = $('.js-datepicker__button_action_clear', this.$datepicker);
-    this.$confirm = $('.js-datepicker__button_action_confirm', this.$datepicker);
+
+    this.$calendar = $('.js-datepicker__tbody', this.$datepicker)
+      .on(
+        'click',
+        '.datepicker__cell_clickable',
+        { datepicker: this },
+        handleCellClick,
+      );
+
+    this.$clear = $('.js-datepicker__button_action_clear', this.$datepicker)
+      .on('mousedown', { datepicker: this }, handleClearMousedown);
+
+    this.$confirm = $('.js-datepicker__button_action_confirm', this.$datepicker)
+      .on('mousedown', { datepicker: this }, handleConfirmMousedown);
 
     const now = new Date();
     this.today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -55,20 +81,32 @@ class Datepicker {
       this.$dropFilter.text(
         `${dateArrival.getDate()} ${shortMonths[dateArrival.getMonth()]} - ${dateDeparture.getDate()} ${shortMonths[dateDeparture.getMonth()]}`,
       );
-      this.$dropArrival.text(arrival.split('-').reverse().join('.'));
-      this.$dropDeparture.text(departure.split('-').reverse().join('.'));
+      this.$dropArrival.text(
+        arrival.split('-').reverse().join('.'),
+      );
+      this.$dropDeparture.text(
+        departure.split('-').reverse().join('.'),
+      );
     } else if (arrival !== '') {
       this.$dropFilter.text(
         `${dateArrival.getDate()} ${shortMonths[dateArrival.getMonth()]}`,
       );
-      this.$dropArrival.text(arrival.split('-').reverse().join('.'));
-      this.$dropDeparture.text('ДД.ММ.ГГГГ');
+      this.$dropArrival.text(
+        arrival.split('-').reverse().join('.'),
+      );
+      this.$dropDeparture.text(
+        'ДД.ММ.ГГГГ',
+      );
     } else if (departure !== '') {
       this.$dropFilter.text(
         `${dateDeparture.getDate()} ${shortMonths[dateDeparture.getMonth()]}`,
       );
-      this.$dropArrival.text('ДД.ММ.ГГГГ');
-      this.$dropDeparture.text(departure.split('-').reverse().join('.'));
+      this.$dropArrival.text(
+        'ДД.ММ.ГГГГ',
+      );
+      this.$dropDeparture.text(
+        departure.split('-').reverse().join('.'),
+      );
     } else {
       this.$dropFilter.text('Укажите даты пребывания');
       this.$dropDeparture.text('ДД.ММ.ГГГГ');
@@ -140,10 +178,12 @@ class Datepicker {
           }
         }
 
-        const zeroMonth = cycleDate.getMonth() < 9 ? '0' : '';
-        const zeroDate = cycleDate.getDate() < 10 ? '0' : '';
-
-        calendarHTML += `<td class="js-datepicker__cell datepicker__cell${cellClasses}" data-date="${cycleDate.getFullYear()}-${zeroMonth}${cycleDate.getMonth() + 1}-${zeroDate}${cycleDate.getDate()}">${cycleDate.getDate()}${cellPeriod}</td>`;
+        calendarHTML += `
+          <td class="js-datepicker__cell datepicker__cell ${cellClasses}" data-date="${getDateString(cycleDate)}">
+            ${cycleDate.getDate()}
+            ${cellPeriod}
+          </td>
+        `;
 
         cycleDate.setDate(cycleDate.getDate() + 1);
       }
@@ -160,15 +200,41 @@ class Datepicker {
 
     this.$confirm.prop('disabled', !period);
   }
+
+  setDate(date) {
+    let arrival = this.$arrival.val();
+    let departure = this.$departure.val();
+
+    if (this.$datepicker.attr('data-active') === 'arrival') {
+      arrival = date;
+    } else {
+      departure = date;
+    }
+
+    if (arrival !== '' && departure !== '') {
+      if (arrival > departure) {
+        [arrival, departure] = [departure, arrival];
+      }
+    }
+
+    if (date === arrival) {
+      this.$datepicker.attr('data-active', 'departure');
+    } else {
+      this.$datepicker.attr('data-active', 'arrival');
+    }
+
+    this.$arrival.val(arrival);
+    this.$departure.val(departure);
+  }
 }
 
 function handleDatepickerFocusin(event) {
-  const { $datepicker } = event.data.datepicker;
   const { datepicker } = event.data;
+  const { $datepicker } = datepicker;
 
   const close = (eventIN) => {
-    const { $datepicker: $datepickerIN } = eventIN.data.datepicker;
-    const { close: closeIN, datepicker: datepickerIN } = event.data;
+    const { close: closeIN, datepicker: datepickerIN } = eventIN.data;
+    const { $datepicker: $datepickerIN } = datepickerIN;
 
     if ($datepickerIN.hasClass('datepicker_just-now-focused')) {
       $datepickerIN.removeClass('datepicker_just-now-focused');
@@ -201,6 +267,107 @@ function handleDatepickerMousedown(event) {
   event.stopPropagation();
 }
 
+function handleDatepickerKeydown(event) {
+  const { datepicker } = event.data;
+  const {
+    today,
+    cursorDate,
+    calendarMonth,
+    $arrival,
+    $departure,
+  } = datepicker;
+  const { keyCode } = event;
+
+  const arrival = new Date($arrival.val());
+  const departure = new Date($departure.val());
+
+  arrival.setHours(0, 0, 0);
+  departure.setHours(0, 0, 0);
+
+  if (keyCode === 13 || keyCode === 32) {
+    event.preventDefault();
+
+    if (
+      cursorDate.getTime() === arrival.getTime()
+      || cursorDate.getTime() === departure.getTime()
+    ) {
+      return;
+    }
+
+    datepicker.setDate(getDateString(cursorDate));
+
+    datepicker.update();
+
+    return;
+  }
+
+  const temp = new Date(
+    cursorDate.getFullYear(),
+    cursorDate.getMonth(),
+    cursorDate.getDate(),
+  );
+
+  switch (keyCode) {
+    case 37:
+      temp.setDate(temp.getDate() - 1);
+      if (temp.getTime() === departure.getTime()) {
+        temp.setDate(temp.getDate() - 1);
+      }
+      if (temp.getTime() === arrival.getTime()) {
+        temp.setDate(temp.getDate() - 1);
+      }
+      break;
+    case 38:
+      temp.setDate(temp.getDate() - 7);
+      if (temp.getTime() === departure.getTime()) {
+        temp.setDate(temp.getDate() - 7);
+      }
+      if (temp.getTime() === arrival.getTime()) {
+        temp.setDate(temp.getDate() - 7);
+      }
+      break;
+    case 39:
+      temp.setDate(temp.getDate() + 1);
+      if (temp.getTime() === arrival.getTime()) {
+        temp.setDate(temp.getDate() + 1);
+      }
+      if (temp.getTime() === departure.getTime()) {
+        temp.setDate(temp.getDate() + 1);
+      }
+      break;
+    case 40:
+      temp.setDate(temp.getDate() + 7);
+      if (temp.getTime() === arrival.getTime()) {
+        temp.setDate(temp.getDate() + 7);
+      }
+      if (temp.getTime() === departure.getTime()) {
+        temp.setDate(temp.getDate() + 7);
+      }
+      break;
+    default:
+      return;
+  }
+
+  event.preventDefault();
+
+  if (temp < today) {
+    return;
+  }
+
+  cursorDate.setFullYear(
+    temp.getFullYear(),
+    temp.getMonth(),
+    temp.getDate(),
+  );
+
+  calendarMonth.setFullYear(
+    temp.getFullYear(),
+    temp.getMonth(),
+  );
+
+  datepicker.update();
+}
+
 function handleArrivalMousedown(event) {
   const { $datepicker } = event.data.datepicker;
 
@@ -213,8 +380,71 @@ function handleDepartureMousedown(event) {
   $datepicker.attr('data-active', 'departure');
 }
 
+function handleForwardMousedown(event) {
+  const { datepicker } = event.data;
+  const { calendarMonth: month } = datepicker;
+
+  month.setMonth(month.getMonth() + 1);
+
+  datepicker.update();
+}
+
+function handleBackMousedown(event) {
+  const { datepicker } = event.data;
+  const { calendarMonth: month } = datepicker;
+
+  month.setMonth(month.getMonth() - 1);
+
+  datepicker.update();
+}
+
+function handleCellClick(event) {
+  const { datepicker } = event.data;
+
+  const date = $(event.target).data('date');
+
+  datepicker.setDate(date);
+
+  datepicker.update();
+}
+
+function handleClearMousedown(event) {
+  const { datepicker } = event.data;
+  const {
+    $datepicker,
+    $arrival,
+    $departure,
+    today,
+    cursorDate,
+    calendarMonth,
+  } = datepicker;
+
+  $datepicker.attr('data-active', 'arrival');
+
+  $arrival.val('');
+  $departure.val('');
+
+  cursorDate.setFullYear(today.getFullYear(), today.getMonth(), today.getDate());
+  calendarMonth.setFullYear(today.getFullYear(), today.getMonth());
+
+  datepicker.update();
+}
+
+function handleConfirmMousedown(event) {
+  const { $datepicker } = event.data.datepicker;
+
+  $datepicker.removeClass('datepicker_open');
+}
+
 function stop(event) {
   event.stopPropagation();
+}
+
+function getDateString(date) {
+  const zeroMonth = date.getMonth() < 9 ? '0' : '';
+  const zeroDate = date.getDate() < 10 ? '0' : '';
+
+  return `${date.getFullYear()}-${zeroMonth}${date.getMonth() + 1}-${zeroDate}${date.getDate()}`;
 }
 
 $('.js-datepicker').each((index, datepicker) => {
