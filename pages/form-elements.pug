@@ -32,11 +32,8 @@ include ../blocks/bullet-list/bullet-list
         description: 'hover / focus',
       })
       +dropdown({
-        name: 'guest',
-        defaultValue: 'Сколько гостей',
-        label: 'dropdown',
-        zIndex: 7,
-        guest: true,
+        placeholder: 'Сколько гостей',
+        header: 'dropdown',
         clear: true,
         items:[
           {
@@ -68,15 +65,13 @@ include ../blocks/bullet-list/bullet-list
       })
       +datepicker({
         name: 'date-regular',
-        labelArrival: 'date dropdown',
-        labelDeparture: 'date dropdown',
-        label: 'даты пребывания в отеле',
-        zIndex: 6,
+        headerArrival: 'date dropdown',
+        headerDeparture: 'date dropdown',
+        headerCommon: 'даты пребывания в отеле',
       })
       +datepicker({
         name: 'date-filter',
-        labelCommon: 'filter date dropdown',
-        zIndex: 5,
+        headerCommon: 'filter date dropdown',
         modifier: 'filter',
       })
       .form-elements__label subscription text field
@@ -191,11 +186,9 @@ include ../blocks/bullet-list/bullet-list
       +paginator({ length: 15 })
     .form-elements__item
       +dropdown({
-        name: 'room',
-        defaultValue: 'Сколько комнат',
-        label: 'dropdown',
+        placeholder: 'Сколько комнат',
+        header: 'dropdown',
         description: 'default',
-        zIndex: 4,
         narrow: true,
         items: [
           {
@@ -213,11 +206,9 @@ include ../blocks/bullet-list/bullet-list
         ]
       })
       +dropdown({
-        name: 'room-1',
-        defaultValue: 'Сколько комнат',
-        label: 'dropdown',
+        placeholder: 'Сколько комнат',
+        header: 'dropdown',
         description: 'expanded',
-        zIndex: 3,
         narrow: true,
         items: [
           {
@@ -314,11 +305,8 @@ include ../blocks/bullet-list/bullet-list
       ])
     .form-elements__item
       +dropdown({
-        name: 'guest2',
-        defaultValue: 'Сколько гостей',
-        label: 'dropdown',
-        zIndex: 1,
-        guest: true,
+        placeholder: 'Сколько гостей',
+        header: 'dropdown',
         confirm: true,
         items: [
           {
@@ -359,11 +347,8 @@ include ../blocks/bullet-list/bullet-list
         })
     .form-elements__item
       +dropdown({
-        name: 'guest-3',
-        defaultValue: 'Сколько гостей',
-        label: 'dropdown',
-        zIndex: 1,
-        guest: true,
+        placeholder: 'Сколько гостей',
+        header: 'dropdown',
         clear: true,
         confirm: true,
         items: [

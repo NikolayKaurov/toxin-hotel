@@ -2,84 +2,72 @@ mixin dropdown(options={})
   -
     const {
       narrow = false, //- узкий, шириной 266px (если false ширина 320px)
-      guest = false, //- первая и вторая строки складываются
-      name = "undefined-name", //- префикс для имён полей ввода
-      defaultValue = "", //- значение по умолчанию для общей строки
-      label = "", //- надпись слева сверху
-      description = "", //- надпись справа сверху
-      zIndex = 1, //- чем выше на странице компонент, тем больше нужен z-index
+      placeholder = '', //- значение по умолчанию для общей строки
+      header = '', //- надпись слева сверху
+      description = '', //- надпись справа сверху
       clear = false, //- есть кнопка "очистить"
       confirm = false, //- есть кнопка "применить"
       items = [], //- строки в выпадающем элементе
     } = options;
-    items.reverse(); //- в выпадающем элементе строки идут снизу вверх, flex-direction: column-reverse;
-    let modifiers = '';
+    let modifier = '';
     if (narrow) {
-      modifiers += ' dropdown_size_narrow';
-    }
-    if (guest) {
-      modifiers += ' dropdown_guest';
-    }
-    if (confirm) {
-      modifiers += ' dropdown_rollbackable';
+      modifier = 'dropdown_width_narrow';
     }
 
-  .dropdown.js-dropdown(
-    data-dropdown-name= name
-    data-z-index= zIndex
-    data-default-value= defaultValue
-    class= modifiers
-    tabindex="0"
-  )
-    .dropdown__header
-      if (label)
-        p.dropdown__label= label
+  .dropdown.js-dropdown(class= modifier)
+    .dropdown__wrapper
+      if (header)
+        p.dropdown__header= header
       if (description)
-        p.dropdown__label= description
+        p.dropdown__header= description
+    .dropdown__drop.js-dropdown__drop= placeholder
     .dropdown__down.js-dropdown__down
-      if (clear || confirm)
-        .dropdown__button-container
-          if (confirm)
-            button.dropdown__button.js-dropdown__button.js-dropdown__button_action_confirm(
-              disabled
-              tabindex="-1"
-              type="button"
-            ) применить
-          if (clear)
-            button.dropdown__button.js-dropdown__button.js-dropdown__button_action_clear(
-              disabled
-              tabindex="-1"
-              type="button"
-            ) очистить
       each item in items
+        -
+          const {
+            name = '', //- имя поля ввода
+            units = 'units', //- подпись для поля ввода с падежами
+            min = 0, //- минимальное значение для активации кнопки "ПРИМЕНИТЬ"
+            max = 99,
+            surplus = false, //- данное поле не самостоятельное, а прибавляется к предыдущему
+          } = item;
         .dropdown__item.js-dropdown__item(
-          data-name= item.name
-          data-units= item.units
+          data-units= units
           data-value=""
           data-quantity="0"
+          data-min= min
+          data-max= max
+          data-surplus= surplus
         )
-          p.dropdown__label.js-dropdown__label
-          button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_minus(
+          p.dropdown__units.js-dropdown__units
+          button.dropdown__counter-button.js-dropdown__counter-button_action_minus(
             disabled
             tabindex="-1"
             type="button"
-            data-name= item.name
           ) -
           input.dropdown__quantity.js-dropdown__quantity(
-            name= `${name}-${item.name}`
-            data-name= item.name
+            name= name
             type="number"
-            tabindex="-1"
-            readonly
             placeholder="0"
             min="0"
-            max="99"
+            max= max
             step="1"
           )
-          button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_plus(
+          button.dropdown__counter-button.js-dropdown__counter-button_action_plus(
             tabindex="-1"
             type="button"
-            data-name= item.name
           ) +
-    .dropdown__drop.js-dropdown__drop
-      p.dropdown__value.js-dropdown__value= defaultValue
+      .dropdown__wrapper
+        if (confirm)
+          button.dropdown__button.js-dropdown__button_action_confirm(
+            disabled
+            tabindex="-1"
+            type="button"
+          ) применить
+        if (clear)
+          button.dropdown__button.js-dropdown__button_action_clear(
+            disabled
+            tabindex="-1"
+            type="button"
+          ) очистить
+

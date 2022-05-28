@@ -2,9 +2,9 @@ mixin datepicker(options={})
   -
     const {
       name = 'undefined-name', //- префикс для имён полей ввода
-      labelCommon = '', //- заголовок для объединённого экспанда (FILTER DATE DROPDOWN)
-      labelArrival = '', //- заголовок для экспанда прибытия
-      labelDeparture = '', //- заголовок для экспанда выезда
+      headerCommon = '', //- заголовок для объединённого экспанда (FILTER DATE DROPDOWN)
+      headerArrival = '', //- заголовок для экспанда прибытия
+      headerDeparture = '', //- заголовок для экспанда выезда
       modifier = '', //- filter или demo (или отсутствует)
     } = options;
     let datepickerModifier = '';
@@ -27,15 +27,15 @@ mixin datepicker(options={})
       type="date"
       name= `${name}-departure`
     )
-    p.datepicker__header.datepicker__header_format_filter= labelCommon
+    p.datepicker__header.datepicker__header_format_filter= headerCommon
     .datepicker__drop.datepicker__drop_format_filter.js-datepicker__drop_format_filter
       = 'Укажите даты пребывания'
     .datepicker__wrapper
       .datepicker__wrapper
-        p.datepicker__header= labelArrival
+        p.datepicker__header= headerArrival
         .datepicker__drop.js-datepicker__drop_date_arrival ДД.ММ.ГГГГ
       .datepicker__wrapper
-        p.datepicker__header= labelDeparture
+        p.datepicker__header= headerDeparture
         .datepicker__drop.js-datepicker__drop_date_departure ДД.ММ.ГГГГ
     .datepicker__down.js-datepicker__down
       .datepicker__wrapper

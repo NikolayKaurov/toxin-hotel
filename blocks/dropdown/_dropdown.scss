@@ -1,253 +1,273 @@
 .dropdown {
-  outline: 0;
-
   width: 320px;
+
+  position: relative;
+
+  &_width_narrow {
+    width: 266px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    &:not(:first-child) {
+      flex-direction: row-reverse;
+
+      min-height: 7px;
+    }
+  }
+
+  &__header {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    margin-top: 0;
+    margin-bottom: 5px;
+
+    cursor: default;
+
+    &:nth-child(2) {
+      font-weight: normal;
+      color: rgba(31, 32, 65, 0.5);
+    }
+
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  &__drop {
+    height: 44px;
+    width: 100%;
+
+    box-sizing: border-box;
+
+    color: rgba(31, 32, 65, 0.75);
+    line-height: 42px;
+
+    padding-left: 14px;
+    padding-right: 44px;
+
+    border: 1px solid rgba(31, 32, 65, 0.25);
+    border-radius: 4px;
+
+    background: white;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    position: relative;
+
+    cursor: pointer;
+
+    &::after {
+      content: 'expand_more';
+
+      font-family: material-icons, Arial, sans-serif;
+      font-size: 24px;
+      line-height: 42px;
+      color: rgba(31, 32, 65, 0.5);
+
+      width: 44px;
+      text-align: center;
+
+      position: absolute;
+      right: 0;
+    }
+
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  &_open &__drop {
+    border-color: rgba(31, 32, 65, 0.5);
+
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &::after {
+      content: 'expand_less';
+    }
+  }
+
+  &__down {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(31, 32, 65, 0.5);
+    border-top: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+    box-shadow: 0 10px 20px 0 rgba(31, 32, 65, 0.05);
+
+    background: white;
+
+    position: absolute;
+
+    display: none;
+  }
+
+  &_open &__down {
+    display: block;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    padding-left: 14px;
+    padding-right: 7px;
+
+    margin-top: 6px;
+
+    &:not(:first-child) {
+      margin-top: 7px;
+    }
+  }
+
+  &__units {
+    flex-grow: 1;
+
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    margin-top: 0;
+    margin-bottom: 3px;
+    margin-right: 10px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  &__counter-button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+
+    flex-shrink: 0;
+
+    border-radius: 22px;
+    border: 1px solid rgba(31, 32, 65, 0.5);
+
+    background-color: transparent;
+
+    font-family: montserrat, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(31, 32, 65, 0.5);
+
+    text-align: center;
+
+    cursor: pointer;
+
+    &::selection {
+      background: transparent;
+    }
+
+    &:active {
+      transform: scale(0.85);
+    }
+
+    &:disabled {
+      border: 1px solid rgba(31, 32, 65, 0.25);
+
+      pointer-events: none;
+
+      cursor: default;
+    }
+  }
+
+  &__quantity {
+    text-align: center;
+
+    border: 0;
+    outline: 0;
+
+    width: 28px;
+
+    margin-bottom: 4px;
+
+    font-size: 12px;
+    color: #1f2041;
+    font-family: montserrat, Arial, sans-serif;
+    font-weight: bold;
+
+    background: transparent;
+
+    cursor: default;
+
+    flex-shrink: 0;
+
+    -moz-appearance: textfield; // скрыть родные кнопочки + и - в Firefox
+
+    &::-webkit-outer-spin-button,&::-webkit-inner-spin-button { // скрыть родные кнопочки + и - в Chrome, Safari, Edge, Opera
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &::placeholder {
+      color: #1f2041;
+    }
+
+    &::selection {
+      background: transparent;
+    }
+
+    &:focus {
+      text-shadow: 0 0 10px rgba(31, 32, 65);
+    }
+  }
+
+  &__button {
+    background-color: transparent;
+
+    padding: 20px 7px 12px 13px;
+
+    border: 0;
+    outline: 0;
+
+    font-family: montserrat, Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: bold;
+    color: #bc9cff;
+
+    cursor: pointer;
+
+    &::selection {
+      background: transparent;
+    }
+
+    &:active {
+      transform: scale(0.85);
+    }
+
+    &:disabled {
+      color: rgba(31, 32, 65, 0.5);
+
+      pointer-events: none;
+
+      cursor: default;
+    }
+  }
 }
 
 @media all and (max-width: 400px) {
   .dropdown {
     width: 266px;
   }
-}
-
-.dropdown_size_narrow {
-  width: 266px;
-}
-
-.dropdown__header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.dropdown__label {
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  margin: 0 0 5px 0;
-}
-
-.dropdown__label::selection {
-  background: transparent;
-}
-
-.dropdown__label:nth-child(2) {
-  font-weight: normal;
-  color: rgba(31, 32, 65, 0.5);
-}
-
-.dropdown__item {
-  .dropdown__label {
-    flex-grow: 1;
-    margin: 0;
-
-    line-height: 24px;
-  }
-}
-
-.dropdown__drop {
-  height: 42px;
-
-  border: 1px solid rgba(31, 32, 65, 0.25);
-  border-radius: 4px;
-
-  position: relative;
-
-  background: white;
-}
-
-.dropdown_open {
-  .dropdown__drop {
-    border: 1px solid rgba(31, 32, 65, 0.5);
-
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-}
-
-.dropdown__value {
-  display: flex;
-  justify-content: space-between;
-
-  font-size: 14px;
-  line-height: 42px;
-  color: rgba(31, 32, 65, 0.75);
-
-  padding: 0 0 0 15px;
-
-  cursor: pointer;
-
-  margin: 0;
-}
-
-.dropdown__value::selection {
-  background: transparent;
-}
-
-.dropdown__value::after {
-  content: 'expand_more';
-
-  font-family: material-icons, Arial, sans-serif;
-  font-size: 24px;
-  line-height: 42px;
-  color: rgba(31, 32, 65, 0.5);
-
-  width: 44px;
-  text-align: center;
-}
-
-.dropdown_open {
-  .dropdown__value::after {
-    content: 'expand_less';
-  }
-}
-
-.dropdown__down {
-  width: inherit;
-  height: 43px; // javascript перекроет это свойство записью прямо в html
-  box-sizing: border-box;
-
-  padding: 0 0 7px 0;
-
-  background: white;
-
-  position: absolute;
-
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column-reverse;
-
-  border: 1px solid rgba(31, 32, 65, 0.5);
-  border-radius: 4px;
-}
-
-.dropdown_open {
-  .dropdown__down {
-    box-shadow: 0 10px 20px 0 rgba(31, 32, 65, 0.05);
-  }
-}
-
-.dropdown__item {
-  height: 30px;
-
-  padding: 0 7px 0 14px;
-  margin: 7px 0 0 0;
-
-  flex-shrink: 0;
-
-  display: flex;
-}
-
-.dropdown__counter-button {
-  width: 28px;
-  height: 28px;
-  padding: 0;
-
-  border-radius: 22px;
-  border: 1px solid rgba(31, 32, 65, 0.5);
-
-  background-color: transparent;
-
-  font-family: montserrat, Arial, sans-serif;
-  font-size: 18px;
-  line-height: 28px;
-  color: rgba(31, 32, 65, 0.5);
-
-  text-align: center;
-
-  cursor: pointer;
-}
-
-.dropdown__counter-button::selection {
-  background: transparent;
-}
-
-.dropdown__counter-button:disabled {
-  border: 1px solid rgba(31, 32, 65, 0.25);
-
-  pointer-events: none;
-
-  cursor: default;
-}
-
-.dropdown__counter-button:active {
-  transform: scale(0.9);
-}
-
-.dropdown__quantity {
-  text-align: center;
-
-  border: 0;
-  outline: 0;
-  width: 30px;
-  height: 22px;
-
-  font-size: 12px;
-  line-height: 22px;
-  color: #1f2041;
-  font-family: montserrat, Arial, sans-serif;
-  font-weight: bold;
-
-  background: transparent;
-
-  cursor: default;
-
-  -moz-appearance: textfield; // скрыть родные кнопочки + и - в Firefox
-}
-
-.dropdown__quantity::selection {
-  background: transparent;
-}
-
-.dropdown__quantity::-webkit-outer-spin-button, // скрыть родные кнопочки + и - в Chrome, Safari, Edge, Opera
-.dropdown__quantity::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.dropdown__button-container {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row-reverse;
-
-  flex-shrink: 0;
-}
-
-.dropdown__button {
-  background-color: transparent;
-
-  margin: 18px 7px 6px 14px;
-  padding: 0;
-
-  border: 0;
-  outline: 0;
-
-  height: 15px;
-
-  font-family: montserrat, Arial, sans-serif;
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: bold;
-  color: #bc9cff;
-
-  cursor: pointer;
-}
-
-.dropdown__button::selection {
-  background: transparent;
-}
-
-.dropdown__button:active {
-  transform: scale(0.95);
-}
-
-.dropdown__button:disabled {
-  color: rgba(31, 32, 65, 0.5);
-
-  pointer-events: none;
-
-  cursor: default;
 }
