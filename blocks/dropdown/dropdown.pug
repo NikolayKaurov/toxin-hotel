@@ -9,12 +9,13 @@ mixin dropdown(options={})
       confirm = false, //- есть кнопка "применить"
       items = [], //- строки в выпадающем элементе
     } = options;
+
     let modifier = '';
     if (narrow) {
       modifier = 'dropdown_width_narrow';
     }
 
-  .dropdown.js-dropdown(class= modifier)
+  .dropdown.js-dropdown(class= modifier tabindex="0")
     .dropdown__wrapper
       if (header)
         p.dropdown__header= header
@@ -31,16 +32,30 @@ mixin dropdown(options={})
             max = 99,
             surplus = false, //- данное поле не самостоятельное, а прибавляется к предыдущему
           } = item;
+
+          const unitsArray = units.split(' ');
+
+          let [, nominative, genitive, genitivePlural] = unitsArray;
+          if (nominative === undefined) {
+            nominative = units;
+          }
+          if (genitive === undefined) {
+            genitive = nominative;
+          }
+          if (genitivePlural === undefined) {
+            genitivePlural = genitive;
+          }
+
         .dropdown__item.js-dropdown__item(
-          data-units= units
           data-value=""
           data-quantity="0"
-          data-min= min
-          data-max= max
           data-surplus= surplus
+          data-nominative= nominative
+          data-genitive= genitive
+          data-genitivePlural= genitivePlural
         )
-          p.dropdown__units.js-dropdown__units
-          button.dropdown__counter-button.js-dropdown__counter-button_action_minus(
+          p.dropdown__units.js-dropdown__units= unitsArray[0]
+          button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_minus(
             disabled
             tabindex="-1"
             type="button"
@@ -52,8 +67,9 @@ mixin dropdown(options={})
             min="0"
             max= max
             step="1"
+            data-previous="0"
           )
-          button.dropdown__counter-button.js-dropdown__counter-button_action_plus(
+          button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_plus(
             tabindex="-1"
             type="button"
           ) +

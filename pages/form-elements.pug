@@ -31,49 +31,52 @@ include ../blocks/bullet-list/bullet-list
         label: 'text field',
         description: 'hover / focus',
       })
-      +dropdown({
-        placeholder: 'Сколько гостей',
-        header: 'dropdown',
-        clear: true,
-        items:[
-          {
-            name: 'adult',
-            units: 'взрослые гость гостя гостей',
-          },
-          {
-            name: 'child',
-            units: 'дети ребёнок ребёнка детей',
-          },
-          {
-            name: 'baby',
-            units: 'младенцы младенец младенца младенцев',
-          },
-          {
-            name: 'hobo',
-            units: 'бомжы бомж бомжа бомжей',
-          },
-          {
-            name: 'live',
-            units: 'жильцы жилец жильца жильцов',
-          },
-        ]
-      })
+      .form-elements__dropdown
+        +dropdown({
+          placeholder: 'Сколько гостей',
+          header: 'dropdown',
+          clear: true,
+          items:[
+            {
+              name: 'adult',
+              units: 'взрослые гость гостя гостей',
+            },
+            {
+              name: 'child',
+              units: 'дети ребёнок ребёнка детей',
+            },
+            {
+              name: 'baby',
+              units: 'младенцы младенец младенца младенцев',
+            },
+            {
+              name: 'hobo',
+              units: 'бомжы бомж бомжа бомжей',
+            },
+            {
+              name: 'live',
+              units: 'жильцы жилец жильца жильцов',
+            },
+          ]
+        })
       +text-field({
         name: 'birth',
         label: 'masked text field',
         type: 'date',
       })
-      +datepicker({
-        name: 'date-regular',
-        headerArrival: 'date dropdown',
-        headerDeparture: 'date dropdown',
-        headerCommon: 'даты пребывания в отеле',
-      })
-      +datepicker({
-        name: 'date-filter',
-        headerCommon: 'filter date dropdown',
-        modifier: 'filter',
-      })
+      .form-elements__dropdown
+        +datepicker({
+          name: 'date-regular',
+          headerArrival: 'date dropdown',
+          headerDeparture: 'date dropdown',
+          headerCommon: 'даты пребывания в отеле',
+        })
+      .form-elements__dropdown
+        +datepicker({
+          name: 'date-filter',
+          headerCommon: 'filter date dropdown',
+          modifier: 'filter',
+        })
       .form-elements__label subscription text field
       +subscription({ wide: true })
     .form-elements__item
@@ -185,113 +188,117 @@ include ../blocks/bullet-list/bullet-list
       .form-elements__label pagination
       +paginator({ length: 15 })
     .form-elements__item
-      +dropdown({
-        placeholder: 'Сколько комнат',
-        header: 'dropdown',
-        description: 'default',
-        narrow: true,
-        items: [
-          {
-            name: 'bedroom',
-            units: 'спальни спальня спальни спален'
-          },
-          {
-            name: 'bed',
-            units: 'кровати кровать кровати кроватей'
-          },
-          {
-            name: 'bath',
-            units: 'ванные комнаты ванная ванных ванных'
-          },
-        ]
-      })
-      +dropdown({
-        placeholder: 'Сколько комнат',
-        header: 'dropdown',
-        description: 'expanded',
-        narrow: true,
-        items: [
-          {
-            name: 'bedroom',
-            units: 'спальни спальня спальни спален'
-          },
-          {
-            name: 'bed',
-            units: 'кровати кровать кровати кроватей'
-          },
-          {
-            name: 'bath',
-            units: 'ванные комнаты ванная ванных ванных'
-          },
-        ]
-      })
-      +checkbox({
-        id: 'expand-1',
-        expand: 'expandable checkbox list',
-        items: [
-          {
-            name: 'breakfast',
-            text: 'Завтрак',
-          },
-          {
-            text: 'Письменный стол',
-            name: 'table',
-            checked: true,
-          },
-          {
-            text: 'Стул для кормления',
-            name: 'chair',
-            checked: true,
-          },
-          {
-            text: 'Кроватка',
-            name: 'bed',
-            checked: true,
-          },
-          {
-            text: 'Телевизор',
-            name: 'tv',
-          },
-          {
-            text: 'Шампунь',
-            name: 'shampoo',
-          },
-        ],
-      })
-      +checkbox({
-        id: 'expand-2',
-        expand: 'expandable checkbox list',
-        open: true,
-        items: [
-          {
-            text: 'Завтрак',
-            name: 'breakfast',
-          },
-          {
-            text: 'Письменный стол',
-            name: 'table',
-            checked: true,
-          },
-          {
-            text: 'Стул для кормления',
-            name: 'chair',
-            checked: true,
-          },
-          {
-            text: 'Кроватка',
-            name: 'bed',
-            checked: true,
-          },
-          {
-            text: 'Телевизор',
-            name: 'tv',
-          },
-          {
-            text: 'Шампунь',
-            name: 'shampoo',
-          },
-        ],
-      })
+      .form-elements__dropdown
+        +dropdown({
+          placeholder: 'Сколько комнат',
+          header: 'dropdown',
+          description: 'default',
+          narrow: true,
+          items: [
+            {
+              name: 'bedroom',
+              units: 'спальни спальня спальни спален'
+            },
+            {
+              name: 'bed',
+              units: 'кровати кровать кровати кроватей'
+            },
+            {
+              name: 'bath',
+              units: 'ванные комнаты ванная ванных ванных'
+            },
+          ]
+        })
+      .form-elements__dropdown
+        +dropdown({
+          placeholder: 'Сколько комнат',
+          header: 'dropdown',
+          description: 'expanded',
+          narrow: true,
+          items: [
+            {
+              name: 'bedroom',
+              units: 'спальни спальня спальни спален'
+            },
+            {
+              name: 'bed',
+              units: 'кровати кровать кровати кроватей'
+            },
+            {
+              name: 'bath',
+              units: 'ванные комнаты ванная ванных ванных'
+            },
+          ]
+        })
+      .form-elements__dropdown
+        +checkbox({
+          id: 'expand-1',
+          expand: 'expandable checkbox list',
+          items: [
+            {
+              name: 'breakfast',
+              text: 'Завтрак',
+            },
+            {
+              text: 'Письменный стол',
+              name: 'table',
+              checked: true,
+            },
+            {
+              text: 'Стул для кормления',
+              name: 'chair',
+              checked: true,
+            },
+            {
+              text: 'Кроватка',
+              name: 'bed',
+              checked: true,
+            },
+            {
+              text: 'Телевизор',
+              name: 'tv',
+            },
+            {
+              text: 'Шампунь',
+              name: 'shampoo',
+            },
+          ],
+        })
+      .form-elements__dropdown
+        +checkbox({
+          id: 'expand-2',
+          expand: 'expandable checkbox list',
+          open: true,
+          items: [
+            {
+              text: 'Завтрак',
+              name: 'breakfast',
+            },
+            {
+              text: 'Письменный стол',
+              name: 'table',
+              checked: true,
+            },
+            {
+              text: 'Стул для кормления',
+              name: 'chair',
+              checked: true,
+            },
+            {
+              text: 'Кроватка',
+              name: 'bed',
+              checked: true,
+            },
+            {
+              text: 'Телевизор',
+              name: 'tv',
+            },
+            {
+              text: 'Шампунь',
+              name: 'shampoo',
+            },
+          ],
+        })
       +advantage([
         {
           text: 'Комфорт',
@@ -304,25 +311,26 @@ include ../blocks/bullet-list/bullet-list
         },
       ])
     .form-elements__item
-      +dropdown({
-        placeholder: 'Сколько гостей',
-        header: 'dropdown',
-        confirm: true,
-        items: [
-          {
-            name: 'adult',
-            units: 'взрослые гость гостя гостей'
-          },
-          {
-            name: 'child',
-            units: 'дети'
-          },
-          {
-            name: 'baby',
-            units: 'младенцы младенец младенца младенцев'
-          },
-        ]
-      })
+      .form-elements__dropdown
+        +dropdown({
+          placeholder: 'Сколько гостей',
+          header: 'dropdown',
+          confirm: true,
+          items: [
+            {
+              name: 'adult',
+              units: 'взрослые гость гостя гостей'
+            },
+            {
+              name: 'child',
+              units: 'дети'
+            },
+            {
+              name: 'baby',
+              units: 'младенцы младенец младенца младенцев'
+            },
+          ]
+        })
       .form-elements__label Rich Checkbox Buttons
       +checkbox({
         items: [
@@ -346,26 +354,27 @@ include ../blocks/bullet-list/bullet-list
           text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.',
         })
     .form-elements__item
-      +dropdown({
-        placeholder: 'Сколько гостей',
-        header: 'dropdown',
-        clear: true,
-        confirm: true,
-        items: [
-          {
-            name: 'adult',
-            units: 'взрослые гость гостя гостей',
-          },
-          {
-            name: 'child',
-            units: 'дети',
-          },
-          {
-            name: 'baby',
-            units: 'младенцы младенец младенца младенцев',
-          },
-        ]
-      })
+      .form-elements__dropdown
+        +dropdown({
+          placeholder: 'Сколько гостей',
+          header: 'dropdown',
+          clear: true,
+          confirm: true,
+          items: [
+            {
+              name: 'adult',
+              units: 'взрослые гость гостя гостей',
+            },
+            {
+              name: 'child',
+              units: 'дети',
+            },
+            {
+              name: 'baby',
+              units: 'младенцы младенец младенца младенцев',
+            },
+          ]
+        })
       .form-elements__label bullet-list
       +bullet-list([
         'Нельзя с питомцами',

@@ -243,20 +243,20 @@ function handleDatepickerFocusin(event) {
 
     $datepickerIN.removeClass('datepicker_open');
 
-    $(window).off('focusin mousedown', closeIN);
+    $(window).off('focusin focusout mousedown', closeIN);
 
     $datepickerIN
-      .off('focusin', stop)
+      .off('focusin focusout', stop)
       .on('focusin', { datepicker: datepickerIN }, handleDatepickerFocusin);
   };
 
   $datepicker.addClass('datepicker_open datepicker_just-now-focused');
 
-  $(window).on('focusin mousedown', { datepicker, close }, close);
+  $(window).on('focusin focusout mousedown', { datepicker, close }, close);
 
   $datepicker
     .off('focusin', handleDatepickerFocusin)
-    .on('focusin', stop);
+    .on('focusin  focusout', stop);
 }
 
 function handleDatepickerMousedown(event) {

@@ -1,6 +1,8 @@
 .dropdown {
   width: 320px;
 
+  outline: 0;
+
   position: relative;
 
   &_width_narrow {
@@ -147,6 +149,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 
+    cursor: default;
+
     &::selection {
       background: transparent;
     }
@@ -211,6 +215,8 @@
 
     flex-shrink: 0;
 
+    caret-color: transparent;
+
     -moz-appearance: textfield; // скрыть родные кнопочки + и - в Firefox
 
     &::-webkit-outer-spin-button,&::-webkit-inner-spin-button { // скрыть родные кнопочки + и - в Chrome, Safari, Edge, Opera
@@ -220,6 +226,8 @@
 
     &::placeholder {
       color: #1f2041;
+
+      opacity: 1;
     }
 
     &::selection {
