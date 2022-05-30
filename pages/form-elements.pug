@@ -36,26 +36,50 @@ include ../blocks/bullet-list/bullet-list
           placeholder: 'Сколько гостей',
           header: 'dropdown',
           clear: true,
+          confirm: true,
           items:[
             {
               name: 'adult',
               units: 'взрослые гость гостя гостей',
+              min: 1,
+              max: 9,
             },
             {
               name: 'child',
               units: 'дети ребёнок ребёнка детей',
+              max: 9,
+              surplus: 'surplus',
             },
             {
               name: 'baby',
               units: 'младенцы младенец младенца младенцев',
+              max: 4,
             },
             {
               name: 'hobo',
               units: 'бомжы бомж бомжа бомжей',
+              min: 4,
             },
             {
-              name: 'live',
-              units: 'жильцы жилец жильца жильцов',
+              name: 'hobo1',
+              units: 'бродяги',
+              surplus: 'surplus',
+            },
+            {
+              name: 'hobo2',
+              units: 'алкашы',
+              surplus: 'surplus',
+            },
+            {
+              name: 'mars',
+              units: 'марсиане марсианин марсианина марсиан',
+              max: 17,
+              min: 3,
+            },
+            {
+              name: 'moon',
+              units: 'лунатики лунатик лунатика лунатиков',
+              max: 23,
             },
           ]
         })
@@ -197,11 +221,13 @@ include ../blocks/bullet-list/bullet-list
           items: [
             {
               name: 'bedroom',
-              units: 'спальни спальня спальни спален'
+              units: 'спальни спальня спальни спален',
+              min: 1,
             },
             {
               name: 'bed',
-              units: 'кровати кровать кровати кроватей'
+              units: 'кровати кровать кровати кроватей',
+              min: 1,
             },
             {
               name: 'bath',
@@ -218,11 +244,14 @@ include ../blocks/bullet-list/bullet-list
           items: [
             {
               name: 'bedroom',
-              units: 'спальни спальня спальни спален'
+              units: 'спальни спальня спальни спален',
+              min: 1,
+
             },
             {
               name: 'bed',
-              units: 'кровати кровать кровати кроватей'
+              units: 'кровати кровать кровати кроватей',
+              min: 1,
             },
             {
               name: 'bath',
@@ -319,15 +348,20 @@ include ../blocks/bullet-list/bullet-list
           items: [
             {
               name: 'adult',
-              units: 'взрослые гость гостя гостей'
+              units: 'взрослые гость гостя гостей',
+              min: 1,
+              max: 9,
             },
             {
               name: 'child',
-              units: 'дети'
+              units: 'дети',
+              surplus: 'surplus',
+              max: 9,
             },
             {
               name: 'baby',
-              units: 'младенцы младенец младенца младенцев'
+              units: 'младенцы младенец младенца младенцев',
+              max: 5,
             },
           ]
         })
@@ -364,14 +398,19 @@ include ../blocks/bullet-list/bullet-list
             {
               name: 'adult',
               units: 'взрослые гость гостя гостей',
+              min: 1,
+              max: 9,
             },
             {
               name: 'child',
               units: 'дети',
+              surplus: 'surplus',
+              max: 9,
             },
             {
               name: 'baby',
               units: 'младенцы младенец младенца младенцев',
+              max: 5,
             },
           ]
         })
@@ -381,4 +420,3 @@ include ../blocks/bullet-list/bullet-list
         'Без вечеринок и мероприятий',
         'Время прибытия — после 13:00, а выезд до 12:00',
       ])
-

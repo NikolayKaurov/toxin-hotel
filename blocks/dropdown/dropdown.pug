@@ -21,7 +21,7 @@ mixin dropdown(options={})
         p.dropdown__header= header
       if (description)
         p.dropdown__header= description
-    .dropdown__drop.js-dropdown__drop= placeholder
+    .dropdown__drop.js-dropdown__drop(data-placeholder= placeholder)= placeholder
     .dropdown__down.js-dropdown__down
       each item in items
         -
@@ -30,7 +30,7 @@ mixin dropdown(options={})
             units = 'units', //- подпись для поля ввода с падежами
             min = 0, //- минимальное значение для активации кнопки "ПРИМЕНИТЬ"
             max = 99,
-            surplus = false, //- данное поле не самостоятельное, а прибавляется к предыдущему
+            surplus = '', //- данное поле не самостоятельное, а прибавляется к предыдущему
           } = item;
 
           const unitsArray = units.split(' ');
@@ -46,14 +46,7 @@ mixin dropdown(options={})
             genitivePlural = genitive;
           }
 
-        .dropdown__item.js-dropdown__item(
-          data-value=""
-          data-quantity="0"
-          data-surplus= surplus
-          data-nominative= nominative
-          data-genitive= genitive
-          data-genitivePlural= genitivePlural
-        )
+        .dropdown__item.js-dropdown__item
           p.dropdown__units.js-dropdown__units= unitsArray[0]
           button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_minus(
             disabled
@@ -67,7 +60,14 @@ mixin dropdown(options={})
             min="0"
             max= max
             step="1"
+            data-surplus= surplus
             data-previous="0"
+            data-quantity="0"
+            data-nominative= nominative
+            data-genitive= genitive
+            data-genitivePlural= genitivePlural
+            data-value=""
+            data-min= min
           )
           button.dropdown__counter-button.js-dropdown__counter-button.js-dropdown__counter-button_action_plus(
             tabindex="-1"

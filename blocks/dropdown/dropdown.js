@@ -4,7 +4,7 @@ const pressingTime = 500; // время зажатия кнопки счётчи
 const changeInterval = 75; // интервал изменения счётчика при зажатой кнопке
 
 // Количество элементов в общей строке: '3 гостя, 1 младенец' - 2 элемента
-// const numberItemsInValue = 2;
+const maxNumberItems = 99;
 
 class Dropdown {
   constructor(dropdown) {
@@ -14,16 +14,21 @@ class Dropdown {
   init() {
     this.$dropdown
       .on('mousedown', { dropdown: this }, handleDropdownMousedown)
+      .on('input', { dropdown: this }, handleDropdownInput)
       .on('focusin', { dropdown: this }, handleDropdownFocusin);
 
     this.$drop = $('.js-dropdown__drop', this.$dropdown);
 
-    this.firstQuantity = $('.js-dropdown__quantity', this.$dropdown).get(0);
+    this.$quantities = $('.js-dropdown__quantity', this.$dropdown);
+
+    this.firstQuantity = this.$quantities.get(0);
 
     $('.js-dropdown__item', this.$dropdown).each((index, item) => {
       const $item = $(item);
 
-      const $quantity = $('.js-dropdown__quantity', $item).val('');
+      const $quantity = $('.js-dropdown__quantity', $item)
+        .on('keydown', handleQuantityKeydown)
+        .val('');
 
       const $minus = $('.js-dropdown__counter-button_action_minus', $item)
         .on('mousedown', { $quantity }, handleMinusMousedown);
@@ -32,7 +37,7 @@ class Dropdown {
         .on('mousedown', { $quantity }, handlePlusMousedown);
 
       $quantity
-        .on('input', { $item, $minus, $plus }, handleQuantityInput);
+        .on('input', { $minus, $plus }, handleQuantityInput);
 
       $('.js-dropdown__counter-button', $item)
         .on('mouseup mouseout', { $quantity }, handleCounterButtonMouseup);
@@ -40,6 +45,12 @@ class Dropdown {
 
     $('.js-dropdown__down', this.$dropdown)
       .on('mousedown', stop);
+
+    this.$clear = $('.js-dropdown__button_action_clear', this.$dropdown)
+      .on('mousedown', { dropdown: this }, handleClearMousedown);
+
+    this.$confirm = $('.js-dropdown__button_action_confirm', this.$dropdown)
+      .on('mousedown', { dropdown: this }, handleConfirmMousedown);
   }
 }
 
@@ -84,6 +95,101 @@ function handleDropdownFocusin(event) {
   firstQuantity.focus();
 }
 
+function handleDropdownInput(event) {
+  const { dropdown } = event.data;
+  const {
+    $drop,
+    $quantities,
+    $clear,
+    $confirm,
+  } = dropdown;
+
+  const quantities = $quantities.get();
+
+  let empty = true;
+  let enough = true;
+
+  let numberItems = 0;
+
+  quantities.reduceRight((previous, input) => {
+    const $input = $(input);
+
+    const quantity = $input.attr('data-quantity');
+    const surplus = $input.attr('data-surplus');
+    const nominative = $input.attr('data-nominative');
+    const genitive = $input.attr('data-genitive');
+    const genitivePlural = $input.attr('data-genitivePlural');
+    const min = parseInt($input.attr('data-min'), 10);
+
+    let value = parseInt(quantity, 10);
+
+    if (value > 0) {
+      empty = false;
+    }
+
+    if (value < min) {
+      enough = false;
+    }
+
+    value += previous;
+
+    if (surplus === 'surplus') {
+      return value;
+    }
+
+    const lastTwoDigits = value % 100;
+    const lastDigit = value % 10;
+
+    const genitivePluralValue = (lastTwoDigits > 4 && lastTwoDigits < 21)
+      || lastDigit > 4
+      || lastDigit === 0;
+
+    if (value === 0) {
+      $input.attr('data-value', '');
+    } else if (genitivePluralValue) {
+      $input.attr('data-value', `${value} ${genitivePlural}`);
+    } else if (lastDigit === 1) {
+      $input.attr('data-value', `${value} ${nominative}`);
+    } else {
+      $input.attr('data-value', `${value} ${genitive}`);
+    }
+
+    return 0;
+  }, 0);
+
+  const common = quantities.reduce((previous, input) => {
+    const $input = $(input);
+    const value = $input.attr('data-value');
+
+    if (value !== '') {
+      numberItems += 1;
+
+      if (numberItems === maxNumberItems + 1) {
+        return `${previous}...`;
+      }
+
+      if (numberItems > maxNumberItems + 1) {
+        return previous;
+      }
+    }
+
+    if (value !== '' && previous !== '') {
+      return `${previous}, ${value}`;
+    }
+
+    return `${previous}${value}`;
+  }, '');
+
+  if (common !== '') {
+    $drop.text(common);
+  } else {
+    $drop.text($drop.attr('data-placeholder'));
+  }
+
+  $clear.prop('disabled', empty);
+  $confirm.prop('disabled', !enough);
+}
+
 function handleMinusMousedown(event) {
   const { $quantity } = event.data;
   const $button = $(event.target);
@@ -125,13 +231,13 @@ function handleCounterButtonMouseup(event) {
 
 function handleQuantityInput(event) {
   const $input = $(event.target);
-  const { $item, $minus, $plus } = event.data;
+  const { $minus, $plus } = event.data;
 
   const previous = parseInt($input.attr('data-previous'), 10);
 
-  const val = $input.val();
+  const val = $input.val(); // СТРОКА
 
-  const value = parseInt(val, 10) || 0;
+  const value = parseInt(val, 10) || 0; // ЧИСЛО
 
   const max = $input.attr('max');
 
@@ -146,23 +252,61 @@ function handleQuantityInput(event) {
     return;
   }
 
-  $input.attr('data-previous', value);
+  $input.val(val.replace(/^0*/, ''));
+
+  $input
+    .attr('data-quantity', value)
+    .attr('data-previous', value);
 
   $minus.prop('disabled', !(value > 0));
 
   $plus.prop('disabled', !(value < max));
 
-  $item.attr('data-quantity', value);
-
   if (value < 1) {
     const timerID = parseInt($minus.attr('data-timerID'), 10);
+
     clearTimeout(timerID);
     clearInterval(timerID);
   } else if (value >= max) {
     const timerID = parseInt($plus.attr('data-timerID'), 10);
+
     clearTimeout(timerID);
     clearInterval(timerID);
   }
+}
+
+function handleQuantityKeydown(event) {
+  const $input = $(event.target);
+  const { keyCode } = event;
+
+  const val = $input.val();
+
+  if (keyCode === 8 || keyCode === 46) {
+    event.preventDefault();
+
+    $input.val(val.replace(/.$/, ''));
+    $input.trigger('input');
+  }
+}
+
+function handleClearMousedown(event) {
+  const { $dropdown, $quantities } = event.data.dropdown;
+
+  $quantities.each((index, input) => {
+    const $input = $(input);
+
+    $input
+      .val('')
+      .triggerHandler('input');
+  });
+
+  $dropdown.trigger('input');
+}
+
+function handleConfirmMousedown(event) {
+  const { $dropdown } = event.data.dropdown;
+
+  $dropdown.removeClass('dropdown_open');
 }
 
 function minus($input) {
@@ -187,14 +331,14 @@ function plus($input) {
   $input.trigger('input');
 }
 
-function fastPlus($input, $button) {
-  const timerID = setInterval(plus, changeInterval, $input);
+function fastMinus($input, $button) {
+  const timerID = setInterval(minus, changeInterval, $input);
 
   $button.attr('data-timerID', timerID);
 }
 
-function fastMinus($input, $button) {
-  const timerID = setInterval(minus, changeInterval, $input);
+function fastPlus($input, $button) {
+  const timerID = setInterval(plus, changeInterval, $input);
 
   $button.attr('data-timerID', timerID);
 }
