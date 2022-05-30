@@ -279,12 +279,44 @@ function handleQuantityKeydown(event) {
   const $input = $(event.target);
   const { keyCode } = event;
 
-  const val = $input.val();
+  const max = $input.attr('max');
+
+  let val = $input.val();
 
   if (keyCode === 8 || keyCode === 46) {
     event.preventDefault();
 
     $input.val(val.replace(/.$/, ''));
+    $input.trigger('input');
+  } else if (keyCode > 47 && keyCode < 58) {
+    event.preventDefault();
+
+    const digit = keyCode - 48;
+
+    val = `${val}${digit}`;
+    let value = parseInt(val, 10);
+
+    let invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
+
+    if (invalid) {
+      val = val.replace(/^./, '');
+      value = parseInt(val, 10);
+
+      invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
+
+      if (invalid) {
+        val = val.replace(/^./, '');
+        value = parseInt(val, 10);
+
+        invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
+
+        if (invalid) {
+          return;
+        }
+      }
+    }
+
+    $input.val(val);
     $input.trigger('input');
   }
 }
