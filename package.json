@@ -1,5 +1,5 @@
 {
-  "name": "NikolayKaurov.github.io",
+  "name": "toxin-hotel",
   "version": "1.0.0",
   "description": "readme.md",
   "main": "webpack.config.js",
@@ -10,21 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NikolayKaurov/NikolayKaurov.github.io.git"
+    "url": "git+https://github.com/NikolayKaurov/toxin-hotel.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NikolayKaurov/NikolayKaurov.github.io/issues"
+    "url": "https://github.com/NikolayKaurov/toxin-hotel/issues"
   },
-  "homepage": "https://github.com/NikolayKaurov/NikolayKaurov.github.io#readme",
+  "homepage": "https://github.com/NikolayKaurov/toxin-hotel#readme",
   "devDependencies": {
     "@types/jquery": "^3.5.14",
-    "acorn": "^8.7.0",
+    "acorn": "^8.7.1",
     "ajv": "^8.11.0",
     "css-loader": "^6.7.1",
-    "eslint": "^8.13.0",
+    "eslint": "^8.16.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-fsd": "^1.0.1",
     "eslint-plugin-import": "^2.26.0",
@@ -33,21 +33,21 @@
     "mini-css-extract-plugin": "^2.6.0",
     "pug": "^3.0.2",
     "resolve-url-loader": "^4.0.0",
-    "sass": "^1.50.0",
+    "sass": "^1.52.1",
     "sass-loader": "^12.6.0",
     "simple-pug-loader": "^0.2.1",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
-    "ts-loader": "^9.2.8",
-    "typescript": "^4.6.3",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.2",
     "uuid": "^8.3.2",
-    "webpack": "^5.72.0",
+    "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
     "jquery": "^3.6.0",
     "jsdom": "^19.0.0",
-    "toxin-slider": "^1.0.0"
+    "toxin-slider": "^1.0.1"
   }
 }

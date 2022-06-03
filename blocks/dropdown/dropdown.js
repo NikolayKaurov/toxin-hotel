@@ -21,8 +21,6 @@ class Dropdown {
 
     this.$quantities = $('.js-dropdown__quantity', this.$dropdown);
 
-    this.firstQuantity = this.$quantities.get(0);
-
     $('.js-dropdown__item', this.$dropdown).each((index, item) => {
       const $item = $(item);
 
@@ -64,7 +62,7 @@ function handleDropdownMousedown(event) {
 
 function handleDropdownFocusin(event) {
   const { dropdown } = event.data;
-  const { $dropdown, firstQuantity } = dropdown;
+  const { $dropdown } = dropdown;
 
   const close = (eventIN) => {
     const { close: closeIN, dropdown: dropdownIN } = eventIN.data;
@@ -91,8 +89,6 @@ function handleDropdownFocusin(event) {
   $dropdown
     .off('focusin', handleDropdownFocusin)
     .on('focusin focusout', stop);
-
-  firstQuantity.focus();
 }
 
 function handleDropdownInput(event) {

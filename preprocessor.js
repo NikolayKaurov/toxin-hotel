@@ -98,7 +98,7 @@ function createPUGHeaders(useBEMEntities) {
 }
 
 function createSCSSHeaders(useBEMEntities) {
-  let scssHeaders = '@use \'fonts/fonts\';\n';
+  let scssHeaders = '@use \'assets/fonts/fonts\';\n';
 
   Object.keys(useBEMEntities).forEach((entity) => {
     if (fs.existsSync(`${useBEMEntities[entity]}${slash}_${entity}.scss`)) {
