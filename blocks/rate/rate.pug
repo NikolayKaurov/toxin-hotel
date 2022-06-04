@@ -5,12 +5,14 @@ mixin rate(options={})
       enabled = false,
     } = options;
     let rateClass = '';
+    let tabindex = '';
     if (enabled) {
       rateClass = 'rate_enabled';
+      tabindex = '0';
     }
     let i = 0;
 
-  .rate.js-rate(class= rateClass data-rating= rating)
+  .rate.js-rate(class= rateClass data-rating= rating tabindex= tabindex)
     while i < 5
       - i += 1;
       .rate__star.js-rate__star(data-rating= i)

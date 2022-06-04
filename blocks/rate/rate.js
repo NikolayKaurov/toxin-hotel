@@ -1,7 +1,37 @@
 import $ from 'jquery';
 
+class Rate {
+  constructor(rate) {
+    this.$rate = $(rate);
+
+    this.rating = parseInt(this.$rate.attr('data-rating'), 10);
+  }
+
+  init() {
+    this.$rate
+      .on('mouseover', '.js-rate__star', { rate: this }, handleStarMouseover)
+      .on('mouseout', '.js-rate__star', { rate: this }, handleStarMouseout)
+      .on('mousedown', '.js-rate__star', { rate: this }, handleStarMousedown)
+      .on('keydown', { rate: this }, handleRateKeydown)
+      .append(`
+        <input
+          type="number"
+          class="rate__input js-rate__input"
+          name="rating"
+        >`);
+
+    this.$input = $('.js-rate__input').val(this.rating);
+  }
+
+  setRating(rating) {
+    this.rating = rating;
+  }
+}
+
 function handleStarMouseover(event) {
-  event.data.rate.$rate.attr('data-rating', $(event.target).data('rating'));
+  const { $rate } = event.data.rate;
+
+  $rate.attr('data-rating', $(event.target).attr('data-rating'));
 }
 
 function handleStarMouseout(event) {
@@ -12,40 +42,37 @@ function handleStarMouseout(event) {
 
 function handleStarMousedown(event) {
   const { rate } = event.data;
-  const rating = parseInt($(event.target).data('rating'), 10);
+  const rating = parseInt($(event.target).attr('data-rating'), 10);
 
   rate.setRating(rating);
   rate.$input.val(rating);
 }
 
-class Rate {
-  constructor(rate) {
-    this.$rate = $(rate);
+function handleRateKeydown(event) {
+  const { rate } = event.data;
+  const { keyCode } = event;
+  const { $rate, $input, rating } = rate;
 
-    this.rating = this.$rate.data('rating');
-  }
+  let newRating = rating;
 
-  init() {
-    this.$rate
-      .on('mouseover', '.js-rate__star', { rate: this }, handleStarMouseover)
-      .on('mouseout', '.js-rate__star', { rate: this }, handleStarMouseout)
-      .on('mousedown', '.js-rate__star', { rate: this }, handleStarMousedown)
-      .append(`
-        <input
-          type="number"
-          class="rate__input js-rate__input"
-          name="rating"
-        >`);
+  if (keyCode === 37 || keyCode === 39) {
+    event.preventDefault();
 
-    this.$input = $('.js-rate__input').val(parseInt(this.rating, 10));
-  }
+    if (keyCode === 37) {
+      if (rating > 1) {
+        newRating -= 1;
+      }
+    } else if (rating < 5) {
+      newRating += 1;
+    }
 
-  setRating(rating) {
-    this.rating = rating;
+    rate.setRating(newRating);
+    $input.val(newRating);
+    $rate.attr('data-rating', newRating);
   }
 }
 
-$('.js-rate.rate_enabled').each((index, element) => {
-  const rate = new Rate(element);
-  rate.init();
+$('.js-rate.rate_enabled').each((index, rate) => {
+  const jsRate = new Rate(rate);
+  jsRate.init();
 });
