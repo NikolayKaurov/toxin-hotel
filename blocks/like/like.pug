@@ -1,3 +1,7 @@
 mixin like(likes=0)
-  .like.js-like(data-likes= likes)
+  .like.js-like(
+    data-likes= likes
+    tabindex="0"
+  )
     .like__number.js-like__number= likes
+    input.like__input.js-like__input(type="number" name="likes")

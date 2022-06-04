@@ -6,6 +6,7 @@
 
   border: 1px solid rgba(31, 32, 65, 0.25);
   border-radius: 10px;
+  outline: 0;
 
   background: white;
 
@@ -14,62 +15,72 @@
   position: relative;
 
   cursor: pointer;
-}
 
-.like::before {
-  content: 'favorite_border';
+  &:focus {
+    box-shadow: 0 0 10px rgba(31, 32, 65, 0.5);
+  }
 
-  font-family: material-icons, Arial, sans-serif;
-  color: rgba(31, 32, 65, 0.25);
-  font-size: 10px;
-  line-height: 18px;
+  &:before {
+    content: 'favorite_border';
 
-  width: 18px;
-  height: 18px;
+    font-family: material-icons, Arial, sans-serif;
+    color: rgba(31, 32, 65, 0.25);
+    font-size: 10px;
+    line-height: 18px;
 
-  text-align: center;
+    width: 18px;
+    height: 18px;
 
-  position: absolute;
-}
+    text-align: center;
 
-.like::selection {
-  background: transparent;
-}
+    position: absolute;
+  }
 
-.like_active {
-  border: 1px solid #BC9CFF;
-}
+  &_active {
+    border: 1px solid #BC9CFF;
 
-.like_active::before {
-  content: 'favorite';
+    &:focus {
+      box-shadow: 0 0 10px #BC9CFF;
+    }
 
-  color: #BC9CFF;
-  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    &::before {
+      content: 'favorite';
 
-.like__number {
-  color: rgba(31, 32, 65, 0.25);
-  font-size: 10px;
-  line-height: 17px;
+      color: #BC9CFF;
+      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
 
-  height: 18px;
+  &__number {
+    color: rgba(31, 32, 65, 0.25);
+    font-size: 10px;
+    line-height: 17px;
 
-  text-align: center;
+    height: 18px;
 
-  position: relative;
-  left: 24px;
+    text-align: center;
 
-  transform: translate(-50%, 0);
-}
+    position: relative;
+    left: 24px;
 
-.like__number::selection {
-  background: transparent;
-}
+    transform: translate(-50%, 0);
 
-.like_active {
-  .like__number {
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  &_active &__number {
     color: #BC9CFF;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &::selection {
+    background: transparent;
   }
 }
