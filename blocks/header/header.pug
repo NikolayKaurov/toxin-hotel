@@ -3,15 +3,16 @@ mixin header(options={})
     const {
       user = '',
     } = options;
-    let headerClass = '';
-    if (user) {
-      headerClass = 'header_signed';
-    }
+    const rightmost = !user;
 
-  header.header(class= headerClass)
+  header.header
     .header__body
-      .header__item
+      if (user === '')
+        .header__item.header__item_visible
+          +logo
+      .header__item.header__item_hidden
         +burger({
+          rightmost,
           items: [
             {
               text: 'О нас',
@@ -74,9 +75,10 @@ mixin header(options={})
             },
           ]
         })
-      .header__item
-        +logo
-      .header__item
+      if (user !== '')
+        .header__item.header__item_visible.header__item_leftmost
+          +logo
+      .header__item.header__item_most
         +hyper({ text: 'О нас', bold: true })
       .header__item
         +burger({
@@ -123,8 +125,8 @@ mixin header(options={})
             },
           ],
         })
-      if (user)
-        .header__item
+      if (user !== '')
+        .header__item.header__item_visible
           .header__user= user
       else
         .header__item

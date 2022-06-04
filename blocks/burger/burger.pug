@@ -2,12 +2,17 @@ mixin burger(options={})
   -
     const {
       title = '',
+      rightmost = false,
       items = [],
     } = options;
     let burgerClass = '';
     if (title) {
       burgerClass = 'burger_titled';
     }
+    if (rightmost) {
+      burgerClass += ' burger_position_right';
+    }
+
   .burger.js-burger(tabindex="0" class= burgerClass)= title
     .burger__menu
       each item in items
