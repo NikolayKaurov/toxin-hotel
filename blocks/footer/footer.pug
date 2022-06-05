@@ -10,36 +10,36 @@ mixin footer(options={})
 
   footer.footer(class= footerClass)
     .footer__body
-      .footer__logo
+      .footer__item.footer__item_area_logo
         +logo
-      p.footer__paragraph Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
-      .footer__nav-header Навигация
-      .footer__about
+      p.footer__item.footer__item_area_paragraph Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
+      .footer__item.footer__item_area_nav-header.footer__item_weight_bold Навигация
+      .footer__item.footer__item_area_about
         +hyper({ text: 'О нас'})
-      .footer__news
+      .footer__item.footer__item_area_news
         +hyper({ text: 'Новости'})
-      .footer__help
+      .footer__item.footer__item_area_help
         +hyper({ text: 'Служба поддержки'})
-      .footer__service
+      .footer__item.footer__item_area_service
         +hyper({ text: 'Услуги'})
-      .footer__about-header О нас
-      .footer__about-service
+      .footer__item.footer__item_area_about-header.footer__item_weight_bold О нас
+      .footer__item.footer__item_area_about-service
         +hyper({ text: 'О сервисе'})
-      .footer__team
+      .footer__item.footer__item_area_team
         +hyper({ text: 'Наша команда'})
-      .footer__vacancy
+      .footer__item.footer__item_area_vacancy
         +hyper({ text: 'Вакансии'})
-      .footer__investors
+      .footer__item.footer__item_area_investors
         +hyper({ text: 'Инвесторы'})
-      .footer__help-header Служба поддержки
-      .footer__agreements
+      .footer__item.footer__item_area_help-header.footer__item_weight_bold Служба поддержки
+      .footer__item.footer__item_area_agreements
         +hyper({ text: 'Соглашения'})
-      .footer__communities
+      .footer__item.footer__item_area_communities
         +hyper({ text: 'Сообщества'})
-      .footer__contacts
+      .footer__item.footer__item_area_contacts
         +hyper({ text: 'Связь с нами'})
-      .footer__subscription-header Подписка
-      .footer__subscription
+      .footer__item.footer__item_area_subscription-header.footer__item_weight_bold Подписка
+      .footer__item.footer__item_area_subscription
         p.footer__subscription-paragraph Получайте специальные предложения и новости сервиса
         +subscription
     .footer__border

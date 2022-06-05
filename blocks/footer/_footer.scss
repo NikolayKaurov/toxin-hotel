@@ -1,16 +1,12 @@
 .footer {
   display: flex;
-
   align-items: center;
-
   flex-direction: column;
 
   background: white;
 
   width: 100%;
-  height: fit-content;
 
-  font-size: 14px;
   line-height: 24px;
   color: rgba(31, 32, 65, 0.75);
 
@@ -18,272 +14,243 @@
 
   flex-grow: 0;
   flex-shrink: 0;
-}
 
-.footer_width_narrow {
-  background: #e5e5e5;
-}
+  &_width_narrow {
+    background: #e5e5e5;
+  }
 
-.footer__body {
-  max-width: 1160px;
-  width: 80.56%;
-  height: 272px;
+  &__body {
+    width: 80.56%;
+    max-width: 1160px;
+    min-height: 272px;
 
-  padding-top: 100px;
+    padding-top: 100px;
 
-  display: grid;
-  grid-template-rows: 36px 39px 38px 38px auto;
-  grid-template-columns: 22.41% 20.69% 108px auto 260px;
-  grid-template-areas:
-    'logo nav-header about-header help-header subscription-header'
-    'paragraph about about-service agreements subscription'
-    'paragraph news team communities subscription'
-    'paragraph help vacancy contacts subscription'
-    'empty service investors nothing nothing';
+    display: grid;
+    grid-template-rows: 36px 39px repeat(auto-fit, minmax(38px, min-content));
+    grid-template-columns: 25.86% 17.24% 17.24% auto 260px;
+    grid-template-areas:
+    'logo       nav-header  about-header   help-header  subscription-header'
+    'paragraph  about       about-service  agreements   subscription'
+    'paragraph  news        team           communities  subscription'
+    'paragraph  help        vacancy        contacts     subscription'
+    'paragraph  service     investors      .            subscription';
+  }
 
-}
-
-@media all and (max-width: 1366px) {
-  .footer__body {
+  &_width_narrow &__body {
     display: none;
   }
-}
 
-.footer_width_narrow {
-  .footer__body {
+  &__item {
+    &_area_logo {
+      grid-area: logo;
+    }
+
+    &_area_paragraph {
+      padding-top: 7px;
+
+      grid-area: paragraph;
+      max-width: 260px;
+    }
+
+    &_area_nav-header {
+      grid-area: nav-header;
+    }
+
+    &_area_about {
+      grid-area: about;
+    }
+
+    &_area_news {
+      grid-area: news;
+    }
+
+    &_area_help {
+      grid-area: help;
+    }
+
+    &_area_service {
+      grid-area: service;
+    }
+
+    &_area_about-header {
+      grid-area: about-header;
+    }
+
+    &_area_about-service {
+      grid-area: about-service;
+    }
+
+    &_area_team {
+      grid-area: team;
+    }
+
+    &_area_vacancy {
+      grid-area: vacancy;
+    }
+
+    &_area_investors {
+      grid-area: investors;
+    }
+
+    &_area_help-header {
+      grid-area: help-header;
+    }
+
+    &_area_agreements {
+      grid-area: agreements;
+    }
+
+    &_area_communities {
+      grid-area: communities;
+    }
+
+    &_area_contacts {
+      grid-area: contacts;
+    }
+
+    &_area_subscription-header {
+      grid-area: subscription-header;
+    }
+
+    &_area_subscription {
+      grid-area: subscription;
+    }
+
+    &_weight_bold {
+      font-size: 12px;
+      line-height: 15px;
+      text-transform: uppercase;
+      font-weight: bold;
+
+      color: #1F2041;
+
+      padding-top: 4px;
+    }
+  }
+
+  &__subscription-paragraph {
+    margin-top: 1px;
+    margin-bottom: 22px;
+  }
+
+  &__border {
+    width: 100%;
+    height: 0;
+    border-top: 1px solid #E5E5E5;
+  }
+
+  &_width_narrow &__border {
     display: none;
   }
-}
 
-.footer__logo {
-  grid-area: logo;
-}
+  &__footer {
+    max-width: 1160px;
+    width: 80.56%;
 
-.footer__paragraph {
-  padding-top: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  grid-area: paragraph;
-}
+    min-height: 70px;
+  }
 
-.footer__nav-header {
-  grid-area: nav-header;
-}
-
-.footer__about {
-  grid-area: about;
-}
-
-.footer__news {
-  grid-area: news;
-}
-
-.footer__help {
-  grid-area: help;
-}
-
-.footer__service {
-  grid-area: service;
-}
-
-.footer__nav-header,.footer__about,.footer__news,.footer__help,.footer__service {
-  padding-left: 16.67%;
-}
-
-.footer__about-header {
-  grid-area: about-header;
-}
-
-.footer__about-service {
-  grid-area: about-service;
-}
-
-.footer__team {
-  grid-area: team;
-}
-
-.footer__vacancy {
-  grid-area: vacancy;
-}
-
-.footer__investors {
-  grid-area: investors;
-}
-
-.footer__help-header {
-  grid-area: help-header;
-}
-
-.footer__agreements {
-  grid-area: agreements;
-}
-
-.footer__communities {
-  grid-area: communities;
-}
-
-.footer__contacts {
-  grid-area: contacts;
-}
-
-.footer__help-header,.footer__agreements,.footer__communities,.footer__contacts {
-  padding-left: 31.5%;
-}
-
-.footer__subscription-header {
-  grid-area: subscription-header;
-}
-
-.footer__subscription-paragraph {
-  margin-top: 1px;
-  margin-bottom: 22px;
-}
-
-.footer__subscription {
-  grid-area: subscription;
-}
-
-.footer__nav-header,.footer__about-header,.footer__help-header,.footer__subscription-header {
-  font-size: 12px;
-  line-height: 15px;
-  text-transform: uppercase;
-  font-weight: bold;
-
-  color: #1F2041;
-
-  padding-top: 4px;
-}
-
-.footer__border {
-  width: 100%;
-  height: 0;
-  border-top: 1px solid #E5E5E5;
-}
-
-@media all and (max-width: 1366px) {
-  .footer__border {
+  &_width_narrow &__footer {
     display: none;
   }
-}
 
-.footer_width_narrow {
-  .footer__border {
-    display: none;
-  }
-}
-
-.footer__footer {
-  max-width: 1160px;
-  width: 80.56%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  min-height: 70px;
-}
-
-@media all and (max-width: 1366px) {
-  .footer__footer {
-    display: none;
-  }
-}
-
-.footer_width_narrow {
-  .footer__footer {
-    display: none;
-  }
-}
-
-.footer__social {
-  display: flex;
-}
-
-.footer__twitter,.footer__facebook,.footer__instagram {
-  width: 24px;
-  height: 24px;
-
-  font-family: toxin, Arial, sans-serif;
-
-  text-decoration: none;
-
-  outline: 0;
-
-  display: flex;
-  justify-content: center;
-
-  font-size: 22px;
-
-  &:link,&:visited {
-    color: #BC9CFF;
-    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  &:focus {
-    filter: drop-shadow(0 0 5px rgba(188, 156, 255, 1));
-  }
-}
-
-.footer__twitter {
-  margin: 0 20px 0 0;
-
-  &:after {
-    content: '\e901';
-  }
-}
-
-.footer__facebook {
-  margin: 0 20px 0 0;
-
-  &:after {
-    content: '\e902';
-  }
-}
-
-.footer__instagram {
-  margin: 0;
-
-  &:after {
-    content: '\e903';
-  }
-}
-
-.footer__mini {
-  display: none;
-
-  width: 100%;
-
-  min-height: 367px;
-
-  padding: 120px 0 0 0;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  background: white;
-
-  box-shadow: 0 10px 20px rgba(31, 32, 65, 0.05);
-
-  box-sizing: border-box;
-}
-
-@media all and (max-width: 1366px) {
-  .footer__mini {
+  &__social {
     display: flex;
   }
-}
 
-.footer_width_narrow {
-  .footer__mini {
+  &__twitter,&__facebook,&__instagram {
+    width: 24px;
+    height: 24px;
+
+    font-family: toxin, Arial, sans-serif;
+
+    text-decoration: none;
+
+    outline: 0;
+
     display: flex;
+    justify-content: center;
 
-    max-width: 768px;
+    font-size: 22px;
+
+    &:link,&:visited {
+      color: #BC9CFF;
+      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    &:focus {
+      filter: drop-shadow(0 0 5px rgba(188, 156, 255, 1));
+    }
+  }
+
+  &__twitter {
+    margin: 0 20px 0 0;
+
+    &:after {
+      content: '\e901';
+    }
+  }
+
+  &__facebook {
+    margin: 0 20px 0 0;
+
+    &:after {
+      content: '\e902';
+    }
+  }
+
+  &__instagram {
+    margin: 0;
+
+    &:after {
+      content: '\e903';
+    }
+  }
+
+  &__mini {
+    display: none;
+
+    width: 100%;
+    min-height: 367px;
+    padding: 120px 0 0 0;
+
+    flex-direction: column;
+    align-items: center;
+
+    background: white;
+
+    box-shadow: 0 10px 20px rgba(31, 32, 65, 0.05);
+
+    box-sizing: border-box;
+  }
+
+  &_width_narrow &__mini {
+      display: flex;
+
+      max-width: 768px;
+  }
+
+  &__mini-text {
+    padding: 17px 10% 20px;
+    text-align: center;
   }
 }
 
-.footer__mini-text {
-  padding: 17px 10% 20px;
-  text-align: center;
+@media all and (max-width: 1366px) {
+  .footer {
+    &__body,&__border,&__footer {
+      display: none;
+    }
+
+    &__mini {
+      display: flex;
+    }
+  }
 }
