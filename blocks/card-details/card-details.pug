@@ -21,34 +21,35 @@ mixin card-details(options={})
       .card-details__lux= lux
       .card-details__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
       = 'в сутки'
-    +datepicker({
-      name: 'details-date',
-      labelArrival: 'прибытие',
-      labelDeparture: 'выезд',
-      label: 'даты пребывания в отеле',
-      zIndex: 3,
-    })
-    +dropdown({
-      name: 'details-guest',
-      defaultValue: 'Сколько гостей',
-      label: 'гости',
-      zIndex: 2,
-      guest: true,
-      items: [
-        {
-          name: 'adult',
-          units: 'взрослые гость гостя гостей',
-        },
-        {
-          name: 'child',
-          units: 'дети',
-        },
-        {
-          name: 'baby',
-          units: 'младенцы младенец младенца младенцев',
-        },
-      ],
-    })
+    .card-details__datepicker
+      +datepicker({
+        name: 'details-date',
+        headerArrival: 'прибытие',
+        headerDeparture: 'выезд',
+        headerCommon: 'даты пребывания в отеле',
+      })
+    .card-details__dropdown
+      +dropdown({
+        name: 'details-guest',
+        placeholder: 'Сколько гостей',
+        header: 'гости',
+        items: [
+          {
+            name: 'details-adult',
+            units: 'взрослые гость гостя гостей',
+            min: 1,
+          },
+          {
+            name: 'details-child',
+            units: 'дети',
+            surplus: 'surplus',
+          },
+          {
+            name: 'details-baby',
+            units: 'младенцы младенец младенца младенцев',
+          },
+        ],
+      })
     .card-details__calc
       .card-details__calc-first-line
         .card-details__calc-price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`

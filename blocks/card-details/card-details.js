@@ -67,7 +67,7 @@ class CardDetails {
     this.$submit = $('.js-button', this.#$card);
     this.$arrival = $('.js-datepicker__input_date_arrival', this.#$card);
     this.$departure = $('.js-datepicker__input_date_departure', this.#$card);
-    this.$adult = $('.js-dropdown__quantity[name="details-guest-adult"]', this.#$card);
+    this.$adult = $('.js-dropdown__quantity[name="details-adult"]', this.#$card);
 
     this.#$card.on(
       'input',

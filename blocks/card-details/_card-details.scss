@@ -21,8 +21,113 @@
   cursor: default;
 
   justify-items: center;
+
+  &__header {
+    width: 100%;
+
+    padding: 4px 0 0 0;
+
+    display: grid;
+
+    grid-template-rows: 1fr;
+    grid-template-columns: 21px minmax(48px, min-content) 49px auto 46px;
+
+    color: rgba(31, 32, 65, 0.5);
+
+    font-size: 12px;
+
+    align-items: baseline;
+  }
+
+  &__number {
+    font-weight: bold;
+    color: #1F2041;
+    font-size: 14px;
+  }
+
+  &__numeric {
+    font-weight: bold;
+    color: #1F2041;
+    font-size: 24px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__lux {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #BC9CFF;
+
+    padding-left: 8px;
+  }
+
+  &__price {
+    font-weight: bold;
+    font-size: 14px;
+
+    text-align: right;
+
+    padding: 0 3px 0 10px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__datepicker {
+    z-index: 2;
+  }
+
+  &__dropdown {
+    z-index: 1;
+  }
+
+  &__calc {
+    //display: grid;
+
+    width: 100%;
+    max-width: 320px;
+
+    //grid-template-columns: 1fr;
+    //grid-template-rows: 34px 36px 66px auto;
+
+    color: rgba(31, 32, 65, 0.75);
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  &__calc-first-line,&__calc-second-line {
+    display: grid;
+    //grid-template-columns: minmax(54px, min-content) 7px minmax(48px, min-content) minmax(48px, min-content);
+    grid-template-columns: min-content 7px minmax(48px, min-content) minmax(48px, min-content);
+
+  }
+
+  &__calc-price {
+    text-align: right;
+    padding: 0 5px 0 0;
+  }
+
+  &__calc-days {
+    flex-grow: 1;
+    padding: 0 0 0 4px;
+  }
+
+  &__total-price {
+    text-align: right;
+  }
+
+  &__calc-price,&__calc-days,&__total-price {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
+/*
 .card-details__header {
   width: 100%;
 
@@ -39,26 +144,34 @@
 
   align-items: baseline;
 }
+*/
 
+/*
 .card-details__number {
   font-weight: bold;
   color: #1F2041;
   font-size: 14px;
 }
+*/
 
+/*
 .card-details__numeric {
   font-weight: bold;
   color: #1F2041;
   font-size: 24px;
 }
+*/
 
+/*
 .card-details__lux {
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
   color: #BC9CFF;
 }
+*/
 
+/*
 .card-details__price {
   font-weight: bold;
   font-size: 14px;
@@ -67,7 +180,9 @@
 
   padding: 0 5px 0 0;
 }
+*/
 
+/*
 .card-details__calc {
   display: grid;
 
@@ -80,18 +195,24 @@
   font-size: 14px;
   line-height: 24px;
 }
+*/
 
+/*
 .card-details__calc-first-line,.card-details__calc-second-line {
   display: flex;
 
   width: 100%;
 }
+*/
 
+/*
 .card-details__calc-price {
   text-align: right;
   padding: 0 5px 0 0;
 }
+*/
 
+/*
 .card-details__calc-days {
   flex-grow: 1;
   padding: 0 0 0 4px;
@@ -100,6 +221,7 @@
 .card-details__total-price {
   text-align: right;
 }
+*/
 
 .card-details__discount {
   text-align: center;

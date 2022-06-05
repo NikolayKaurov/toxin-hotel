@@ -433,7 +433,9 @@ function handleClearMousedown(event) {
 function handleConfirmMousedown(event) {
   const { $datepicker } = event.data.datepicker;
 
-  $datepicker.removeClass('datepicker_open');
+  $datepicker
+    .trigger('input')
+    .removeClass('datepicker_open');
 }
 
 function stop(event) {
