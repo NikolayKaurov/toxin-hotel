@@ -15,8 +15,7 @@
 
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
 
-  grid-template-rows: 50px 85px 82px 181px auto;
-  grid-template-columns: 1fr;
+  grid-template-rows: 50px 85px 82px 130px 50px auto;
 
   cursor: default;
 
@@ -25,12 +24,11 @@
   &__header {
     width: 100%;
 
-    padding: 4px 0 0 0;
+    padding-top: 4px;
 
     display: grid;
 
-    grid-template-rows: 1fr;
-    grid-template-columns: 21px minmax(48px, min-content) 49px auto 46px;
+    grid-template-columns: 21px minmax(0, min-content) 49px auto 46px;
 
     color: rgba(31, 32, 65, 0.5);
 
@@ -49,10 +47,6 @@
     font-weight: bold;
     color: #1F2041;
     font-size: 24px;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 
   &__lux {
@@ -71,10 +65,6 @@
     text-align: right;
 
     padding: 0 3px 0 10px;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 
   &__datepicker {
@@ -86,245 +76,157 @@
   }
 
   &__calc {
-    //display: grid;
-
     width: 100%;
     max-width: 320px;
-
-    //grid-template-columns: 1fr;
-    //grid-template-rows: 34px 36px 66px auto;
 
     color: rgba(31, 32, 65, 0.75);
     font-size: 14px;
     line-height: 24px;
   }
 
-  &__calc-first-line,&__calc-second-line {
+  &__calc-first-line {
     display: grid;
-    //grid-template-columns: minmax(54px, min-content) 7px minmax(48px, min-content) minmax(48px, min-content);
-    grid-template-columns: min-content 7px minmax(48px, min-content) minmax(48px, min-content);
-
+    grid-template-columns: minmax(0, min-content) 7px minmax(0, min-content) auto;
   }
 
   &__calc-price {
     text-align: right;
-    padding: 0 5px 0 0;
+    padding-right: 5px;
   }
 
   &__calc-days {
-    flex-grow: 1;
-    padding: 0 0 0 4px;
+    padding-left: 4px;
   }
 
   &__total-price {
     text-align: right;
+    padding-left: 10px;
   }
 
-  &__calc-price,&__calc-days,&__total-price {
+  &__calc-fee {
+    margin-top: 10px;
+
+    display: grid;
+    grid-template-columns: minmax(0, max-content) minmax(0, max-content) 20px auto;
+    grid-template-rows: auto;
+    grid-template-areas: 'fee-label discount . fee'
+                         'label     label    . fee-add';
+
+    grid-row-gap: 10px;
+  }
+
+  &__discount {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  &__info {
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    border: 1px solid rgba(31, 32, 65, 0.25);
+    border-radius: 10px;
+
+    color: rgba(31, 32, 65, 0.25);
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+
+    position: relative;
+
+    &-text {
+      display: none;
+
+      position: absolute;
+      bottom: 150%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      min-width: 220px;
+
+      box-sizing: border-box;
+
+      font-size: 14px;
+      color: rgba(31, 32, 65, 0.5);
+
+      padding: 10px;
+
+      background: white;
+
+      border: 1px solid rgba(31, 32, 65, 0.25);
+      border-radius: 10px;
+
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+
+      z-index: 99;
+    }
+
+    &:hover &-text {
+      display: block;
+    }
+  }
+
+  &__fee {
+    text-align: right;
+
+    padding-left: 10px;
+  }
+
+  &__fee-add-label {
+    grid-area: label;
+
+    max-width: 200px;
+    max-height: 36px;
+
+    padding-top: 3px;
+
+    line-height: 18px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__fee-add {
+    text-align: right;
+
+    padding-left: 10px;
+  }
+
+  &__total-line {
+    display: grid;
+    grid-template-columns: 60px auto minmax(0, max-content);
+
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 23px;
+
+    width: 100%;
+
+    color: #1F2041;
+
+    align-items: baseline;
+
+    padding-left:1px;
+  }
+
+  &__dash {
+    border-bottom: 1px dotted rgba(31, 32, 65, 0.25);
+
+    height: 23px;
+    min-width: 10px;
+  }
+
+  &__total {
+    text-align: right;
+
+    padding-right: 2px;
+  }
+
+  &__numeric,&__price,&__calc-price,&__calc-days,&__total-price,&__discount,&__fee,&__fee-add,&__fee-label,&__total {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-}
-
-/*
-.card-details__header {
-  width: 100%;
-
-  padding: 4px 0 0 0;
-
-  display: grid;
-
-  grid-template-rows: 1fr;
-  grid-template-columns: 21px 56px auto 55px 46px;
-
-  color: rgba(31, 32, 65, 0.5);
-
-  font-size: 12px;
-
-  align-items: baseline;
-}
-*/
-
-/*
-.card-details__number {
-  font-weight: bold;
-  color: #1F2041;
-  font-size: 14px;
-}
-*/
-
-/*
-.card-details__numeric {
-  font-weight: bold;
-  color: #1F2041;
-  font-size: 24px;
-}
-*/
-
-/*
-.card-details__lux {
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #BC9CFF;
-}
-*/
-
-/*
-.card-details__price {
-  font-weight: bold;
-  font-size: 14px;
-
-  text-align: right;
-
-  padding: 0 5px 0 0;
-}
-*/
-
-/*
-.card-details__calc {
-  display: grid;
-
-  width: 100%;
-
-  grid-template-columns: 1fr;
-  grid-template-rows: 34px 36px 66px auto;
-
-  color: rgba(31, 32, 65, 0.75);
-  font-size: 14px;
-  line-height: 24px;
-}
-*/
-
-/*
-.card-details__calc-first-line,.card-details__calc-second-line {
-  display: flex;
-
-  width: 100%;
-}
-*/
-
-/*
-.card-details__calc-price {
-  text-align: right;
-  padding: 0 5px 0 0;
-}
-*/
-
-/*
-.card-details__calc-days {
-  flex-grow: 1;
-  padding: 0 0 0 4px;
-}
-
-.card-details__total-price {
-  text-align: right;
-}
-*/
-
-.card-details__discount {
-  text-align: center;
-
-  width: 108px;
-}
-
-.card-details__info {
-  width: 20px;
-  height: 20px;
-  box-sizing: border-box;
-  border: 1px solid rgba(31, 32, 65, 0.25);
-  border-radius: 10px;
-
-  color: rgba(31, 32, 65, 0.25);
-  text-align: center;
-  line-height: 20px;
-  font-size: 12px;
-
-  position: relative;
-}
-
-.card-details__info-text {
-  display: none;
-
-  position: absolute;
-  bottom: 150%;
-  left: 50%;
-  transform: translateX(-50%);
-
-  min-width: 220px;
-
-  box-sizing: border-box;
-
-  font-size: 14px;
-  color: rgba(31, 32, 65, 0.5);
-
-  padding: 10px;
-
-  background: white;
-
-  border: 1px solid rgba(31, 32, 65, 0.25);
-  border-radius: 10px;
-
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-
-  z-index: 100;
-}
-
-.card-details__info:hover {
-  .card-details__info-text {
-    display: block;
-  }
-}
-
-.card-details__total-discount {
-  text-align: right;
-
-  flex-grow: 1;
-}
-
-.card-details__calc-third-line {
-  display: grid;
-
-  grid-template-rows: 1fr;
-  grid-template-columns: 220px 42px auto;
-
-  line-height: 18px;
-}
-
-.card-details__fee-add {
-  text-align: right;
-
-  flex-grow: 1;
-
-  padding: 0 0 0 10px;
-}
-
-.card-details__total-line {
-  display: flex;
-
-  font-weight: bold;
-  font-size: 19px;
-  line-height: 23px;
-
-  width: 100%;
-
-  color: #1F2041;
-
-  align-items: baseline;
-
-  padding: 0 0 0 1px;
-}
-
-.card-details__dash {
-  border-bottom: 1px dotted rgba(31, 32, 65, 0.25);
-  flex-grow: 1;
-}
-
-.card-details__total {
-  text-align: right;
-
-  padding: 0 2px 0 0;
 }
 
 @media all and (max-width: 400px) {
@@ -335,27 +237,32 @@
     border-right: 0;
 
     padding: 39px 3%;
-  }
 
-  .card-details__header {
-    width: 94%;
-  }
+    &__header {
+      width: 94%;
+    }
 
-  .card-details__calc {
-    width: 94%;
-  }
+    &__total-line {
+      width: 94%;
+    }
 
-  .card-details__info {
-    display: none;
-  }
+    &__calc {
+      max-width: 94%;
+    }
 
-  .card-details__calc-third-line {
-    display: flex;
-  }
+    &__calc-fee {
+      grid-template-columns: minmax(0, max-content) minmax(0, max-content) auto;
+      grid-template-areas: 'fee-label discount fee'
+                           'label     label    fee-add';
+    }
 
-  .card-details__total-line {
-    padding: 0;
-  }
+    &__info {
+      display: none;
+    }
 
+    &__total-line {
+      padding: 0;
+    }
+  }
 }
 

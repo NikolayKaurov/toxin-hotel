@@ -1,5 +1,35 @@
 import $ from 'jquery';
 
+class CardDetails {
+  #$card;
+
+  constructor(card) {
+    this.#$card = $(card);
+
+    this.price = parseFloat(card.dataset.price);
+    this.discount = parseFloat(card.dataset.discount);
+    this.fee = parseFloat(card.dataset.fee);
+    this.feeAdd = parseFloat(card.dataset.feeadd);
+  }
+
+  init() {
+    this.$days = $('.js-card-details__calc-days', this.#$card);
+    this.$totalPrice = $('.js-card-details__total-price', this.#$card);
+    this.$total = $('.js-card-details__total', this.#$card);
+    this.$submit = $('.js-button', this.#$card);
+    this.$arrival = $('.js-datepicker__input_date_arrival', this.#$card);
+    this.$departure = $('.js-datepicker__input_date_departure', this.#$card);
+    this.$adult = $('.js-dropdown__quantity[name="details-adult"]', this.#$card);
+
+    this.#$card.on(
+      'input',
+      null,
+      { card: this },
+      handleCardDetailsInput,
+    );
+  }
+}
+
 function handleCardDetailsInput(event) {
   const {
     $days,
@@ -48,37 +78,7 @@ function handleCardDetailsInput(event) {
   }
 }
 
-class CardDetails {
-  #$card;
-
-  constructor(card) {
-    this.#$card = $(card);
-
-    this.price = parseFloat(card.dataset.price);
-    this.discount = parseFloat(card.dataset.discount);
-    this.fee = parseFloat(card.dataset.fee);
-    this.feeAdd = parseFloat(card.dataset.feeadd);
-  }
-
-  init() {
-    this.$days = $('.js-card-details__calc-days', this.#$card);
-    this.$totalPrice = $('.js-card-details__total-price', this.#$card);
-    this.$total = $('.js-card-details__total', this.#$card);
-    this.$submit = $('.js-button', this.#$card);
-    this.$arrival = $('.js-datepicker__input_date_arrival', this.#$card);
-    this.$departure = $('.js-datepicker__input_date_departure', this.#$card);
-    this.$adult = $('.js-dropdown__quantity[name="details-adult"]', this.#$card);
-
-    this.#$card.on(
-      'input',
-      null,
-      { card: this },
-      handleCardDetailsInput,
-    );
-  }
-}
-
-$('.js-card-details').each((index, element) => {
-  const card = new CardDetails(element);
-  card.init();
+$('.js-card-details').each((index, card) => {
+  const jsCard = new CardDetails(card);
+  jsCard.init();
 });

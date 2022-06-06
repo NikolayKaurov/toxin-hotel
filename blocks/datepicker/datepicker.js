@@ -225,6 +225,8 @@ class Datepicker {
 
     this.$arrival.val(arrival);
     this.$departure.val(departure);
+
+    this.$datepicker.trigger('input');
   }
 }
 
@@ -433,9 +435,7 @@ function handleClearMousedown(event) {
 function handleConfirmMousedown(event) {
   const { $datepicker } = event.data.datepicker;
 
-  $datepicker
-    .trigger('input')
-    .removeClass('datepicker_open');
+  $datepicker.removeClass('datepicker_open');
 }
 
 function stop(event) {

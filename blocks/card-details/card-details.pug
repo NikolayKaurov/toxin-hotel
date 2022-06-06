@@ -2,7 +2,7 @@ mixin card-details(options={})
   -
     const {
       number = '',
-      lux = '',
+      lux = false,
       price = 0,
       discount = 0,
       fee = 0,
@@ -18,7 +18,9 @@ mixin card-details(options={})
     .card-details__header
       .card-details__number №
       .card-details__numeric= number
-      .card-details__lux= lux
+      .card-details__lux
+        if (lux)
+          = 'люкс'
       .card-details__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
       = 'в сутки'
     .card-details__datepicker
@@ -56,24 +58,25 @@ mixin card-details(options={})
         = 'х'
         .card-details__calc-days.js-card-details__calc-days 0 суток
         .card-details__total-price.js-card-details__total-price 0₽
-      .card-details__calc-second-line
-        = 'Сбор за услуги:'
-        .card-details__discount= `скидка ${new Intl.NumberFormat('ru-RU').format(discount)}₽`
+      .card-details__calc-fee
+        .card-details__fee-label Сбор за услуги:
+        .card-details__discount
+          if (discount > 0)
+            = `скидка ${new Intl.NumberFormat('ru-RU').format(discount)}₽`
         .card-details__info i
           .card-details__info-text Скидка предоставляется всем пассажирам авиакомпании «Чёрный лебедь».
-        .card-details__total-discount= `${new Intl.NumberFormat('ru-RU').format(fee)}₽`
-      .card-details__calc-third-line= 'Сбор за дополнительные услуги'
+        .card-details__fee= `${new Intl.NumberFormat('ru-RU').format(fee)}₽`
+        .card-details__fee-add-label Сбор за дополнительные услуги
         .card-details__info i
           .card-details__info-text Сбор за зубную щётку, халат, полотенце, шампунь, чипсы в холодильнике, побудку звонком в номер в назначенное время.
         .card-details__fee-add= `${new Intl.NumberFormat('ru-RU').format(feeAdd)}₽`
-      .card-details__total-line
-        = 'Итого'
-        .card-details__dash
-        .card-details__total.js-card-details__total 0₽
+    .card-details__total-line
+      = 'Итого'
+      .card-details__dash
+      .card-details__total.js-card-details__total 0₽
     +button({
       width: 'ultra-wide',
       arrowed: true,
       purple: true,
       text: 'забронировать',
     })
-
