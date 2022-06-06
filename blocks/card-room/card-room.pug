@@ -8,100 +8,98 @@ mixin card-room(options={})
       reviews = 0
     } = options;
     const rateOptions = { rating };
-    let img1 = '';
-    let img2 = '';
-    let img3 = '';
-    let img4 = '';
+    let img = [];
     switch(number) {
       case '888':
-        img1 = require('../blocks/card-room/img/room-888.jpg');
-        img2 = require('../blocks/card-room/img/room-740.jpg');
-        img3 = require('../blocks/card-room/img/room-982.jpg');
-        img4 = require('../blocks/card-room/img/room-678.jpg');
+        img.push(require('../assets/img/content/room-888.jpg'));
+        img.push(require('../assets/img/content/room-740.jpg'));
+        img.push(require('../assets/img/content/room-982.jpg'));
+        img.push(require('../assets/img/content/room-678.jpg'));
         break;
       case '840':
-        img1 = require('../blocks/card-room/img/room-840.jpg');
-        img2 = require('../blocks/card-room/img/room-982.jpg');
-        img3 = require('../blocks/card-room/img/room-678.jpg');
-        img4 = require('../blocks/card-room/img/room-450.jpg');
+        img.push(require('../assets/img/content/room-840.jpg'));
+        img.push(require('../assets/img/content/room-982.jpg'));
+        img.push(require('../assets/img/content/room-678.jpg'));
+        img.push(require('../assets/img/content/room-450.jpg'));
         break;
       case '980':
-        img1 = require('../blocks/card-room/img/room-980.jpg');
-        img2 = require('../blocks/card-room/img/room-678.jpg');
-        img3 = require('../blocks/card-room/img/room-450.jpg');
-        img4 = require('../blocks/card-room/img/room-350.jpg');
+        img.push(require('../assets/img/content/room-980.jpg'));
+        img.push(require('../assets/img/content/room-678.jpg'));
+        img.push(require('../assets/img/content/room-450.jpg'));
+        img.push(require('../assets/img/content/room-350.jpg'));
         break;
       case '856':
-        img1 = require('../blocks/card-room/img/room-856.jpg');
-        img2 = require('../blocks/card-room/img/room-450.jpg');
-        img3 = require('../blocks/card-room/img/room-350.jpg');
-        img4 = require('../blocks/card-room/img/room-666.jpg');
+        img.push(require('../assets/img/content/room-856.jpg'));
+        img.push(require('../assets/img/content/room-450.jpg'));
+        img.push(require('../assets/img/content/room-350.jpg'));
+        img.push(require('../assets/img/content/room-666.jpg'));
         break;
       case '740':
-        img1 = require('../blocks/card-room/img/room-740.jpg');
-        img2 = require('../blocks/card-room/img/room-350.jpg');
-        img3 = require('../blocks/card-room/img/room-666.jpg');
-        img4 = require('../blocks/card-room/img/room-444.jpg');
+        img.push(require('../assets/img/content/room-740.jpg'));
+        img.push(require('../assets/img/content/room-350.jpg'));
+        img.push(require('../assets/img/content/room-666.jpg'));
+        img.push(require('../assets/img/content/room-444.jpg'));
         break;
       case '982':
-        img1 = require('../blocks/card-room/img/room-982.jpg');
-        img2 = require('../blocks/card-room/img/room-666.jpg');
-        img3 = require('../blocks/card-room/img/room-444.jpg');
-        img4 = require('../blocks/card-room/img/room-352.jpg');
+        img.push(require('../assets/img/content/room-982.jpg'));
+        img.push(require('../assets/img/content/room-666.jpg'));
+        img.push(require('../assets/img/content/room-444.jpg'));
+        img.push(require('../assets/img/content/room-352.jpg'));
         break;
       case '678':
-        img1 = require('../blocks/card-room/img/room-678.jpg');
-        img2 = require('../blocks/card-room/img/room-444.jpg');
-        img3 = require('../blocks/card-room/img/room-352.jpg');
-        img4 = require('../blocks/card-room/img/room-888.jpg');
+        img.push(require('../assets/img/content/room-678.jpg'));
+        img.push(require('../assets/img/content/room-444.jpg'));
+        img.push(require('../assets/img/content/room-352.jpg'));
+        img.push(require('../assets/img/content/room-888.jpg'));
         break;
       case '450':
-        img1 = require('../blocks/card-room/img/room-450.jpg');
-        img2 = require('../blocks/card-room/img/room-352.jpg');
-        img3 = require('../blocks/card-room/img/room-888.jpg');
-        img4 = require('../blocks/card-room/img/room-840.jpg');
+        img.push(require('../assets/img/content/room-450.jpg'));
+        img.push(require('../assets/img/content/room-352.jpg'));
+        img.push(require('../assets/img/content/room-888.jpg'));
+        img.push(require('../assets/img/content/room-840.jpg'));
         break;
       case '350':
-        img1 = require('../blocks/card-room/img/room-350.jpg');
-        img2 = require('../blocks/card-room/img/room-888.jpg');
-        img3 = require('../blocks/card-room/img/room-840.jpg');
-        img4 = require('../blocks/card-room/img/room-980.jpg');
+        img.push(require('../assets/img/content/room-350.jpg'));
+        img.push(require('../assets/img/content/room-888.jpg'));
+        img.push(require('../assets/img/content/room-840.jpg'));
+        img.push(require('../assets/img/content/room-980.jpg'));
         break;
       case '666':
-        img1 = require('../blocks/card-room/img/room-666.jpg');
-        img2 = require('../blocks/card-room/img/room-840.jpg');;
-        img3 = require('../blocks/card-room/img/room-980.jpg');
-        img4 = require('../blocks/card-room/img/room-856.jpg');
+        img.push(require('../assets/img/content/room-666.jpg'));
+        img.push(require('../assets/img/content/room-840.jpg'));
+        img.push(require('../assets/img/content/room-980.jpg'));
+        img.push(require('../assets/img/content/room-856.jpg'));
         break;
       case '444':
-        img1 = require('../blocks/card-room/img/room-444.jpg');
-        img2 = require('../blocks/card-room/img/room-980.jpg');
-        img3 = require('../blocks/card-room/img/room-856.jpg');
-        img4 = require('../blocks/card-room/img/room-740.jpg');
+        img.push(require('../assets/img/content/room-444.jpg'));
+        img.push(require('../assets/img/content/room-980.jpg'));
+        img.push(require('../assets/img/content/room-856.jpg'));
+        img.push(require('../assets/img/content/room-740.jpg'));
         break;
       case '352':
-        img1 = require('../blocks/card-room/img/room-352.jpg');
-        img2 = require('../blocks/card-room/img/room-856.jpg');
-        img3 = require('../blocks/card-room/img/room-740.jpg');
-        img4 = require('../blocks/card-room/img/room-982.jpg');
+        img.push(require('../assets/img/content/room-352.jpg'));
+        img.push(require('../assets/img/content/room-856.jpg'));
+        img.push(require('../assets/img/content/room-740.jpg'));
+        img.push(require('../assets/img/content/room-982.jpg'));
         break;
     }
 
-  .card-room.js-card-room(data-slide="0")
+  .card-room.js-card-room(data-slide="0" tabindex="0")
     .card-room__gallery
-      form.card-room__form(action="./room-details.html")
+      form.card-room__form.js-card-room__form(action="./room-details.html")
         button.card-room__button(tabindex="-1")
-          img.card-room__image(src= img1 alt="Room photo")
-          img.card-room__image(src= img2 alt="Room photo")
-          img.card-room__image(src= img3 alt="Room photo")
-          img.card-room__image(src= img4 alt="Room photo")
+          - let i = 0;
+          while i < 4
+            img.card-room__image(
+              src= img[i++]
+              alt="Room photo"
+            )
       .card-room__back.js-card-room__back
       .card-room__forward.js-card-room__forward
       .card-room__nav.js-card-room__nav
-        .card-room__nav-item.js-card-room__nav-item(data-slide="0")
-        .card-room__nav-item.js-card-room__nav-item(data-slide="1")
-        .card-room__nav-item.js-card-room__nav-item(data-slide="2")
-        .card-room__nav-item.js-card-room__nav-item(data-slide="3")
+        - i = 0;
+        while i < 4
+          .card-room__nav-item.js-card-room__nav-item(data-slide= i++)
     .card-room__header
       .card-room__number №
       .card-room__numeric= number

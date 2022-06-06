@@ -41,7 +41,7 @@
 }
 
 @for $i from 1 through 5 {
-  .rate[data-rating='#{$i}'] {
+  .rate[data-rating="#{$i}"] {
     @for $j from 1 through $i {
       .rate__star:nth-child(#{$j})::after {
         content: 'star';
