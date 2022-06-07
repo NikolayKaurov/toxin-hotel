@@ -1,82 +1,88 @@
 .radio {
   display: flex;
+
+  &__button {
+    opacity: 0;
+
+    position: absolute;
+
+    z-index: -1;
+  }
+
+  &__label {
+    display: flex;
+
+    color: rgba(31, 32, 65, 0.5);
+    line-height: 18px;
+    font-size: 14px;
+
+    height: fit-content;
+
+    cursor: pointer;
+
+    position: relative;
+
+    margin: 0 20px 0 0;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    &::before {
+      width: 20px;
+      height: 20px;
+
+      box-sizing: border-box;
+
+      border: 1px solid rgba(31, 32, 65, 0.25);
+      border-radius: 18px;
+
+      margin: 0 10px 0 0;
+
+      content: '';
+    }
+
+    &::after {
+      position: absolute;
+
+      width: 12px;
+      height: 12px;
+
+      border: 0;
+      border-radius: 10px;
+
+      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+
+      left: 4px;
+      top: 4px;
+
+      content: '';
+
+      visibility: hidden;
+    }
+
+    &::selection {
+      background: transparent;
+    }
+  }
+
+  &__button:focus + &__label::before {
+    box-shadow: 0 0 10px #bc9cff;
+  }
+
+  &__button:checked + &__label {
+    color: rgba(31, 32, 65, 0.75);
+  }
+
+  &__button:checked + &__label::before {
+    border: 1px solid #BC9CFF;
+  }
+
+  &__button:checked + &__label::after {
+    visibility: visible;
+  }
 }
 
-.radio__button {
-  opacity: 0;
 
-  position: absolute;
-}
 
-.radio__label {
-  display: flex;
 
-  color: rgba(31, 32, 65, 0.5);
-  line-height: 18px;
-  font-size: 14px;
-
-  height: fit-content;
-
-  cursor: pointer;
-
-  position: relative;
-
-  margin: 0 20px 0 0;
-}
-
-.radio__label:last-child {
-  margin: 0;
-}
-
-.radio__label::selection {
-  background: transparent;
-}
-
-.radio__label::before {
-  width: 20px;
-  height: 20px;
-
-  box-sizing: border-box;
-
-  border: 1px solid rgba(31, 32, 65, 0.25);
-  border-radius: 18px;
-
-  margin: 0 10px 0 0;
-
-  content: '';
-}
-
-.radio__label::after {
-  position: absolute;
-
-  width: 12px;
-  height: 12px;
-
-  border: 0;
-  border-radius: 10px;
-
-  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-
-  left: 4px;
-  top: 4px;
-
-  content: '';
-
-  visibility: hidden;
-}
-
-.radio__button:focus + .radio__label::before {
-  box-shadow: 0 0 10px #bc9cff;
-}
-
-.radio__button:checked + .radio__label {
-  color: rgba(31, 32, 65, 0.75);
-}
-
-.radio__button:checked + .radio__label::before {
-  border: 1px solid #BC9CFF;
-}
-
-.radio__button:checked + .radio__label::after {
-  visibility: visible;
-}
