@@ -3,7 +3,7 @@
 
   display: grid;
   grid-template-columns: 374px 320px 320px;
-  grid-template-rows: 733px 688px 158px;
+  grid-template-rows: 733px auto;
   column-gap: 72px;
 
   &__item {
@@ -22,7 +22,7 @@
     }
 
     &:nth-child(4) {
-      grid-template-rows: 84px 236px 64px 305px auto;
+      grid-template-rows: 84px 236px minmax(64px, min-content) 305px auto;
     }
 
     &:nth-child(5) {
@@ -70,10 +70,14 @@
 
     &:nth-child(3) {
       z-index: 4;
+
+      padding-bottom: 20px;
     }
 
     &:nth-child(4) {
       z-index: 3;
+
+      padding-bottom: 20px;
     }
   }
 

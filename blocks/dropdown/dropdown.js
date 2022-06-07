@@ -295,20 +295,28 @@ function handleQuantityKeydown(event) {
     let invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
 
     if (invalid) {
-      val = val.replace(/^./, '');
-      value = parseInt(val, 10);
-
-      invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
-
-      if (invalid) {
+      if (val.length > 1) {
         val = val.replace(/^./, '');
         value = parseInt(val, 10);
 
         invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
 
         if (invalid) {
-          return;
+          if (val.length > 1) {
+            val = val.replace(/^./, '');
+            value = parseInt(val, 10);
+
+            invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
+
+            if (invalid) {
+              return;
+            }
+          } else {
+            return;
+          }
         }
+      } else {
+        return;
       }
     }
 

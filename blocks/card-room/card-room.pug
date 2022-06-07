@@ -2,7 +2,7 @@ mixin card-room(options={})
   -
     const {
       number = '',
-      lux = '',
+      lux = false,
       price = 0,
       rating = 0,
       reviews = 0
@@ -103,7 +103,9 @@ mixin card-room(options={})
     .card-room__header
       .card-room__number №
       .card-room__numeric= number
-      .card-room__lux= lux
+      .card-room__lux
+        if (lux)
+          = 'люкс'
       .card-room__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
       = 'в сутки'
     .card-room__footer
