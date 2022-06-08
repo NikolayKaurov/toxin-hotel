@@ -12,7 +12,7 @@ mixin paginator(options={})
       length = Math.round(length);
     }
 
-  .paginator.js-paginator(data-length= length data-active="1")
+  .paginator.js-paginator(data-length= length data-active="1" tabindex="0")
     .paginator__body
       .paginator__item.js-paginator__item(data-number="back") arrow_back
       while i <= length
