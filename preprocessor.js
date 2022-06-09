@@ -9,12 +9,42 @@ const $ = require('jquery')(window);
 const slash = '\\';
 const endLine = '\n';
 
+module.exports = function preprocessor(pages, blocks) {
+  let sourceTemplates = readSourceTemplates(pages);
+  sourceTemplates = cleanHeaders(sourceTemplates);
+
+  const bemEntities = getBemEntities(blocks);
+
+  Object.keys(sourceTemplates).forEach((page) => {
+    const useBEMEntities = searchBEMEntities(sourceTemplates[page], bemEntities);
+
+    const pugHeaders = createPUGHeaders(useBEMEntities);
+    const scssHeaders = createSCSSHeaders(useBEMEntities);
+    let jsHeaders = createJSHeaders(useBEMEntities);
+
+    jsHeaders += `import './${page}.scss';\n`;
+    jsHeaders += 'import \'../../assets/favicons/favicons\';\n';
+
+    sourceTemplates[page] = pugHeaders + sourceTemplates[page];
+
+    fs.writeFileSync(`${pages}${slash}${page}${slash}${page}.pug`, sourceTemplates[page]);
+    fs.writeFileSync(`${pages}${slash}${page}${slash}${page}.scss`, scssHeaders);
+    fs.writeFileSync(`${pages}${slash}${page}${slash}${page}.js`, jsHeaders);
+  });
+};
+
 function readSourceTemplates(pages) {
   const sourceTemplates = {};
 
   fs.readdirSync(pages).forEach((page) => {
-    if (page.match(/\.pug$/i)) {
-      sourceTemplates[page] = fs.readFileSync(pages + slash + page, 'utf-8');
+    const templateDir = `${pages}/${page}`;
+
+    if (fs.lstatSync(templateDir).isDirectory()) {
+      const templateFile = `${templateDir}/${page}.pug`;
+
+      if (fs.existsSync(templateFile)) {
+        sourceTemplates[page] = fs.readFileSync(templateFile, 'utf-8');
+      }
     }
   });
 
@@ -90,7 +120,7 @@ function createPUGHeaders(useBEMEntities) {
 
   Object.keys(useBEMEntities).forEach((entity) => {
     if (fs.existsSync(`${useBEMEntities[entity]}${slash}${entity}.pug`)) {
-      pugHeaders += `${useBEMEntities[entity].replace(/^.*blocks/, 'include ../blocks').replace(/\\/g, '/')}/${entity}${endLine}`;
+      pugHeaders += `${useBEMEntities[entity].replace(/^.*blocks/, 'include ../../blocks').replace(/\\/g, '/')}/${entity}${endLine}`;
     }
   });
 
@@ -114,33 +144,9 @@ function createJSHeaders(useBEMEntities) {
 
   Object.keys(useBEMEntities).forEach((entity) => {
     if (fs.existsSync(`${useBEMEntities[entity]}${slash}${entity}.js`)) {
-      jsHeaders += `${useBEMEntities[entity].replace(/^.*blocks/, 'import \'../blocks').replace(/\\/g, '/')}/${entity}';\n`;
+      jsHeaders += `${useBEMEntities[entity].replace(/^.*blocks/, 'import \'../../blocks').replace(/\\/g, '/')}/${entity}';\n`;
     }
   });
 
   return jsHeaders;
 }
-
-module.exports = function preprocessor(pages, blocks) {
-  let sourceTemplates = readSourceTemplates(pages);
-  sourceTemplates = cleanHeaders(sourceTemplates);
-
-  const bemEntities = getBemEntities(blocks);
-
-  Object.keys(sourceTemplates).forEach((page) => {
-    const useBEMEntities = searchBEMEntities(sourceTemplates[page], bemEntities);
-
-    const pugHeaders = createPUGHeaders(useBEMEntities);
-    const scssHeaders = createSCSSHeaders(useBEMEntities);
-    let jsHeaders = createJSHeaders(useBEMEntities);
-
-    jsHeaders += `import './${page.replace(/.pug$/, '')}.scss';\n`;
-    jsHeaders += 'import \'../favicons/favicons\';\n';
-
-    sourceTemplates[page] = pugHeaders + sourceTemplates[page];
-
-    fs.writeFileSync(`${pages}${slash}${page}`, sourceTemplates[page]);
-    fs.writeFileSync(`${pages}${slash}${page}`.replace(/.pug$/, '.scss'), scssHeaders);
-    fs.writeFileSync(`${pages}${slash}${page}`.replace(/.pug$/, '.js'), jsHeaders);
-  });
-};

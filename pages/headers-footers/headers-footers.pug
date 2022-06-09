@@ -1,0 +1,18 @@
+include ../../blocks/ui-kit/ui-kit
+include ../../blocks/headers-footers/headers-footers
+include ../../blocks/header/header
+include ../../blocks/logo/logo
+include ../../blocks/burger/burger
+include ../../blocks/hyper/hyper
+include ../../blocks/button/button
+include ../../blocks/footer/footer
+include ../../blocks/subscription/subscription
++ui-kit({ title: 'Headers & Footers', theme: 'gray' })
+  +headers-footers
+    +header
+    +header({ user: 'Юлий Цезарь' })
+    +footer
+    +footer({ narrow: true })
+
+
+

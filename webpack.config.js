@@ -10,7 +10,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const pages = path.resolve(__dirname, 'pages');
 const blocks = path.resolve(__dirname, 'blocks');
 const dist = path.resolve(__dirname, 'dist');
-const favicons = path.resolve(__dirname, 'favicons');
+const favicons = path.resolve(__dirname, 'assets/favicons');
 
 const preprocessor = require('./preprocessor');
 
@@ -22,19 +22,25 @@ const templates = [];
 const entries = {};
 
 fs.readdirSync(pages).forEach((page) => {
-  if (page.match(/\.pug$/i)) {
-    const name = page.replace(/\.pug$/i, '');
-    const chunks = [name, 'jquery'];
-    templates.push(new HtmlWebpackPlugin({
-      chunks,
-      filename: page.replace(/\.pug$/i, '.html'),
-      template: pages + slash + page,
-      inject: 'body',
-    }));
-    entries[name] = {
-      import: `${pages}${slash}${name}.js`,
-      dependOn: 'jquery',
-    };
+  const templateDir = `${pages}/${page}`;
+
+  if (fs.lstatSync(templateDir).isDirectory()) {
+    const template = `${templateDir}/${page}.pug`;
+
+    if (fs.existsSync(template)) {
+      const chunks = [page, 'jquery'];
+      templates.push(new HtmlWebpackPlugin({
+        template,
+        chunks,
+        filename: `${page}.html`,
+        inject: 'body',
+      }));
+
+      entries[page] = {
+        import: `${pages}${slash}${page}${slash}${page}.js`,
+        dependOn: 'jquery',
+      };
+    }
   }
 });
 
@@ -115,7 +121,7 @@ module.exports = {
         type: 'asset/resource',
         exclude: favicons,
         generator: {
-          filename: 'assets/images/[name][ext]',
+          filename: 'assets/img/[name][ext]',
         },
       },
       {
