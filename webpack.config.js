@@ -105,6 +105,19 @@ module.exports = {
             },
           },
           {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    // eslint-disable-next-line global-require
+                    require('autoprefixer'),
+                  ],
+                ],
+              },
+            },
+          },
+          {
             loader: 'resolve-url-loader',
             options: {
             },
