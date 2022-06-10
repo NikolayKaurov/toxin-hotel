@@ -1,51 +1,36 @@
 .card-details {
   display: grid;
-
   width: 380px;
   height: 512px;
-
   box-sizing: border-box;
-
   padding: 39px 29px;
-
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgb(0 0 0 / 12%);
   border-radius: 4px;
-
   background: white;
-
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-
+  box-shadow: 0 0 25px rgb(0 0 0 / 20%);
   grid-template-rows: 50px 85px 82px 130px 50px auto;
-
   cursor: default;
-
   justify-items: center;
 
   &__header {
     width: 100%;
-
     padding-top: 4px;
-
     display: grid;
-
     grid-template-columns: 21px minmax(0, min-content) 49px auto 46px;
-
-    color: rgba(31, 32, 65, 0.5);
-
+    color: rgb(31 32 65 / 50%);
     font-size: 12px;
-
     align-items: baseline;
   }
 
   &__number {
     font-weight: bold;
-    color: #1F2041;
+    color: #1f2041;
     font-size: 14px;
   }
 
   &__numeric {
     font-weight: bold;
-    color: #1F2041;
+    color: #1f2041;
     font-size: 24px;
   }
 
@@ -53,17 +38,14 @@
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #BC9CFF;
-
+    color: #bc9cff;
     padding-left: 8px;
   }
 
   &__price {
     font-weight: bold;
     font-size: 14px;
-
     text-align: right;
-
     padding: 0 3px 0 10px;
   }
 
@@ -78,8 +60,7 @@
   &__calc {
     width: 100%;
     max-width: 320px;
-
-    color: rgba(31, 32, 65, 0.75);
+    color: rgb(31 32 65 / 75%);
     font-size: 14px;
     line-height: 24px;
   }
@@ -105,13 +86,11 @@
 
   &__calc-fee {
     margin-top: 10px;
-
     display: grid;
-    grid-template-columns: minmax(0, max-content) minmax(0, max-content) 20px auto;
-    grid-template-rows: auto;
-    grid-template-areas: 'fee-label discount . fee'
-                         'label     label    . fee-add';
-
+    grid-template:
+      "fee-label discount . fee" auto
+      "label     label    . fee-add" auto
+      / minmax(0, max-content) minmax(0, max-content) 20px auto;
     grid-row-gap: 10px;
   }
 
@@ -124,40 +103,29 @@
     width: 20px;
     height: 20px;
     box-sizing: border-box;
-    border: 1px solid rgba(31, 32, 65, 0.25);
+    border: 1px solid rgb(31 32 65 / 25%);
     border-radius: 10px;
-
-    color: rgba(31, 32, 65, 0.25);
+    color: rgb(31 32 65 / 25%);
     text-align: center;
     line-height: 20px;
     font-size: 12px;
-
     position: relative;
 
     &-text {
       display: none;
-
       position: absolute;
       bottom: 150%;
       left: 50%;
       transform: translateX(-50%);
-
       min-width: 220px;
-
       box-sizing: border-box;
-
       font-size: 14px;
-      color: rgba(31, 32, 65, 0.5);
-
+      color: rgb(31 32 65 / 50%);
       padding: 10px;
-
       background: white;
-
-      border: 1px solid rgba(31, 32, 65, 0.25);
+      border: 1px solid rgb(31 32 65 / 25%);
       border-radius: 10px;
-
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-
+      box-shadow: 0 0 25px rgb(0 0 0 / 20%);
       z-index: 99;
     }
 
@@ -168,61 +136,57 @@
 
   &__fee {
     text-align: right;
-
     padding-left: 10px;
   }
 
   &__fee-add-label {
     grid-area: label;
-
     max-width: 200px;
     max-height: 36px;
-
     padding-top: 3px;
-
     line-height: 18px;
-
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   &__fee-add {
     text-align: right;
-
     padding-left: 10px;
   }
 
   &__total-line {
     display: grid;
     grid-template-columns: 60px auto minmax(0, max-content);
-
     font-weight: bold;
     font-size: 19px;
     line-height: 23px;
-
     width: 100%;
-
-    color: #1F2041;
-
+    color: #1f2041;
     align-items: baseline;
-
-    padding-left:1px;
+    padding-left: 1px;
   }
 
   &__dash {
-    border-bottom: 1px dotted rgba(31, 32, 65, 0.25);
-
+    border-bottom: 1px dotted rgb(31 32 65 / 25%);
     height: 23px;
     min-width: 10px;
   }
 
   &__total {
     text-align: right;
-
     padding-right: 2px;
   }
 
-  &__numeric,&__price,&__calc-price,&__calc-days,&__total-price,&__discount,&__fee,&__fee-add,&__fee-label,&__total {
+  &__numeric,
+  &__price,
+  &__calc-price,
+  &__calc-days,
+  &__total-price,
+  &__discount,
+  &__fee,
+  &__fee-add,
+  &__fee-label,
+  &__total {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -232,10 +196,8 @@
 @media all and (max-width: 400px) {
   .card-details {
     width: 100%;
-
     border-left: 0;
     border-right: 0;
-
     padding: 39px 3%;
 
     &__header {
@@ -244,6 +206,7 @@
 
     &__total-line {
       width: 94%;
+      padding: 0;
     }
 
     &__calc {
@@ -252,17 +215,13 @@
 
     &__calc-fee {
       grid-template-columns: minmax(0, max-content) minmax(0, max-content) auto;
-      grid-template-areas: 'fee-label discount fee'
-                           'label     label    fee-add';
+      grid-template-areas:
+        "fee-label discount fee"
+        "label     label    fee-add";
     }
 
     &__info {
       display: none;
     }
-
-    &__total-line {
-      padding: 0;
-    }
   }
 }
-

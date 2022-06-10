@@ -2,9 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: fit-content;
-
   outline: 0;
 
   &__body {
@@ -12,23 +10,17 @@
   }
 
   &__description {
-    padding: 9px 0 0 0;
-
-    color: rgba(31, 32, 65, 0.75);
+    padding: 9px 0 0;
+    color: rgb(31 32 65 / 75%);
   }
 
   &__item {
     display: none;
-
     position: relative;
-
     text-align: center;
     font-size: 12px;
-
     border-radius: 20px;
-
-    color: rgba(31, 32, 65, 0.5);
-
+    color: rgb(31 32 65 / 50%);
     cursor: pointer;
 
     &:last-child,
@@ -37,11 +29,12 @@
       display: block;
     }
 
-    &:first-child,&:last-child {
+    &:first-child,
+    &:last-child {
       font-family: material-icons, Arial, sans-serif;
       font-size: 24px;
       color: white;
-      background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
+      background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
     }
 
     &::selection {
@@ -68,16 +61,18 @@
 
     @for $i from 1 through 15 {
       &[data-active="#{$i}"] {
+        /* stylelint-disable-next-line */
         .paginator__item {
           &:nth-child(#{$i - 2}):not(:first-child):not(:nth-child(2)) {
             display: block;
             pointer-events: none;
             color: transparent;
             border: transparent;
-            &:after {
-              content: '...';
+
+            &::after {
+              content: "...";
               position: absolute;
-              color: rgba(31, 32, 65, 0.5);
+              color: rgb(31 32 65 / 50%);
               left: 50%;
               transform: translate(-50%, 0);
             }
@@ -95,8 +90,8 @@
             display: block;
             color: white;
             font-weight: bold;
-            background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-
+            background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+            /* stylelint-disable-next-line */
             & + .paginator__item:last-child {
               display: none;
             }
@@ -115,10 +110,11 @@
             pointer-events: none;
             color: transparent;
             border: transparent;
-            &:after {
-              content: '...';
+
+            &::after {
+              content: "...";
               position: absolute;
-              color: rgba(31, 32, 65, 0.5);
+              color: rgb(31 32 65 / 50%);
               left: 50%;
               transform: translate(-50%, 0);
             }
@@ -127,7 +123,7 @@
 
         &:focus {
           .paginator__item:nth-child(#{$i + 1}) {
-            box-shadow: 0 0 10px 0 #BC9CFF;
+            box-shadow: 0 0 10px 0 #bc9cff;
           }
         }
       }
@@ -145,16 +141,18 @@
 
     @for $i from 1 through 15 {
       &[data-active='#{$i}'] {
+        /* stylelint-disable-next-line */
         .paginator__item {
           &:nth-child(#{$i - 1}):not(:first-child):not(:nth-child(2)) {
             display: block;
             pointer-events: none;
             color: transparent;
             border: transparent;
-            &:after {
-              content: '...';
+
+            &::after {
+              content: "...";
               position: absolute;
-              color: rgba(31, 32, 65, 0.5);
+              color: rgb(31 32 65 / 50%);
               left: 50%;
               transform: translate(-50%, 0);
             }
@@ -168,8 +166,8 @@
             display: block;
             color: white;
             font-weight: bold;
-            background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-
+            background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+            /* stylelint-disable-next-line */
             & + .paginator__item:last-child {
               display: none;
             }
@@ -184,10 +182,11 @@
             pointer-events: none;
             color: transparent;
             border: transparent;
-            &:after {
-              content: '...';
+
+            &::after {
+              content: "...";
               position: absolute;
-              color: rgba(31, 32, 65, 0.5);
+              color: rgb(31 32 65 / 50%);
               left: 50%;
               transform: translate(-50%, 0);
             }
@@ -196,7 +195,7 @@
 
         &:focus {
           .paginator__item:nth-child(#{$i + 1}) {
-            box-shadow: 0 0 10px 0 #BC9CFF;
+            box-shadow: 0 0 10px 0 #bc9cff;
           }
         }
       }

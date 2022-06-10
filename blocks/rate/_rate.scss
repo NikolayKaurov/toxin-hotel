@@ -1,6 +1,5 @@
 .rate {
   display: flex;
-
   outline: 0;
 
   &__star {
@@ -9,20 +8,16 @@
     position: relative;
 
     &::after {
-      content: 'star_border';
-
+      content: "star_border";
       font-family: material-icons, Arial, sans-serif;
       font-size: 24px;
       line-height: 24px;
-
-      color: #BC9CFF;
-      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-      -webkit-background-clip: text;
+      color: #bc9cff;
+      background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+      background-clip: text;
       -webkit-text-fill-color: transparent;
-
       width: 24px;
       height: 24px;
-
       position: absolute;
     }
   }
@@ -36,7 +31,7 @@
   }
 
   &:focus {
-    text-shadow: 0 0 10px #BC9CFF;
+    text-shadow: 0 0 10px #bc9cff;
   }
 }
 
@@ -44,7 +39,7 @@
   .rate[data-rating="#{$i}"] {
     @for $j from 1 through $i {
       .rate__star:nth-child(#{$j})::after {
-        content: 'star';
+        content: "star";
       }
     }
   }

@@ -1,20 +1,29 @@
 mixin search
   .search
     form.search__form
-      +datepicker({ name: 'date-filter', label: 'даты пребывания в отеле', zIndex: 5, modifier: 'filter' })
-      +dropdown({
-        name: 'guest',
-        defaultValue: 'Сколько гостей',
-        label: 'гости',
-        zIndex: 4,
-        guest: true,
-        narrow: true,
-        items: [
-          { name: 'adult', units: 'взрослые гость гостя гостей' },
-          { name: 'child', units: 'дети ребёнок ребёнка детей' },
-          { name: 'baby', units: 'младенцы младенец младенца младенцев'},
-        ]
-      })
+      .search__datepicker
+        +datepicker({ name: 'date-filter', label: 'даты пребывания в отеле', zIndex: 5, modifier: 'filter' })
+      .search__dropdown
+        +dropdown({
+          placeholder: 'Сколько гостей',
+          header: 'гости',
+          narrow: true,
+          items: [
+            {
+              name: 'adult',
+              units: 'взрослые гость гостя гостей'
+            },
+            {
+              name: 'child',
+              units: 'дети ребёнок ребёнка детей',
+              surplus: 'surplus',
+            },
+            {
+              name: 'baby',
+              units: 'младенцы младенец младенца младенцев'
+            },
+          ]
+        })
       +slider-toxin({
         label: 'диапазон цены',
         description: 'Стоимость за сутки пребывания в номере',
@@ -50,18 +59,26 @@ mixin search
             },
           ],
         })
-      +dropdown({
-        name: 'room',
-        defaultValue: 'Сколько комнат',
-        label: 'удобства номера',
-        zIndex: 3,
-        narrow: true,
-        items: [
-          { name: 'bedroom', units: 'спальни спальня спальни спален' },
-          { name: 'bed', units: 'кровати кровать кровати кроватей' },
-          { name: 'bath', units: 'ванные комнаты ванная ванных ванных' },
-        ]
-      })
+      .search__dropdown
+        +dropdown({
+          placeholder: 'Сколько комнат',
+          header: 'удобства номера',
+          narrow: true,
+          items: [
+            {
+              name: 'bedroom',
+              units: 'спальни спальня спальни спален'
+            },
+            {
+              name: 'bed',
+              units: 'кровати кровать кровати кроватей'
+            },
+            {
+              name: 'bath',
+              units: 'ванные комнаты ванная ванных ванных'
+            },
+          ]
+        })
       +checkbox({
         id: 'expand-1',
         expand: 'дополнительные удобства',
@@ -77,9 +94,9 @@ mixin search
     .search__result
       .search__header Номера, которые мы для вас подобрали
       .search__cards
-        +card-room({ number: '888', price: 9990, rating: 5, reviews: 145, lux: 'люкс' })
+        +card-room({ number: '888', price: 9990, rating: 5, reviews: 145, lux: true })
         +card-room({ number: '840', price: 9900, rating: 4, reviews: 65 })
-        +card-room({ number: '980', price: 8500, rating: 3, reviews: 35, lux: 'люкс' })
+        +card-room({ number: '980', price: 8500, rating: 3, reviews: 35, lux: true })
         +card-room({ number: '856', price: 7300, rating: 5, reviews: 19 })
         +card-room({ number: '740', price: 6000, rating: 4, reviews: 44 })
         +card-room({ number: '982', price: 5800, rating: 3, reviews: 56 })

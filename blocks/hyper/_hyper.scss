@@ -1,31 +1,28 @@
 .hyper {
   text-decoration: none;
-
   outline: 0;
-
   font-size: 14px;
   line-height: 17px;
-
   text-shadow: none;
-}
 
-.hyper:link {
-  color: rgba(31, 32, 65, 0.5);
-}
+  &:link {
+    color: rgb(31 32 65 / 50%);
+  }
 
-.hyper_weight_bold {
-  font-weight: bold;
-  color: rgba(31, 32, 65, 0.75);
-}
+  &:visited {
+    color: rgb(31 32 65 / 25%);
+  }
 
-.hyper:visited {
-  color: rgba(31, 32, 65, 0.25);
-}
+  &:focus {
+    text-shadow: 0 0 15px rgb(31 32 65 / 50%);
+  }
 
-.hyper:focus {
-  text-shadow: 0 0 15px rgba(31, 32, 65, 0.5);
-}
+  &::selection {
+    background: transparent;
+  }
 
-.hyper::selection {
-  background: transparent;
+  &_weight_bold {
+    font-weight: bold;
+    color: rgb(31 32 65 / 75%);
+  }
 }

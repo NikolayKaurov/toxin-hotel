@@ -2,348 +2,306 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   border-bottom: 1px solid #e5e5e5;
-
   width: 100%;
-
   flex-grow: 1;
-}
 
-.details__gallery {
-  width: 100%;
-  max-width: 1920px;
-  height: 52vmin;
-  max-height: 485px;
+  &__gallery {
+    width: 100%;
+    max-width: 1920px;
+    height: 52vmin;
+    max-height: 485px;
+    display: grid;
+    grid-template:
+      "armchair bed" 50.1%
+      "armchair coffee-table" auto
+      / 68.125% auto;
 
-  display: grid;
-  grid-template-columns: 68.125% auto;
-  grid-template-rows: 50.1% auto;
-  grid-template-areas:
-    'armchair bed'
-    'armchair coffee-table';
-}
+    &-slot {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
 
-.details__gallery-slot {
-  width: 100%;
-  height: 100%;
+      &:nth-child(1) {
+        grid-area: armchair;
+      }
 
-  overflow: hidden;
-}
+      &:nth-child(2) {
+        grid-area: bed;
+      }
 
-.details__gallery-slot:nth-child(1) {
-  grid-area: armchair;
-}
+      &:nth-child(3) {
+        grid-area: coffee-table;
+      }
+    }
+  }
 
-.details__gallery-slot:nth-child(2) {
-  grid-area: bed;
-}
+  &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-.details__gallery-slot:nth-child(3) {
-  grid-area: coffee-table;
-}
+  &__body {
+    width: 80.56%;
+    max-width: 1160px;
+    padding: min(70px, 8vmin) 0 min(69px, 8vmin);
+    display: grid;
+    grid-template:
+      "advantage chart card" 304px
+      "reviews reviews card" auto
+      "rules cancel card" 160px / 280px auto 38.79%;
+  }
 
-.details__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  &__header {
+    font-size: 19px;
+    line-height: 23px;
+    color: #1f2041;
+    font-weight: bold;
 
-.details__body {
-  width: 80.56%;
-  max-width: 1160px;
+    &_indented {
+      padding-left: 20px;
+    }
+  }
 
-  padding: min(70px, 8vmin) 0 min(69px, 8vmin);
+  &__advantage {
+    display: grid;
+    grid-template-rows: 44px auto;
+    grid-area: advantage;
+  }
 
-  display: grid;
-  grid-template-rows: 304px auto 160px;
-  grid-template-columns: 280px auto 38.79%;
-  grid-template-areas: 'advantage chart card'
-                       'reviews reviews card'
-                       'rules cancel card';
-}
+  &__chart {
+    display: grid;
+    grid-template-rows: 45px auto;
+    grid-area: chart;
+    justify-self: end;
+    padding-right: 38px;
+  }
 
-.details__header {
-  font-size: 19px;
-  line-height: 23px;
-  color: #1F2041;
-  font-weight: bold;
-}
+  &__card {
+    grid-area: card;
+    justify-self: end;
+  }
 
-.details__header_indented {
-  padding-left: 20px;
-}
+  &__reviews {
+    display: grid;
+    align-items: start;
+    grid-template-rows: 24px auto;
+    grid-row-gap: 20px;
+    grid-area: reviews;
+    padding-bottom: 30px;
+    height: fit-content;
 
-.details__advantage {
-  display: grid;
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: fit-content;
+    }
+  }
 
-  grid-template-rows: 44px auto;
+  &__number-reviews {
+    font-size: 14px;
+    line-height: 14px;
+    color: rgb(31 32 65 / 50%);
+  }
 
-  grid-area: advantage;
-}
+  &__rules {
+    display: grid;
+    grid-template-rows: 41px auto;
+    grid-area: rules;
+    height: fit-content;
+  }
 
-.details__chart {
-  display: grid;
-  grid-template-rows: 45px auto;
+  &__cancel {
+    display: grid;
+    grid-template-rows: 41px auto;
+    grid-area: cancel;
+    justify-self: end;
+    height: fit-content;
+    padding-right: 9px;
+    max-width: 341px;
+  }
 
-  grid-area: chart;
-
-  justify-self: end;
-
-  padding-right: 38px;
-}
-
-.details__card {
-  grid-area: card;
-
-  justify-self: end;
-}
-
-.details__reviews {
-  display: grid;
-  align-items: start;
-
-  grid-template-rows: 24px auto;
-  grid-row-gap: 20px;
-
-  grid-area: reviews;
-
-  padding-bottom: 30px;
-
-  height: fit-content;
-}
-
-.details__reviews-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  height: fit-content;
-}
-
-.details__number-reviews {
-  font-size: 14px;
-  line-height: 14px;
-
-  color: rgba(31, 32, 65, 0.5);
-}
-
-.details__rules {
-  display: grid;
-
-  grid-template-rows: 41px auto;
-
-  grid-area: rules;
-
-  height: fit-content;
-}
-
-.details__cancel {
-  display: grid;
-
-  grid-template-rows: 41px auto;
-
-  grid-area: cancel;
-  justify-self: end;
-
-  height: fit-content;
-
-  padding-right: 9px;
-
-  max-width: 341px;
-}
-
-.details__paragraph {
-  font-size: 14px;
-  line-height: 24px;
-
-  color: rgba(31, 32, 65, 0.75);
-
-  margin: 0;
+  &__paragraph {
+    font-size: 14px;
+    line-height: 24px;
+    color: rgb(31 32 65 / 75%);
+    margin: 0;
+  }
 }
 
 @media all and (min-width: 1025px) and (max-width: 1366px) {
-  .details__body {
-    grid-template-rows: 170px 342px auto auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr 100px 280px;
+  .details {
+    &__body {
+      grid-template:
+        "chart chart chart chart card card" 170px
+        "reviews reviews reviews reviews card card" 342px
+        "reviews reviews reviews reviews empty advantage" auto
+        "rules rules cancel cancel cancel advantage" auto / 1fr 1fr 1fr 1fr 100px 280px;
+    }
 
-    grid-template-areas: 'chart chart chart chart card card'
-                         'reviews reviews reviews reviews card card'
-                         'reviews reviews reviews reviews empty advantage'
-                         'rules rules cancel cancel cancel advantage';
-  }
+    &__chart {
+      padding-right: 0;
+      justify-self: center;
+    }
 
-  .details__chart {
-    padding-right: 0;
+    &__advantage {
+      justify-self: end;
+      padding-top: 50px;
+    }
 
-    justify-self: center;
-  }
+    &__reviews {
+      padding-top: 50px;
+      padding-right: 50px;
+    }
 
-  .details__advantage {
-    justify-self: end;
-    padding-top: 50px;
-  }
-
-  .details__reviews {
-    padding-top: 50px;
-    padding-right: 50px;
-  }
-
-  .details__cancel {
-    padding-right: 40px;
-    padding-left: 40px;
-    max-width: none;
+    &__cancel {
+      padding-right: 40px;
+      padding-left: 40px;
+      max-width: none;
+    }
   }
 }
 
 @media all and (min-width: 801px) and (max-width: 1024px) {
-  .details__body {
-    width: 90%;
+  .details {
+    &__body {
+      width: 90%;
+      grid-template:
+        "chart card" 170px
+        "advantage card" 342px
+        "reviews reviews" auto
+        "rules cancel" auto / auto 380px;
+    }
 
-    grid-template-rows: 170px 342px auto auto;
-    grid-template-columns: auto 380px;
+    &__chart {
+      padding-right: 0;
+      justify-self: center;
+    }
 
-    grid-template-areas: 'chart card'
-                         'advantage card'
-                         'reviews reviews'
-                         'rules cancel';
-  }
+    &__advantage {
+      justify-self: center;
+      padding-top: 50px;
+    }
 
-  .details__chart {
-    padding-right: 0;
+    &__reviews {
+      padding-top: 50px;
+    }
 
-    justify-self: center;
-  }
+    &__rules {
+      padding-right: 50px;
+    }
 
-  .details__advantage {
-    justify-self: center;
-
-    padding-top: 50px;
-  }
-
-  .details__reviews {
-    padding-top: 50px;
-  }
-
-  .details__rules {
-    padding-right: 50px;
-  }
-
-  .details__cancel {
-    padding-right: 0;
-    max-width: none;
+    &__cancel {
+      padding-right: 0;
+      max-width: none;
+    }
   }
 }
 
 @media all and (min-width: 641px) and (max-width: 800px) {
-  .details__body {
-    width: 100%;
+  .details {
+    &__body {
+      width: 100%;
+      grid-template:
+        "card card" 562px
+        "advantage chart" auto
+        "reviews reviews" auto
+        "rules cancel" auto / 1fr 1fr;
+    }
 
-    grid-template-rows: 562px auto auto auto;
-    grid-template-columns: 1fr 1fr;
+    &__card {
+      justify-self: center;
+      padding-bottom: 50px;
+    }
 
-    grid-template-areas: 'card card'
-                         'advantage chart'
-                         'reviews reviews'
-                         'rules cancel';
-  }
+    &__chart {
+      justify-self: center;
+      padding-right: 0;
+    }
 
-  .details__card {
-    justify-self: center;
+    &__advantage {
+      justify-self: center;
+    }
 
-    padding-bottom: 50px;
-  }
+    &__reviews {
+      padding: 60px 10%;
+    }
 
-  .details__chart {
-    justify-self: center;
-    padding-right: 0;
-  }
+    &__rules {
+      padding: 0 10%;
+    }
 
-  .details__advantage {
-    justify-self: center;
-  }
-
-  .details__reviews {
-    padding: 60px 10%;
-  }
-
-  .details__rules {
-    padding: 0 10%;
-  }
-
-  .details__cancel {
-    padding: 0 10%;
-
-    max-width: none;
+    &__cancel {
+      padding: 0 10%;
+      max-width: none;
+    }
   }
 }
 
 @media all and (max-width: 640px) {
-  .details__body {
-    width: 100%;
+  .details {
+    &__body {
+      width: 100%;
+      justify-items: center;
+      grid-template-areas:
+        "card" 512px
+        "advantage" auto
+        "chart" auto
+        "reviews" auto
+        "cancel" auto
+        "rules" auto / 1fr;
+    }
 
-    grid-template-rows: 512px auto auto auto auto auto;
-    grid-template-columns: 1fr;
+    &__card {
+      justify-self: center;
+    }
 
-    justify-items: center;
+    &__chart {
+      justify-self: center;
+      padding-right: 0;
+    }
 
-    grid-template-areas: 'card'
-                         'advantage'
-                         'chart'
-                         'reviews'
-                         'cancel'
-                         'rules';
-  }
+    &__advantage {
+      justify-self: center;
+      padding: 60px 0;
+    }
 
-  .details__card {
-    justify-self: center;
-  }
+    &__reviews {
+      padding: 60px 10%;
+      grid-template-rows: auto;
 
-  .details__chart {
-    justify-self: center;
-    padding-right: 0;
-  }
+      &-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 20px;
+      }
+    }
 
-  .details__advantage {
-    justify-self: center;
+    &__number-reviews {
+      padding-top: 10px;
+    }
 
-    padding: 60px 0;
-  }
+    &__rules {
+      padding: 0 10%;
+    }
 
-  .details__reviews {
-    padding: 60px 10%;
-
-    grid-template-rows: auto;
-  }
-
-  .details__reviews-header {
-    flex-direction: column;
-    align-items: flex-start;
-
-    padding-bottom: 20px;
-  }
-
-  .details__number-reviews {
-    padding-top: 10px;
-  }
-
-  .details__rules {
-    padding: 0 10%;
-  }
-
-  .details__cancel {
-    padding: 0 10% 60px 10%;
-
-    max-width: none;
+    &__cancel {
+      padding: 0 10% 60px;
+      max-width: none;
+    }
   }
 }
 
 @media all and (max-width: 400px) {
-  .details__body {
-    padding-top: 0;
-  }
+  .details {
+    &__body {
+      padding-top: 0;
+    }
 
-  .details__card {
-    width: 100%;
+    &__card {
+      width: 100%;
+    }
   }
 }

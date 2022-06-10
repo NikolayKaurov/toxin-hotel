@@ -1,101 +1,81 @@
 .text-field {
   width: 320px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__label {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 5px;
+
+    &:nth-child(2) {
+      font-weight: normal;
+      color: rgb(31 32 65 / 50%);
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__input {
+    font-size: 14px;
+    line-height: 24px;
+    color: rgb(31 32 65 / 75%);
+    font-family: montserrat, Arial, sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    height: 44px;
+    margin: 0;
+    padding: 0 14px;
+    border: 1px solid rgb(31 32 65 / 25%);
+    border-radius: 4px;
+
+    &::placeholder {
+      font-family: montserrat, Arial, sans-serif;
+      color: rgb(31 32 65 / 25%);
+    }
+
+    &:focus,
+    &:hover {
+      border: 1px solid rgb(31 32 65 / 50%);
+      outline: 0;
+    }
+  }
+
+  &_type_date &__input {
+    position: absolute;
+    background: transparent;
+    color: rgb(31 32 65 / 50%);
+    z-index: 1;
+
+    &_double {
+      background: white;
+      border: 1px solid transparent;
+      z-index: 0;
+    }
+
+    &_invalid {
+      color: red;
+    }
+  }
+
+  &:hover &__input_double {
+    border: 1px solid transparent;
+  }
+
+  &__date {
+    display: none;
+  }
 }
 
 @media all and (max-width: 400px) {
   .text-field {
     width: 266px;
   }
-}
-
-.text-field__header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.text-field__label {
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  margin: 0 0 5px 0;
-}
-
-.text-field__label:nth-child(2) {
-  font-weight: normal;
-  color: rgba(31, 32, 65, 0.5);
-}
-
-.text-field__wrapper {
-  position: relative;
-}
-
-.text-field__input {
-  font-size: 14px;
-  line-height: 24px;
-  color: rgba(31, 32, 65, 0.75);
-  font-family: montserrat, Arial, sans-serif;
-
-  box-sizing: border-box;
-
-  width: 100%;
-  height: 44px;
-
-  margin: 0;
-  padding: 0 14px;
-
-  border: 1px solid rgba(31, 32, 65, 0.25);
-  border-radius: 4px;
-}
-
-.text-field__input:focus {
-  border: 1px solid rgba(31, 32, 65, 0.5);
-
-  outline: 0;
-}
-
-.text-field__input::placeholder {
-  font-family: montserrat, Arial, sans-serif;
-  color: rgba(31, 32, 65, 0.25);
-}
-
-.text-field:hover {
-  .text-field__input {
-    border: 1px solid rgba(31, 32, 65, 0.5);
-  }
-}
-
-.text-field_type_date {
-  .text-field__input {
-    position: absolute;
-
-    background: transparent;
-
-    color: rgba(31, 32, 65, 0.5);
-
-    z-index: 1;
-  }
-
-  .text-field__input_double {
-    background: white;
-
-    border: 1px solid transparent;
-
-    z-index: 0;
-  }
-
-  .text-field__input_invalid {
-    color: red;
-  }
-}
-
-.text-field:hover {
-  .text-field__input_double {
-    border: 1px solid transparent;
-  }
-}
-
-.text-field__date {
-  display: none;
 }

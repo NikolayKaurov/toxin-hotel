@@ -4,35 +4,35 @@
   $size: 120px;
   $half: math.div($size, 2);
 
-  .chart__figure {
-    width: $size;
-    height: $size;
-  }
+  .chart {
+    &__figure {
+      width: $size;
+      height: $size;
+    }
 
-  .chart__hold {
-    clip: rect(0px, $size, $size, $half - 1px);
-  }
+    &__hold {
+      clip: rect(0, $size, $size, $half - 1px);
 
-  .chart__hold::before {
-    left: $half - 1px;
-    top: $size - 5px;
-  }
+      &::before {
+        left: $half - 1px;
+        top: $size - 5px;
+      }
+    }
 
-  .chart__slice {
-    clip: rect(0px, $half - 1px, $size, 0px);
+    &__slice {
+      clip: rect(0, $half - 1px, $size, 0);
+      border-radius: $half;
+    }
 
-    border-radius: $half;
-  }
+    &__total {
+      width: $size - 8px;
+      height: $size - 14px;
+      border-radius: $half;
+    }
 
-  .chart__total {
-    width: $size - 8px;
-    height: $size - 14px;
-
-    border-radius: $half;
-  }
-
-  .chart__legend {
-    margin: 0 0 3px 30px;
+    &__legend {
+      margin: 0 0 3px 30px;
+    }
   }
 }
 
@@ -40,185 +40,155 @@
   $size: 100px;
   $half: math.div($size, 2);
 
-  .chart__figure {
-    width: $size;
-    height: $size;
-  }
+  .chart {
+    &__figure {
+      width: $size;
+      height: $size;
+    }
 
-  .chart__hold {
-    clip: rect(0px, $size, $size, $half - 1px);
-  }
+    &__hold {
+      clip: rect(0, $size, $size, $half - 1px);
 
-  .chart__hold::before {
-    left: $half - 1px;
-    top: $size - 5px;
-  }
+      &::before {
+        left: $half - 1px;
+        top: $size - 5px;
+      }
+    }
 
-  .chart__slice {
-    clip: rect(0px, $half - 1px, $size, 0px);
+    &__slice {
+      clip: rect(0, $half - 1px, $size, 0);
+      border-radius: $half;
+    }
 
-    border-radius: $half;
-  }
+    &__total {
+      width: $size - 8px;
+      height: $size - 14px;
+      border-radius: $half;
+    }
 
-  .chart__total {
-    width: $size - 8px;
-    height: $size - 14px;
-
-    border-radius: $half;
-  }
-
-  .chart__legend {
-    margin: 0 0 3px 10px;
+    &__legend {
+      margin: 0 0 3px 30px;
+    }
   }
 }
 
 .chart {
   display: flex;
   align-items: flex-end;
-
   background: white;
-
   height: fit-content;
-}
+  z-index: 0;
 
-.chart__figure {
-  position: relative;
+  &__figure {
+    position: relative;
+    margin-bottom: 5px;
+  }
 
-  margin-bottom: 5px;
-}
+  &__hold {
+    position: absolute;
+    width: inherit;
+    height: inherit;
 
-.chart__hold {
-  position: absolute;
+    &_most {
+      clip: auto;
+    }
 
-  width: inherit;
-  height: inherit;
-}
+    &::before {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 6px;
+      background: white;
+      z-index: 1;
+    }
+  }
 
-.chart__hold_most {
-  clip: auto;
-}
+  &__slice {
+    position: absolute;
+    width: inherit;
+    height: inherit;
 
-.chart__hold::before {
-  content: '';
+    &_most {
+      clip: auto;
+    }
 
-  position: absolute;
+    &_fabulous {
+      background: linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
+    }
 
-  width: 2px;
-  height: 6px;
+    &_good {
+      background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+    }
 
-  background: white;
+    &_satisfactorily {
+      background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+    }
 
-  z-index: 1;
-}
+    &_disappointed {
+      background: linear-gradient(180deg, #919191 0%, #3d4975 100%);
+    }
+  }
 
-.chart__slice {
-  position: absolute;
+  &__total {
+    position: absolute;
+    background: white;
+    z-index: 1;
+    left: 4px;
+    top: 4px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: bold;
+    color: #bc9cff;
+    padding-bottom: 6px;
 
-  width: inherit;
-  height: inherit;
-}
+    &-number {
+      font-size: 24px;
+      line-height: 29px;
+      color: #bc9cff;
+      font-weight: bold;
+      margin-bottom: 1px;
+    }
+  }
 
-.chart__slice_most {
-  clip: auto;
-}
+  &__legend {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
 
-.chart__slice_fabulous {
-  background: linear-gradient(180deg, #FFE39C 0%, #FFBA9C 100%);
-}
+  &__item {
+    font-size: 14px;
+    line-height: 24px;
+    color: rgb(31 32 65 / 75%);
+    display: flex;
+    align-items: center;
+  }
 
-.chart__slice_good {
-  background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
-}
+  &__bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+  }
 
-.chart__slice_satisfactorily {
-  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-}
+  &__item:nth-child(1) &__bullet {
+    background: linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
+  }
 
-.chart__slice_disappointed {
-  background: linear-gradient(180deg, #919191 0%, #3D4975 100%);
-}
+  &__item:nth-child(2) &__bullet {
+    background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+  }
 
-.chart__total {
-  position: absolute;
+  &__item:nth-child(3) &__bullet {
+    background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+  }
 
-  background: white;
-
-  z-index: 1;
-
-  left: 4px;
-  top: 4px;
-
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: bold;
-  color: #BC9CFF;
-
-  padding-bottom: 6px;
-}
-
-.chart__total-number {
-  font-size: 24px;
-  line-height: 29px;
-  color: #BC9CFF;
-
-  font-weight: bold;
-
-  margin-bottom: 1px;
-}
-
-.chart__legend {
-  display: flex;
-  flex-direction: column;
-
-  justify-content: flex-end;
-}
-
-.chart__item {
-  font-size: 14px;
-  line-height: 24px;
-  color: rgba(31, 32, 65, 0.75);
-
-  display: flex;
-
-  align-items: center;
-}
-
-.chart__bullet {
-  width: 10px;
-  height: 10px;
-
-  border-radius: 5px;
-
-  margin-right: 5px;
-}
-
-.chart__item:nth-child(1) {
-  .chart__bullet {
-    background: linear-gradient(180deg, #FFE39C 0%, #FFBA9C 100%);
+  &__item:nth-child(4) &__bullet {
+    background: linear-gradient(180deg, #919191 0%, #3d4975 100%);
   }
 }
-
-.chart__item:nth-child(2) {
-  .chart__bullet {
-    background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
-  }
-}
-
-.chart__item:nth-child(3) {
-  .chart__bullet {
-    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-  }
-}
-
-.chart__item:nth-child(4) {
-  .chart__bullet {
-    background: linear-gradient(180deg, #919191 0%, #3D4975 100%);
-  }
-}
-

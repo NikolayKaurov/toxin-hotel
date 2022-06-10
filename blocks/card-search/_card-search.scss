@@ -1,50 +1,46 @@
 .card-search {
   display: grid;
-
   width: 380px;
   height: 374px;
-
   box-sizing: border-box;
-
   padding: 39px 29px;
-
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgb(0 0 0 / 12%);
   border-radius: 4px;
-
   background: white;
-
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-
+  box-shadow: 0 0 25px rgb(0 0 0 / 20%);
   grid-template-rows: 80px 85px 95px auto;
-  grid-template-columns: 1fr;
-
   justify-items: start;
-}
+  z-index: 0;
 
-.card-search__header {
-  font-family: montserrat, Arial, sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 29px;
+  &__header {
+    font-family: montserrat, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    width: 100%;
+    margin: 0;
+  }
 
-  width: 100%;
-  margin: 0;
+  &__datepicker {
+    z-index: 2;
+  }
+
+  &__dropdown {
+    z-index: 1;
+  }
 }
 
 @media all and (max-width: 400px) {
   .card-search {
     width: 100%;
-
     border-left: 0;
     border-right: 0;
-
     padding: 39px 3%;
-
     justify-items: center;
-  }
 
-  .card-search__header {
-    width: 94%;
-    text-align: center;
+    &__header {
+      width: 94%;
+      text-align: center;
+    }
   }
 }

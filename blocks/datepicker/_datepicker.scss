@@ -1,8 +1,6 @@
 .datepicker {
   outline: 0;
-
   width: 320px;
-
   position: relative;
 
   &_format_filter {
@@ -16,12 +14,10 @@
   &__wrapper {
     display: flex;
     justify-content: space-between;
-
     width: 100%;
 
     & & {
       flex-direction: column;
-
       width: auto;
     }
   }
@@ -31,10 +27,8 @@
     line-height: 15px;
     font-weight: bold;
     text-transform: uppercase;
-
     margin-top: 0;
     margin-bottom: 5px;
-
     cursor: default;
 
     &_format_filter {
@@ -49,39 +43,28 @@
   &__drop {
     width: 150px;
     height: 44px;
-
     background: white;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     box-sizing: border-box;
-
     padding-left: 15px;
-
-    border: 1px solid rgba(31, 32, 65, 0.25);
+    border: 1px solid rgb(31 32 65 / 25%);
     border-radius: 4px;
-
-    color: rgba(31, 32, 65, 0.75);
-
+    color: rgb(31 32 65 / 75%);
     cursor: pointer;
 
     &_format_filter {
       display: none;
-
       width: 100%;
     }
 
     &::after {
-      content: 'expand_more';
-
+      content: "expand_more";
       font-family: material-icons, Arial, sans-serif;
       font-size: 24px;
-      color: rgba(31, 32, 65, 0.5);
-
+      color: rgb(31 32 65 / 50%);
       width: 44px;
-
       text-align: center;
     }
 
@@ -91,38 +74,31 @@
   }
 
   &_open &__drop::after {
-    content: 'expand_less';
+    content: "expand_less";
   }
 
-  &_format_filter &__header,&_format_filter &__drop {
+  &_format_filter &__header,
+  &_format_filter &__drop {
     display: none;
   }
 
-  &_format_filter &__header_format_filter,&_format_filter &__drop_format_filter {
+  &_format_filter &__header_format_filter,
+  &_format_filter &__drop_format_filter {
     display: flex;
   }
 
   &__down {
     background: white;
-
     position: absolute;
-
     width: 100%;
-
     box-sizing: border-box;
-
     margin-top: 5px;
-
     display: none;
-
     flex-direction: column;
     align-items: center;
-
-    border: 1px solid rgba(31, 32, 65, 0.25);
+    border: 1px solid rgb(31 32 65 / 25%);
     border-radius: 4px;
-
-    box-shadow: 0 10px 20px 0 rgba(31, 32, 65, 0.05);
-
+    box-shadow: 0 10px 20px 0 rgb(31 32 65 / 5%);
     z-index: 0;
   }
 
@@ -132,21 +108,18 @@
 
   &__button {
     background-color: transparent;
-
     border: 0;
     outline: 0;
-
     padding: 20px;
-
     font-family: montserrat, Arial, sans-serif;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: bold;
     color: #bc9cff;
-
     cursor: pointer;
 
-    &_action_back,&_action_forward {
+    &_action_back,
+    &_action_forward {
       font-family: material-icons, Arial, sans-serif;
       text-transform: none;
       font-size: 24px;
@@ -158,10 +131,8 @@
     }
 
     &:disabled {
-      color: rgba(31, 32, 65, 0.5);
-
+      color: rgb(31 32 65 / 50%);
       pointer-events: none;
-
       cursor: default;
     }
 
@@ -174,11 +145,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-size: 19px;
     font-weight: bold;
     color: #1f2041;
-
     cursor: default;
 
     &::selection {
@@ -192,32 +161,26 @@
 
   &__calendar {
     border-collapse: collapse;
-
     margin-top: 10px;
   }
 
   &__calendar-header {
     font-weight: bold;
-    color: #BC9CFF;
+    color: #bc9cff;
   }
 
   &__row {
-    color: rgba(31, 32, 65, 0.5);
+    color: rgb(31 32 65 / 50%);
   }
 
   &__cell {
     width: 40px;
     height: 40px;
-
     line-height: 40px;
     text-align: center;
-
     font-size: 12px;
-
     padding: 0;
-
     cursor: default;
-
     position: relative;
 
     &_clickable {
@@ -225,26 +188,26 @@
     }
 
     &_date_other-month {
-      color: rgba(31, 32, 65, 0.25);
+      color: rgb(31 32 65 / 25%);
     }
 
     &_date_today {
       font-weight: bold;
-      color: #BC9CFF;
+      color: #bc9cff;
     }
 
     &_format_cursor {
-      background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
+      background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
     }
 
     &_selected {
-      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+      background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
     }
 
-    &_format_cursor,&_selected {
+    &_format_cursor,
+    &_selected {
       color: white;
       font-weight: bold;
-
       border-radius: 22px;
     }
 
@@ -261,14 +224,11 @@
 
   &__cell-period {
     z-index: -1;
-
     position: absolute;
     top: 0;
-
     width: 100%;
     height: 100%;
-
-    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+    background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
     opacity: 0.25;
 
     &_date_sunday {
@@ -283,7 +243,6 @@
 
     &_date_arrival {
       width: 50%;
-
       right: 0;
     }
 
@@ -291,17 +250,29 @@
       width: 50%;
     }
   }
+
+  &_format_demo &__drop,
+  &_format_demo &__header {
+    display: none;
+  }
+
+  &_format_demo &__down {
+    margin-top: 0;
+    display: flex;
+  }
 }
 
 @media all and (max-width: 400px) {
   .datepicker {
     width: 266px;
 
-    &__header,&__drop {
+    &__header,
+    &__drop {
       display: none;
     }
 
-    &__header_format_filter,&__drop_format_filter {
+    &__header_format_filter,
+    &__drop_format_filter {
       display: flex;
     }
 
@@ -314,17 +285,5 @@
       height: 32px;
       line-height: 32px;
     }
-  }
-}
-
-.datepicker {
-  &_format_demo &__drop,&_format_demo &__header {
-    display: none;
-  }
-
-  &_format_demo &__down {
-    margin-top: 0;
-
-    display: flex;
   }
 }

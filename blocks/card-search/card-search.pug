@@ -1,36 +1,34 @@
 mixin card-search
   form.card-search.js-card-search(action="./search-room.html")
     p.card-search__header Найдём номера под ваши пожелания
-    +datepicker({
-      name: 'search-date',
-      labelArrival: 'прибытие',
-      labelDeparture: 'выезд',
-      label: 'даты пребывания в отеле',
-      zIndex: 3
-    })
-    +dropdown({
-      name: 'search-guest',
-      defaultValue: 'Сколько гостей',
-      label: 'гости',
-      zIndex: 2,
-      guest: true,
-      confirm: true,
-      clear: true,
-      items: [
-        {
-          name: 'adult',
-          units: 'взрослые гость гостя гостей',
-        },
-        {
-          name: 'child',
-          units: 'дети',
-        },
-        {
-          name: 'baby',
-          units: 'младенцы младенец младенца младенцев',
-        },
-      ],
-    })
+    .card-search__datepicker
+      +datepicker({
+        headerArrival: 'прибытие',
+        headerDeparture: 'выезд',
+        headerCommon: 'даты пребывания в отеле',
+      })
+    .card-search__dropdown
+      +dropdown({
+        placeholder: 'Сколько гостей',
+        header: 'гости',
+        confirm: true,
+        clear: true,
+        items: [
+          {
+            name: 'adult',
+            units: 'взрослые гость гостя гостей',
+          },
+          {
+            name: 'child',
+            units: 'дети',
+            surplus: 'surplus',
+          },
+          {
+            name: 'baby',
+            units: 'младенцы младенец младенца младенцев',
+          },
+        ],
+      })
     +button({
       width: 'ultra-wide',
       text: 'подобрать номер',

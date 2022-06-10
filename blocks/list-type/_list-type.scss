@@ -1,93 +1,76 @@
 .list-type {
-}
+  &__item {
+    display: flex;
+    margin: 51px 0 0;
 
-.list-type__item {
-  display: flex;
+    &:first-child {
+      margin: 0;
+    }
 
-  margin: 51px 0 0 0;
+    & > & {
+      display: block;
+      margin: 0 0 0 30px;
+      min-width: 40px;
 
-  > .list-type__item {
-    display: block;
+      &:first-child {
+        margin: 0;
+      }
+    }
 
-    margin: 0 0 0 30px;
+    &_font-size_12px {
+      font-size: 12px;
+      line-height: 15px;
+    }
 
-    min-width: 40px;
+    &_font-size_14px {
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    &_font-size_19px {
+      font-size: 19px;
+      line-height: 23px;
+    }
+
+    &_font-size_24px {
+      font-size: 24px;
+      line-height: 29px;
+    }
   }
 
-  > .list-type__item:first-child {
+  &__example-title {
+    opacity: 0.25;
+    text-transform: uppercase;
+    text-align: right;
+    margin: 0;
+  }
+
+  &__description-title {
+    font-weight: bold;
+    margin: 0;
+  }
+
+  &__example-label {
+    opacity: 0.25;
+    text-transform: uppercase;
+    text-align: right;
+    margin: 0;
+  }
+
+  &__description-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  &__example-body {
+    opacity: 0.25;
+    text-align: right;
+    margin: 0;
+  }
+
+  &__description-body {
+    width: 315px; /* ☻ */
     margin: 0;
   }
 }
-
-.list-type__item:first-child {
-  margin: 0;
-}
-
-.list-type__item_font-size_12px {
-  font-size: 12px;
-  line-height: 15px;
-}
-
-.list-type__item_font-size_14px {
-  font-size: 14px;
-  line-height: 24px;
-}
-
-.list-type__item_font-size_19px {
-  font-size: 19px;
-  line-height: 23px;
-}
-
-.list-type__item_font-size_24px {
-  font-size: 24px;
-  line-height: 29px;
-}
-
-.list-type__example-title {
-  opacity: 0.25;
-
-  text-transform: uppercase;
-  text-align: right;
-
-  margin: 0;
-}
-
-.list-type__description-title {
-  font-weight: bold;
-
-  margin: 0;
-}
-
-.list-type__example-label {
-  opacity: 0.25;
-
-  text-transform: uppercase;
-  text-align: right;
-
-  margin: 0;
-}
-
-.list-type__description-label {
-  font-weight: bold;
-  text-transform: uppercase;
-
-  margin: 0;
-}
-
-.list-type__example-body {
-  opacity: 0.25;
-
-  text-align: right;
-
-  margin: 0;
-}
-
-.list-type__description-body {
-  width: 315px; /* ☻ */
-
-  margin: 0;
-}
-
-
-
-

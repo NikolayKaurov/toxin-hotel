@@ -2,23 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   background: white;
-
   min-height: 70px;
   width: 100%;
-
-  box-shadow: 0 10px 20px rgba(31, 32, 65, 0.05);
-
+  box-shadow: 0 10px 20px rgb(31 32 65 / 5%);
   flex-grow: 0;
   flex-shrink: 0;
-
   z-index: 99;
 
   &__body {
     max-width: 1160px;
     width: 80.56%;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,7 +20,6 @@
 
   &__item {
     flex-grow: 0;
-
     margin-left: 20.5px;
 
     &_most {
@@ -50,14 +43,10 @@
   &__user {
     line-height: 30px;
     height: 30px;
-
-    color: rgba(31, 32, 65, 0.5);
-
+    color: rgb(31 32 65 / 50%);
     padding-left: 20px;
-    border-left: 1px solid rgba(31, 32, 65, 0.1);
-
+    border-left: 1px solid rgb(31 32 65 / 10%);
     max-width: calc(100vw * 0.8056 - 146px);
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -69,7 +58,8 @@
     &__item {
       display: none;
 
-      &_hidden,&_visible {
+      &_hidden,
+      &_visible {
         margin-left: 0;
         display: block;
       }
@@ -83,7 +73,9 @@
 }
 
 @media all and (max-width: 400px) {
-  .header__body {
-    width: 94%;
+  .header {
+    &__body {
+      width: 94%;
+    }
   }
 }

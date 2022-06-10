@@ -1,43 +1,34 @@
 .checkbox {
   display: flex;
   flex-direction: column;
-
   width: 266px;
 
   &__input {
     position: absolute;
-
     opacity: 0;
-
     z-index: -1;
   }
 
   &__expand-label {
     display: flex;
     justify-content: space-between;
-
     font-weight: bold;
     color: #1f2041;
     font-size: 12px;
     line-height: 15px;
     text-transform: uppercase;
-
     cursor: pointer;
-
     width: inherit;
-
     margin-bottom: 17px;
 
     &::after {
-      content: 'expand_less';
-
+      content: "expand_less";
       width: 44px;
       height: 15px;
-
       font-family: material-icons, Arial, sans-serif;
       font-size: 24px;
       line-height: 15px;
-      color: rgba(31, 32, 65, 0.5);
+      color: rgb(31 32 65 / 50%);
       font-style: normal;
       text-transform: none;
       text-align: center;
@@ -53,19 +44,15 @@
   }
 
   &__input:checked + &__expand-label::after {
-    content: 'expand_more';
+    content: "expand_more";
   }
 
   &__label {
     display: flex;
     flex-direction: column;
-
     margin-bottom: 10px;
-
     background: white;
-
     cursor: pointer;
-
     width: fit-content;
 
     &:last-child {
@@ -79,57 +66,41 @@
 
   &__text {
     display: inline-flex;
-
     font-size: 14px;
     line-height: 18px;
-    color: rgba(31, 32, 65, 0.5);
-
+    color: rgb(31 32 65 / 50%);
     position: relative;
 
     &_weight_bold {
       font-weight: bold;
-      color: rgba(31, 32, 65, 0.75);
+      color: rgb(31 32 65 / 75%);
     }
 
     &::before {
-      content: '';
-
+      content: "";
       width: 20px;
       height: 20px;
-
       box-sizing: border-box;
-
       background: white;
-
-      border: 1px solid rgba(31, 32, 65, 0.25);
+      border: 1px solid rgb(31 32 65 / 25%);
       border-radius: 4px;
-
       margin-right: 10px;
-
       flex-shrink: 0;
     }
 
     &::after {
       position: absolute;
-
       display: none;
-
-      content: '';
-
+      content: "";
       width: 6px;
       height: 8px;
-
-      border-image-source: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+      border-image-source: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
       border-image-slice: 1;
-
       border-right: solid 2.5px;
       border-bottom: solid 2.5px;
-
       left: 7px;
       top: 5px;
-
       box-sizing: border-box;
-
       transform: rotate(45deg);
     }
 
@@ -147,7 +118,7 @@
   }
 
   &__input:focus + &__text::before {
-    box-shadow: 0 0 15px rgba(31, 32, 65, 0.5);
+    box-shadow: 0 0 15px rgb(31 32 65 / 50%);
   }
 
   &__input:focus:checked + &__text::before {
@@ -156,9 +127,8 @@
 
   &__explanation {
     padding: 5px 0 0 30px;
-
     font-size: 12px;
     line-height: 14px;
-    color: rgba(31, 32, 65, 0.5);
+    color: rgb(31 32 65 / 50%);
   }
 }

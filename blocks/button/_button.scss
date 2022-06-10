@@ -1,158 +1,137 @@
 .button {
   position: relative;
-
   box-sizing: border-box;
-
   padding: 0;
-
   border: 0;
   border-radius: 22px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: transparent;
-
   font-family: montserrat, Arial, sans-serif;
-  color: #BC9CFF;
+  color: #bc9cff;
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
-
   cursor: pointer;
-
   outline: 0;
-}
 
-.button:active {
-  transform: scale(0.9);
-}
+  &:active {
+    transform: scale(0.9);
+  }
 
-.button:focus {
-  text-shadow: 0 0 15px #bc9cff;
-}
+  &:focus {
+    text-shadow: 0 0 15px #bc9cff;
+  }
 
-.button::selection {
-  background: transparent;
-}
+  &::selection {
+    background: transparent;
+  }
 
-.button:disabled {
-  color: rgba(31, 32, 65, 0.5);
+  &:disabled {
+    color: rgb(31 32 65 / 50%);
+    cursor: auto;
+    pointer-events: none;
+  }
 
-  cursor: auto;
+  &_width_ultra-narrow {
+    width: 61px;
+  }
 
-  pointer-events: none;
-}
+  &_width_narrow {
+    width: 87px;
+  }
 
-.button_width_ultra-narrow {
-  width: 61px;
-}
+  &_width_regular {
+    width: 99px;
+  }
 
-.button_width_narrow {
-  width: 87px;
-}
+  &_width_wide {
+    width: 196px;
+  }
 
-.button_width_regular {
-  width: 99px;
-}
+  &_width_ultra-wide {
+    width: 320px;
+  }
 
-.button_width_wide {
-  width: 196px;
-}
+  &_height_low {
+    height: 34px;
+    line-height: 34px;
+  }
 
-.button_width_ultra-wide {
-  width: 320px;
+  &_height_regular {
+    height: 44px;
+    line-height: 44px;
+  }
+
+  &_bordered {
+    background: white;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+
+    &::before {
+      position: absolute;
+      content: "";
+      background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+      z-index: -1;
+      border-radius: inherit;
+      width: inherit;
+      height: inherit;
+    }
+
+    &:active {
+      border: 2px solid #bc9cff;
+    }
+
+    &:active::before {
+      display: none;
+    }
+
+    &:disabled {
+      color: #bc9cff;
+    }
+
+    &:disabled::before {
+      opacity: 0.5;
+    }
+  }
+
+  &_color_purple {
+    color: white;
+    background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+
+    &:disabled {
+      color: white;
+      opacity: 0.5;
+    }
+  }
+
+  &_bordered:focus,
+  &_color_purple:focus {
+    text-shadow: none;
+    box-shadow: 0 0 10px #bc9cff;
+  }
+
+  &_arrowed::after {
+    content: "arrow_forward";
+    position: absolute;
+    right: 0;
+    font-family: material-icons, Arial, sans-serif;
+    color: white;
+    font-size: 24px;
+    font-weight: normal;
+    text-transform: none;
+    text-align: center;
+    line-height: inherit;
+    width: 44px;
+    height: inherit;
+  }
 }
 
 @media all and (max-width: 400px) {
-  .button_width_ultra-wide {
-    width: 266px;
+  .button {
+    &_width_ultra-wide {
+      width: 266px;
+    }
   }
-}
-
-.button_height_low {
-  height: 34px;
-
-  line-height: 34px;
-}
-
-.button_height_regular {
-  height: 44px;
-
-  line-height: 44px;
-}
-
-.button_bordered {
-  background: white;
-
-  border: 2px solid transparent;
-
-  background-clip: padding-box;
-
-  &::before {
-    position: absolute;
-
-    content: '';
-
-    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-
-    z-index: -1;
-
-    border-radius: inherit;
-
-    width: inherit;
-    height: inherit;
-  }
-
-  &:active {
-    border: 2px solid #BC9CFF;
-  }
-
-  &:active::before {
-    display: none;
-  }
-
-  &:disabled {
-    color: #BC9CFF;
-  }
-
-  &:disabled::before {
-    opacity: 0.5;
-  }
-}
-
-.button_color_purple {
-  color: white;
-
-  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
-
-  &:disabled {
-    color: white;
-
-    opacity: 0.5;
-  }
-}
-
-.button_bordered:focus,.button_color_purple:focus {
-  text-shadow: none;
-  box-shadow: 0 0 10px #bc9cff;
-}
-
-.button_arrowed::after {
-  content: 'arrow_forward';
-
-  position: absolute;
-  right: 0;
-
-  font-family: material-icons, Arial, sans-serif;
-  color: white;
-  font-size: 24px;
-  font-weight: normal;
-  text-transform: none;
-  text-align: center;
-  line-height: inherit;
-
-  width: 44px;
-  height: inherit;
 }
