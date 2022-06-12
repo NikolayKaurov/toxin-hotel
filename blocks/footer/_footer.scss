@@ -27,6 +27,10 @@
       "paragraph  help        vacancy        contacts     subscription"
       "paragraph  service     investors      .            subscription";
     grid-template-rows: 36px 39px repeat(auto-fit, minmax(38px, min-content));
+
+    /* Не использована краткая запись grid-template, чтобы использовать repeat в grid-template-rows.
+    repeat позволяет добавлять в .footer много .footer__item с сохранением позиционирования */
+
     /* stylelint-disable-next-line */
     grid-template-columns: 25.86% 17.24% 17.24% auto 260px;
   }

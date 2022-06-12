@@ -5,6 +5,8 @@
 @use "blocks/burger/burger";
 @use "blocks/hyper/hyper";
 @use "blocks/button/button";
+@use "blocks/footer/footer";
+@use "blocks/subscription/subscription";
 @use "blocks/search/search";
 @use "blocks/datepicker/datepicker";
 @use "blocks/dropdown/dropdown";
@@ -13,5 +15,3 @@
 @use "blocks/card-room/card-room";
 @use "blocks/rate/rate";
 @use "blocks/paginator/paginator";
-@use "blocks/footer/footer";
-@use "blocks/subscription/subscription";

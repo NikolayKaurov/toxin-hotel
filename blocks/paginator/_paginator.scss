@@ -60,72 +60,67 @@
     }
 
     @for $i from 1 through 15 {
-      &[data-active="#{$i}"] {
-        /* stylelint-disable-next-line */
-        .paginator__item {
-          &:nth-child(#{$i - 2}):not(:first-child):not(:nth-child(2)) {
-            display: block;
-            pointer-events: none;
-            color: transparent;
-            border: transparent;
+      &[data-active="#{$i}"] &__item {
+        &:nth-child(#{$i - 2}):not(:first-child):not(:nth-child(2)) {
+          display: block;
+          pointer-events: none;
+          color: transparent;
+          border: transparent;
 
-            &::after {
-              content: "...";
-              position: absolute;
-              color: rgb(31 32 65 / 50%);
-              left: 50%;
-              transform: translate(-50%, 0);
-            }
-          }
-
-          &:nth-child(#{$i - 1}):not(:first-child) {
-            display: block;
-          }
-
-          &:nth-child(#{$i}):not(:first-child) {
-            display: block;
-          }
-
-          &:nth-child(#{$i + 1}) {
-            display: block;
-            color: white;
-            font-weight: bold;
-            background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
-            /* stylelint-disable-next-line */
-            & + .paginator__item:last-child {
-              display: none;
-            }
-          }
-
-          &:nth-child(#{$i + 2}):not(:last-child) {
-            display: block;
-          }
-
-          &:nth-child(#{$i + 3}):not(:last-child) {
-            display: block;
-          }
-
-          &:nth-child(#{$i + 4}):not(:last-child):not(:nth-last-child(2)) {
-            display: block;
-            pointer-events: none;
-            color: transparent;
-            border: transparent;
-
-            &::after {
-              content: "...";
-              position: absolute;
-              color: rgb(31 32 65 / 50%);
-              left: 50%;
-              transform: translate(-50%, 0);
-            }
+          &::after {
+            content: "...";
+            position: absolute;
+            color: rgb(31 32 65 / 50%);
+            left: 50%;
+            transform: translate(-50%, 0);
           }
         }
 
-        &:focus {
-          .paginator__item:nth-child(#{$i + 1}) {
-            box-shadow: 0 0 10px 0 #bc9cff;
+        &:nth-child(#{$i - 1}):not(:first-child) {
+          display: block;
+        }
+
+        &:nth-child(#{$i}):not(:first-child) {
+          display: block;
+        }
+
+        &:nth-child(#{$i + 1}) {
+          display: block;
+          color: white;
+          font-weight: bold;
+          background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+        }
+
+        &:nth-child(#{$i + 2}):not(:last-child) {
+          display: block;
+        }
+
+        &:nth-child(#{$i + 3}):not(:last-child) {
+          display: block;
+        }
+
+        &:nth-child(#{$i + 4}):not(:last-child):not(:nth-last-child(2)) {
+          display: block;
+          pointer-events: none;
+          color: transparent;
+          border: transparent;
+
+          &::after {
+            content: "...";
+            position: absolute;
+            color: rgb(31 32 65 / 50%);
+            left: 50%;
+            transform: translate(-50%, 0);
           }
         }
+      }
+
+      &[data-active="#{$i}"] &__item:nth-child(#{$i + 1}) + &__item:last-child {
+        display: none;
+      }
+
+      &[data-active="#{$i}"]:focus &__item:nth-child(#{$i + 1}) {
+        box-shadow: 0 0 10px 0 #bc9cff;
       }
     }
   }
@@ -140,64 +135,59 @@
     }
 
     @for $i from 1 through 15 {
-      &[data-active='#{$i}'] {
-        /* stylelint-disable-next-line */
-        .paginator__item {
-          &:nth-child(#{$i - 1}):not(:first-child):not(:nth-child(2)) {
-            display: block;
-            pointer-events: none;
-            color: transparent;
-            border: transparent;
+      &[data-active='#{$i}'] &__item {
+        &:nth-child(#{$i - 1}):not(:first-child):not(:nth-child(2)) {
+          display: block;
+          pointer-events: none;
+          color: transparent;
+          border: transparent;
 
-            &::after {
-              content: "...";
-              position: absolute;
-              color: rgb(31 32 65 / 50%);
-              left: 50%;
-              transform: translate(-50%, 0);
-            }
-          }
-
-          &:nth-child(#{$i}):not(:first-child) {
-            display: block;
-          }
-
-          &:nth-child(#{$i + 1}) {
-            display: block;
-            color: white;
-            font-weight: bold;
-            background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
-            /* stylelint-disable-next-line */
-            & + .paginator__item:last-child {
-              display: none;
-            }
-          }
-
-          &:nth-child(#{$i + 2}):not(:last-child) {
-            display: block;
-          }
-
-          &:nth-child(#{$i + 3}):not(:last-child):not(:nth-last-child(2)) {
-            display: block;
-            pointer-events: none;
-            color: transparent;
-            border: transparent;
-
-            &::after {
-              content: "...";
-              position: absolute;
-              color: rgb(31 32 65 / 50%);
-              left: 50%;
-              transform: translate(-50%, 0);
-            }
+          &::after {
+            content: "...";
+            position: absolute;
+            color: rgb(31 32 65 / 50%);
+            left: 50%;
+            transform: translate(-50%, 0);
           }
         }
 
-        &:focus {
-          .paginator__item:nth-child(#{$i + 1}) {
-            box-shadow: 0 0 10px 0 #bc9cff;
+        &:nth-child(#{$i}):not(:first-child) {
+          display: block;
+        }
+
+        &:nth-child(#{$i + 1}) {
+          display: block;
+          color: white;
+          font-weight: bold;
+          background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+        }
+
+        &:nth-child(#{$i + 2}):not(:last-child) {
+          display: block;
+        }
+
+        &:nth-child(#{$i + 3}):not(:last-child):not(:nth-last-child(2)) {
+          display: block;
+          pointer-events: none;
+          color: transparent;
+          border: transparent;
+
+          &::after {
+            content: "...";
+            position: absolute;
+            color: rgb(31 32 65 / 50%);
+            left: 50%;
+            transform: translate(-50%, 0);
           }
         }
+      }
+
+      &[data-active="#{$i}"] &__item:nth-child(#{$i + 1}) + &__item:last-child {
+        display: none;
+      }
+
+      &[data-active="#{$i}"]:focus &__item:nth-child(#{$i + 1}) {
+        box-shadow: 0 0 10px 0 #bc9cff;
       }
     }
   }

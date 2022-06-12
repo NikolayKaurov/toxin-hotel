@@ -5,6 +5,8 @@
 @use "blocks/burger/burger";
 @use "blocks/hyper/hyper";
 @use "blocks/button/button";
+@use "blocks/footer/footer";
+@use "blocks/subscription/subscription";
 @use "blocks/details/details";
 @use "blocks/advantage/advantage";
 @use "blocks/chart/chart";
@@ -14,5 +16,3 @@
 @use "blocks/review/review";
 @use "blocks/like/like";
 @use "blocks/bullet-list/bullet-list";
-@use "blocks/footer/footer";
-@use "blocks/subscription/subscription";

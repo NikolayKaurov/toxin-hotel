@@ -7,10 +7,64 @@ include ../../blocks/hyper/hyper
 include ../../blocks/button/button
 include ../../blocks/footer/footer
 include ../../blocks/subscription/subscription
+-
+  const items = [
+    {
+      text: 'О нас',
+      bold: true,
+      most: true,
+    },
+    {
+      subtitle: 'Услуги',
+      subitems: [
+        {
+          text: 'Такси',
+        },
+        {
+          text: 'Завтрак',
+        },
+        {
+          text: 'Авиабилеты',
+        },
+      ],
+    },
+    {
+      text: 'Вакансии',
+    },
+    {
+      text: 'Новости',
+    },
+    {
+      subtitle: 'Соглашения',
+      subitems: [
+        {
+          text: 'Headers & Footers',
+          link: 'headers-footers.html',
+          out: false,
+        },
+        {
+          text: 'Cards',
+          link: 'cards.html',
+          out: false,
+        },
+        {
+          text: 'Form Elements',
+          link: 'form-elements.html',
+          out: false,
+        },
+        {
+          text: 'Colors & Type',
+          link: 'colors-type.html',
+          out: false,
+        },
+      ],
+    },
+  ]
+
 +ui-kit({ title: 'Headers & Footers', theme: 'gray' })
   +headers-footers
-    +header
-    +header({ user: 'Юлий Цезарь' })
+    +header({ items })
+    +header({ items, user: 'Юлий Цезарь' })
     +footer
     +footer({ narrow: true })
 

@@ -17,4 +17,58 @@ mixin page({ title = 'page' })
       meta(name="msapplication-config" content="assets/favicons/browserconfig.xml")
       meta(name="theme-color" content="#ffffff")
     body.page__body
+      +header({
+        items: [
+          {
+            text: 'О нас',
+            bold: true,
+            most: true,
+          },
+          {
+            subtitle: 'Услуги',
+            subitems: [
+              {
+                text: 'Такси',
+              },
+              {
+                text: 'Завтрак',
+              },
+              {
+                text: 'Авиабилеты',
+              },
+            ],
+          },
+          {
+            text: 'Вакансии',
+          },
+          {
+            text: 'Новости',
+          },
+          {
+            subtitle: 'Соглашения',
+            subitems: [
+              {
+                text: 'Headers & Footers',
+                link: 'headers-footers.html',
+                out: false,
+              },
+              {
+                text: 'Cards',
+                link: 'cards.html',
+                out: false,
+              },
+              {
+                text: 'Form Elements',
+                link: 'form-elements.html',
+                out: false,
+              },
+              {
+                text: 'Colors & Type',
+                link: 'colors-type.html',
+                out: false,
+              },
+            ],
+          },
+        ]})
       block
+      +footer

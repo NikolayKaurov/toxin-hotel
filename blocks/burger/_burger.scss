@@ -49,6 +49,8 @@
       content: "expand_more";
     }
 
+    /* Не придумал, как вставить 2 амперсанда в этот селектор */
+
     /* stylelint-disable-next-line */
     &.burger_open::after {
       content: "expand_less";

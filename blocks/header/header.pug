@@ -2,8 +2,25 @@ mixin header(options={})
   -
     const {
       user = '',
+      items = [],
     } = options;
     const rightmost = !user;
+    let burgerItems = [ ...items ];
+    if (!user) {
+      burgerItems = burgerItems.concat([
+        {
+          text: 'Войти',
+          link: './sign-in.html',
+          out: false,
+        },
+        {
+          text: 'Зарегистрироваться',
+          link: './registration.html',
+          out: false,
+        },
+      ]);
+    }
+    const burgerOptions = { rightmost, items: burgerItems };
 
   header.header
     .header__body
@@ -11,120 +28,33 @@ mixin header(options={})
         .header__item.header__item_visible
           +logo
       .header__item.header__item_hidden
-        +burger({
-          rightmost,
-          items: [
-            {
-              text: 'О нас',
-              bold: true,
-            },
-            {
-              subtitle: 'Услуги',
-              subitems: [
-                {
-                  text: 'Такси',
-                },
-                {
-                  text: 'Завтрак',
-                },
-                {
-                  text: 'Авиабилеты',
-                },
-              ],
-            },
-            {
-              text: 'Вакансии',
-            },
-            {
-              text: 'Новости',
-            },
-            {
-              subtitle: 'Соглашения',
-              subitems: [
-                {
-                  text: 'Headers & Footers',
-                  link: 'headers-footers.html',
-                  out: false,
-                },
-                {
-                  text: 'Cards',
-                  link: 'cards.html',
-                  out: false,
-                },
-                {
-                  text: 'Form Elements',
-                  link: 'form-elements.html',
-                  out: false,
-                },
-                {
-                  text: 'Colors & Type',
-                  link: 'colors-type.html',
-                  out: false,
-                },
-              ],
-            },
-            {
-              text: 'Войти',
-              link: './sign-in.html',
-              out: false,
-            },
-            {
-              text: 'Зарегистрироваться',
-              link: './registration.html',
-              out: false,
-            },
-          ]
-        })
+        +burger(burgerOptions)
       if (user !== '')
         .header__item.header__item_visible.header__item_leftmost
           +logo
-      .header__item.header__item_most
-        +hyper({ text: 'О нас', bold: true })
-      .header__item
-        +burger({
-          title: 'Услуги',
-          items: [
-            {
-              text: 'Такси',
-            },
-            {
-              text: 'Завтрак',
-            },
-            {
-              text: 'Авиабилеты',
-            },
-          ],
-        })
-      .header__item
-        +hyper({ text: 'Вакансии' })
-      .header__item
-        +hyper({ text: 'Новости' })
-      .header__item
-        +burger({
-          title: 'Соглашения',
-          items: [
-            {
-              text: 'Headers & Footers',
-              link: './headers-footers.html',
-              out: false,
-            },
-            {
-              text: 'Cards',
-              link: './cards.html',
-              out: false,
-            },
-            {
-              text: 'Form Elements',
-              link: './form-elements.html',
-              out: false,
-            },
-            {
-              text: 'Colors & Type',
-              link: './colors-type.html',
-              out: false,
-            },
-          ],
-        })
+      each item in items
+        -
+          const {
+            subtitle = '',
+            subitems = [],
+            text = '404',
+            link = 'https://google.com/404',
+            out = true,
+            bold = false,
+            most = false,
+          } = item;
+          let itemMost = '';
+          if (most) {
+            itemMost = 'header__item_most';
+          }
+        .header__item(class= itemMost)
+          if (subtitle)
+            +burger({
+              title: subtitle,
+              items: subitems,
+            })
+          else
+            +hyper({text, link, out, bold})
       if (user !== '')
         .header__item.header__item_visible
           .header__user= user

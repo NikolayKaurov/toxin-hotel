@@ -129,7 +129,7 @@ function handleDropdownInput(event) {
 
     value += previous;
 
-    if (surplus === 'surplus') {
+    if (surplus !== undefined) {
       return value;
     }
 
