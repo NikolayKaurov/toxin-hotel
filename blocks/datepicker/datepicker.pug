@@ -13,6 +13,7 @@ mixin datepicker(options={})
     } else if (modifier === 'demo') {
       datepickerModifier = 'datepicker_format_demo';
     }
+    const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
   .datepicker.js-datepicker(
     class= datepickerModifier
@@ -52,13 +53,8 @@ mixin datepicker(options={})
       table.datepicker__calendar
         thead.datepicker__thead
           tr.datepicker__calendar-header
-            th.datepicker__cell(scope="col") Пн
-            th.datepicker__cell(scope="col") Вт
-            th.datepicker__cell(scope="col") Ср
-            th.datepicker__cell(scope="col") Чт
-            th.datepicker__cell(scope="col") Пт
-            th.datepicker__cell(scope="col") Сб
-            th.datepicker__cell(scope="col") Вс
+            each day in days
+              th.datepicker__cell(scope="col")= day
         tbody.datepicker__tbody.js-datepicker__tbody
       .datepicker__wrapper
         button.datepicker__button.js-datepicker__button_action_clear(

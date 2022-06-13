@@ -11,15 +11,15 @@ mixin chart(options={})
     if (total % 100 < 5 || total % 100 > 20) {
       if (total % 10 === 1) {
         voicesWord = 'голос';
-      } else if ((total % 10 > 1 && total % 10 < 5)){
+      } else if ((total % 10 > 1 && total % 10 < 5)) {
         voicesWord = 'голоса';
       }
     }
     const voices = [
-      ['chart__slice_fabulous', total > 0 ? 360 * fabulous / total : 0],
-      ['chart__slice_good', total > 0 ? 360 * good / total : 0],
-      ['chart__slice_satisfactorily', total > 0 ? 360 * satisfactorily / total : 0],
-      ['chart__slice_disappointed', total > 0 ? 360 * disappointed / total : 0],
+      ['chart__slice_grade_fabulous', total > 0 ? 360 * fabulous / total : 0],
+      ['chart__slice_grade_good', total > 0 ? 360 * good / total : 0],
+      ['chart__slice_grade_satisfactorily', total > 0 ? 360 * satisfactorily / total : 0],
+      ['chart__slice_grade_disappointed', total > 0 ? 360 * disappointed / total : 0],
     ];
     voices.sort((a, b) => b[1] - a[1]);
 

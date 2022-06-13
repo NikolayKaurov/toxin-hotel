@@ -426,6 +426,8 @@ function handleClearMousedown(event) {
   $arrival.val('');
   $departure.val('');
 
+  $datepicker.trigger('input');
+
   cursorDate.setFullYear(today.getFullYear(), today.getMonth(), today.getDate());
   calendarMonth.setFullYear(today.getFullYear(), today.getMonth());
 

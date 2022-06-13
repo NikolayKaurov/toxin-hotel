@@ -112,19 +112,19 @@
       clip: auto;
     }
 
-    &_fabulous {
+    &_grade_fabulous {
       background: linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
     }
 
-    &_good {
+    &_grade_good {
       background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
     }
 
-    &_satisfactorily {
+    &_grade_satisfactorily {
       background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
     }
 
-    &_disappointed {
+    &_grade_disappointed {
       background: linear-gradient(180deg, #919191 0%, #3d4975 100%);
     }
   }

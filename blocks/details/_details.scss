@@ -245,7 +245,7 @@
     &__body {
       width: 100%;
       justify-items: center;
-      grid-template-areas:
+      grid-template:
         "card" 512px
         "advantage" auto
         "chart" auto
