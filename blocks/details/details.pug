@@ -1,11 +1,15 @@
 mixin details
+  -
+    const images = [
+      require('../../assets/img/content/room-content-1.jpg'),
+      require('../../assets/img/content/room-content-2.jpg'),
+      require('../../assets/img/content/room-content-3.jpg'),
+    ];
+
   .details
     .details__gallery
-      .details__gallery-slot
-        img.details__photo(src=require('../../assets/img/content/room-content-1.jpg') alt="Room photo")
-      .details__gallery-slot
-        img.details__photo(src=require('../../assets/img/content/room-content-2.jpg') alt="Room photo")
-      .details__gallery-slot
-        img.details__photo(src=require('../../assets/img/content/room-content-3.jpg') alt="Room photo")
+      each img in images
+        .details__gallery-slot
+          img.details__photo(src= img alt="Room photo")
     .details__body
       block

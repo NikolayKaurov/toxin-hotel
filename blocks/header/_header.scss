@@ -46,7 +46,7 @@
     color: rgb(31 32 65 / 50%);
     padding-left: 20px;
     border-left: 1px solid rgb(31 32 65 / 10%);
-    max-width: calc(100vw * 0.8056 - 146px);
+    max-width: calc(100vw * 0.8056 - 650px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -68,6 +68,8 @@
     &__user {
       padding-left: 0;
       border-left: 0;
+
+      max-width: calc(100vw * 0.8056 - 180px);
     }
   }
 }
@@ -76,6 +78,10 @@
   .header {
     &__body {
       width: 94%;
+    }
+
+    &__user {
+      max-width: calc(100vw * 0.8056 - 146px);
     }
   }
 }

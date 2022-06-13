@@ -1,0 +1,52 @@
+.social {
+  display: flex;
+
+  &__twitter {
+    margin: 0 20px 0 0;
+
+    &::after {
+      content: "\e901";
+    }
+  }
+
+  &__facebook {
+    margin: 0 20px 0 0;
+
+    &::after {
+      content: "\e902";
+    }
+  }
+
+  &__instagram {
+    margin: 0;
+
+    &::after {
+      content: "\e903";
+    }
+  }
+
+  &__twitter,
+  &__facebook,
+  &__instagram {
+    width: 24px;
+    height: 24px;
+    font-family: toxin, Arial, sans-serif;
+    text-decoration: none;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+
+    &:link,
+    &:visited {
+      color: #bc9cff;
+      background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    &:focus {
+      filter: drop-shadow(0 0 5px rgb(188 156 255 / 100%));
+    }
+  }
+}
