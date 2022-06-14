@@ -35,7 +35,7 @@ function handleCardSearchInput(event) {
   $submit.prop('disabled', !fullInput);
 }
 
-$('.js-card-search').each((index, element) => {
-  const card = new CardSearch(element);
-  card.init();
+$('.js-card-search').each((index, card) => {
+  const jsCard = new CardSearch(card);
+  jsCard.init();
 });

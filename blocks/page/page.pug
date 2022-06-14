@@ -1,7 +1,7 @@
-mixin page({ title = 'page' })
+mixin page(options={})
   doctype html
   html.page(lang="ru")
-    +head
+    +head(options)
     body.page__body
       +header({
         items: [

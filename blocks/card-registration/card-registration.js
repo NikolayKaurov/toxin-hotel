@@ -1,5 +1,27 @@
 import $ from 'jquery';
 
+class CardRegistration {
+  #$card;
+
+  constructor(card) {
+    this.#$card = $(card);
+  }
+
+  init() {
+    const $fields = $('.js-text-field__input', this.#$card);
+
+    this.$name = $($fields.get(0));
+    this.$surname = $($fields.get(1));
+    this.$birth = $($fields.get(2));
+    this.$email = $($fields.get(3));
+    this.$password = $($fields.get(4));
+
+    this.$submit = $('.js-button', this.#$card);
+
+    this.#$card.on('input', null, { card: this }, handleCardRegistrationInput);
+  }
+}
+
 function validateEmail(email) {
   return String(email)
     .toLowerCase()
@@ -27,29 +49,7 @@ function handleCardRegistrationInput(event) {
   $submit.prop('disabled', !fullInput);
 }
 
-class CardRegistration {
-  #$card;
-
-  constructor(card) {
-    this.#$card = $(card);
-  }
-
-  init() {
-    const $fields = $('.js-text-field__input', this.#$card);
-
-    this.$name = $($fields.get(0));
-    this.$surname = $($fields.get(1));
-    this.$birth = $($fields.get(2));
-    this.$email = $($fields.get(3));
-    this.$password = $($fields.get(4));
-
-    this.$submit = $('.js-button', this.#$card);
-
-    this.#$card.on('input', null, { card: this }, handleCardRegistrationInput);
-  }
-}
-
-$('.js-card-registration__form').each((index, element) => {
-  const card = new CardRegistration(element);
-  card.init();
+$('.js-card-registration__form').each((index, card) => {
+  const jsCard = new CardRegistration(card);
+  jsCard.init();
 });

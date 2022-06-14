@@ -1,5 +1,46 @@
 import $ from 'jquery';
 
+class TextField {
+  #$textField;
+
+  constructor(textField) {
+    this.#$textField = $(textField);
+  }
+
+  init() {
+    $('.js-text-field__input', this.#$textField)
+      .attr('placeholder', '')
+      .on('input', null, { textField: this }, handleInputInput)
+      .on('change focusout', null, { textField: this }, handleInputChange)
+      .on('paste', handleInputPaste);
+
+    const name = this.#$textField.data('name');
+
+    $('.js-text-field__wrapper', this.#$textField)
+      .append(`
+        <input
+          type="text"
+          class="text-field__input text-field__input_double js-text-field__input_double"
+          disabled
+          placeholder="ДД.ММ.ГГГГ"
+        >
+        <input
+          type="date"
+          class="text-field__date js-text-field__date"
+          name="${name}-date"
+        >`);
+
+    this.$double = $('.js-text-field__input_double', this.#$textField);
+    this.$dateInput = $('.js-text-field__date', this.#$textField);
+
+    this.preValue = '';
+  }
+
+  setPreValue(value) {
+    this.preValue = value;
+  }
+}
+
 function getPlaceholder(value) {
   const placeholder = 'ДД.ММ.ГГГГ'.split('');
 
@@ -217,48 +258,7 @@ function handleInputChange(event) {
   }
 }
 
-class TextField {
-  #$textField;
-
-  constructor(textField) {
-    this.#$textField = $(textField);
-  }
-
-  init() {
-    $('.js-text-field__input', this.#$textField)
-      .attr('placeholder', '')
-      .on('input', null, { textField: this }, handleInputInput)
-      .on('change focusout', null, { textField: this }, handleInputChange)
-      .on('paste', handleInputPaste);
-
-    const name = this.#$textField.data('name');
-
-    $('.js-text-field__wrapper', this.#$textField)
-      .append(`
-        <input
-          type="text"
-          class="text-field__input text-field__input_double js-text-field__input_double"
-          disabled
-          placeholder="ДД.ММ.ГГГГ"
-        >
-        <input
-          type="date"
-          class="text-field__date js-text-field__date"
-          name="${name}-date"
-        >`);
-
-    this.$double = $('.js-text-field__input_double', this.#$textField);
-    this.$dateInput = $('.js-text-field__date', this.#$textField);
-
-    this.preValue = '';
-  }
-
-  setPreValue(value) {
-    this.preValue = value;
-  }
-}
-
-$('.js-text-field_type_date').each((index, element) => {
-  const textField = new TextField(element);
+$('.js-text-field_type_date').each((index, field) => {
+  const textField = new TextField(field);
   textField.init();
 });

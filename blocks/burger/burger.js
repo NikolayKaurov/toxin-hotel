@@ -1,99 +1,7 @@
 import $ from 'jquery';
 
-const OPEN_CLOSE_TIME = 50;
-const INTERVAL = 40;
-
-function handleBurgerMousedown(event) {
-  const { burger } = event.data;
-
-  if (Math.abs(event.timeStamp - burger.timeStamp) < INTERVAL) {
-    return;
-  }
-
-  burger.setTimeStamp(event.timeStamp);
-
-  burger.$burger.toggleClass('burger_open');
-}
-
-function open(burger) {
-  burger.open();
-}
-
-function handleBurgerFocusin(event) {
-  const { burger } = event.data;
-
-  if (Math.abs(event.timeStamp - burger.timeStamp) < INTERVAL) {
-    return;
-  }
-
-  burger.setTimeStamp(event.timeStamp);
-
-  clearTimeout(burger.timerID);
-
-  burger.setTimerID(setTimeout(open, OPEN_CLOSE_TIME, burger));
-}
-
-function close(burger) {
-  burger.close();
-}
-
-function handleBurgerFocusout(event) {
-  const { burger } = event.data;
-
-  clearTimeout(burger.timerID);
-
-  burger.setTimerID(setTimeout(close, OPEN_CLOSE_TIME, burger));
-}
-
-function handleItemMousedown(event) {
-  event.stopPropagation();
-}
-
-function handleSubmenuMousedown(event) {
-  const $submenu = $(event.target);
-  const timeStamp = parseFloat($submenu.attr('data-timeStamp'));
-
-  if (Math.abs(event.timeStamp - timeStamp) < INTERVAL) {
-    return;
-  }
-
-  $submenu.attr('data-timeStamp', event.timeStamp);
-
-  $submenu.toggleClass('burger__submenu_open');
-}
-
-function openSub($submenu) {
-  $submenu.addClass('burger__submenu_open');
-}
-
-function handleSubmenuFocusin(event) {
-  const $submenu = $(event.delegateTarget);
-  const timeStamp = parseFloat($submenu.attr('data-timeStamp'));
-  const timerID = parseFloat($submenu.attr('data-timerID'));
-
-  if (Math.abs(event.timeStamp - timeStamp) < INTERVAL) {
-    return;
-  }
-
-  $submenu.attr('data-timeStamp', event.timeStamp);
-
-  clearTimeout(timerID);
-
-  $submenu.attr('data-timerID', setTimeout(openSub, OPEN_CLOSE_TIME, $submenu));
-}
-
-function closeSub($submenu) {
-  $submenu.removeClass('burger__submenu_open');
-}
-
-function handleSubmenuFocusout(event) {
-  const $submenu = $(event.delegateTarget);
-  const timerID = parseFloat($submenu.attr('data-timerID'));
-
-  clearTimeout(timerID);
-
-  $submenu.attr('data-timerID', setTimeout(closeSub, OPEN_CLOSE_TIME, $submenu));
-}
+const openCloseTime = 50;
+const interval = 40;
 
 class Burger {
   constructor(burger) {
@@ -158,7 +66,99 @@ class Burger {
   }
 }
 
-$('.js-burger').each((index, element) => {
-  const burger = new Burger(element);
-  burger.init();
+function handleBurgerMousedown(event) {
+  const { burger } = event.data;
+
+  if (Math.abs(event.timeStamp - burger.timeStamp) < interval) {
+    return;
+  }
+
+  burger.setTimeStamp(event.timeStamp);
+
+  burger.$burger.toggleClass('burger_open');
+}
+
+function open(burger) {
+  burger.open();
+}
+
+function handleBurgerFocusin(event) {
+  const { burger } = event.data;
+
+  if (Math.abs(event.timeStamp - burger.timeStamp) < interval) {
+    return;
+  }
+
+  burger.setTimeStamp(event.timeStamp);
+
+  clearTimeout(burger.timerID);
+
+  burger.setTimerID(setTimeout(open, openCloseTime, burger));
+}
+
+function close(burger) {
+  burger.close();
+}
+
+function handleBurgerFocusout(event) {
+  const { burger } = event.data;
+
+  clearTimeout(burger.timerID);
+
+  burger.setTimerID(setTimeout(close, openCloseTime, burger));
+}
+
+function handleItemMousedown(event) {
+  event.stopPropagation();
+}
+
+function handleSubmenuMousedown(event) {
+  const $submenu = $(event.target);
+  const timeStamp = parseFloat($submenu.attr('data-timeStamp'));
+
+  if (Math.abs(event.timeStamp - timeStamp) < interval) {
+    return;
+  }
+
+  $submenu.attr('data-timeStamp', event.timeStamp);
+
+  $submenu.toggleClass('burger__submenu_open');
+}
+
+function openSub($submenu) {
+  $submenu.addClass('burger__submenu_open');
+}
+
+function handleSubmenuFocusin(event) {
+  const $submenu = $(event.delegateTarget);
+  const timeStamp = parseFloat($submenu.attr('data-timeStamp'));
+  const timerID = parseFloat($submenu.attr('data-timerID'));
+
+  if (Math.abs(event.timeStamp - timeStamp) < interval) {
+    return;
+  }
+
+  $submenu.attr('data-timeStamp', event.timeStamp);
+
+  clearTimeout(timerID);
+
+  $submenu.attr('data-timerID', setTimeout(openSub, openCloseTime, $submenu));
+}
+
+function closeSub($submenu) {
+  $submenu.removeClass('burger__submenu_open');
+}
+
+function handleSubmenuFocusout(event) {
+  const $submenu = $(event.delegateTarget);
+  const timerID = parseFloat($submenu.attr('data-timerID'));
+
+  clearTimeout(timerID);
+
+  $submenu.attr('data-timerID', setTimeout(closeSub, openCloseTime, $submenu));
+}
+
+$('.js-burger').each((index, burger) => {
+  const jsBurger = new Burger(burger);
+  jsBurger.init();
 });

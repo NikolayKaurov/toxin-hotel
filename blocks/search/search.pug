@@ -2,7 +2,11 @@ mixin search
   .search
     form.search__form
       .search__datepicker
-        +datepicker({ name: 'date-filter', label: 'даты пребывания в отеле', zIndex: 5, modifier: 'filter' })
+        +datepicker({
+          name: 'date',
+          headerCommon: 'даты пребывания в отеле',
+          modifier: 'filter'
+        })
       .search__dropdown
         +dropdown({
           placeholder: 'Сколько гостей',

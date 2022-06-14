@@ -1,4 +1,8 @@
-mixin head
+mixin head(options={})
+  -
+    const {
+      title = 'TOXIN',
+    } = options;
   head
     meta(charset="utf-8")
     title= title

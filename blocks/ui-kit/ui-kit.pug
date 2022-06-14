@@ -15,7 +15,7 @@ mixin ui-kit(options={})
 
   doctype html
   html.ui-kit(class= uiKitTheme lang="ru")
-    +head
+    +head(options)
     body.ui-kit__body
       .ui-kit__header
       block

@@ -5,7 +5,7 @@ mixin rate(options={})
       enabled = false,
     } = options;
     let rateClass = '';
-    let tabindex = '';
+    let tabindex = false;
     if (enabled) {
       rateClass = 'rate_enabled';
       tabindex = '0';
