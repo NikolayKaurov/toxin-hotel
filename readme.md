@@ -2,18 +2,18 @@
 
 ## Страницы поиска номеров в отеле
 
-- [Landing page](https://nikolaykaurov.github.io/dist/)
-- [Search room](https://nikolaykaurov.github.io/dist/search-room.html)
-- [Room details](https://nikolaykaurov.github.io/dist/room-details.html)
-- [Registration](https://nikolaykaurov.github.io/dist/registration.html)
-- [Sign in](https://nikolaykaurov.github.io/dist/sign-in.html)
+- [Landing page](https://nikolaykaurov.github.io/)
+- [Search room](https://nikolaykaurov.github.io/search-room.html)
+- [Room details](https://nikolaykaurov.github.io/room-details.html)
+- [Registration](https://nikolaykaurov.github.io/registration.html)
+- [Sign in](https://nikolaykaurov.github.io/sign-in.html)
 
 ## Страницы ui-kit
 
-- [Headers & Footers](https://nikolaykaurov.github.io/dist/headers-footers.html)
-- [Cards](https://nikolaykaurov.github.io/dist/cards.html)
-- [Form Elements](https://nikolaykaurov.github.io/dist/form-elements.html)
-- [Colors & Type](https://nikolaykaurov.github.io/dist/colors-type.html)
+- [Headers & Footers](https://nikolaykaurov.github.io/headers-footers.html)
+- [Cards](https://nikolaykaurov.github.io/cards.html)
+- [Form Elements](https://nikolaykaurov.github.io/form-elements.html)
+- [Colors & Type](https://nikolaykaurov.github.io/colors-type.html)
 
 Страницы ui-kit также доступны по ссылкам в меню "Соглашения" в шапке сайта. 
 
@@ -29,46 +29,47 @@ dev-server командой `npm start`.
 ## Архитектура
 
 Исходным файлом для каждой страницы в папке `dist` с готовыми страницами
-является шаблон `pages/имя-страницы.pug` из папки `pages`. В шаблонах используются БЭМ-блоки
+является шаблон `pages/имя-страницы/имя-страницы.pug` из папки `pages`. В шаблонах используются БЭМ-блоки
 из папки `blocks`.
 
 Перед запуском `webpack` в каждом шаблоне страницы обновляется набор заголовков
-вида `include ../blocks/имя-блока/имя-блока`,
+вида `include ../../blocks/имя-блока/имя-блока`,
 чтобы для каждого используемого в шаблоне БЭМ-блока был корректно записан заголовок.
 
 Аналогично, для каждого шаблона страницы генерируется набор заголовков вида
 `@use 'blocks/имя-блока/имя-блока';`. Если у используемого в шаблоне БЭМ-блока
 есть файл стиля, соответствующий заголовок будет включён в этот набор. Набор
-записывается в файл `pages/имя-страницы.scss`.
+записывается в файл `pages/имя-страницы/имя-страницы.scss`.
 Файлы `.scss` в папке `pages` содержат только заголовки,
 соответствующие используемым в шаблоне БЭМ-блокам, и один дополнительный
-заголовок `@use 'fonts/fonts';`, подключающий файл с правилами `@font-face`.
+заголовок `@use 'assets/fonts/fonts';`, подключающий файл с правилами `@font-face`.
 
-Точно так же генерируются файлы `pages/имя-страницы.js`. Если у используемого
-в шаблоне БЭМ-блока есть файл `javascript`, в файл `pages/имя-страницы.js`
-будет добавлен заголовок вида `import '../blocks/имя-блока/имя-блока';`.
-Дополнительно, в каждый файл `pages/имя-страницы.js` записываются два заголовка,
-один для подключения иконок `import '../favicons/favicons';`, второй для
+Точно так же генерируются файлы `pages/имя-страницы/имя-страницы.js`.
+Если у используемого в шаблоне БЭМ-блока есть файл `javascript`,
+в файл `pages/имя-страницы/имя-страницы.js`
+будет добавлен заголовок вида `import '../../blocks/имя-блока/имя-блока';`.
+Дополнительно, в каждый файл `pages/имя-страницы/имя-страницы.js` записываются два заголовка,
+один для подключения иконок `import '../../assets/favicons/favicons';`, второй для
 подключения файла стилей `import './имя-страницы.scss';`.
 
 Данная генерация заголовков выполняется функцией `preprocessor(pages, blocks)`, которая вызывается
 в `webpack.config.js`.
 
-Каждый файл `pages/имя-страницы.js` является точкой входа для `webpack` и транслируется
+Каждый файл `pages/имя-страницы/имя-страницы.js` является точкой входа для `webpack` и транслируется
 в файл `dist/имя-страницы.js`, содержащий весь требуемый для данной страницы
-код `javascript`. Каждый шаблон `pages/имя-страницы.pug` транслируется в
+код `javascript`. Каждый шаблон `pages/имя-страницы/имя-страницы.pug` транслируется в
 страницу `dist/имя-страницы.html` при помощи `HtmlWebpackPlugin`. К каждой
 странице подключаются только соответствующий ей файл `dist/имя-страницы.js` и
 файл `dist/jquery.js`. При помощи `MiniCssExtractPlugin` каждый файл 
-`pages/имя-страницы.scss` транслируется в `dist/имя-страницы.css`.
-Эти файлы также подключаются к соответствующим страницам.
+`pages/имя-страницы/имя-страницы.scss` транслируется в `dist/имя-страницы.css`.
+Эти файлы также подключаются к соответствующим им страницам.
 
 ## Зависимости
 
 В проекте использованы библиотеки
 - `jQuery` версии `3.6.0`
 - `jsdom` версии `19.0.0`. Потребовалась для использования `jQuery` при сборке в функции `preprocessor`
-- `toxin-slider` версии `1.0.0`.
+- `toxin-slider` версии `1.0.1`.
 
 
 
