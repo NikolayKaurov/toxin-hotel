@@ -18,15 +18,19 @@ mixin card-search
           {
             name: 'adult',
             units: 'взрослые гость гостя гостей',
+            min: 1,
+            max: 9,
           },
           {
             name: 'child',
             units: 'дети',
             surplus: true,
+            max: 9,
           },
           {
             name: 'baby',
             units: 'младенцы младенец младенца младенцев',
+            max: 5,
           },
         ],
       })

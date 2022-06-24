@@ -39,16 +39,18 @@ mixin card-details(options={})
           {
             name: 'details-adult',
             units: 'взрослые гость гостя гостей',
-            min: 1,
+            max: 9,
           },
           {
             name: 'details-child',
             units: 'дети',
             surplus: true,
+            max: 9,
           },
           {
             name: 'details-baby',
             units: 'младенцы младенец младенца младенцев',
+            max: 5,
           },
         ],
       })
