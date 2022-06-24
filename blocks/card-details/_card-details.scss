@@ -14,12 +14,14 @@
 
   &__header {
     width: 100%;
-    padding-top: 4px;
+    margin-top: 4px;
+    margin-bottom: 0;
     display: grid;
     grid-template-columns: 21px minmax(0, min-content) 49px auto 46px;
     color: rgb(31 32 65 / 50%);
     font-size: 12px;
     align-items: baseline;
+    font-weight: normal;
   }
 
   &__number {

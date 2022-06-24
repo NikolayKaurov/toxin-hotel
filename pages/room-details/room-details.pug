@@ -19,8 +19,8 @@ include ../../blocks/like/like
 include ../../blocks/bullet-list/bullet-list
 +page({title: 'Room details'})
   +details
-    .details__advantage
-      .details__header Сведения о номере
+    section.details__advantage
+      h2.details__header Сведения о номере
       +advantage([
         {
           text: 'Комфорт',
@@ -38,14 +38,14 @@ include ../../blocks/bullet-list/bullet-list
           underlined: false,
         },
       ])
-    .details__chart
-      .details__header Впечатления от номера
+    section.details__chart
+      h2.details__header Впечатления от номера
       +chart({fabulous: 113, good: 87, satisfactorily: 41, disappointed: 19})
     .details__card
       +card-details({ number: '888', lux: true, price: 9990, discount: 2179, fee: 0, feeAdd: 300 })
-    .details__reviews
+    section.details__reviews
       .details__reviews-header
-        .details__header Отзывы посетителей номера
+        h2.details__header Отзывы посетителей номера
         .details__number-reviews 2 отзыва
       +review({
         likes: 11,
@@ -59,13 +59,13 @@ include ../../blocks/bullet-list/bullet-list
         time: 'Неделю назад',
         text: `Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент`,
       })
-    .details__rules
-      .details__header.details__header_indented Правила
+    section.details__rules
+      h2.details__header.details__header_indented Правила
       +bullet-list([
         'Нельзя с питомцами',
         'Без вечеринок и мероприятий',
         'Время прибытия — после 13:00, а выезд до 12:00',
       ])
-    .details__cancel
-      .details__header Отмена
+    section.details__cancel
+      h2.details__header Отмена
       p.details__paragraph Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.

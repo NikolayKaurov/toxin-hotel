@@ -78,39 +78,46 @@ class Datepicker {
     const period = (arrival !== '') && (departure !== '');
 
     if (period) {
-      this.$dropFilter.text(
-        `${dateArrival.getDate()} ${shortMonths[dateArrival.getMonth()]} - ${dateDeparture.getDate()} ${shortMonths[dateDeparture.getMonth()]}`,
-      );
-      this.$dropArrival.text(
-        arrival.split('-').reverse().join('.'),
-      );
-      this.$dropDeparture.text(
-        departure.split('-').reverse().join('.'),
-      );
+      this.$dropFilter
+        .text(
+          `${dateArrival.getDate()} ${shortMonths[dateArrival.getMonth()]} - ${dateDeparture.getDate()} ${shortMonths[dateDeparture.getMonth()]}`,
+        );
+      this.$dropArrival
+        .text(arrival.split('-').reverse().join('.'))
+        .attr('datetime', arrival);
+      this.$dropDeparture
+        .text(departure.split('-').reverse().join('.'))
+        .attr('datetime', departure);
     } else if (arrival !== '') {
-      this.$dropFilter.text(
-        `${dateArrival.getDate()} ${shortMonths[dateArrival.getMonth()]}`,
-      );
-      this.$dropArrival.text(
-        arrival.split('-').reverse().join('.'),
-      );
-      this.$dropDeparture.text(
-        'ДД.ММ.ГГГГ',
-      );
+      this.$dropFilter
+        .text(
+          `${dateArrival.getDate()} ${shortMonths[dateArrival.getMonth()]}`,
+        );
+      this.$dropArrival
+        .text(arrival.split('-').reverse().join('.'))
+        .attr('datetime', arrival);
+      this.$dropDeparture
+        .text('ДД.ММ.ГГГГ')
+        .attr('datetime', '1970-01-01');
     } else if (departure !== '') {
-      this.$dropFilter.text(
-        `${dateDeparture.getDate()} ${shortMonths[dateDeparture.getMonth()]}`,
-      );
-      this.$dropArrival.text(
-        'ДД.ММ.ГГГГ',
-      );
-      this.$dropDeparture.text(
-        departure.split('-').reverse().join('.'),
-      );
+      this.$dropFilter
+        .text(
+          `${dateDeparture.getDate()} ${shortMonths[dateDeparture.getMonth()]}`,
+        );
+      this.$dropArrival
+        .text('ДД.ММ.ГГГГ')
+        .attr('datetime', '1970-01-01');
+      this.$dropDeparture
+        .text(departure.split('-').reverse().join('.'))
+        .attr('datetime', departure);
     } else {
       this.$dropFilter.text('Укажите даты пребывания');
-      this.$dropDeparture.text('ДД.ММ.ГГГГ');
-      this.$dropArrival.text('ДД.ММ.ГГГГ');
+      this.$dropDeparture
+        .text('ДД.ММ.ГГГГ')
+        .attr('datetime', '1970-01-01');
+      this.$dropArrival
+        .text('ДД.ММ.ГГГГ')
+        .attr('datetime', '1970-01-01');
     }
 
     this.$back.prop(

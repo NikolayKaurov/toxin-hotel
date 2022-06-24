@@ -34,10 +34,10 @@ mixin datepicker(options={})
     .datepicker__wrapper
       .datepicker__wrapper
         p.datepicker__header= headerArrival
-        .datepicker__drop.js-datepicker__drop_date_arrival ДД.ММ.ГГГГ
+        time.datepicker__drop.js-datepicker__drop_date_arrival(datetime="1970-01-01") ДД.ММ.ГГГГ
       .datepicker__wrapper
         p.datepicker__header= headerDeparture
-        .datepicker__drop.js-datepicker__drop_date_departure ДД.ММ.ГГГГ
+        time.datepicker__drop.js-datepicker__drop_date_departure(datetime="1970-01-01") ДД.ММ.ГГГГ
     .datepicker__down.js-datepicker__down
       .datepicker__wrapper
         button.datepicker__button.datepicker__button_action_back.js-datepicker__button_action_back(

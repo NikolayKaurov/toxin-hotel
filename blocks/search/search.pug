@@ -1,5 +1,5 @@
 mixin search
-  .search
+  main.search
     form.search__form
       .search__datepicker
         +datepicker({
@@ -101,8 +101,8 @@ mixin search
           { text: 'Шампунь', name: 'shampoo' },
         ],
       })
-    .search__result
-      .search__header Номера, которые мы для вас подобрали
+    article.search__result
+      h1.search__header Номера, которые мы для вас подобрали
       .search__cards
         +card-room({ number: '888', price: 9990, rating: 5, reviews: 145, lux: true })
         +card-room({ number: '840', price: 9900, rating: 4, reviews: 65 })

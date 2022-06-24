@@ -23,7 +23,7 @@ mixin chart(options={})
     ];
     voices.sort((a, b) => b[1] - a[1]);
 
-  .chart
+  figure.chart
     .chart__figure
       .chart__hold.chart__hold_most
         .chart__slice.chart__slice_most(class= voices[0][0])
@@ -37,7 +37,7 @@ mixin chart(options={})
       .chart__total
         .chart__total-number= total
         = voicesWord
-    .chart__legend
+    figcaption.chart__legend
       .chart__item
         .chart__bullet
         = 'Великолепно'

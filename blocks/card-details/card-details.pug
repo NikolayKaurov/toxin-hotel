@@ -15,13 +15,13 @@ mixin card-details(options={})
     data-fee= fee
     data-feeAdd= feeAdd
   )
-    .card-details__header
-      .card-details__number №
-      .card-details__numeric= number
-      .card-details__lux
+    h1.card-details__header
+      span.card-details__number №
+      span.card-details__numeric= number
+      span.card-details__lux
         if (lux)
           = 'люкс'
-      .card-details__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
+      span.card-details__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
       = 'в сутки'
     .card-details__datepicker
       +datepicker({
@@ -72,10 +72,10 @@ mixin card-details(options={})
         .card-details__info i
           .card-details__info-text Сбор за зубную щётку, халат, полотенце, шампунь, чипсы в холодильнике, побудку звонком в номер в назначенное время.
         .card-details__fee-add= `${new Intl.NumberFormat('ru-RU').format(feeAdd)}₽`
-    .card-details__total-line
+    output.card-details__total-line
       = 'Итого'
-      .card-details__dash
-      .card-details__total.js-card-details__total 0₽
+      span.card-details__dash
+      span.card-details__total.js-card-details__total 0₽
     +button({
       width: 'ultra-wide',
       arrowed: true,

@@ -13,11 +13,11 @@ mixin review(options={})
       srcImg = require('../../assets/img/content/user-2.jpg');
     }
 
-  .review
+  article.review
     .review__user
       img.review__photo(src= srcImg alt="User photo")
       +like(likes)
     .review__body
-      span.review__name= name
-      span.review__time= time
+      h2.review__name= name
+      time.review__time(datetime="1970-01-01")= time
       p.review__text= text

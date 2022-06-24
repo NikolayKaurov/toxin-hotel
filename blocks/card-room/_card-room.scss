@@ -132,11 +132,12 @@
 
   &__header {
     display: grid;
-    padding: 4px 17px 0 20px;
+    margin: 4px 17px 0 20px;
     grid-template-columns: 21px minmax(0, min-content) 42px auto 46px;
     color: rgb(31 32 65 / 50%);
     font-size: 12px;
     align-items: baseline;
+    font-weight: normal;
   }
 
   &__number {

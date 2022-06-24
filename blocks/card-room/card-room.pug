@@ -89,7 +89,7 @@ mixin card-room(options={})
         img.push(require('../../assets/img/decorative/icon-monochrome.svg'));
     }
 
-  .card-room.js-card-room(data-slide="0" tabindex="0")
+  section.card-room.js-card-room(data-slide="0" tabindex="0")
     .card-room__gallery
       form.card-room__form.js-card-room__form(action="./room-details.html")
         button.card-room__button(tabindex="-1")
@@ -105,13 +105,13 @@ mixin card-room(options={})
         - i = 0;
         while i < 4
           .card-room__nav-item.js-card-room__nav-item(data-slide= i++)
-    .card-room__header
-      .card-room__number №
-      .card-room__numeric= number
-      .card-room__lux
+    h2.card-room__header
+      span.card-room__number №
+      span.card-room__numeric= number
+      span.card-room__lux
         if (lux)
           = 'люкс'
-      .card-room__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
+      span.card-room__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
       = 'в сутки'
     .card-room__footer
       +rate(rateOptions)
