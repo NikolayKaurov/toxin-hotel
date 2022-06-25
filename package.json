@@ -46,7 +46,6 @@
     "terser-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.3.0",
     "typescript": "^4.7.2",
-    "uuid": "^8.3.2",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.0"
@@ -54,6 +53,7 @@
   "dependencies": {
     "jquery": "^3.6.0",
     "jsdom": "^19.0.0",
-    "toxin-slider": "^1.0.1"
+    "toxin-slider": "^1.0.1",
+    "uuid": "^8.3.2"
   }
 }

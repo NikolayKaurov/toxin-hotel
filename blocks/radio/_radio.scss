@@ -8,18 +8,21 @@
   }
 
   &__label {
+    height: fit-content;
+    cursor: pointer;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__text {
     display: flex;
     color: rgb(31 32 65 / 50%);
     line-height: 18px;
     font-size: 14px;
-    height: fit-content;
-    cursor: pointer;
     position: relative;
-    margin: 0 20px 0 0;
-
-    &:last-child {
-      margin: 0;
-    }
 
     &::before {
       width: 20px;
@@ -27,7 +30,7 @@
       box-sizing: border-box;
       border: 1px solid rgb(31 32 65 / 25%);
       border-radius: 18px;
-      margin: 0 10px 0 0;
+      margin-right: 10px;
       content: "";
     }
 
@@ -49,19 +52,19 @@
     }
   }
 
-  &__button:focus + &__label::before {
+  &__button:focus + &__text::before {
     box-shadow: 0 0 10px #bc9cff;
   }
 
-  &__button:checked + &__label {
+  &__button:checked + &__text {
     color: rgb(31 32 65 / 75%);
   }
 
-  &__button:checked + &__label::before {
+  &__button:checked + &__text::before {
     border: 1px solid #bc9cff;
   }
 
-  &__button:checked + &__label::after {
+  &__button:checked + &__text::after {
     visibility: visible;
   }
 }

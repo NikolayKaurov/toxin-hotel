@@ -7,13 +7,11 @@ mixin radio(options={})
 
   .radio
     each item in items
-      input.radio__button(
-        type="radio"
-        name= name
-        id= `${name}-${item.value}`
-        value= item.value
-        checked= item.checked
-      )
-      label.radio__label(
-        for= `${name}-${item.value}`
-      )= item.text
+      label.radio__label
+        input.radio__button(
+          type="radio"
+          name= name
+          value= item.value
+          checked= item.checked
+        )
+        span.radio__text= item.text

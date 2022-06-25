@@ -1,7 +1,6 @@
 mixin checkbox(options={})
   -
     const {
-      id = 'unique-id', //- требуется ТОЛЬКО для раскрываемого списка чекбоксов
       expand = '', //- заголовок раскрываемого списка чекбоксов
       open = false,
       items = [],
@@ -9,12 +8,11 @@ mixin checkbox(options={})
 
   .checkbox
     if (expand)
-      input.checkbox__input(
+      input.checkbox__input.js-checkbox__input(
         type="checkbox"
-        id= id
         checked= !open
       )
-      label.checkbox__expand-label(for= id)= expand
+      label.checkbox__expand-label= expand
     each item in items
       -
         const {
