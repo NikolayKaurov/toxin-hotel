@@ -114,13 +114,13 @@ function handleItemMousedown(event) {
 
 function handleSubmenuMousedown(event) {
   const $submenu = $(event.target);
-  const timeStamp = parseFloat($submenu.attr('data-timeStamp'));
+  const timeStamp = parseFloat($submenu.attr('data-timestamp'));
 
   if (Math.abs(event.timeStamp - timeStamp) < interval) {
     return;
   }
 
-  $submenu.attr('data-timeStamp', event.timeStamp);
+  $submenu.attr('data-timestamp', event.timeStamp);
 
   $submenu.toggleClass('burger__submenu_open');
 }
@@ -131,18 +131,18 @@ function openSub($submenu) {
 
 function handleSubmenuFocusin(event) {
   const $submenu = $(event.delegateTarget);
-  const timeStamp = parseFloat($submenu.attr('data-timeStamp'));
-  const timerID = parseFloat($submenu.attr('data-timerID'));
+  const timeStamp = parseFloat($submenu.attr('data-timestamp'));
+  const timerID = parseFloat($submenu.attr('data-timer-id'));
 
   if (Math.abs(event.timeStamp - timeStamp) < interval) {
     return;
   }
 
-  $submenu.attr('data-timeStamp', event.timeStamp);
+  $submenu.attr('data-timestamp', event.timeStamp);
 
   clearTimeout(timerID);
 
-  $submenu.attr('data-timerID', setTimeout(openSub, openCloseTime, $submenu));
+  $submenu.attr('data-timer-id', setTimeout(openSub, openCloseTime, $submenu));
 }
 
 function closeSub($submenu) {
@@ -151,11 +151,11 @@ function closeSub($submenu) {
 
 function handleSubmenuFocusout(event) {
   const $submenu = $(event.delegateTarget);
-  const timerID = parseFloat($submenu.attr('data-timerID'));
+  const timerID = parseFloat($submenu.attr('data-timer-id'));
 
   clearTimeout(timerID);
 
-  $submenu.attr('data-timerID', setTimeout(closeSub, openCloseTime, $submenu));
+  $submenu.attr('data-timer-id', setTimeout(closeSub, openCloseTime, $submenu));
 }
 
 $('.js-burger').each((index, burger) => {

@@ -114,7 +114,7 @@ function handleDropdownInput(event) {
     const surplus = $input.attr('data-surplus');
     const nominative = $input.attr('data-nominative');
     const genitive = $input.attr('data-genitive');
-    const genitivePlural = $input.attr('data-genitivePlural');
+    const genitivePlural = $input.attr('data-genitive-plural');
     const min = parseInt($input.attr('data-min'), 10);
 
     let value = parseInt(quantity, 10);
@@ -199,7 +199,7 @@ function handleMinusMousedown(event) {
     $button,
   );
 
-  $button.attr('data-timerID', timerID);
+  $button.attr('data-timer-id', timerID);
 }
 
 function handlePlusMousedown(event) {
@@ -215,11 +215,11 @@ function handlePlusMousedown(event) {
     $button,
   );
 
-  $button.attr('data-timerID', timerID);
+  $button.attr('data-timer-id', timerID);
 }
 
 function handleCounterButtonMouseup(event) {
-  const timerID = parseInt($(event.target).attr('data-timerID'), 10);
+  const timerID = parseInt($(event.target).attr('data-timer-id'), 10);
 
   clearTimeout(timerID);
   clearInterval(timerID);
@@ -259,12 +259,12 @@ function handleQuantityInput(event) {
   $plus.prop('disabled', !(value < max));
 
   if (value < 1) {
-    const timerID = parseInt($minus.attr('data-timerID'), 10);
+    const timerID = parseInt($minus.attr('data-timer-id'), 10);
 
     clearTimeout(timerID);
     clearInterval(timerID);
   } else if (value >= max) {
-    const timerID = parseInt($plus.attr('data-timerID'), 10);
+    const timerID = parseInt($plus.attr('data-timer-id'), 10);
 
     clearTimeout(timerID);
     clearInterval(timerID);
@@ -370,13 +370,13 @@ function plus($input) {
 function fastMinus($input, $button) {
   const timerID = setInterval(minus, changeInterval, $input);
 
-  $button.attr('data-timerID', timerID);
+  $button.attr('data-timer-id', timerID);
 }
 
 function fastPlus($input, $button) {
   const timerID = setInterval(plus, changeInterval, $input);
 
-  $button.attr('data-timerID', timerID);
+  $button.attr('data-timer-id', timerID);
 }
 
 function stop(event) {
