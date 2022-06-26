@@ -11,9 +11,13 @@
 
   &__form {
     display: grid;
-    grid-template-rows: 85px 94px 102px 160px 175px 94px auto;
-    width: fit-content;
+    grid-template-rows: 55px auto;
+    grid-row-gap: 30px;
+    width: min-content;
+    height: min-content;
+    flex-shrink: 0;
     padding-bottom: 50px;
+    overflow: hidden;
   }
 
   &__datepicker {

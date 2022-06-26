@@ -45,12 +45,13 @@
   &__body {
     width: 80.56%;
     max-width: 1160px;
-    padding: min(70px, 8vmin) 0 min(69px, 8vmin);
+    padding: min(70px, 8vmin) 0 min(72px, 8vmin);
     display: grid;
     grid-template:
-      "advantage chart card" 304px
+      "advantage chart card" auto
       "reviews reviews card" auto
-      "rules cancel card" 160px / 280px auto 38.79%;
+      "rules cancel card" auto / 280px auto 38.79%;
+    grid-row-gap: 30px;
   }
 
   &__header {
@@ -90,7 +91,6 @@
     grid-template-rows: 24px auto;
     grid-row-gap: 20px;
     grid-area: reviews;
-    padding-bottom: 30px;
     height: fit-content;
 
     &-header {
@@ -171,7 +171,7 @@
       width: 90%;
       grid-template:
         "chart card" 170px
-        "advantage card" 342px
+        "advantage card" auto
         "reviews reviews" auto
         "rules cancel" auto / auto 380px;
     }

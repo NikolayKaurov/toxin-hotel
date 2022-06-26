@@ -1,6 +1,7 @@
 .advantage {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   &__item {
     display: flex;
@@ -8,7 +9,7 @@
     margin-bottom: 20px;
 
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: 3px;
     }
 
     &_underlined {

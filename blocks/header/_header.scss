@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   background: white;
-  min-height: 70px;
   width: 100%;
   box-shadow: 0 10px 20px rgb(31 32 65 / 5%);
   flex-grow: 0;
@@ -13,9 +12,12 @@
   &__body {
     max-width: 1160px;
     width: 80.56%;
+    margin-top: 15px;
+    margin-bottom: 15px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   &__item {
@@ -55,6 +57,10 @@
 
 @media all and (max-width: 1152px) {
   .header {
+    &__body {
+      justify-content: space-between;
+    }
+
     &__item {
       display: none;
 
