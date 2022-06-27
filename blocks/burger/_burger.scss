@@ -1,27 +1,47 @@
 .burger {
-  width: 40px;
-  height: 40px;
+  $root: &;
+  $square-size: 40px;
+  $shadow: 0 0 15px rgba(31 32 65 / 75%);
+
+  @mixin line {
+    display: flex;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  @mixin submenu-arrow {
+    font-family: material-icons, Arial, sans-serif;
+    font-size: 24px;
+    line-height: 21px;
+    padding-top: 2px;
+    width: 24px;
+    content: "expand_more";
+  }
+
+  width: $square-size;
+  height: $square-size;
   position: relative;
   cursor: pointer;
-  outline: 0;
+  color: rgba(31 32 65 / 50%);
 
   &::after {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    height: 40px;
+    height: inherit;
     font-family: material-icons, Arial, sans-serif;
-    line-height: 40px;
+    line-height: $square-size;
     font-size: 24px;
     content: "menu";
   }
 
-  &_open::after {
-    content: "close";
-  }
-
   &:focus {
-    text-shadow: 0 0 10px rgba(31 32 65 / 75%);
+    outline: 0;
+    text-shadow: $shadow;
+
+    #{$root}__submenu {
+      text-shadow: none;
+    }
   }
 
   &::selection {
@@ -29,13 +49,11 @@
   }
 
   &_titled {
+    @include line;
+
     width: fit-content;
     height: fit-content;
-    display: flex;
     align-items: flex-start;
-    font-size: 14px;
-    line-height: 17px;
-    color: rgba(31 32 65 / 50%);
 
     &::after {
       position: static;
@@ -43,17 +61,20 @@
       width: 24px;
       height: 17px;
       line-height: 17px;
-      font-family: material-icons, Arial, sans-serif;
-      font-size: 24px;
-      color: rgba(31 32 65 / 50%);
       content: "expand_more";
     }
 
-    /* Не придумал, как вставить 2 амперсанда в этот селектор */
-
-    /* stylelint-disable-next-line */
-    &.burger_open::after {
+    &#{$root}_open::after {
       content: "expand_less";
+    }
+  }
+
+  &__item {
+    width: fit-content;
+    padding: 20px 20px 0;
+
+    &:last-child {
+      padding: 20px;
     }
   }
 
@@ -68,49 +89,47 @@
     z-index: 1;
   }
 
-  &_position_right &__menu {
-    right: 0;
-    align-items: flex-end;
-  }
+  &_open {
+    &::after {
+      content: "close";
+    }
 
-  &_open &__menu {
-    display: flex;
-  }
-
-  &__item {
-    width: fit-content;
-    padding: 20px 20px 0;
-
-    &:last-child {
-      padding: 20px;
+    #{$root}__menu {
+      display: flex;
     }
   }
 
   &__submenu {
-    display: flex;
+    @include line;
+
     align-items: center;
-    outline: 0;
-    font-size: 14px;
-    line-height: 17px;
-    color: rgb(31 32 65 / 50%);
     position: relative;
 
     &:focus {
-      text-shadow: 0 0 15px rgb(31 32 65 / 50%);
+      outline: 0;
+      text-shadow: $shadow;
     }
 
     &::after {
-      font-family: material-icons, Arial, sans-serif;
-      font-size: 24px;
-      line-height: 21px;
-      padding: 2px 0 0;
-      width: 24px;
-      content: "expand_more";
+      @include submenu-arrow;
+
       transform: rotate(270deg);
     }
 
-    &_open::after {
-      transform: rotate(90deg);
+    #{$root}__menu {
+      display: none;
+      top: 0;
+      left: 100%;
+    }
+
+    &_open {
+      &::after {
+        transform: rotate(90deg);
+      }
+
+      #{$root}__menu {
+        display: flex;
+      }
     }
 
     &::selection {
@@ -118,49 +137,32 @@
     }
   }
 
-  &_position_right &__submenu {
-    &::after {
-      display: none;
+  &_position_right {
+    #{$root}__menu {
+      right: 0;
+      align-items: flex-end;
     }
 
-    &::before {
-      font-family: material-icons, Arial, sans-serif;
-      font-size: 24px;
-      line-height: 21px;
-      padding: 2px 0 0;
-      width: 24px;
-      content: "expand_more";
-      transform: rotate(90deg);
+    #{$root}__submenu {
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        @include submenu-arrow;
+
+        transform: rotate(90deg);
+      }
+
+      #{$root}__menu {
+        left: auto;
+        right: 100%;
+        align-items: flex-start;
+      }
+
+      &_open::before {
+        transform: rotate(270deg);
+      }
     }
-
-    &_open::before {
-      transform: rotate(270deg);
-    }
-  }
-
-  &__submenu &__menu {
-    display: none;
-    top: 0;
-    left: 100%;
-  }
-
-  &__submenu_open &__menu {
-    display: flex;
-  }
-
-  &_position_right &__submenu &__menu {
-    display: none;
-    top: 0;
-    left: auto;
-    right: 100%;
-    align-items: flex-start;
-  }
-
-  &_position_right &__submenu_open &__menu {
-    display: flex;
-  }
-
-  &:focus &__submenu {
-    text-shadow: none;
   }
 }

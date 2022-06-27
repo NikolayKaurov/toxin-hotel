@@ -14,13 +14,20 @@
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
-  outline: 0;
+
+  @mixin box-focus {
+    &:focus {
+      text-shadow: none;
+      box-shadow: 0 0 10px #bc9cff;
+    }
+  }
 
   &:active {
     transform: scale(0.9);
   }
 
   &:focus {
+    outline: 0;
     text-shadow: 0 0 15px #bc9cff;
   }
 
@@ -65,6 +72,8 @@
   }
 
   &_bordered {
+    @include box-focus;
+
     background: white;
     border: 2px solid transparent;
     background-clip: padding-box;
@@ -81,22 +90,24 @@
 
     &:active {
       border: 2px solid #bc9cff;
-    }
 
-    &:active::before {
-      display: none;
+      &::before {
+        display: none;
+      }
     }
 
     &:disabled {
       color: #bc9cff;
-    }
 
-    &:disabled::before {
-      opacity: 0.5;
+      &::before {
+        opacity: 0.5;
+      }
     }
   }
 
   &_color_purple {
+    @include box-focus;
+
     color: white;
     background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
 
@@ -106,29 +117,25 @@
     }
   }
 
-  &_bordered:focus,
-  &_color_purple:focus {
-    text-shadow: none;
-    box-shadow: 0 0 10px #bc9cff;
-  }
-
-  &_arrowed::after {
-    content: "arrow_forward";
-    position: absolute;
-    right: 0;
-    font-family: material-icons, Arial, sans-serif;
-    color: white;
-    font-size: 24px;
-    font-weight: normal;
-    text-transform: none;
-    text-align: center;
-    line-height: inherit;
-    width: 44px;
-    height: inherit;
+  &_arrowed {
+    &::after {
+      content: "arrow_forward";
+      position: absolute;
+      right: 0;
+      font-family: material-icons, Arial, sans-serif;
+      color: white;
+      font-size: 24px;
+      font-weight: normal;
+      text-transform: none;
+      text-align: center;
+      line-height: inherit;
+      width: 44px;
+      height: inherit;
+    }
   }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
   .button {
     &_width_ultra-wide {
       width: 266px;
