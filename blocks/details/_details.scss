@@ -13,8 +13,8 @@
     max-height: 485px;
     display: grid;
     grid-template:
-      "armchair bed" 50.1%
-      "armchair coffee-table" auto
+      'armchair bed' 50.1%
+      'armchair coffee-table' auto
       / 68.125% auto;
 
     &-slot {
@@ -48,9 +48,9 @@
     padding: min(70px, 8vmin) 0 min(72px, 8vmin);
     display: grid;
     grid-template:
-      "advantage chart card" auto
-      "reviews reviews card" auto
-      "rules cancel card" auto / 280px auto 38.79%;
+      'advantage chart card' auto
+      'reviews reviews card' auto
+      'rules cancel card' auto / 280px auto 38.79%;
     grid-row-gap: 30px;
   }
 
@@ -132,14 +132,14 @@
   }
 }
 
-@media all and (min-width: 1025px) and (max-width: 1366px) {
+@media (min-width: 1025px) and (max-width: 1366px) {
   .details {
     &__body {
       grid-template:
-        "chart chart chart chart card card" 170px
-        "reviews reviews reviews reviews card card" 342px
-        "reviews reviews reviews reviews empty advantage" auto
-        "rules rules cancel cancel cancel advantage" auto / 1fr 1fr 1fr 1fr 100px 280px;
+        'chart chart chart chart card card' 170px
+        'reviews reviews reviews reviews card card' 342px
+        'reviews reviews reviews reviews empty advantage' auto
+        'rules rules cancel cancel cancel advantage' auto / 1fr 1fr 1fr 1fr 100px 280px;
     }
 
     &__chart {
@@ -165,15 +165,15 @@
   }
 }
 
-@media all and (min-width: 801px) and (max-width: 1024px) {
+@media (min-width: 801px) and (max-width: 1024px) {
   .details {
     &__body {
       width: 90%;
       grid-template:
-        "chart card" 170px
-        "advantage card" auto
-        "reviews reviews" auto
-        "rules cancel" auto / auto 380px;
+        'chart card' 170px
+        'advantage card' auto
+        'reviews reviews' auto
+        'rules cancel' auto / auto 380px;
     }
 
     &__chart {
@@ -201,15 +201,15 @@
   }
 }
 
-@media all and (min-width: 641px) and (max-width: 800px) {
+@media (min-width: 641px) and (max-width: 800px) {
   .details {
     &__body {
       width: 100%;
       grid-template:
-        "card card" 562px
-        "advantage chart" auto
-        "reviews reviews" auto
-        "rules cancel" auto / 1fr 1fr;
+        'card card' 562px
+        'advantage chart' auto
+        'reviews reviews' auto
+        'rules cancel' auto / 1fr 1fr;
     }
 
     &__card {
@@ -241,18 +241,18 @@
   }
 }
 
-@media all and (max-width: 640px) {
+@media (max-width: 640px) {
   .details {
     &__body {
       width: 100%;
       justify-items: center;
       grid-template:
-        "card" 512px
-        "advantage" auto
-        "chart" auto
-        "reviews" auto
-        "cancel" auto
-        "rules" auto / 1fr;
+        'card' 512px
+        'advantage' auto
+        'chart' auto
+        'reviews' auto
+        'cancel' auto
+        'rules' auto / 1fr;
     }
 
     &__card {
@@ -295,7 +295,7 @@
   }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
   .details {
     &__body {
       padding-top: 0;

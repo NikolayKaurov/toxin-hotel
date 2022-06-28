@@ -1,11 +1,9 @@
 .datepicker {
+  $root: &;
+
   outline: 0;
   width: 320px;
   position: relative;
-
-  &_format_filter {
-    width: 266px;
-  }
 
   &__input {
     display: none;
@@ -60,7 +58,7 @@
     }
 
     &::after {
-      content: "expand_more";
+      content: 'expand_more';
       font-family: material-icons, Arial, sans-serif;
       font-size: 24px;
       color: rgb(31 32 65 / 50%);
@@ -71,20 +69,6 @@
     &::selection {
       background: transparent;
     }
-  }
-
-  &_open &__drop::after {
-    content: "expand_less";
-  }
-
-  &_format_filter &__header,
-  &_format_filter &__drop {
-    display: none;
-  }
-
-  &_format_filter &__header_format_filter,
-  &_format_filter &__drop_format_filter {
-    display: flex;
   }
 
   &__down {
@@ -102,8 +86,23 @@
     z-index: 0;
   }
 
-  &_open &__down {
-    display: flex;
+  &_open {
+    #{$root}__drop {
+      &::after {
+        content: 'expand_less';
+      }
+    }
+
+    #{$root}__down {
+      display: flex;
+    }
+  }
+
+  @mixin button-back-forward {
+    font-family: material-icons, Arial, sans-serif;
+    text-transform: none;
+    font-size: 24px;
+    font-weight: normal;
   }
 
   &__button {
@@ -118,12 +117,12 @@
     color: #bc9cff;
     cursor: pointer;
 
-    &_action_back,
+    &_action_back {
+      @include button-back-forward;
+    }
+
     &_action_forward {
-      font-family: material-icons, Arial, sans-serif;
-      text-transform: none;
-      font-size: 24px;
-      font-weight: normal;
+      @include button-back-forward;
     }
 
     &:active {
@@ -155,10 +154,6 @@
     }
   }
 
-  &_format_filter &__month-year {
-    font-size: 17px;
-  }
-
   &__calendar {
     border-collapse: collapse;
     margin-top: 10px;
@@ -171,6 +166,12 @@
 
   &__row {
     color: rgb(31 32 65 / 50%);
+  }
+
+  @mixin circle-cell {
+    color: white;
+    font-weight: bold;
+    border-radius: 22px;
   }
 
   &__cell {
@@ -197,18 +198,15 @@
     }
 
     &_format_cursor {
+      @include circle-cell;
+
       background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
     }
 
     &_selected {
-      background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
-    }
+      @include circle-cell;
 
-    &_format_cursor,
-    &_selected {
-      color: white;
-      font-weight: bold;
-      border-radius: 22px;
+      background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
     }
 
     &::selection {
@@ -216,10 +214,34 @@
     }
   }
 
-  &_format_filter &__cell {
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
+  &_format_filter {
+    width: 266px;
+
+    #{$root}__header {
+      display: none;
+
+      &_format_filter {
+        display: flex;
+      }
+    }
+
+    #{$root}__drop {
+      display: none;
+
+      &_format_filter {
+        display: flex;
+      }
+    }
+
+    #{$root}__month-year {
+      font-size: 17px;
+    }
+
+    #{$root}__cell {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+    }
   }
 
   &__cell-period {
@@ -251,29 +273,40 @@
     }
   }
 
-  &_format_demo &__drop,
-  &_format_demo &__header {
-    display: none;
-  }
-
-  &_format_demo &__down {
-    margin-top: 0;
-    display: flex;
-  }
-}
-
-@media all and (max-width: 400px) {
-  .datepicker {
-    width: 266px;
-
-    &__header,
-    &__drop {
+  &_format_demo {
+    #{$root}__drop {
       display: none;
     }
 
-    &__header_format_filter,
-    &__drop_format_filter {
+    #{$root}__header {
+      display: none;
+    }
+
+    #{$root}__down {
+      margin-top: 0;
       display: flex;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .datepicker {
+    width: 266px;
+
+    &__header {
+      display: none;
+
+      &_format_filter {
+        display: flex;
+      }
+    }
+
+    &__drop {
+      display: none;
+
+      &_format_filter {
+        display: flex;
+      }
     }
 
     &__month-year {

@@ -43,7 +43,7 @@
   }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
   .card-sign {
     width: 100%;
     border-left: 0;
@@ -56,7 +56,10 @@
       text-align: center;
     }
 
-    &__footer,
+    &__footer {
+      width: 94%;
+    }
+
     &__form {
       width: 94%;
     }

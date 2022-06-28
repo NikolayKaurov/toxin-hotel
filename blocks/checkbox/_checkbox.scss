@@ -1,13 +1,9 @@
 .checkbox {
+  $root: &;
+
   display: flex;
   flex-direction: column;
   width: 266px;
-
-  &__input {
-    position: absolute;
-    opacity: 0;
-    z-index: -1;
-  }
 
   &__expand-label {
     display: flex;
@@ -22,7 +18,7 @@
     margin-bottom: 17px;
 
     &::after {
-      content: "expand_less";
+      content: 'expand_less';
       width: 44px;
       height: 15px;
       font-family: material-icons, Arial, sans-serif;
@@ -39,14 +35,6 @@
     }
   }
 
-  &__input:focus + &__expand-label {
-    text-shadow: 0 0 15px #bc9cff;
-  }
-
-  &__input:checked + &__expand-label::after {
-    content: "expand_more";
-  }
-
   &__label {
     display: flex;
     flex-direction: column;
@@ -58,10 +46,6 @@
     &:last-child {
       margin-bottom: 0;
     }
-  }
-
-  &__input:checked ~ &__label {
-    display: none;
   }
 
   &__text {
@@ -77,7 +61,7 @@
     }
 
     &::before {
-      content: "";
+      content: '';
       width: 20px;
       height: 20px;
       box-sizing: border-box;
@@ -91,7 +75,7 @@
     &::after {
       position: absolute;
       display: none;
-      content: "";
+      content: '';
       width: 6px;
       height: 8px;
       border-image-source: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
@@ -109,20 +93,52 @@
     }
   }
 
-  &__input:checked + &__text::before {
-    border: 1px solid #bc9cff;
-  }
+  &__input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
 
-  &__input:checked + &__text::after {
-    display: block;
-  }
+    &:focus {
+      + #{$root}__expand-label {
+        text-shadow: 0 0 15px #bc9cff;
+      }
 
-  &__input:focus + &__text::before {
-    box-shadow: 0 0 15px rgb(31 32 65 / 50%);
-  }
+      + #{$root}__text {
+        &::before {
+          box-shadow: 0 0 15px rgb(31 32 65 / 50%);
+        }
+      }
+    }
 
-  &__input:focus:checked + &__text::before {
-    box-shadow: 0 0 15px #bc9cff;
+    &:checked {
+      + #{$root}__expand-label {
+        &::after {
+          content: 'expand_more';
+        }
+      }
+
+      ~ #{$root}__label {
+        display: none;
+      }
+
+      + #{$root}__text {
+        &::before {
+          border: 1px solid #bc9cff;
+        }
+
+        &::after {
+          display: block;
+        }
+      }
+
+      &:focus {
+        + #{$root}__text {
+          &::before {
+            box-shadow: 0 0 15px #bc9cff;
+          }
+        }
+      }
+    }
   }
 
   &__explanation {

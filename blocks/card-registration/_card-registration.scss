@@ -43,7 +43,7 @@
   }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
   .card-registration {
     width: 100%;
     border-left: 0;
@@ -52,17 +52,17 @@
     justify-items: center;
 
     &__header {
+      width: 94%;
       font-size: 21px;
       text-align: center;
     }
 
     &__form {
+      width: 94%;
       justify-items: center;
     }
 
-    &__header,
-    &__footer,
-    &__form {
+    &__footer {
       width: 94%;
     }
   }

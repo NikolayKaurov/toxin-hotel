@@ -80,7 +80,7 @@
 
     &::before {
       position: absolute;
-      content: "";
+      content: '';
       background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
       z-index: -1;
       border-radius: inherit;
@@ -119,7 +119,7 @@
 
   &_arrowed {
     &::after {
-      content: "arrow_forward";
+      content: 'arrow_forward';
       position: absolute;
       right: 0;
       font-family: material-icons, Arial, sans-serif;

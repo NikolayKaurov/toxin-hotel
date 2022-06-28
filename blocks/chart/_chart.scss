@@ -1,6 +1,6 @@
-@use "sass:math";
+@use 'sass:math';
 
-@media all and (min-width: 1025px) {
+@media (min-width: 1025px) {
   $size: 120px;
   $half: math.div($size, 2);
 
@@ -36,7 +36,7 @@
   }
 }
 
-@media all and (max-width: 1024px) {
+@media (max-width: 1024px) {
   $size: 100px;
   $half: math.div($size, 2);
 
@@ -73,6 +73,8 @@
 }
 
 .chart {
+  $root: &;
+
   display: flex;
   align-items: flex-end;
   background: white;
@@ -95,7 +97,7 @@
     }
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       width: 2px;
       height: 6px;
@@ -162,14 +164,6 @@
     justify-content: flex-end;
   }
 
-  &__item {
-    font-size: 14px;
-    line-height: 24px;
-    color: rgb(31 32 65 / 75%);
-    display: flex;
-    align-items: center;
-  }
-
   &__bullet {
     width: 10px;
     height: 10px;
@@ -177,19 +171,35 @@
     margin-right: 5px;
   }
 
-  &__item:nth-child(1) &__bullet {
-    background: linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
-  }
+  &__item {
+    font-size: 14px;
+    line-height: 24px;
+    color: rgb(31 32 65 / 75%);
+    display: flex;
+    align-items: center;
 
-  &__item:nth-child(2) &__bullet {
-    background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
-  }
+    &:nth-child(1) {
+      #{$root}__bullet {
+        background: linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
+      }
+    }
 
-  &__item:nth-child(3) &__bullet {
-    background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
-  }
+    &:nth-child(2) {
+      #{$root}__bullet {
+        background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+      }
+    }
 
-  &__item:nth-child(4) &__bullet {
-    background: linear-gradient(180deg, #919191 0%, #3d4975 100%);
+    &:nth-child(3) {
+      #{$root}__bullet {
+        background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+      }
+    }
+
+    &:nth-child(4) {
+      #{$root}__bullet {
+        background: linear-gradient(180deg, #919191 0%, #3d4975 100%);
+      }
+    }
   }
 }

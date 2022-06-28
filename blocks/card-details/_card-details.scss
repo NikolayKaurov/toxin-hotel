@@ -12,6 +12,12 @@
   cursor: default;
   justify-items: center;
 
+  @mixin overflow-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
   &__header {
     width: 100%;
     margin-top: 4px;
@@ -31,6 +37,8 @@
   }
 
   &__numeric {
+    @include overflow-ellipsis;
+
     font-weight: bold;
     color: #1f2041;
     font-size: 24px;
@@ -45,6 +53,8 @@
   }
 
   &__price {
+    @include overflow-ellipsis;
+
     font-weight: bold;
     font-size: 14px;
     text-align: right;
@@ -73,15 +83,21 @@
   }
 
   &__calc-price {
+    @include overflow-ellipsis;
+
     text-align: right;
     padding-right: 5px;
   }
 
   &__calc-days {
+    @include overflow-ellipsis;
+
     padding-left: 4px;
   }
 
   &__total-price {
+    @include overflow-ellipsis;
+
     text-align: right;
     padding-left: 10px;
   }
@@ -90,18 +106,26 @@
     margin-top: 10px;
     display: grid;
     grid-template:
-      "fee-label discount . fee" auto
-      "label     label    . fee-add" auto
+      'fee-label discount . fee' auto
+      'label     label    . fee-add' auto
       / minmax(0, max-content) minmax(0, max-content) 20px auto;
     grid-row-gap: 10px;
   }
 
+  &__fee-label {
+    @include overflow-ellipsis;
+  }
+
   &__discount {
+    @include overflow-ellipsis;
+
     padding-left: 5px;
     padding-right: 5px;
   }
 
   &__info {
+    $root: &;
+
     width: 20px;
     height: 20px;
     box-sizing: border-box;
@@ -131,12 +155,16 @@
       z-index: 99;
     }
 
-    &:hover &-text {
-      display: block;
+    &:hover {
+      #{$root}-text {
+        display: block;
+      }
     }
   }
 
   &__fee {
+    @include overflow-ellipsis;
+
     text-align: right;
     padding-left: 10px;
   }
@@ -152,6 +180,8 @@
   }
 
   &__fee-add {
+    @include overflow-ellipsis;
+
     text-align: right;
     padding-left: 10px;
   }
@@ -175,27 +205,14 @@
   }
 
   &__total {
+    @include overflow-ellipsis;
+
     text-align: right;
     padding-right: 2px;
   }
-
-  &__numeric,
-  &__price,
-  &__calc-price,
-  &__calc-days,
-  &__total-price,
-  &__discount,
-  &__fee,
-  &__fee-add,
-  &__fee-label,
-  &__total {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
   .card-details {
     width: 100%;
     border-left: 0;
@@ -218,8 +235,8 @@
     &__calc-fee {
       grid-template-columns: minmax(0, max-content) minmax(0, max-content) auto;
       grid-template-areas:
-        "fee-label discount fee"
-        "label     label    fee-add";
+        'fee-label discount fee'
+        'label     label    fee-add';
     }
 
     &__info {
