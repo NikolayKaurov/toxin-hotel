@@ -21,7 +21,10 @@
     outline: 0;
     position: relative;
 
-    &:focus,
+    &:focus {
+      border: 1px solid rgb(31 32 65 / 50%);
+    }
+
     &:hover {
       border: 1px solid rgb(31 32 65 / 50%);
     }

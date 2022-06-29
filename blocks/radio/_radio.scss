@@ -1,21 +1,7 @@
 .radio {
+  $root: &;
+
   display: flex;
-
-  &__button {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
-  }
-
-  &__label {
-    height: fit-content;
-    cursor: pointer;
-    margin-right: 20px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
 
   &__text {
     display: flex;
@@ -31,7 +17,7 @@
       border: 1px solid rgb(31 32 65 / 25%);
       border-radius: 18px;
       margin-right: 10px;
-      content: "";
+      content: '';
     }
 
     &::after {
@@ -43,7 +29,7 @@
       background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
       left: 4px;
       top: 4px;
-      content: "";
+      content: '';
       visibility: hidden;
     }
 
@@ -52,19 +38,41 @@
     }
   }
 
-  &__button:focus + &__text::before {
-    box-shadow: 0 0 10px #bc9cff;
+  &__button {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+
+    &:focus {
+      + #{$root}__text {
+        &::before {
+          box-shadow: 0 0 10px #bc9cff;
+        }
+      }
+    }
+
+    &:checked {
+      + #{$root}__text {
+        color: rgb(31 32 65 / 75%);
+
+        &::before {
+          border: 1px solid #bc9cff;
+        }
+
+        &::after {
+          visibility: visible;
+        }
+      }
+    }
   }
 
-  &__button:checked + &__text {
-    color: rgb(31 32 65 / 75%);
-  }
+  &__label {
+    height: fit-content;
+    cursor: pointer;
+    margin-right: 20px;
 
-  &__button:checked + &__text::before {
-    border: 1px solid #bc9cff;
-  }
-
-  &__button:checked + &__text::after {
-    visibility: visible;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

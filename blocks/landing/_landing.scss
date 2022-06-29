@@ -5,23 +5,41 @@
   min-height: 830px;
   display: flex;
   justify-content: center;
-  background-image: url("../../assets/img/decorative/room-decor-1.jpg");
+  background-size: cover;
+  background-image: url('../../assets/img/decorative/room-decor-1.jpg');
   z-index: 0;
   opacity: 1;
 
+  @mixin background-gallery {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0;
+    animation-duration: 180s;
+    animation-iteration-count: infinite;
+  }
+
   &::before {
+    @include background-gallery;
+
     animation-name: background-2;
-    background-image: url("../../assets/img/decorative/room-decor-2.jpg");
+    background-image: url('../../assets/img/decorative/room-decor-2.jpg');
   }
 
   &::after {
+    @include background-gallery;
+
     animation-name: background-3;
-    background-image: url("../../assets/img/decorative/room-decor-3.jpg");
+    background-image: url('../../assets/img/decorative/room-decor-3.jpg');
   }
 
+  /*
   &::before,
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -30,12 +48,15 @@
     animation-duration: 180s;
     animation-iteration-count: infinite;
   }
+  */
 
+  /*
   &,
   &::before,
   &::after {
     background-size: cover;
   }
+  */
 
   &__body {
     width: 80.56%;
@@ -91,7 +112,7 @@
   }
 }
 
-@media all and (max-width: 640px) {
+@media (max-width: 640px) {
   .landing {
     &__body {
       width: 100%;
@@ -107,7 +128,7 @@
   }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
   .landing {
     &__body {
       padding-top: 0;

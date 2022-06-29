@@ -1,4 +1,6 @@
 .text-field {
+  $root: &;
+
   width: 320px;
 
   &__header {
@@ -35,38 +37,45 @@
     padding: 0 14px;
     border: 1px solid rgb(31 32 65 / 25%);
     border-radius: 4px;
+    outline: 0;
 
     &::placeholder {
       font-family: montserrat, Arial, sans-serif;
       color: rgb(31 32 65 / 25%);
     }
 
-    &:focus,
+    &:focus {
+      border: 1px solid rgb(31 32 65 / 50%);
+    }
+
     &:hover {
       border: 1px solid rgb(31 32 65 / 50%);
-      outline: 0;
     }
   }
 
-  &_type_date &__input {
-    position: absolute;
-    background: transparent;
-    color: rgb(31 32 65 / 50%);
-    z-index: 1;
+  &_type_date {
+    #{$root}__input {
+      position: absolute;
+      background: transparent;
+      color: rgb(31 32 65 / 50%);
+      z-index: 1;
 
-    &_double {
-      background: white;
+      &_double {
+        background: white;
+        border: 1px solid transparent;
+        z-index: 0;
+      }
+
+      &_invalid {
+        color: red;
+      }
+    }
+  }
+
+  &:hover {
+    #{$root}__input_double {
       border: 1px solid transparent;
-      z-index: 0;
     }
-
-    &_invalid {
-      color: red;
-    }
-  }
-
-  &:hover &__input_double {
-    border: 1px solid transparent;
   }
 
   &__date {
@@ -74,7 +83,7 @@
   }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
   .text-field {
     width: 266px;
   }

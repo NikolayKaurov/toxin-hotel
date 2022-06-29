@@ -1,4 +1,6 @@
 .rate {
+  $root: &;
+
   display: flex;
   outline: 0;
 
@@ -8,7 +10,7 @@
     position: relative;
 
     &::after {
-      content: "star_border";
+      content: 'star_border';
       font-family: material-icons, Arial, sans-serif;
       font-size: 24px;
       line-height: 24px;
@@ -22,8 +24,10 @@
     }
   }
 
-  &_enabled &__star {
-    cursor: pointer;
+  &_enabled {
+    #{$root}__star {
+      cursor: pointer;
+    }
   }
 
   &__input {
@@ -33,13 +37,17 @@
   &:focus {
     text-shadow: 0 0 10px #bc9cff;
   }
-}
 
-@for $i from 1 through 5 {
-  .rate[data-rating="#{$i}"] {
-    @for $j from 1 through $i {
-      .rate__star:nth-child(#{$j})::after {
-        content: "star";
+  @for $i from 1 through 5 {
+    &[data-rating="#{$i}"] {
+      @for $j from 1 through $i {
+        #{$root}__star {
+          &:nth-child(#{$j}) {
+            &::after {
+              content: 'star';
+            }
+          }
+        }
       }
     }
   }

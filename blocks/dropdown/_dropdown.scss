@@ -1,4 +1,6 @@
 .dropdown {
+  $root: &;
+
   width: 320px;
   outline: 0;
   position: relative;
@@ -54,7 +56,7 @@
     cursor: pointer;
 
     &::after {
-      content: "expand_more";
+      content: 'expand_more';
       font-family: material-icons, Arial, sans-serif;
       font-size: 24px;
       line-height: 42px;
@@ -67,16 +69,6 @@
 
     &::selection {
       background: transparent;
-    }
-  }
-
-  &_open &__drop {
-    border-color: rgb(31 32 65 / 50%);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-
-    &::after {
-      content: "expand_less";
     }
   }
 
@@ -93,8 +85,20 @@
     display: none;
   }
 
-  &_open &__down {
-    display: block;
+  &_open {
+    #{$root}__drop {
+      border-color: rgb(31 32 65 / 50%);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      &::after {
+        content: 'expand_less';
+      }
+    }
+
+    #{$root}__down {
+      display: block;
+    }
   }
 
   &__item {
@@ -223,7 +227,7 @@
   }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
   .dropdown {
     width: 266px;
   }

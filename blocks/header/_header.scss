@@ -55,7 +55,7 @@
   }
 }
 
-@media all and (max-width: 1152px) {
+@media (max-width: 1152px) {
   .header {
     &__body {
       justify-content: space-between;
@@ -64,7 +64,11 @@
     &__item {
       display: none;
 
-      &_hidden,
+      &_hidden {
+        margin-left: 0;
+        display: block;
+      }
+
       &_visible {
         margin-left: 0;
         display: block;
@@ -79,7 +83,7 @@
   }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
   .header {
     &__body {
       width: 94%;

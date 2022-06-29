@@ -16,10 +16,10 @@
       align-items: flex-start;
       justify-content: center;
       margin: 0 0 0 40px;
-    }
 
-    & > &:first-child {
-      margin: 0;
+      &:first-child {
+        margin: 0;
+      }
     }
 
     & > & > & {

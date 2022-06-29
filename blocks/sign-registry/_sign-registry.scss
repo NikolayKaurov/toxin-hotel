@@ -6,12 +6,13 @@
   width: 100%;
   min-height: 684px;
   flex-grow: 1;
-  background-image: url("../../assets/img/decorative/room-decor-4.jpg");
+  background-image: url('../../assets/img/decorative/room-decor-4.jpg');
+  background-size: cover;
   position: relative;
   z-index: 0;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -20,11 +21,7 @@
     animation-name: background;
     animation-duration: 120s;
     animation-iteration-count: infinite;
-    background-image: url("../../assets/img/decorative/room-decor-1.jpg");
-  }
-
-  &,
-  &::before {
+    background-image: url('../../assets/img/decorative/room-decor-1.jpg');
     background-size: cover;
   }
 
@@ -51,7 +48,7 @@
   }
 }
 
-@media all and (max-width: 640px) {
+@media (max-width: 640px) {
   .sign-registry {
     min-height: auto;
     padding-top: 19px;

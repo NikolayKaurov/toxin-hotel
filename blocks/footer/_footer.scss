@@ -1,4 +1,6 @@
 .footer {
+  $root: &;
+
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -10,10 +12,6 @@
   flex-grow: 0;
   flex-shrink: 0;
 
-  &_width_narrow {
-    background: #e5e5e5;
-  }
-
   &__body {
     width: 80.56%;
     max-width: 1160px;
@@ -21,11 +19,11 @@
     padding-top: 100px;
     display: grid;
     grid-template-areas:
-      "logo       nav-header  about-header   help-header  subscription-header"
-      "paragraph  about       about-service  agreements   subscription"
-      "paragraph  news        team           communities  subscription"
-      "paragraph  help        vacancy        contacts     subscription"
-      "paragraph  service     investors      .            subscription";
+      'logo       nav-header  about-header   help-header  subscription-header'
+      'paragraph  about       about-service  agreements   subscription'
+      'paragraph  news        team           communities  subscription'
+      'paragraph  help        vacancy        contacts     subscription'
+      'paragraph  service     investors      .            subscription';
     grid-template-rows: 36px 39px repeat(auto-fit, minmax(38px, min-content));
 
     /* Не использована краткая запись grid-template, чтобы использовать repeat в grid-template-rows.
@@ -33,10 +31,6 @@
 
     /* stylelint-disable-next-line */
     grid-template-columns: 25.86% 17.24% 17.24% auto 260px;
-  }
-
-  &_width_narrow &__body {
-    display: none;
   }
 
   &__item {
@@ -135,10 +129,6 @@
     border-top: 1px solid #e5e5e5;
   }
 
-  &_width_narrow &__border {
-    display: none;
-  }
-
   &__footer {
     max-width: 1160px;
     width: 80.56%;
@@ -146,10 +136,6 @@
     justify-content: space-between;
     align-items: center;
     min-height: 70px;
-  }
-
-  &_width_narrow &__footer {
-    display: none;
   }
 
   &__mini {
@@ -164,9 +150,25 @@
     box-sizing: border-box;
   }
 
-  &_width_narrow &__mini {
-    display: flex;
-    max-width: 768px;
+  &_width_narrow {
+    background: #e5e5e5;
+
+    #{$root}__body {
+      display: none;
+    }
+
+    #{$root}__border {
+      display: none;
+    }
+
+    #{$root}__footer {
+      display: none;
+    }
+
+    #{$root}__mini {
+      display: flex;
+      max-width: 768px;
+    }
   }
 
   &__mini-text {
@@ -177,8 +179,14 @@
 
 @media all and (max-width: 1366px) {
   .footer {
-    &__body,
-    &__border,
+    &__body {
+      display: none;
+    }
+
+    &__border {
+      display: none;
+    }
+
     &__footer {
       display: none;
     }

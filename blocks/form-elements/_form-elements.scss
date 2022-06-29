@@ -1,4 +1,6 @@
 .form-elements {
+  $root: &;
+
   padding: 8px 0 0 141px;
   display: grid;
   grid-template-columns: 374px 320px 320px;
@@ -10,6 +12,20 @@
 
     &:first-child {
       grid-template-rows: 84px 84px 87px 104px 104px 105px 20px auto;
+
+      #{$root}__dropdown {
+        &:nth-child(3) {
+          z-index: 5;
+        }
+
+        &:nth-child(5) {
+          z-index: 4;
+        }
+
+        &:nth-child(6) {
+          z-index: 3;
+        }
+      }
     }
 
     &:nth-child(2) {
@@ -22,6 +38,24 @@
 
     &:nth-child(4) {
       grid-template-rows: 84px 236px minmax(64px, min-content) 305px auto;
+
+      #{$root}__dropdown {
+        &:first-child {
+          z-index: 2;
+        }
+
+        &:nth-child(2) {
+          z-index: 1;
+        }
+
+        &:nth-child(3) {
+          padding-bottom: 20px;
+        }
+
+        &:nth-child(4) {
+          padding-bottom: 20px;
+        }
+      }
     }
 
     &:nth-child(5) {
@@ -40,48 +74,6 @@
     text-transform: uppercase;
   }
 
-  &__dropdown {
-    width: fit-content;
-  }
-
-  &__item:first-child &__dropdown:nth-child(3) {
-    z-index: 9;
-  }
-
-  &__item:first-child &__dropdown:nth-child(5) {
-    z-index: 8;
-  }
-
-  &__item:first-child &__dropdown:nth-child(6) {
-    z-index: 7;
-  }
-
-  &__item:nth-child(4) &__dropdown:first-child {
-    z-index: 6;
-  }
-
-  &__item:nth-child(4) &__dropdown:nth-child(2) {
-    z-index: 5;
-  }
-
-  &__item:nth-child(4) &__dropdown:nth-child(3) {
-    z-index: 4;
-    padding-bottom: 20px;
-  }
-
-  &__item:nth-child(4) &__dropdown:nth-child(4) {
-    z-index: 3;
-    padding-bottom: 20px;
-  }
-
-  &__item:nth-child(5) &__dropdown:first-child {
-    z-index: 2;
-  }
-
-  &__item:nth-child(6) &__dropdown:first-child {
-    z-index: 1;
-  }
-
   &__like-wrapper {
     display: grid;
     grid-template-columns: 50px auto;
@@ -95,10 +87,10 @@
   &__button-wrapper {
     display: grid;
     grid-template:
-      "a a b" 74px
-      "c c d" 61px
-      "e f f" 59px
-      "g g g" auto / 81px 38px auto;
+      'a a b' 74px
+      'c c d' 61px
+      'e f f' 59px
+      'g g g' auto / 81px 38px auto;
   }
 
   &__button {
