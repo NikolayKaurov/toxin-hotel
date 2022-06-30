@@ -129,19 +129,19 @@ function handleInputInput(event) {
 
   if (preValue.length > value.length) {
     if (!value.match(/^(\d{0,2}\.?|\d{0,2}\.\d{0,2}\.?|\d{0,2}\.\d{0,2}\.\d{0,4})$/)) {
-      value = preValue; // запрет на удаление точек внутри строки
+      value = preValue; // prevent deletion of dots within a string
     } else {
-      value = value.replace(/\.$/, ''); // удалить точки на конце строки, если одна - одну
-      value = value.replace(/\.$/, ''); // если 2 - обе
+      value = value.replace(/\.$/, ''); // remove dots at the end of a string, if one - one
+      value = value.replace(/\.$/, ''); // if 2 - both
     }
   } else if (!value.match(/^(\d{0,3}|\d{0,2}\.\d{1,3}|\d{0,2}\.\d{0,2}\.\d{1,4})$/)) {
-    value = preValue; // запрет некорректного ввода
+    value = preValue; // prohibition of incorrect input
     selectPos -= 1;
   } else {
     let addPos = 0;
 
-    // номер подстроки, в которую только что была введена цифра
-    // 0 - день, 1 - месяц, 2 - год
+    // the number of the substring in which the digit has just been entered
+    // 0 - day, 1 - month, 2 - year
     let lastEditedSubstring = (value.slice(0, selectPos).match(/\./g) || []).length;
 
     if (value.match(/^(3[2-9]|[4-9]\d)$/)) {
@@ -223,7 +223,7 @@ function handleInputInput(event) {
       value = newValue.join('.');
       selectPos += addPos;
     } else {
-      value = preValue; // запрет на ввод некорректной даты
+      value = preValue; // prevent wrong date input
       selectPos -= 1;
     }
   }

@@ -1,11 +1,11 @@
 mixin datepicker(options={})
   -
     const {
-      name = 'undefined-name', //- префикс для имён полей ввода
-      headerCommon = '', //- заголовок для объединённого экспанда (FILTER DATE DROPDOWN)
-      headerArrival = '', //- заголовок для экспанда прибытия
-      headerDeparture = '', //- заголовок для экспанда выезда
-      modifier = '', //- filter или demo (или отсутствует)
+      name = 'undefined-name', //- prefix for input field names
+      headerCommon = '', //- header for merged drop (FILTER DATE DROPDOWN)
+      headerArrival = '', //- header for arrival drop
+      headerDeparture = '', //- header for departure drop
+      modifier = '', //- filter/demo (or missing)
     } = options;
     let datepickerModifier = '';
     if (modifier === 'filter') {

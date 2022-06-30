@@ -176,10 +176,10 @@
     cursor: default;
     flex-shrink: 0;
     caret-color: transparent;
-    appearance: textfield; // скрыть родные кнопочки + и - в Firefox
+    appearance: textfield; // hide native + and - buttons in Firefox
 
     &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button { // скрыть родные кнопочки + и - в Chrome, Safari, Edge, Opera
+    &::-webkit-inner-spin-button { // hide native buttons + and - in Chrome, Safari, Edge, Opera
       appearance: none;
       margin: 0;
     }

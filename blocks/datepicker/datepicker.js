@@ -132,7 +132,6 @@ class Datepicker {
 
     const cycleDate = new Date(this.calendarMonth.getFullYear(), this.calendarMonth.getMonth());
 
-    // 0 - понедельник, 1 - вторник, 2 - среда...
     const dayOfWeek = cycleDate.getDay() ? cycleDate.getDay() - 1 : 6;
     cycleDate.setDate(cycleDate.getDate() - dayOfWeek);
 

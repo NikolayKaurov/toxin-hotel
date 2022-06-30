@@ -1,9 +1,8 @@
 import $ from 'jquery';
 
-const pressingTime = 500; // время зажатия кнопки счётчика
-const changeInterval = 75; // интервал изменения счётчика при зажатой кнопке
+const pressingTime = 500;
+const changeInterval = 75;
 
-// Количество элементов в общей строке: '3 гостя, 1 младенец' - 2 элемента
 const maxNumberItems = 99;
 
 class Dropdown {
@@ -231,9 +230,9 @@ function handleQuantityInput(event) {
 
   const previous = parseInt($input.attr('data-previous'), 10);
 
-  const val = $input.val(); // СТРОКА
+  const val = $input.val();
 
-  const value = parseInt(val, 10) || 0; // ЧИСЛО
+  const value = parseInt(val, 10) || 0;
 
   const max = $input.attr('max');
 

@@ -1,13 +1,13 @@
 mixin dropdown(options={})
   -
     const {
-      narrow = false, //- узкий, шириной 266px (если false ширина 320px)
-      placeholder = '', //- значение по умолчанию для общей строки
-      header = '', //- надпись слева сверху
-      description = '', //- надпись справа сверху
-      clear = false, //- есть кнопка "очистить"
-      confirm = false, //- есть кнопка "применить"
-      items = [], //- строки в выпадающем элементе
+      narrow = false, //- narrow width 266px, regular width 320px
+      placeholder = '',
+      header = '', //- lettering top left
+      description = '', //- lettering top right
+      clear = false, //- there is a "clear" button
+      confirm = false, //- there is an "confirm" button
+      items = [], //- strings in the dropdown
     } = options;
 
     let modifier = '';
@@ -26,11 +26,11 @@ mixin dropdown(options={})
       each item in items
         -
           const {
-            name = '', //- имя поля ввода
-            units = 'units', //- подпись для поля ввода с падежами
-            min = 0, //- минимальное значение для активации кнопки "ПРИМЕНИТЬ"
+            name = '', //- input field name
+            units = 'units', //- caption for input field with cases
+            min = 0, //- minimum value to activate the "confirm" button
             max = 99,
-            surplus = false, //- данное поле не самостоятельное, а прибавляется к предыдущему
+            surplus = false, //- this field is not independent, but is added to the previous one
           } = item;
 
           const unitsArray = units.split(' ');
