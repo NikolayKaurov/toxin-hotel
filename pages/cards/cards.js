@@ -3,6 +3,7 @@ import '../../blocks/datepicker/datepicker';
 import '../../blocks/dropdown/dropdown';
 import '../../blocks/card-registration/card-registration';
 import '../../blocks/text-field/text-field';
+import '../../blocks/toggle/toggle';
 import '../../blocks/card-details/card-details';
 import '../../blocks/card-sign/card-sign';
 import '../../blocks/card-room/card-room';
