@@ -177,7 +177,7 @@
   }
 }
 
-@media all and (max-width: 1366px) {
+@media (max-width: 1366px) {
   .footer {
     &__body {
       display: none;

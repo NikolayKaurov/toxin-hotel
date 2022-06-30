@@ -36,28 +36,6 @@
     background-image: url('../../assets/img/decorative/room-decor-3.jpg');
   }
 
-  /*
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0;
-    animation-duration: 180s;
-    animation-iteration-count: infinite;
-  }
-  */
-
-  /*
-  &,
-  &::before,
-  &::after {
-    background-size: cover;
-  }
-  */
-
   &__body {
     width: 80.56%;
     max-width: 1160px;
