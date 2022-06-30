@@ -1,6 +1,8 @@
 .toggle {
   $root: &;
 
+  height: min-content;
+
   &__text {
     display: flex;
     color: rgb(31 32 65 / 75%);
