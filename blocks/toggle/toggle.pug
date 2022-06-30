@@ -7,14 +7,13 @@ mixin toggle(options={})
       value = 'on',
     } = options;
 
-  .toggle
+  label.toggle
     input.toggle__button(
       type="checkbox"
       name= name
-      id= `${name}-${value}`
       value= value
       checked= checked
     )
-    label.toggle__label(for= `${name}-${value}`)= text
+    span.toggle__text= text
 
 
