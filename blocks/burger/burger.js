@@ -47,22 +47,32 @@ class Burger {
     $('.js-burger__submenu', this.$burger)
       .on('focusin', null, { }, handleSubmenuFocusin)
       .on('focusout', null, { }, handleSubmenuFocusout);
+
+    return this;
   }
 
   open() {
     this.$burger.addClass('burger_open');
+
+    return this;
   }
 
   close() {
     this.$burger.removeClass('burger_open');
+
+    return this;
   }
 
   setTimerID(id) {
     this.timerID = id;
+
+    return this;
   }
 
   setTimeStamp(timeStamp) {
     this.timeStamp = timeStamp;
+
+    return this;
   }
 }
 

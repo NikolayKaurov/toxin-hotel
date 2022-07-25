@@ -48,6 +48,8 @@ class Dropdown {
 
     this.$confirm = $('.js-dropdown__button_action_confirm', this.$dropdown)
       .on('mousedown', { dropdown: this }, handleConfirmMousedown);
+
+    return this;
   }
 }
 

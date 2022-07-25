@@ -19,6 +19,8 @@ class CardRegistration {
     this.$submit = $('.js-button', this.#$card);
 
     this.#$card.on('input', null, { card: this }, handleCardRegistrationInput);
+
+    return this;
   }
 }
 

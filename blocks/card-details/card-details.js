@@ -27,6 +27,8 @@ class CardDetails {
       { card: this },
       handleCardDetailsInput,
     );
+
+    return this;
   }
 }
 

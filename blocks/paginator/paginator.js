@@ -24,24 +24,32 @@ class Paginator {
         { paginator: this },
         handleItemMousedown,
       );
+
+    return this;
   }
 
   back() {
     if (this.active > 1) {
       this.setActive(this.active - 1);
     }
+
+    return this;
   }
 
   forward() {
     if (this.active < this.length) {
       this.setActive(this.active + 1);
     }
+
+    return this;
   }
 
   setActive(active) {
     this.active = active;
     this.$paginator.attr('data-active', active);
     this.$description.text(`${(active - 1) * 12 + 1} – ${active * 12} из 100+ вариантов аренды`);
+
+    return this;
   }
 }
 

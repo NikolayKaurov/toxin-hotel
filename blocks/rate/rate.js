@@ -21,10 +21,14 @@ class Rate {
         >`);
 
     this.$input = $('.js-rate__input').val(this.rating);
+
+    return this;
   }
 
   setRating(rating) {
     this.rating = rating;
+
+    return this;
   }
 }
 

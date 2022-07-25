@@ -42,6 +42,8 @@ class CardRoom {
         { card: this },
         handleNavMousedown,
       );
+
+    return this;
   }
 
   back() {
@@ -52,6 +54,8 @@ class CardRoom {
     }
 
     this.#$card.attr('data-slide', this.#slide);
+
+    return this;
   }
 
   forward() {
@@ -62,15 +66,21 @@ class CardRoom {
     }
 
     this.#$card.attr('data-slide', this.#slide);
+
+    return this;
   }
 
   setSlide(slide) {
     this.#slide = slide;
     this.#$card.attr('data-slide', slide);
+
+    return this;
   }
 
   confirm() {
     this.#$form.trigger('submit');
+
+    return this;
   }
 }
 

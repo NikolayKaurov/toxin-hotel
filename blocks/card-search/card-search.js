@@ -19,6 +19,8 @@ class CardSearch {
       { card: this },
       handleCardSearchInput,
     );
+
+    return this;
   }
 }
 

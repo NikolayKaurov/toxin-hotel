@@ -34,10 +34,14 @@ class TextField {
     this.$dateInput = $('.js-text-field__date', this.#$textField);
 
     this.preValue = '';
+
+    return this;
   }
 
   setPreValue(value) {
     this.preValue = value;
+
+    return this;
   }
 }
 

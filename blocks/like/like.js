@@ -22,6 +22,8 @@ class Like {
         { like: this },
         handleLikeKeydown,
       );
+
+    return this;
   }
 
   activate() {
@@ -42,6 +44,8 @@ class Like {
     $number.text(`${number}`);
 
     $input.val(`${number}`);
+
+    return this;
   }
 }
 

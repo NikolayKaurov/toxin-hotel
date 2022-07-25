@@ -62,7 +62,7 @@ class Datepicker {
     this.cursorDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     this.calendarMonth = new Date(now.getFullYear(), now.getMonth());
 
-    this.update();
+    return this.update();
   }
 
   update() {
@@ -205,6 +205,8 @@ class Datepicker {
     );
 
     this.$confirm.prop('disabled', !period);
+
+    return this;
   }
 
   setDate(date) {
@@ -233,6 +235,8 @@ class Datepicker {
     this.$departure.val(departure);
 
     this.$datepicker.trigger('input');
+
+    return this;
   }
 }
 

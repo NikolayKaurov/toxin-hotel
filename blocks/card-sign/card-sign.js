@@ -18,6 +18,8 @@ class CardSign {
       { card: this },
       handleCardSignInput,
     );
+
+    return this;
   }
 }
 

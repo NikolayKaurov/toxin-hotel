@@ -7,6 +7,13 @@
     justify-content: space-between;
   }
 
+  &__body {
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
   &__label {
     font-size: 12px;
     line-height: 15px;

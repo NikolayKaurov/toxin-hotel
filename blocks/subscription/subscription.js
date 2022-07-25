@@ -18,6 +18,8 @@ class Subscription {
         { $email: this.$email, $submit: this.$submit },
         handleEmailInput,
       );
+
+    return this;
   }
 }
 
