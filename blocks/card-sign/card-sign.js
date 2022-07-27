@@ -23,7 +23,7 @@ class CardSign {
   }
 }
 
-function validateEmail(email) {
+function isEmailValid(email) {
   return String(email)
     .toLowerCase()
     .match(
@@ -38,7 +38,7 @@ function handleCardSignInput(event) {
     $submit,
   } = event.data.card;
 
-  const fullInput = validateEmail($email.val()) && $password.val().length > 7;
+  const fullInput = isEmailValid($email.val()) && $password.val().length > 7;
 
   $submit.prop('disabled', !fullInput);
 }

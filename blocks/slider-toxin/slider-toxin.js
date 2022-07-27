@@ -4,15 +4,19 @@ import 'toxin-slider/toxin-slider.ts';
 import 'toxin-slider/toxin-slider.scss';
 
 function handleSlide(event, { from, to }) {
-  $('.js-slider-toxin__value', event.data.$slider)
-    .text(`${new Intl.NumberFormat('ru-RU').format(from)}₽ - ${new Intl.NumberFormat('ru-RU').format(to)}₽`);
+  event.data.$value
+    .text(
+      `${new Intl.NumberFormat('ru-RU').format(from)}₽ - ${new Intl.NumberFormat('ru-RU').format(to)}₽`,
+    );
 }
 
 $('.js-slider-toxin').each((index, slider) => {
+  const $slider = $(slider);
+  const $value = $('.js-slider-toxin__value', $slider);
   $('.js-slider-toxin__body', $(slider))
     .on(
       'toxin-slider.slide',
-      { $slider: $(slider) },
+      { $value },
       handleSlide,
     )
     .toxinSlider({

@@ -23,7 +23,7 @@ class Subscription {
   }
 }
 
-function validateEmail(email) {
+function isEmailValid(email) {
   return String(email)
     .toLowerCase()
     .match(
@@ -37,7 +37,7 @@ function handleEmailInput(event) {
     $submit,
   } = event.data;
 
-  $submit.prop('disabled', !validateEmail($email.val()));
+  $submit.prop('disabled', !isEmailValid($email.val()));
 }
 
 $('.js-subscription').each((index, subscription) => {
