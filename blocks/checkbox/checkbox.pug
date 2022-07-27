@@ -7,7 +7,7 @@ mixin checkbox(options={})
     } = options;
 
   .checkbox
-    if (expand)
+    if (expand !== '')
       input.checkbox__input.js-checkbox__input(
         type="checkbox"
         checked= !open
@@ -29,7 +29,7 @@ mixin checkbox(options={})
           value= value
           checked= checked
         )
-        if (explanation)
+        if (explanation !== '')
           span.checkbox__text.checkbox__text_weight_bold= text
           span.checkbox__explanation= explanation
         else

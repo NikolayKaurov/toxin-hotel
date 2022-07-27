@@ -19,9 +19,9 @@ mixin text-field(options={})
 
   .text-field.js-text-field(class= classString data-name= name)
     .text-field__header
-      if (label)
+      if (label !== '')
         p.text-field__label= label
-      if (description)
+      if (description !== '')
         p.text-field__label= description
     .text-field__wrapper.js-text-field__wrapper
       input.text-field__input.js-text-field__input(

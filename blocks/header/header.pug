@@ -6,7 +6,7 @@ mixin header(options={})
     } = options;
     const rightmost = !user;
     let burgerItems = [ ...items ];
-    if (!user) {
+    if (user === '') {
       burgerItems = burgerItems.concat([
         {
           text: 'Войти',
@@ -48,7 +48,7 @@ mixin header(options={})
             itemMost = 'header__item_most';
           }
         .header__item(class= itemMost)
-          if (subtitle)
+          if (subtitle !== '')
             +burger({
               title: subtitle,
               items: subitems,

@@ -55,64 +55,59 @@ function getPlaceholder(value) {
   return placeholder.join('');
 }
 
-function isCorrectDate(days, month, year) {
-  let daysTemp;
+function isCorrectDate(options = {}) {
+  const { days = '', month = '', year = '' } = options;
 
-  if (days) {
-    daysTemp = parseInt(days, 10);
-  } else {
-    daysTemp = 0;
-  }
+  const daysNumber = days !== ''
+    ? parseInt(days, 10)
+    : 0;
 
-  let wrong = (days === '00') || daysTemp > 31;
+  const isCorrectDays = (days !== '00') && daysNumber < 32;
 
-  if (wrong) {
+  if (!isCorrectDays) {
     return false;
   }
 
-  let monthTemp;
+  const monthNumber = month !== ''
+    ? parseInt(month, 10)
+    : 0;
 
-  if (month) {
-    monthTemp = parseInt(month, 10);
-  } else {
-    monthTemp = 0;
-  }
+  const isCorrectMonth = (month !== '00') && monthNumber < 13;
 
-  wrong = (month === '00') || monthTemp > 12;
-
-  if (wrong) {
+  if (!isCorrectMonth) {
     return false;
   }
 
-  const yearTooShort = !year
-    || (year.length < 4 && year.match(/^(19|20)/))
+  const yearTooShort = (year === '')
+    || (year.match(/^(19|20)$/) !== null)
     || year.length === 1
     || year.length === 3;
 
-  let yearTemp;
-
-  if (yearTooShort) {
-    yearTemp = 0;
-  } else if (year.length === 2) {
-    if (parseInt(year, 10) < 30) {
-      yearTemp = parseInt(`20${year}`, 10);
-    } else {
-      yearTemp = parseInt(`19${year}`, 10);
+  const yearNumber = (() => {
+    if (yearTooShort) {
+      return 0;
     }
-  } else {
-    yearTemp = parseInt(year, 10);
-  }
 
-  wrong = ((daysTemp > 29) && (monthTemp === 2))
-    || ((daysTemp > 28) && (monthTemp === 2) && (yearTemp % 4 !== 0 || yearTemp === 1900));
+    if (year.length === 2) {
+      if (parseInt(year, 10) < 30) {
+        return parseInt(`20${year}`, 10);
+      }
 
-  if (wrong) {
+      return parseInt(`19${year}`, 10);
+    }
+
+    return parseInt(year, 10);
+  })();
+
+  const isCorrectFebruary = (monthNumber !== 2)
+    || (daysNumber < 29)
+    || ((daysNumber < 30) && (yearNumber % 4 === 0 && yearNumber !== 1900));
+
+  if (!isCorrectFebruary) {
     return false;
   }
 
-  wrong = (daysTemp === 31) && [4, 6, 9, 11].includes(monthTemp);
-
-  return !wrong;
+  return (daysNumber < 31) || ![4, 6, 9, 11].includes(monthNumber);
 }
 
 function handleInputPaste(event) {
@@ -123,6 +118,11 @@ function handleInputInput(event) {
   const input = event.target;
   const $input = $(input);
 
+  // Deleting a character is considered correct if dots inside the string are not deleted.
+  const correctIncompleteDeletion = /^(\d{0,2}\.?|\d{0,2}\.\d{0,2}\.?|\d{0,2}\.\d{0,2}\.\d{0,4})$/;
+
+  const correctIncompleteInput = /^(\d{0,3}|\d{0,2}\.\d{1,3}|\d{0,2}\.\d{0,2}\.\d{1,4})$/;
+
   $input.removeClass('text-field__input_invalid');
 
   let selectPos = input.selectionStart;
@@ -132,100 +132,221 @@ function handleInputInput(event) {
   const { preValue, $double } = event.data.textField;
 
   if (preValue.length > value.length) {
-    if (!value.match(/^(\d{0,2}\.?|\d{0,2}\.\d{0,2}\.?|\d{0,2}\.\d{0,2}\.\d{0,4})$/)) {
+    if (value.match(correctIncompleteDeletion) === null) {
       value = preValue; // prevent deletion of dots within a string
     } else {
       value = value.replace(/\.$/, ''); // remove dots at the end of a string, if one - one
       value = value.replace(/\.$/, ''); // if 2 - both
     }
-  } else if (!value.match(/^(\d{0,3}|\d{0,2}\.\d{1,3}|\d{0,2}\.\d{0,2}\.\d{1,4})$/)) {
+  } else if (value.match(correctIncompleteInput) === null) {
     value = preValue; // prohibition of incorrect input
     selectPos -= 1;
   } else {
-    let addPos = 0;
+    const tooManyDaysRegExp = /^(3[2-9]|[4-9]\d)$/;
+    const tooManyMonthsRegExp = /^\d{0,2}\.(1[3-9]|[2-9]\d)$/;
+    const isFirstDigitMonthRegExp = /^\d{3}$/;
+    const isFirstDigitYearRegExp = /^\d{0,2}\.\d{3}$/;
 
-    // the number of the substring in which the digit has just been entered
-    // 0 - day, 1 - month, 2 - year
-    let lastEditedSubstring = (value.slice(0, selectPos).match(/\./g) || []).length;
+    const tooManyDays = value.match(tooManyDaysRegExp) !== null;
+    const tooManyMonths = value.match(tooManyMonthsRegExp) !== null;
+    const isFirstDigitMonth = value.match(isFirstDigitMonthRegExp) !== null;
+    const isFirstDigitYear = value.match(isFirstDigitYearRegExp) !== null;
 
-    if (value.match(/^(3[2-9]|[4-9]\d)$/)) {
-      value = `0${value}`;
-      addPos += 1;
-      lastEditedSubstring = 1;
-    } else if (value.match(/^\d{0,2}\.(1[3-9]|[2-9]\d)$/)) {
-      value = `${value.slice(0, value.length - 2)}0${value.slice(value.length - 2, value.length)}`;
-      addPos += 1;
-      lastEditedSubstring = 2;
-    }
+    const { length } = value;
 
-    let days;
-    let month;
-    let year;
-
-    if (value.match(/^\d{3}$/)) {
-      days = value.slice(0, 2);
-      month = value.slice(2);
-
-      addPos += 1;
-      lastEditedSubstring = 1;
-    } else if (value.match(/^\d{0,2}\.\d{3}$/)) {
-      [days, month] = value.slice(0, value.length - 1).split('.');
-      year = value[value.length - 1];
-
-      addPos += 1;
-      lastEditedSubstring = 2;
-    } else {
-      [days, month, year] = value.split('.');
-    }
-
-    if (isCorrectDate(days, month, year)) {
-      if (year) {
-        if (year.match(/^(0[1-9]?|1[0-8]|2[1-9]|[3-9]\d?)$/)) {
-          if (lastEditedSubstring > 1) {
-            addPos += 2;
-          }
-        }
-
-        if (year.match(/^(0[1-9]?|1[0-8]|2[1-9])$/)) {
-          year = `20${year}`;
-        } else if (year.match(/^[3-9]\d?$/)) {
-          year = `19${year}`;
-        }
+    const days = (() => {
+      if (tooManyDays) {
+        return `0${value[0]}`;
       }
 
-      if (month) {
-        if (month.match(/^[2-9]$/)) {
-          month = `0${month}`;
-
-          if (lastEditedSubstring > 0) {
-            addPos += 1;
-          }
-        }
+      if (isFirstDigitMonth) {
+        return value.slice(0, 2);
       }
 
-      if (days) {
-        if (days.match(/^[4-9]$/)) {
-          days = `0${days}`;
-          addPos += 1;
-        }
+      return value.split('.')[0];
+    })();
+
+    const month = (() => {
+      if (tooManyDays) {
+        return value[1];
       }
+
+      if (isFirstDigitMonth) {
+        return value[2];
+      }
+
+      if (tooManyMonths) {
+        return `0${value[length - 2]}`;
+      }
+
+      if (isFirstDigitYear) {
+        return value.slice(length - 3, length - 1);
+      }
+
+      // the value 'undefined' will not result in an error
+      return value.split('.')[1];
+    })();
+
+    const year = (() => {
+      if (tooManyMonths || isFirstDigitYear) {
+        return value[length - 1];
+      }
+
+      // the value 'undefined' will not result in an error
+      return value.split('.')[2];
+    })();
+
+    if (isCorrectDate({ days, month, year })) {
+      // the number of the substring in which the digit has just been entered
+      // 0 - days, 1 - month, 2 - year
+      const lastEditedSubstring = (() => {
+        if (tooManyDays || isFirstDigitMonth) {
+          return 1;
+        }
+
+        if (tooManyMonths || isFirstDigitYear) {
+          return 2;
+        }
+
+        return (value.slice(0, selectPos).match(/\./g) ?? []).length;
+      })();
+
+      const needZeroToDays = days.match(/^[4-9]$/) !== null;
+
+      const needZeroToMonth = month !== undefined
+        ? month.match(/^[2-9]$/) !== null
+        : false;
+
+      const needTwoDigitsToYear = year !== undefined
+        ? year.match(/^(0\d?|1[0-8]|2[1-9]|[3-9]\d?)$/) !== null
+        : false;
 
       const newValue = [];
 
-      if (days !== undefined) {
-        newValue.push(days);
-      }
+      newValue.push(needZeroToDays ? `0${days}` : days);
 
       if (month !== undefined) {
-        newValue.push(month);
+        newValue.push(needZeroToMonth ? `0${month}` : month);
       }
 
       if (year !== undefined) {
-        newValue.push(year);
+        if (needTwoDigitsToYear) {
+          if (year.match(/^[3-9]\d?$/) !== null) {
+            newValue.push(`19${year}`);
+          } else {
+            newValue.push(`20${year}`);
+          }
+        } else {
+          newValue.push(year);
+        }
       }
 
+      const addPosition = (() => {
+        // just a list of all possible options
+
+        if (lastEditedSubstring === 0) {
+          if (needZeroToDays) {
+            return 1;
+          }
+
+          return 0;
+        }
+
+        if (lastEditedSubstring === 1) {
+          if (tooManyDays && needZeroToMonth) {
+            return 3;
+          }
+
+          if (tooManyDays) {
+            return 2;
+          }
+
+          if (isFirstDigitMonth && needZeroToMonth) {
+            return 2;
+          }
+
+          if (isFirstDigitMonth) {
+            return 1;
+          }
+
+          if (needZeroToDays && needZeroToMonth) {
+            return 2;
+          }
+
+          if (needZeroToDays || needZeroToMonth) {
+            return 1;
+          }
+
+          return 0;
+        }
+
+        const total = tooManyMonths && needZeroToDays && needTwoDigitsToYear;
+
+        if (total) {
+          return 5;
+        }
+
+        if (tooManyMonths && needZeroToDays) {
+          return 3;
+        }
+
+        if (tooManyMonths && needTwoDigitsToYear) {
+          return 4;
+        }
+
+        if (tooManyMonths) {
+          return 2;
+        }
+
+        const secondTotal = isFirstDigitYear && needZeroToDays && needTwoDigitsToYear;
+
+        if (secondTotal) {
+          return 4;
+        }
+
+        if (isFirstDigitYear && needZeroToDays) {
+          return 2;
+        }
+
+        if (isFirstDigitYear && needTwoDigitsToYear) {
+          return 3;
+        }
+
+        if (isFirstDigitYear) {
+          return 1;
+        }
+
+        const thirdTotal = needZeroToDays && needZeroToMonth && needTwoDigitsToYear;
+
+        if (thirdTotal) {
+          return 4;
+        }
+
+        if (needZeroToDays && needZeroToMonth) {
+          return 2;
+        }
+
+        if (needZeroToDays && needTwoDigitsToYear) {
+          return 3;
+        }
+
+        if (needZeroToMonth && needTwoDigitsToYear) {
+          return 3;
+        }
+
+        if (needZeroToDays || needZeroToMonth) {
+          return 1;
+        }
+
+        if (needTwoDigitsToYear) {
+          return 2;
+        }
+
+        return 0;
+      })();
+
       value = newValue.join('.');
-      selectPos += addPos;
+      selectPos += addPosition;
     } else {
       value = preValue; // prevent wrong date input
       selectPos -= 1;

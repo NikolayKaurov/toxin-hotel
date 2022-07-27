@@ -17,9 +17,9 @@ mixin dropdown(options={})
 
   .dropdown.js-dropdown(class= modifier tabindex="0")
     .dropdown__wrapper
-      if (header)
+      if (header !== '')
         p.dropdown__header= header
-      if (description)
+      if (description !== '')
         p.dropdown__header= description
     .dropdown__drop.js-dropdown__drop(data-placeholder= placeholder)= placeholder
     .dropdown__down.js-dropdown__down

@@ -6,7 +6,7 @@ mixin burger(options={})
       items = [],
     } = options;
     let burgerClass = '';
-    if (title) {
+    if (title !== '') {
       burgerClass = 'burger_titled';
     }
     if (rightmost) {
@@ -26,7 +26,7 @@ mixin burger(options={})
             bold = false,
           } = item;
         .burger__item.js-burger__item
-          if (subtitle)
+          if (subtitle !== '')
             .burger__submenu.js-burger__submenu(tabindex="0" data-timestamp="0" data-timer-id="0")= subtitle
               .burger__menu
                 each subitem in subitems
