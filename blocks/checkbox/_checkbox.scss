@@ -30,6 +30,21 @@
       text-align: center;
     }
 
+    &_close {
+      &::after {
+        content: 'expand_more';
+      }
+
+      ~ #{$root}__label {
+        display: none;
+      }
+    }
+
+    &:focus {
+      text-shadow: 0 0 15px #bc9cff;
+      outline: 0;
+    }
+
     &::selection {
       background: transparent;
     }
@@ -99,10 +114,6 @@
     z-index: -1;
 
     &:focus {
-      + #{$root}__expand-label {
-        text-shadow: 0 0 15px #bc9cff;
-      }
-
       + #{$root}__text {
         &::before {
           box-shadow: 0 0 15px rgb(31 32 65 / 50%);
@@ -111,16 +122,6 @@
     }
 
     &:checked {
-      + #{$root}__expand-label {
-        &::after {
-          content: 'expand_more';
-        }
-      }
-
-      ~ #{$root}__label {
-        display: none;
-      }
-
       + #{$root}__text {
         &::before {
           border: 1px solid #bc9cff;
@@ -146,5 +147,9 @@
     font-size: 12px;
     line-height: 14px;
     color: rgb(31 32 65 / 50%);
+
+    &::selection {
+      background: transparent;
+    }
   }
 }

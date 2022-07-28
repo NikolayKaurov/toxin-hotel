@@ -1,17 +1,13 @@
 import $ from 'jquery';
-import { v4 as getId } from 'uuid';
+
+const enter = 13;
+const spaceBar = 32;
 
 $(document).on('keydown', '.checkbox__input', handleCheckKeydown);
-
-$('.js-checkbox__input').each((index, checkbox) => {
-  const id = getId();
-  $(checkbox)
-    .attr('id', id)
-    .next().attr('for', id);
-});
+$(document).on('keydown mousedown', '.checkbox__expand-label', handleExpandToggle);
 
 function handleCheckKeydown(event) {
-  if (event.keyCode === 13 || event.keyCode === 32) {
+  if (event.keyCode === enter || event.keyCode === spaceBar) {
     event.preventDefault();
 
     const $checkbox = $(event.target);
@@ -19,5 +15,19 @@ function handleCheckKeydown(event) {
     const checked = $checkbox.prop('checked');
 
     $checkbox.prop('checked', !checked);
+  }
+}
+
+function handleExpandToggle(event) {
+  const { type, keyCode } = event;
+  const $expand = $(event.target);
+
+  if (type === 'keydown') {
+    if (keyCode === enter || keyCode === spaceBar) {
+      event.preventDefault();
+      $expand.toggleClass('checkbox__expand-label_close');
+    }
+  } else {
+    $expand.toggleClass('checkbox__expand-label_close');
   }
 }

@@ -5,14 +5,14 @@ mixin checkbox(options={})
       open = false,
       items = [],
     } = options;
+    const expandClass = open ? '' : 'checkbox__expand-label_close';
 
   .checkbox
     if (expand !== '')
-      input.checkbox__input.js-checkbox__input(
-        type="checkbox"
-        checked= !open
-      )
-      label.checkbox__expand-label= expand
+      .checkbox__expand-label(
+        class= expandClass
+        tabindex="0"
+      )= expand
     each item in items
       -
         const {
