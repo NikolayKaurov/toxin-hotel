@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+const oneDayInMilliseconds = 86400000;
+
 class CardDetails {
   #$card;
 
@@ -47,12 +49,14 @@ function handleCardDetailsInput(event) {
     feeAdd,
   } = event.data.card;
 
-  const fullInput = $departure.val() && $arrival.val() && parseInt($adult.val(), 10);
+  const fullInput = $departure.val() !== ''
+    && $arrival.val() !== ''
+    && parseInt($adult.val(), 10) > 0;
 
   $submit.prop('disabled', !fullInput);
 
   if ($departure.val() !== '' && $arrival.val() !== '') {
-    const days = (Date.parse($departure.val()) - Date.parse($arrival.val())) / 86400000;
+    const days = (Date.parse($departure.val()) - Date.parse($arrival.val())) / oneDayInMilliseconds;
 
     let daysString;
     if (

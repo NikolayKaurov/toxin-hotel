@@ -32,7 +32,9 @@ function handleCardSearchInput(event) {
     $submit,
   } = event.data.card;
 
-  const fullInput = $departure.val() && $arrival.val() && parseInt($adult.val(), 10);
+  const fullInput = $departure.val() !== ''
+    && $arrival.val() !== ''
+    && parseInt($adult.val(), 10) > 0;
 
   $submit.prop('disabled', !fullInput);
 }

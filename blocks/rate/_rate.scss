@@ -1,6 +1,10 @@
 .rate {
   $root: &;
 
+  /*  this constant should be duplicated in ./rate.pug: const maxRating = 5;
+      and in ./rate.js: const maxRating = 5; */
+  $max-rating: 5;
+
   display: flex;
   outline: 0;
 
@@ -38,7 +42,7 @@
     text-shadow: 0 0 10px #bc9cff;
   }
 
-  @for $i from 1 through 5 {
+  @for $i from 1 through $max-rating {
     &[data-rating="#{$i}"] {
       @for $j from 1 through $i {
         #{$root}__star {

@@ -5,6 +5,11 @@ const changeInterval = 75;
 
 const maxNumberItems = 99;
 
+const deleteKey = 46;
+const backspaceKey = 8;
+const zeroKey = 48;
+const nineKey = 57;
+
 class Dropdown {
   constructor(dropdown) {
     this.$dropdown = $(dropdown);
@@ -280,15 +285,15 @@ function handleQuantityKeydown(event) {
 
   let val = $input.val();
 
-  if (keyCode === 8 || keyCode === 46) {
+  if (keyCode === backspaceKey || keyCode === deleteKey) {
     event.preventDefault();
 
     $input.val(val.replace(/.$/, ''));
     $input.trigger('input');
-  } else if (keyCode > 47 && keyCode < 58) {
+  } else if (keyCode >= zeroKey && keyCode <= nineKey) {
     event.preventDefault();
 
-    const digit = keyCode - 48;
+    const digit = keyCode - zeroKey;
 
     val = `${val}${digit}`;
     let value = parseInt(val, 10);

@@ -1,5 +1,14 @@
 import $ from 'jquery';
 
+/* this constant should be duplicated in ./card-room.pug: const quantitySlides = 4;
+  and in ./card-room.scss: $quantity-slides: 4; */
+const quantitySlides = 4;
+
+const enter = 13;
+const spaceBar = 32;
+const left = 37;
+const right = 39;
+
 class CardRoom {
   #$card;
 
@@ -50,7 +59,7 @@ class CardRoom {
     this.#slide -= 1;
 
     if (this.#slide < 0) {
-      this.#slide = 3;
+      this.#slide = quantitySlides - 1;
     }
 
     this.#$card.attr('data-slide', this.#slide);
@@ -61,7 +70,7 @@ class CardRoom {
   forward() {
     this.#slide += 1;
 
-    if (this.#slide > 3) {
+    if (this.#slide >= quantitySlides) {
       this.#slide = 0;
     }
 
@@ -88,7 +97,7 @@ function handleCardKeydown(event) {
   const { keyCode } = event;
   const { card } = event.data;
 
-  if (keyCode === 32 || keyCode === 13) {
+  if (keyCode === enter || keyCode === spaceBar) {
     event.preventDefault();
 
     card.confirm();
@@ -96,7 +105,7 @@ function handleCardKeydown(event) {
     return;
   }
 
-  if (keyCode === 37) {
+  if (keyCode === left) {
     event.preventDefault();
 
     card.back();
@@ -104,7 +113,7 @@ function handleCardKeydown(event) {
     return;
   }
 
-  if (keyCode === 39) {
+  if (keyCode === right) {
     event.preventDefault();
 
     card.forward();

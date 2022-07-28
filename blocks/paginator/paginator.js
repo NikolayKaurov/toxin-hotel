@@ -1,5 +1,8 @@
 import $ from 'jquery';
 
+const left = 37;
+const right = 39;
+
 class Paginator {
   constructor(paginator) {
     this.$paginator = $(paginator);
@@ -57,7 +60,7 @@ function handleItemKeydown(event) {
   const { keyCode } = event;
   const { paginator } = event.data;
 
-  if (keyCode === 37) {
+  if (keyCode === left) {
     event.preventDefault();
 
     paginator.back();
@@ -65,7 +68,7 @@ function handleItemKeydown(event) {
     return;
   }
 
-  if (keyCode === 39) {
+  if (keyCode === right) {
     event.preventDefault();
 
     paginator.forward();

@@ -1,5 +1,8 @@
 import $ from 'jquery';
 
+const enter = 13;
+const spaceBar = 32;
+
 class Like {
   constructor(like) {
     this.$like = $(like);
@@ -59,7 +62,7 @@ function handleLikeKeydown(event) {
   const { like } = event.data;
   const { keyCode } = event;
 
-  if (keyCode === 32 || keyCode === 13) {
+  if (keyCode === spaceBar || keyCode === enter) {
     event.preventDefault();
 
     like.activate();

@@ -1,5 +1,12 @@
 import $ from 'jquery';
 
+/*  this constant should be duplicated in ./rate.pug: const maxRating = 5;
+    and in ./rate.scss: $max-rating: 5; */
+const maxRating = 5;
+
+const left = 37;
+const right = 39;
+
 class Rate {
   constructor(rate) {
     this.$rate = $(rate);
@@ -57,18 +64,24 @@ function handleRateKeydown(event) {
   const { keyCode } = event;
   const { $rate, $input, rating } = rate;
 
-  let newRating = rating;
-
-  if (keyCode === 37 || keyCode === 39) {
+  if (keyCode === left || keyCode === right) {
     event.preventDefault();
 
-    if (keyCode === 37) {
-      if (rating > 1) {
-        newRating -= 1;
+    const newRating = (() => {
+      if (keyCode === left) {
+        if (rating > 1) {
+          return rating - 1;
+        }
+
+        return rating;
       }
-    } else if (rating < 5) {
-      newRating += 1;
-    }
+
+      if (rating < maxRating) {
+        return rating + 1;
+      }
+
+      return rating;
+    })();
 
     rate.setRating(newRating);
     $input.val(newRating);

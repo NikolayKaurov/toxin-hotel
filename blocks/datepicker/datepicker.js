@@ -3,6 +3,13 @@ import $ from 'jquery';
 const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 const shortMonths = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
+const enter = 13;
+const spaceBar = 32;
+const left = 37;
+const up = 38;
+const right = 39;
+const down = 40;
+
 class Datepicker {
   constructor(datepicker) {
     this.$datepicker = $(datepicker);
@@ -296,7 +303,7 @@ function handleDatepickerKeydown(event) {
   arrival.setHours(0, 0, 0);
   departure.setHours(0, 0, 0);
 
-  if (keyCode === 13 || keyCode === 32) {
+  if (keyCode === enter || keyCode === spaceBar) {
     event.preventDefault();
 
     if (
@@ -320,7 +327,7 @@ function handleDatepickerKeydown(event) {
   );
 
   switch (keyCode) {
-    case 37:
+    case left:
       temp.setDate(temp.getDate() - 1);
       if (temp.getTime() === departure.getTime()) {
         temp.setDate(temp.getDate() - 1);
@@ -329,7 +336,7 @@ function handleDatepickerKeydown(event) {
         temp.setDate(temp.getDate() - 1);
       }
       break;
-    case 38:
+    case up:
       temp.setDate(temp.getDate() - 7);
       if (temp.getTime() === departure.getTime()) {
         temp.setDate(temp.getDate() - 7);
@@ -338,7 +345,7 @@ function handleDatepickerKeydown(event) {
         temp.setDate(temp.getDate() - 7);
       }
       break;
-    case 39:
+    case right:
       temp.setDate(temp.getDate() + 1);
       if (temp.getTime() === arrival.getTime()) {
         temp.setDate(temp.getDate() + 1);
@@ -347,7 +354,7 @@ function handleDatepickerKeydown(event) {
         temp.setDate(temp.getDate() + 1);
       }
       break;
-    case 40:
+    case down:
       temp.setDate(temp.getDate() + 7);
       if (temp.getTime() === arrival.getTime()) {
         temp.setDate(temp.getDate() + 7);

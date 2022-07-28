@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+const minPasswordLength = 8;
+
 class CardSign {
   #$card;
 
@@ -38,7 +40,7 @@ function handleCardSignInput(event) {
     $submit,
   } = event.data.card;
 
-  const fullInput = isEmailValid($email.val()) && $password.val().length > 7;
+  const fullInput = isEmailValid($email.val()) && $password.val().length >= minPasswordLength;
 
   $submit.prop('disabled', !fullInput);
 }

@@ -1,3 +1,6 @@
+// this constant should be duplicated in ./paginator.pug: const maxLength = 15;
+$max-length: 15;
+
 .paginator {
   $root: &;
 
@@ -95,7 +98,7 @@
       line-height: $item-size;
     }
 
-    @for $i from 1 through 15 {
+    @for $i from 1 through $max-length {
       &[data-active="#{$i}"] {
         #{$root}__item {
           &:nth-child(#{$i - 2}):not(:first-child):not(:nth-child(2)) {
@@ -158,7 +161,7 @@
       line-height: $item-size;
     }
 
-    @for $i from 1 through 15 {
+    @for $i from 1 through $max-length {
       &[data-active='#{$i}'] {
         #{$root}__item {
           &:nth-child(#{$i - 1}):not(:first-child):not(:nth-child(2)) {

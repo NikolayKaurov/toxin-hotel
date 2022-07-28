@@ -1,9 +1,12 @@
 import $ from 'jquery';
 
+const enter = 13;
+const spaceBar = 32;
+
 $(document).on('keydown', '.toggle__button', handleToggleKeydown);
 
 function handleToggleKeydown(event) {
-  if (event.keyCode === 13 || event.keyCode === 32) {
+  if (event.keyCode === enter || event.keyCode === spaceBar) {
     event.preventDefault();
 
     const $toggle = $(event.target);

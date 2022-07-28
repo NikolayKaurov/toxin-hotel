@@ -1,5 +1,8 @@
 import $ from 'jquery';
 
+const minPasswordLength = 8;
+const fullDateStringLength = 10; // for example 23.07.1998
+
 class CardRegistration {
   #$card;
 
@@ -42,11 +45,11 @@ function handleCardRegistrationInput(event) {
     $submit,
   } = event.data.card;
 
-  const fullInput = $name.val()
-    && $surname.val()
-    && $birth.val().length === 10 && !$birth.hasClass('text-field__input_invalid')
+  const fullInput = $name.val() !== ''
+    && $surname.val() !== ''
+    && $birth.val().length === fullDateStringLength && !$birth.hasClass('text-field__input_invalid')
     && isEmailValid($email.val())
-    && $password.val().length > 7;
+    && $password.val().length >= minPasswordLength;
 
   $submit.prop('disabled', !fullInput);
 }
