@@ -2,10 +2,11 @@ mixin checkbox(options={})
   -
     const {
       expand = '', //- checkbox dropdown header
-      open = false,
+      isOpen = false,
       items = [],
     } = options;
-    const expandClass = open ? '' : 'checkbox__expand-label_close';
+
+    const expandClass = isOpen ? '' : 'checkbox__expand-label_close';
 
   .checkbox
     if (expand !== '')

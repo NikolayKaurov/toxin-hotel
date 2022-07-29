@@ -3,23 +3,31 @@ mixin paginator(options={})
     //- this constant should be duplicated in ./paginator.scss: $max-length: 15;
     const maxLength = 15;
 
-    let {
+    //- this constant should be duplicated in ./paginator.js: const numberItemsInPage = 12;
+    const numberItemsInPage = 12;
+
+    const {
       length = 1,
     } = options;
-    if (length < 1) {
-      length = 1;
-    } else if (length > maxLength) {
-      length = maxLength;
-    } else {
-      length = Math.round(length);
-    }
+
+    const normalizedLength = (() => {
+      if (length < 1) {
+        return 1;
+      }
+
+      if (length > maxLength) {
+        return maxLength;
+      }
+
+      return Math.round(length);
+    })();
 
     let i = 1;
 
   .paginator.js-paginator(data-length= length data-active="1" tabindex="0")
     .paginator__body
       .paginator__item.js-paginator__item(data-number="back") arrow_back
-      while i <= length
+      while i <= normalizedLength
         .paginator__item.js-paginator__item(data-number= i)= i++
       .paginator__item.js-paginator__item(data-number="forward") arrow_forward
-    .paginator__description.js-paginator__description 1 – 12 из 100+ вариантов аренды
+    .paginator__description.js-paginator__description= `1 – ${numberItemsInPage} из 100+ вариантов аренды`

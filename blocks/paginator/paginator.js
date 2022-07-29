@@ -3,6 +3,9 @@ import $ from 'jquery';
 const left = 37;
 const right = 39;
 
+// this constant should be duplicated in ./paginator.pug: const numberItemsInPage = 12;
+const numberItemsInPage = 12;
+
 class Paginator {
   constructor(paginator) {
     this.$paginator = $(paginator);
@@ -50,7 +53,9 @@ class Paginator {
   setActive(active) {
     this.active = active;
     this.$paginator.attr('data-active', active);
-    this.$description.text(`${(active - 1) * 12 + 1} – ${active * 12} из 100+ вариантов аренды`);
+    this.$description.text(
+      `${(active - 1) * numberItemsInPage + 1} – ${active * numberItemsInPage} из 100+ вариантов аренды`,
+    );
 
     return this;
   }

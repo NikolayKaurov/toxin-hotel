@@ -3,23 +3,25 @@ mixin hyper(options={})
     const {
       text = '404',
       link = 'https://google.com/404',
-      out = true,
-      bold = false,
+      isOutside = true,
+      isBold = false,
     } = options;
-    let modifier = '';
-    if (bold) {
-      modifier = 'hyper_weight_bold';
-    }
-    let target = '_self';
-    let rel = '';
-    if (out) {
-      target = '_blank';
-      rel = 'noopener noreferrer';
-    }
+
+    const classBold = isBold
+      ? 'hyper_weight_bold'
+      : '';
+
+    const target = isOutside
+      ? '_blank'
+      : '_self';
+
+    const rel = isOutside
+      ? 'noopener noreferrer'
+      : '';
 
   a.hyper(
     href= link
     target= target
     rel= rel
-    class= modifier
+    class= classBold
   )= text

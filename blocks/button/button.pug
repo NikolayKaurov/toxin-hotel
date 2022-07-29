@@ -2,52 +2,53 @@ mixin button(options={})
   -
     const {
       width = '', //- ultra-narrow - 61px, narrow - 87px, regular - 99px, wide - 196px, ultra-wide - 320px
-      low = false, //- This is height. low - 34px, regular - 44px
-      purple = false,
-      bordered = false,
-      arrowed = false,
+      isLow = false, //- This is height. low - 34px, regular - 44px
+      isPurple = false,
+      isBordered = false,
+      isArrowed = false,
       text = '',
       disabled = true,
-      submit = true
+      isSubmit = true,
     } = options;
-    let buttonClass = '';
-    switch (width) {
-      case 'narrow':
-        buttonClass += ' button_width_narrow';
-        break;
-      case 'regular':
-        buttonClass += ' button_width_regular';
-        break;
-      case 'wide':
-        buttonClass += ' button_width_wide';
-        break;
-      case 'ultra-wide':
-        buttonClass += ' button_width_ultra-wide';
-        break;
-      default:
-        buttonClass += ' button_width_ultra-narrow';
-    }
-    if (low) {
-      buttonClass += ' button_height_low';
-    } else {
-      buttonClass += ' button_height_regular';
-    }
-    if (purple) {
-      buttonClass += ' button_color_purple';
-    } else if (bordered) {
-      buttonClass += ' button_bordered';
-    }
-    if (arrowed) {
-      buttonClass += ' button_arrowed';
-    }
-    let buttonType = 'submit';
-    if (!submit) {
-      buttonType = 'button';
-    }
+
+    const classWidth = (() => {
+      switch (width) {
+        case 'narrow':
+          return 'button_width_narrow';
+        case 'regular':
+          return 'button_width_regular';
+        case 'wide':
+          return 'button_width_wide';
+        case 'ultra-wide':
+          return 'button_width_ultra-wide';
+        default:
+          return 'button_width_ultra-narrow';
+      }
+    })();
+
+    const classHeight = isLow
+      ? 'button_height_low'
+      : 'button_height_regular';
+
+    const classColor = isPurple
+      ? 'button_color_purple'
+      : '';
+
+    const classBordered = !isPurple && isBordered
+      ? 'button_bordered'
+      : '';
+
+    const classArrowed = isArrowed
+      ? 'button_arrowed'
+      : '';
+
+    const buttonType = isSubmit
+      ? 'submit'
+      : 'button';
 
   button.button.js-button(
     type= buttonType
-    class= buttonClass
+    class= [classWidth, classHeight, classColor, classBordered, classArrowed]
     disabled= disabled
   )= text
 

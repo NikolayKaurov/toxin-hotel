@@ -32,13 +32,9 @@ class Like {
   activate() {
     const { $like, $number, $input } = this;
 
-    let number = parseInt($like.attr('data-likes'), 10);
-
-    if ($like.hasClass('like_active')) {
-      number -= 1;
-    } else {
-      number += 1;
-    }
+    const number = $like.hasClass('like_active')
+      ? parseInt($like.attr('data-likes'), 10) - 1
+      : parseInt($like.attr('data-likes'), 10) + 1;
 
     $like
       .toggleClass('like_active')
@@ -46,7 +42,7 @@ class Like {
 
     $number.text(`${number}`);
 
-    $input.val(`${number}`);
+    $input.val(number);
 
     return this;
   }

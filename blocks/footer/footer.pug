@@ -1,12 +1,12 @@
 mixin footer(options={})
   -
     const {
-      narrow = false
+      isNarrow = false
     } = options;
-    let footerClass = '';
-    if (narrow) {
-      footerClass = 'footer_width_narrow'; //- Needed ONLY for demonstration on 'Headers & Footers' page
-    }
+
+    const footerClass = isNarrow
+      ? 'footer_width_narrow' //- Needed ONLY for demonstration on 'Headers & Footers' page
+      : '';
 
   footer.footer(class= footerClass)
     .footer__body

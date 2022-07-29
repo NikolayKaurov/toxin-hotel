@@ -2,7 +2,7 @@ mixin card-room(options={})
   -
     const {
       number = '',
-      lux = false,
+      isLuxe = false,
       price = 0,
       rating = 0,
       reviews = 0
@@ -13,7 +13,8 @@ mixin card-room(options={})
     const quantitySlides = 4;
 
     const rateOptions = { rating };
-    let img = [];
+
+    const img = [];
     switch(number) {
       case '888':
         img.push(require('../../assets/img/content/room-888.jpg'));
@@ -114,7 +115,7 @@ mixin card-room(options={})
       span.card-room__number №
       span.card-room__numeric= number
       span.card-room__lux
-        if (lux)
+        if (isLuxe)
           = 'люкс'
       span.card-room__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
       = 'в сутки'

@@ -23,12 +23,7 @@ class CardDetails {
     this.$departure = $('.js-datepicker__input_date_departure', this.#$card);
     this.$adult = $('.js-dropdown__quantity[name="details-adult"]', this.#$card);
 
-    this.#$card.on(
-      'input',
-      null,
-      { card: this },
-      handleCardDetailsInput,
-    );
+    this.#$card.on('input', { card: this }, handleCardDetailsInput);
 
     return this;
   }
@@ -49,24 +44,18 @@ function handleCardDetailsInput(event) {
     feeAdd,
   } = event.data.card;
 
-  const fullInput = $departure.val() !== ''
+  const isFullInput = $departure.val() !== ''
     && $arrival.val() !== ''
     && parseInt($adult.val(), 10) > 0;
 
-  $submit.prop('disabled', !fullInput);
+  $submit.prop('disabled', !isFullInput);
 
   if ($departure.val() !== '' && $arrival.val() !== '') {
     const days = (Date.parse($departure.val()) - Date.parse($arrival.val())) / oneDayInMilliseconds;
 
-    let daysString;
-    if (
-      days % 10 === 1
-      && days % 100 !== 11
-    ) {
-      daysString = ' сутки';
-    } else {
-      daysString = ' суток';
-    }
+    const daysString = days % 10 === 1 && days % 100 !== 11
+      ? ' сутки'
+      : ' суток';
 
     $days.text(`${days}${daysString}`);
 

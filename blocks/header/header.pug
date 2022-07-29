@@ -4,23 +4,26 @@ mixin header(options={})
       user = '',
       items = [],
     } = options;
-    const rightmost = !user;
-    let burgerItems = [ ...items ];
+
+    const isRightmost = user === '';
+
+    const burgerItems = [ ...items ];
     if (user === '') {
-      burgerItems = burgerItems.concat([
+      burgerItems.push(
         {
           text: 'Войти',
           link: './sign-in.html',
-          out: false,
-        },
+          isOutside: false,
+        });
+      burgerItems.push(
         {
           text: 'Зарегистрироваться',
           link: './registration.html',
-          out: false,
-        },
-      ]);
+          isOutside: false,
+        });
     }
-    const burgerOptions = { rightmost, items: burgerItems };
+
+    const burgerOptions = { isRightmost, items: burgerItems };
 
   header.header
     nav.header__body
@@ -39,14 +42,15 @@ mixin header(options={})
             subitems = [],
             text = '404',
             link = 'https://google.com/404',
-            out = true,
-            bold = false,
-            most = false,
+            isOutside = true,
+            isBold = false,
+            isMost = false,
           } = item;
-          let itemMost = '';
-          if (most) {
-            itemMost = 'header__item_most';
-          }
+
+          const itemMost = isMost
+            ? 'header__item_most'
+            : '';
+
         .header__item(class= itemMost)
           if (subtitle !== '')
             +burger({
@@ -54,7 +58,7 @@ mixin header(options={})
               items: subitems,
             })
           else
-            +hyper({text, link, out, bold})
+            +hyper({text, link, isOutside, isBold})
       if (user !== '')
         .header__item.header__item_visible
           .header__user= user
@@ -63,8 +67,8 @@ mixin header(options={})
           form.header__form(action="./sign-in.html")
             +button({
               width: 'narrow',
-              low: true,
-              bordered: true,
+              isLow: true,
+              isBordered: true,
               text: 'Войти',
               disabled: false,
             })
@@ -72,8 +76,8 @@ mixin header(options={})
           form.header__form(action="./registration.html")
             +button({
               width: 'wide',
-              low: true,
-              purple: true,
+              isLow: true,
+              isPurple: true,
               text: 'Зарегистрироваться',
               disabled: false,
             })

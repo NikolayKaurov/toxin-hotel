@@ -82,9 +82,9 @@ class Datepicker {
     dateArrival.setHours(0, 0, 0);
     dateDeparture.setHours(0, 0, 0);
 
-    const period = (arrival !== '') && (departure !== '');
+    const hasPeriod = (arrival !== '') && (departure !== '');
 
-    if (period) {
+    if (hasPeriod) {
       this.$dropFilter
         .text(
           `${dateArrival.getDate()} ${shortMonths[dateArrival.getMonth()]} - ${dateDeparture.getDate()} ${shortMonths[dateDeparture.getMonth()]}`,
@@ -168,7 +168,7 @@ class Datepicker {
           cellClasses += ' datepicker__cell_date_other-month';
         }
 
-        if (period) {
+        if (hasPeriod) {
           if (cycleDate.getTime() === dateArrival.getTime()) {
             if (i < 6) {
               cellPeriod = '<div class="datepicker__cell-period datepicker__cell-period_date_arrival"></div>';
@@ -211,7 +211,7 @@ class Datepicker {
       arrival === '' && departure === '',
     );
 
-    this.$confirm.prop('disabled', !period);
+    this.$confirm.prop('disabled', !hasPeriod);
 
     return this;
   }

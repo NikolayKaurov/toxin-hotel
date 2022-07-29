@@ -21,7 +21,7 @@ class CardRegistration {
 
     this.$submit = $('.js-button', this.#$card);
 
-    this.#$card.on('input', null, { card: this }, handleCardRegistrationInput);
+    this.#$card.on('input', { card: this }, handleCardRegistrationInput);
 
     return this;
   }
@@ -45,13 +45,13 @@ function handleCardRegistrationInput(event) {
     $submit,
   } = event.data.card;
 
-  const fullInput = $name.val() !== ''
+  const isFullInput = $name.val() !== ''
     && $surname.val() !== ''
     && $birth.val().length === fullDateStringLength && !$birth.hasClass('text-field__input_invalid')
     && isEmailValid($email.val())
     && $password.val().length >= minPasswordLength;
 
-  $submit.prop('disabled', !fullInput);
+  $submit.prop('disabled', !isFullInput);
 }
 
 $('.js-card-registration__form').each((index, card) => {

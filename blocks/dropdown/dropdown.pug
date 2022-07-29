@@ -1,19 +1,18 @@
 mixin dropdown(options={})
   -
     const {
-      narrow = false, //- narrow width 266px, regular width 320px
+      isNarrow = false, //- narrow width 266px, regular width 320px
       placeholder = '',
       header = '', //- lettering top left
       description = '', //- lettering top right
-      clear = false, //- there is a "clear" button
-      confirm = false, //- there is an "confirm" button
+      hasClear = false, //- there is a "clear" button
+      hasConfirm = false, //- there is an "confirm" button
       items = [], //- strings in the dropdown
     } = options;
 
-    let modifier = '';
-    if (narrow) {
-      modifier = 'dropdown_width_narrow';
-    }
+    const modifier = isNarrow
+      ? 'dropdown_width_narrow'
+      : '';
 
   .dropdown.js-dropdown(class= modifier tabindex="0")
     .dropdown__wrapper
@@ -30,21 +29,22 @@ mixin dropdown(options={})
             units = 'units', //- caption for input field with cases
             min = 0, //- minimum value to activate the "confirm" button
             max = 99,
-            surplus = false, //- this field is not independent, but is added to the previous one
+            isSurplus = false, //- this field is not independent, but is added to the previous one
           } = item;
 
           const unitsArray = units.split(' ');
 
-          let [, nominative, genitive, genitivePlural] = unitsArray;
-          if (nominative === undefined) {
-            nominative = units;
-          }
-          if (genitive === undefined) {
-            genitive = nominative;
-          }
-          if (genitivePlural === undefined) {
-            genitivePlural = genitive;
-          }
+          const nominative = unitsArray[1] !== undefined
+            ? unitsArray[1]
+            : unitsArray[0];
+
+          const genitive = unitsArray[2] !== undefined
+            ? unitsArray[2]
+            : nominative;
+
+          const genitivePlural = unitsArray[3] !== undefined
+            ? unitsArray[3]
+            : genitive;
 
         .dropdown__item.js-dropdown__item
           p.dropdown__units.js-dropdown__units= unitsArray[0]
@@ -60,7 +60,7 @@ mixin dropdown(options={})
             min="0"
             max= max
             step="1"
-            data-surplus= surplus
+            data-surplus= isSurplus
             data-previous="0"
             data-quantity="0"
             data-nominative= nominative
@@ -74,13 +74,13 @@ mixin dropdown(options={})
             type="button"
           ) +
       .dropdown__wrapper
-        if (confirm)
+        if (hasConfirm)
           button.dropdown__button.js-dropdown__button_action_confirm(
             disabled
             tabindex="-1"
             type="button"
           ) применить
-        if (clear)
+        if (hasClear)
           button.dropdown__button.js-dropdown__button_action_clear(
             disabled
             tabindex="-1"

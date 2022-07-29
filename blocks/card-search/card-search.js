@@ -13,12 +13,7 @@ class CardSearch {
     this.$adult = $('.js-dropdown__quantity[name="adult"]', this.#$card);
     this.$submit = $('.js-button', this.#$card);
 
-    this.#$card.on(
-      'input',
-      null,
-      { card: this },
-      handleCardSearchInput,
-    );
+    this.#$card.on('input', { card: this }, handleCardSearchInput);
 
     return this;
   }
@@ -32,11 +27,11 @@ function handleCardSearchInput(event) {
     $submit,
   } = event.data.card;
 
-  const fullInput = $departure.val() !== ''
+  const isFullInput = $departure.val() !== ''
     && $arrival.val() !== ''
     && parseInt($adult.val(), 10) > 0;
 
-  $submit.prop('disabled', !fullInput);
+  $submit.prop('disabled', !isFullInput);
 }
 
 $('.js-card-search').each((index, card) => {

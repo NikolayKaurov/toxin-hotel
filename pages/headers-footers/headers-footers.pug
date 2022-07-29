@@ -13,8 +13,8 @@ include ../../blocks/social/social
   const items = [
     {
       text: 'О нас',
-      bold: true,
-      most: true,
+      isBold: true,
+      isMost: true,
     },
     {
       subtitle: 'Услуги',
@@ -41,23 +41,23 @@ include ../../blocks/social/social
       subitems: [
         {
           text: 'Headers & Footers',
-          link: 'headers-footers.html',
-          out: false,
+          link: './headers-footers.html',
+          isOutside: false,
         },
         {
           text: 'Cards',
-          link: 'cards.html',
-          out: false,
+          link: './cards.html',
+          isOutside: false,
         },
         {
           text: 'Form Elements',
-          link: 'form-elements.html',
-          out: false,
+          link: './form-elements.html',
+          isOutside: false,
         },
         {
           text: 'Colors & Type',
-          link: 'colors-type.html',
-          out: false,
+          link: './colors-type.html',
+          isOutside: false,
         },
       ],
     },
@@ -68,7 +68,7 @@ include ../../blocks/social/social
     +header({ items })
     +header({ items, user: 'Юлий Цезарь' })
     +footer
-    +footer({ narrow: true })
+    +footer({ isNarrow: true })
 
 
 

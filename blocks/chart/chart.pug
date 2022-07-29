@@ -6,34 +6,56 @@ mixin chart(options={})
       satisfactorily = 0,
       disappointed = 0
     } = options;
+
     const total = fabulous + good + satisfactorily + disappointed;
-    let voicesWord = 'голосов';
-    if (total % 100 < 5 || total % 100 > 20) {
-      if (total % 10 === 1) {
-        voicesWord = 'голос';
-      } else if ((total % 10 > 1 && total % 10 < 5)) {
-        voicesWord = 'голоса';
+
+    const voicesWord = (() => {
+      if (total % 100 < 5 || total % 100 > 20) {
+        if (total % 10 === 1) {
+          return 'голос';
+        }
+
+        if (total % 10 > 1 && total % 10 < 5) {
+          return 'голоса';
+        }
+
+        return 'голосов';
       }
-    }
+
+      return 'голосов';
+    })();
+
     const voices = [
-      ['chart__slice_grade_fabulous', total > 0 ? 360 * fabulous / total : 0],
-      ['chart__slice_grade_good', total > 0 ? 360 * good / total : 0],
-      ['chart__slice_grade_satisfactorily', total > 0 ? 360 * satisfactorily / total : 0],
-      ['chart__slice_grade_disappointed', total > 0 ? 360 * disappointed / total : 0],
+      {
+        class: 'chart__slice_grade_fabulous',
+        degrees: total > 0 ? 360 * fabulous / total : 0,
+      },
+      {
+        class: 'chart__slice_grade_good',
+        degrees: total > 0 ? 360 * good / total : 0,
+      },
+      {
+        class: 'chart__slice_grade_satisfactorily',
+        degrees: total > 0 ? 360 * satisfactorily / total : 0,
+      },
+      {
+        class: 'chart__slice_grade_disappointed',
+        degrees: total > 0 ? 360 * disappointed / total : 0,
+      },
     ];
-    voices.sort((a, b) => b[1] - a[1]);
+    voices.sort((a, b) => b.degrees - a.degrees);
 
   figure.chart
     .chart__figure
       .chart__hold.chart__hold_most
-        .chart__slice.chart__slice_most(class= voices[0][0])
+        .chart__slice.chart__slice_most(class= voices[0].class)
       .chart__hold
-        .chart__slice(class= voices[1][0] style= `transform: rotate(-${voices[1][1]}deg);`)
-      .chart__hold(style= `transform: rotate(-${voices[1][1]}deg);`)
-        .chart__slice(class= voices[2][0] style= `transform: rotate(-${voices[2][1]}deg);`)
-      .chart__hold(style= `transform: rotate(-${voices[1][1] + voices[2][1]}deg);`)
-        .chart__slice(class= voices[3][0] style= `transform: rotate(-${voices[3][1]}deg);`)
-      .chart__hold(style= `transform: rotate(-${voices[1][1] + voices[2][1] + voices[3][1]}deg);`)
+        .chart__slice(class= voices[1].class style= `transform: rotate(-${voices[1].degrees}deg);`)
+      .chart__hold(style= `transform: rotate(-${voices[1].degrees}deg);`)
+        .chart__slice(class= voices[2].class style= `transform: rotate(-${voices[2].degrees}deg);`)
+      .chart__hold(style= `transform: rotate(-${voices[1].degrees + voices[2].degrees}deg);`)
+        .chart__slice(class= voices[3].class style= `transform: rotate(-${voices[3].degrees}deg);`)
+      .chart__hold(style= `transform: rotate(-${voices[1].degrees + voices[2].degrees + voices[3].degrees}deg);`)
       .chart__total
         .chart__total-number= total
         = voicesWord

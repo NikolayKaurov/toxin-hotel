@@ -14,12 +14,7 @@ class CardSign {
     this.$password = $('.js-text-field__input[name="sign-password"]', this.#$card);
     this.$submit = $('.js-button', this.#$card);
 
-    this.#$card.on(
-      'input',
-      null,
-      { card: this },
-      handleCardSignInput,
-    );
+    this.#$card.on('input', { card: this }, handleCardSignInput);
 
     return this;
   }
@@ -40,9 +35,9 @@ function handleCardSignInput(event) {
     $submit,
   } = event.data.card;
 
-  const fullInput = isEmailValid($email.val()) && $password.val().length >= minPasswordLength;
+  const isFullInput = isEmailValid($email.val()) && $password.val().length >= minPasswordLength;
 
-  $submit.prop('disabled', !fullInput);
+  $submit.prop('disabled', !isFullInput);
 }
 
 $('.js-card-sign__form').each((index, card) => {

@@ -2,18 +2,19 @@ mixin burger(options={})
   -
     const {
       title = '',
-      rightmost = false,
+      isRightmost = false,
       items = [],
     } = options;
-    let burgerClass = '';
-    if (title !== '') {
-      burgerClass = 'burger_titled';
-    }
-    if (rightmost) {
-      burgerClass += ' burger_position_right';
-    }
 
-  .burger.js-burger(tabindex="0" class= burgerClass)= title
+    const classTitled = title !== ''
+      ? 'burger_titled'
+      : '';
+
+    const classPosition = isRightmost
+      ? 'burger_position_right'
+      : '';
+
+  .burger.js-burger(tabindex="0" class= [classTitled, classPosition])= title
     .burger__menu
       each item in items
         -
@@ -22,8 +23,8 @@ mixin burger(options={})
             subitems = [],
             text = '404',
             link = 'https://google.com/404',
-            out = true,
-            bold = false,
+            isOutside = true,
+            isBold = false,
           } = item;
         .burger__item.js-burger__item
           if (subtitle !== '')
@@ -34,10 +35,10 @@ mixin burger(options={})
                     const {
                       text = '404',
                       link = 'https://google.com/404',
-                      out = true,
-                      bold = false,
+                      isOutside = true,
+                      isBold = false,
                     } = subitem;
                   .burger__item.js-burger__item
-                    +hyper({text, link, out, bold})
+                    +hyper({text, link, isOutside, isBold})
           else
-            +hyper({text, link, out, bold})
+            +hyper({text, link, isOutside, isBold})

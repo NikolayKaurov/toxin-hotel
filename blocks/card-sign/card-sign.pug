@@ -7,14 +7,14 @@ mixin card-sign
       +button({
         width: 'ultra-wide',
         text: 'войти',
-        purple: true,
-        arrowed: true,
+        isPurple: true,
+        isArrowed: true,
       })
     .card-sign__footer Нет аккаунта на Toxin?
       form.card-sign__registration(action="./registration.html")
         +button({
           width: 'regular',
-          bordered: true,
+          isBordered: true,
           text: 'Создать',
           disabled: false,
         })

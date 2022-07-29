@@ -6,13 +6,14 @@ mixin advantage(items=[])
           icon = 'insert_emoticon',
           text = '',
           explanation = '',
-          underlined = true,
+          isUnderlined = true,
         } = item;
-        let itemClass = '';
-        if (underlined) {
-          itemClass = 'advantage__item_underlined'
-        }
-      .advantage__item(class= itemClass)
+
+        const classItem = isUnderlined
+          ? 'advantage__item_underlined'
+          : '';
+
+      .advantage__item(class= classItem)
         .advantage__icon= icon
         .advantage__text
           span.advantage__header= text

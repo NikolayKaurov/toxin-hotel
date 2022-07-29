@@ -47,15 +47,15 @@ mixin card-registration
       })
       +button({
         width: 'ultra-wide',
-        purple: true,
-        arrowed: true,
+        isPurple: true,
+        isArrowed: true,
         text: 'зарегистрироваться',
       })
     .card-registration__footer Уже есть аккаунт на Toxin
       form.card-registration__sign-in(action="./sign-in.html")
         +button({
           width: 'regular',
-          bordered: true,
+          isBordered: true,
           text: 'Войти',
           disabled: false,
         })

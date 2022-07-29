@@ -2,7 +2,7 @@ mixin card-details(options={})
   -
     const {
       number = '',
-      lux = false,
+      isLuxe = false,
       price = 0,
       discount = 0,
       fee = 0,
@@ -19,7 +19,7 @@ mixin card-details(options={})
       span.card-details__number №
       span.card-details__numeric= number
       span.card-details__lux
-        if (lux)
+        if (isLuxe)
           = 'люкс'
       span.card-details__price= `${new Intl.NumberFormat('ru-RU').format(price)}₽`
       = 'в сутки'
@@ -44,7 +44,7 @@ mixin card-details(options={})
           {
             name: 'details-child',
             units: 'дети',
-            surplus: true,
+            isSurplus: true,
             max: 9,
           },
           {
@@ -78,7 +78,7 @@ mixin card-details(options={})
       span.card-details__total.js-card-details__total 0₽
     +button({
       width: 'ultra-wide',
-      arrowed: true,
-      purple: true,
+      isArrowed: true,
+      isPurple: true,
       text: 'забронировать',
     })

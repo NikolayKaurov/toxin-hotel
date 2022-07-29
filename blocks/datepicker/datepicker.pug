@@ -7,12 +7,19 @@ mixin datepicker(options={})
       headerDeparture = '', //- header for departure drop
       modifier = '', //- filter/demo (or missing)
     } = options;
-    let datepickerModifier = '';
-    if (modifier === 'filter') {
-      datepickerModifier = 'datepicker_format_filter';
-    } else if (modifier === 'demo') {
-      datepickerModifier = 'datepicker_format_demo';
-    }
+
+    const datepickerModifier = (() => {
+      if (modifier === 'filter') {
+        return 'datepicker_format_filter';
+      }
+
+      if (modifier === 'demo') {
+        return 'datepicker_format_demo';
+      }
+
+      return '';
+    })();
+
     const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
   .datepicker.js-datepicker(

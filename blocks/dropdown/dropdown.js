@@ -42,7 +42,7 @@ class Dropdown {
         .on('input', { $minus, $plus }, handleQuantityInput);
 
       $('.js-dropdown__counter-button', $item)
-        .on('mouseup mouseout', { $quantity }, handleCounterButtonMouseup);
+        .on('mouseup mouseout focusout', { $quantity }, handleCounterButtonMouseup);
     });
 
     $('.js-dropdown__down', this.$dropdown)
@@ -108,10 +108,8 @@ function handleDropdownInput(event) {
 
   const quantities = $quantities.get();
 
-  let empty = true;
-  let enough = true;
-
-  let numberItems = 0;
+  let isEmpty = true;
+  let isEnough = true;
 
   quantities.reduceRight((previous, input) => {
     const $input = $(input);
@@ -123,17 +121,17 @@ function handleDropdownInput(event) {
     const genitivePlural = $input.attr('data-genitive-plural');
     const min = parseInt($input.attr('data-min'), 10);
 
-    let value = parseInt(quantity, 10);
+    const thisValue = parseInt(quantity, 10);
 
-    if (value > 0) {
-      empty = false;
+    if (thisValue > 0) {
+      isEmpty = false;
     }
 
-    if (value < min) {
-      enough = false;
+    if (thisValue < min) {
+      isEnough = false;
     }
 
-    value += previous;
+    const value = thisValue + previous;
 
     if (surplus !== undefined) {
       return value;
@@ -158,6 +156,8 @@ function handleDropdownInput(event) {
 
     return 0;
   }, 0);
+
+  let numberItems = 0;
 
   const common = quantities.reduce((previous, input) => {
     const $input = $(input);
@@ -188,8 +188,8 @@ function handleDropdownInput(event) {
     $drop.text($drop.attr('data-placeholder'));
   }
 
-  $clear.prop('disabled', empty);
-  $confirm.prop('disabled', !enough);
+  $clear.prop('disabled', isEmpty);
+  $confirm.prop('disabled', !isEnough);
 }
 
 function handleMinusMousedown(event) {
@@ -198,30 +198,35 @@ function handleMinusMousedown(event) {
 
   minus($quantity);
 
-  const timerID = setTimeout(
-    fastMinus,
-    pressingTime,
-    $quantity,
-    $button,
-  );
+  if (parseInt($quantity.val(), 10) > 0) {
+    const timerID = setTimeout(
+      fastMinus,
+      pressingTime,
+      $quantity,
+      $button,
+    );
 
-  $button.attr('data-timer-id', timerID);
+    $button.attr('data-timer-id', timerID);
+  }
 }
 
 function handlePlusMousedown(event) {
   const { $quantity } = event.data;
   const $button = $(event.target);
+  const max = parseInt($quantity.attr('max'), 10);
 
   plus($quantity);
 
-  const timerID = setTimeout(
-    fastPlus,
-    pressingTime,
-    $quantity,
-    $button,
-  );
+  if (parseInt($quantity.val(), 10) < max) {
+    const timerID = setTimeout(
+      fastPlus,
+      pressingTime,
+      $quantity,
+      $button,
+    );
 
-  $button.attr('data-timer-id', timerID);
+    $button.attr('data-timer-id', timerID);
+  }
 }
 
 function handleCounterButtonMouseup(event) {
@@ -243,9 +248,9 @@ function handleQuantityInput(event) {
 
   const max = $input.attr('max');
 
-  const invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
+  const isCorrect = val.match(/^\d{0,2}$/) && value <= max && value >= 0;
 
-  if (invalid) {
+  if (!isCorrect) {
     if (previous > 0) {
       $input.val(previous);
     } else {
@@ -283,38 +288,44 @@ function handleQuantityKeydown(event) {
 
   const max = $input.attr('max');
 
-  let val = $input.val();
+  let valueString = $input.val();
 
   if (keyCode === backspaceKey || keyCode === deleteKey) {
     event.preventDefault();
 
-    $input.val(val.replace(/.$/, ''));
+    $input.val(valueString.replace(/.$/, ''));
     $input.trigger('input');
   } else if (keyCode >= zeroKey && keyCode <= nineKey) {
     event.preventDefault();
 
     const digit = keyCode - zeroKey;
 
-    val = `${val}${digit}`;
-    let value = parseInt(val, 10);
+    valueString = `${valueString}${digit}`;
+    let valueNumber = parseInt(valueString, 10);
 
-    let invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
+    let isCorrect = valueString.match(/^\d{0,2}$/)
+      && valueNumber <= max
+      && valueNumber >= 0;
 
-    if (invalid) {
-      if (val.length > 1) {
-        val = val.replace(/^./, '');
-        value = parseInt(val, 10);
+    if (!isCorrect) {
+      if (valueString.length > 1) {
+        valueString = valueString.replace(/^./, '');
+        valueNumber = parseInt(valueString, 10);
 
-        invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
+        isCorrect = valueString.match(/^\d{0,2}$/)
+          && valueNumber <= max
+          && valueNumber >= 0;
 
-        if (invalid) {
-          if (val.length > 1) {
-            val = val.replace(/^./, '');
-            value = parseInt(val, 10);
+        if (!isCorrect) {
+          if (valueString.length > 1) {
+            valueString = valueString.replace(/^./, '');
+            valueNumber = parseInt(valueString, 10);
 
-            invalid = !val.match(/^\d{0,2}$/) || value > max || value < 0;
+            isCorrect = valueString.match(/^\d{0,2}$/)
+              && valueNumber <= max
+              && valueNumber >= 0;
 
-            if (invalid) {
+            if (!isCorrect) {
               return;
             }
           } else {
@@ -326,7 +337,7 @@ function handleQuantityKeydown(event) {
       }
     }
 
-    $input.val(val);
+    $input.val(valueString);
     $input.trigger('input');
   }
 }

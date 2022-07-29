@@ -12,8 +12,8 @@ mixin card-search
       +dropdown({
         placeholder: 'Сколько гостей',
         header: 'гости',
-        confirm: true,
-        clear: true,
+        hasConfirm: true,
+        hasClear: true,
         items: [
           {
             name: 'adult',
@@ -24,7 +24,7 @@ mixin card-search
           {
             name: 'child',
             units: 'дети',
-            surplus: true,
+            isSurplus: true,
             max: 9,
           },
           {
@@ -37,6 +37,6 @@ mixin card-search
     +button({
       width: 'ultra-wide',
       text: 'подобрать номер',
-      purple: true,
-      arrowed: true,
+      isPurple: true,
+      isArrowed: true,
     })
