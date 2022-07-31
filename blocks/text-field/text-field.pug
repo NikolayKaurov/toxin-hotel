@@ -7,15 +7,14 @@ mixin text-field(options={})
       description = '',
       type = '',
     } = options;
-    let classString = '';
-    let typeString = 'text';
-    if (type === 'date') {
-      classString = 'text-field_type_date js-text-field_type_date';
-    } else if (type === 'password') {
-      typeString = 'password';
-    } else if (type === 'email') {
-      typeString = 'email';
-    }
+
+    const classString = type === 'date'
+      ? 'text-field_type_date js-text-field_type_date'
+      : '';
+
+    const typeString = type === 'password' || type === 'email'
+      ? type
+      : 'text';
 
   .text-field.js-text-field(class= classString data-name= name)
     .text-field__header

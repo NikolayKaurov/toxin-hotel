@@ -17,6 +17,11 @@
     display: flex;
     justify-content: center;
     font-size: 22px;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     &:link {
       @include text-gradient;
@@ -34,8 +39,6 @@
   &__twitter {
     @include social-hyperlink;
 
-    margin-right: 20px;
-
     &::after {
       content: '\e901';
     }
@@ -43,8 +46,6 @@
 
   &__facebook {
     @include social-hyperlink;
-
-    margin-right: 20px;
 
     &::after {
       content: '\e902';

@@ -1,12 +1,12 @@
 mixin subscription(options={})
   -
     const {
-      wide = false,
+      isWide = false,
     } = options;
-    let modifier = '';
-    if (wide) {
-      modifier = 'subscription_width_wide';
-    }
+
+    const modifier = isWide
+      ? 'subscription_width_wide'
+      : '';
 
   form.subscription.js-subscription(class= modifier)
     input.subscription__input.js-subscription__input(name="subscription-email" placeholder="Email" type="email")

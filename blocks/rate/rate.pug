@@ -8,12 +8,14 @@ mixin rate(options={})
       rating = 0,
       enabled = false,
     } = options;
-    let rateClass = '';
-    let tabindex = false;
-    if (enabled) {
-      rateClass = 'rate_enabled';
-      tabindex = '0';
-    }
+
+    const rateClass = enabled
+      ? 'rate_enabled'
+      : '';
+
+    const tabindex = enabled
+      ? '0'
+      : false;
 
     let i = 0;
 

@@ -4,14 +4,10 @@ mixin ui-kit(options={})
       title = 'ui-kit',
       theme = 'white'
     } = options;
-    let uiKitTheme;
-    switch (theme) {
-      case 'gray':
-        uiKitTheme = 'ui-kit_theme_gray';
-        break;
-      default:
-        uiKitTheme = 'ui-kit_theme_white';
-    }
+
+    const uiKitTheme = theme === 'gray'
+      ? 'ui-kit_theme_gray'
+      : 'ui-kit_theme_white';
 
   doctype html
   html.ui-kit(class= uiKitTheme lang="ru")

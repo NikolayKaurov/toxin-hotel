@@ -6,12 +6,17 @@ mixin review(options={})
       time = '',
       text = ''
     } = options;
-    let srcImg = require('../../assets/img/decorative/icon-color.svg');
-    if (name === 'Мурад Сарафанов') {
-      srcImg = require('../../assets/img/content/user-1.jpg');
-    } else if (name === 'Патрисия Стёклышкова') {
-      srcImg = require('../../assets/img/content/user-2.jpg');
-    }
+
+    const srcImg = (() => {
+      switch (name) {
+        case 'Мурад Сарафанов':
+          return require('../../assets/img/content/user-1.jpg');
+        case 'Патрисия Стёклышкова':
+          return require('../../assets/img/content/user-2.jpg');
+        default:
+          return require('../../assets/img/decorative/icon-color.svg');
+      }
+    })();
 
   article.review
     .review__user

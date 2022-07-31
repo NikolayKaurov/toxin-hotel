@@ -369,12 +369,12 @@ function handleInputChange(event) {
 
   const { $dateInput } = event.data.textField;
 
-  const correctValue = value.match(/^\d{2}\.\d{2}\.\d{4}$/)
+  const isCorrectValue = value.match(/^\d{2}\.\d{2}\.\d{4}$/)
     && !Number.isNaN(Date.parse(dateValue));
 
-  const emptyValue = value === '';
+  const isEmptyValue = value === '';
 
-  if (correctValue || emptyValue) {
+  if (isCorrectValue || isEmptyValue) {
     $input.removeClass('text-field__input_invalid');
 
     $dateInput.val(dateValue);

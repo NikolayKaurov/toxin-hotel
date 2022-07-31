@@ -242,13 +242,15 @@ function handleQuantityInput(event) {
 
   const previous = parseInt($input.attr('data-previous'), 10);
 
-  const val = $input.val();
+  const valusString = $input.val();
 
-  const value = parseInt(val, 10) || 0;
+  const valueNumber = parseInt(valusString, 10) || 0;
 
   const max = $input.attr('max');
 
-  const isCorrect = val.match(/^\d{0,2}$/) && value <= max && value >= 0;
+  const isCorrect = valusString.match(/^\d{0,2}$/)
+    && valueNumber <= max
+    && valueNumber >= 0;
 
   if (!isCorrect) {
     if (previous > 0) {
@@ -259,22 +261,22 @@ function handleQuantityInput(event) {
     return;
   }
 
-  $input.val(val.replace(/^0*/, ''));
+  $input.val(valusString.replace(/^0*/, ''));
 
   $input
-    .attr('data-quantity', value)
-    .attr('data-previous', value);
+    .attr('data-quantity', valueNumber)
+    .attr('data-previous', valueNumber);
 
-  $minus.prop('disabled', !(value > 0));
+  $minus.prop('disabled', !(valueNumber > 0));
 
-  $plus.prop('disabled', !(value < max));
+  $plus.prop('disabled', !(valueNumber < max));
 
-  if (value < 1) {
+  if (valueNumber < 1) {
     const timerID = parseInt($minus.attr('data-timer-id'), 10);
 
     clearTimeout(timerID);
     clearInterval(timerID);
-  } else if (value >= max) {
+  } else if (valueNumber >= max) {
     const timerID = parseInt($plus.attr('data-timer-id'), 10);
 
     clearTimeout(timerID);
