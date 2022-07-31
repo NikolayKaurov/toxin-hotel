@@ -3,13 +3,17 @@ import $ from 'jquery';
 class Subscription {
   #$subscription;
 
+  $email;
+
+  $submit;
+
   constructor(subscription) {
     this.#$subscription = $(subscription);
   }
 
   init() {
-    this.$submit = $('.js-subscription__button', this.#$subscription);
     this.$email = $('.js-subscription__input', this.#$subscription);
+    this.$submit = $('.js-subscription__button', this.#$subscription);
 
     this.$email
       .on(

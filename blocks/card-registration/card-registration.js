@@ -6,6 +6,18 @@ const fullDateStringLength = 10; // for example 23.07.1998
 class CardRegistration {
   #$card;
 
+  $name;
+
+  $surname;
+
+  $birth;
+
+  $email;
+
+  $password;
+
+  $submit;
+
   constructor(card) {
     this.#$card = $(card);
   }

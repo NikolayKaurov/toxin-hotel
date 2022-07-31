@@ -3,6 +3,12 @@ import $ from 'jquery';
 class TextField {
   #$textField;
 
+  $double;
+
+  $dateInput;
+
+  preValue;
+
   constructor(textField) {
     this.#$textField = $(textField);
   }

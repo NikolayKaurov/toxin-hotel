@@ -7,6 +7,14 @@ const right = 39;
 const numberItemsInPage = 12;
 
 class Paginator {
+  $paginator;
+
+  $description;
+
+  length;
+
+  active;
+
   constructor(paginator) {
     this.$paginator = $(paginator);
   }

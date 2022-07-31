@@ -4,6 +4,12 @@ const enter = 13;
 const spaceBar = 32;
 
 class Like {
+  $like;
+
+  $number;
+
+  $input;
+
   constructor(like) {
     this.$like = $(like);
   }

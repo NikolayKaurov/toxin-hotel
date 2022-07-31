@@ -4,6 +4,12 @@ const openCloseTime = 50;
 const interval = 40;
 
 class Burger {
+  $burger;
+
+  timerID;
+
+  timeStamp;
+
   constructor(burger) {
     this.$burger = $(burger);
   }

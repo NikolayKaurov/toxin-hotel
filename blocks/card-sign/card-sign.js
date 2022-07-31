@@ -5,6 +5,12 @@ const minPasswordLength = 8;
 class CardSign {
   #$card;
 
+  $email;
+
+  $password;
+
+  $submit;
+
   constructor(card) {
     this.#$card = $(card);
   }

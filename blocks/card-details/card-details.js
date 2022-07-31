@@ -5,6 +5,28 @@ const oneDayInMilliseconds = 86400000;
 class CardDetails {
   #$card;
 
+  $days;
+
+  $totalPrice;
+
+  $total;
+
+  $submit;
+
+  $arrival;
+
+  $departure;
+
+  $adult;
+
+  price;
+
+  discount;
+
+  fee;
+
+  feeAdd;
+
   constructor(card) {
     this.#$card = $(card);
 

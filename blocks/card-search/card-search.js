@@ -3,6 +3,14 @@ import $ from 'jquery';
 class CardSearch {
   #$card;
 
+  $arrival;
+
+  $departure;
+
+  $adult;
+
+  $submit;
+
   constructor(card) {
     this.#$card = $(card);
   }

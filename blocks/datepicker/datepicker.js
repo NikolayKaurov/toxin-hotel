@@ -11,6 +11,34 @@ const right = 39;
 const down = 40;
 
 class Datepicker {
+  $datepicker;
+
+  $arrival;
+
+  $departure;
+
+  $dropFilter;
+
+  $dropArrival;
+
+  $dropDeparture;
+
+  $back;
+
+  $monthYear;
+
+  $calendar;
+
+  $clear;
+
+  $confirm;
+
+  today;
+
+  cursorDate;
+
+  calendarMonth;
+
   constructor(datepicker) {
     this.$datepicker = $(datepicker);
   }

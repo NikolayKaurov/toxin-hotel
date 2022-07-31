@@ -8,6 +8,12 @@ const left = 37;
 const right = 39;
 
 class Rate {
+  $rate;
+
+  $input;
+
+  rating;
+
   constructor(rate) {
     this.$rate = $(rate);
 

@@ -11,6 +11,16 @@ const zeroKey = 48;
 const nineKey = 57;
 
 class Dropdown {
+  $dropdown;
+
+  $drop;
+
+  $quantities;
+
+  $clear;
+
+  $confirm;
+
   constructor(dropdown) {
     this.$dropdown = $(dropdown);
   }
